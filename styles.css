@@ -399,6 +399,21 @@ section {
     filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
 }
 
+.about__logo-secondary {
+    height: 40px;
+    width: auto;
+    opacity: 0.6;
+    margin-left: 20px;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.1));
+}
+
+.about__logo-secondary:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
+}
+
 .about__grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -723,6 +738,25 @@ section {
     margin: 0 auto;
     position: relative;
     z-index: 1;
+}
+
+.connect__logo {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.connect__logo-img {
+    height: 60px;
+    width: auto;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.1));
+}
+
+.connect__logo-img:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+    filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.15));
 }
 
 .connect__links {
