@@ -489,11 +489,8 @@ section {
     border-radius: 20px;
 }
 
-.about__card-title {
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--color-text);
-    margin-bottom: 16px;
+.about__card-title,
+.about__card-text {
     text-align: center;
 }
 
