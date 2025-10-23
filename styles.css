@@ -1302,7 +1302,7 @@ section {
         border-bottom: 2px solid #CFE8FF !important;
         padding: 0 !important;
         margin-top: 0 !important;
-        z-index: 500 !important;
+        z-index: 1000 !important;
         display: block !important;
         width: 100% !important;
     }
@@ -1394,8 +1394,23 @@ section {
     }
     
     .hero {
+        position: relative !important;
         padding: 50px 16px 40px !important;
         margin-top: 0 !important;
+        z-index: 1 !important;
+    }
+    
+    .hero__background {
+        position: relative !important;
+        z-index: 0 !important;
+        height: auto !important;
+        margin-top: 20px !important;
+    }
+    
+    .hero__bg-circle {
+        width: 200px !important;
+        height: 200px !important;
+        opacity: 0.1 !important;
     }
 }
     
