@@ -655,11 +655,12 @@ section {
 }
 
 .routine-card__price {
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 22px;
+    font-weight: 600;
     color: var(--color-accent-pink);
     margin-bottom: 20px;
     text-shadow: 1px 1px 0 #999, -1px -1px 0 #999, 1px -1px 0 #999, -1px 1px 0 #999;
+    letter-spacing: -0.01em;
 }
 
 .routine-card__actions {
@@ -745,11 +746,12 @@ section {
 }
 
 .template-card__price {
-    font-size: 16px;
-    font-weight: 500;
+    font-size: 20px;
+    font-weight: 600;
     color: var(--color-accent-pink);
     margin-bottom: 12px;
     text-shadow: 1px 1px 0 #999, -1px -1px 0 #999, 1px -1px 0 #999, -1px 1px 0 #999;
+    letter-spacing: -0.01em;
 }
 
 .template-card__status {
@@ -1192,14 +1194,16 @@ section {
 
 .routine-card__schedule,
 .template-card__schedule {
-    font-size: 14px;
+    font-size: 16px;
     color: var(--color-primary);
-    font-weight: 500;
-    background-color: rgba(207, 232, 255, 0.2);
-    padding: 6px 12px;
-    border-radius: 8px;
+    font-weight: 600;
+    background-color: rgba(207, 232, 255, 0.3);
+    padding: 8px 16px;
+    border-radius: 10px;
     display: inline-block;
     text-shadow: 1px 1px 0 #999, -1px -1px 0 #999, 1px -1px 0 #999, -1px 1px 0 #999;
+    letter-spacing: -0.01em;
+    border: 1px solid rgba(207, 232, 255, 0.5);
 }
 
 /* Connect Bookstores Styles */
