@@ -603,7 +603,7 @@ section {
     text-align: center;
 }
 
-/* Brand Tone Grid Layout - Updated 2024-12-19 */
+/* Brand Tone Grid Layout - FORCE APPLY */
 .brand-tone-grid {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
@@ -613,6 +613,8 @@ section {
     max-width: 320px !important;
     margin: 0 auto !important;
     padding: 20px 0 !important;
+    position: relative !important;
+    z-index: 1 !important;
 }
 
 .brand-tone-item {
@@ -632,33 +634,34 @@ section {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
     position: relative !important;
     overflow: hidden !important;
+    min-height: 60px !important;
 }
 
 .brand-tone-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(207, 232, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: linear-gradient(135deg, rgba(207, 232, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%) !important;
+    opacity: 0 !important;
+    transition: opacity 0.3s ease !important;
 }
 
 .brand-tone-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    border-color: rgba(207, 232, 255, 0.4);
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1) !important;
+    border-color: rgba(207, 232, 255, 0.4) !important;
 }
 
 .brand-tone-item:hover::before {
-    opacity: 1;
+    opacity: 1 !important;
 }
 
 .brand-tone-item span {
-    position: relative;
-    z-index: 1;
+    position: relative !important;
+    z-index: 1 !important;
 }
 
 /* Grid positioning for 2x2 layout with 5 items */
