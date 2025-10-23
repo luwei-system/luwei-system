@@ -1570,6 +1570,29 @@ section {
     border: 1px solid rgba(207, 232, 255, 0.5);
 }
 
+/* ULTIMATE FORCE STYLES - MUST APPLY */
+.schedule {
+    background: linear-gradient(135deg, #CFE8FF 0%, #FFFFFF 100%) !important;
+    border: 3px solid #CFE8FF !important;
+}
+
+.schedule__item {
+    background: #FFFFFF !important;
+    border: 2px solid #CFE8FF !important;
+    box-shadow: 0 10px 30px rgba(207, 232, 255, 0.5) !important;
+}
+
+.connect__bookstores {
+    background: linear-gradient(135deg, #FFD7E5 0%, #FFFFFF 100%) !important;
+    border: 3px solid #FFD7E5 !important;
+}
+
+.connect__bookstore-link {
+    background: #FFFFFF !important;
+    border: 2px solid #FFD7E5 !important;
+    box-shadow: 0 5px 15px rgba(255, 215, 229, 0.5) !important;
+}
+
 /* Connect Bookstores Styles */
 .connect__bookstores {
     grid-column: 1 / -1 !important;
