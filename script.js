@@ -301,14 +301,19 @@
     }
 
     // Language toggle functionality
-    // Language Toggle - Updated 2024-12-19
+    // Language Toggle - Updated 2024-12-19 - Debug Version
     function initLanguageToggle() {
         const langToggle = document.querySelector('.lang-toggle');
         const langText = document.querySelector('.lang-toggle__text');
         let currentLang = 'ko'; // Default to Korean
         
+        console.log('Language toggle initialized:', { langToggle, langText });
+        
         function updateLanguage(lang) {
+            console.log('Updating language to:', lang);
+            
             const elements = document.querySelectorAll('[data-ko][data-en]:not(.brand-tone-grid)');
+            console.log('Found elements to update:', elements.length);
             
             elements.forEach(element => {
                 if (lang === 'en') {
@@ -321,10 +326,15 @@
             });
             
             // Update toggle button text
-            if (lang === 'en') {
-                langText.textContent = '한';
+            if (langText) {
+                if (lang === 'en') {
+                    langText.textContent = '한';
+                } else {
+                    langText.textContent = 'EN';
+                }
+                console.log('Updated button text to:', langText.textContent);
             } else {
-                langText.textContent = 'EN';
+                console.error('langText element not found');
             }
             
             // Update document language
@@ -344,10 +354,16 @@
         updateLanguage(currentLang);
         
         if (langToggle) {
-            langToggle.addEventListener('click', function() {
+            langToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                console.log('Language toggle clicked, current lang:', currentLang);
                 const newLang = currentLang === 'ko' ? 'en' : 'ko';
+                console.log('Switching to:', newLang);
                 updateLanguage(newLang);
             });
+            console.log('Click event listener added to language toggle');
+        } else {
+            console.error('Language toggle button not found');
         }
         
         // Handle HTML content with innerHTML
