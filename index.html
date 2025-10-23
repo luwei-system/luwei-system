@@ -38,10 +38,10 @@
             <a href="#home" class="nav__logo" aria-label="LUWEI SYSTEM Home">LUWEI SYSTEM</a>
             <ul class="nav__menu">
                 <li><a href="#home" class="nav__link">Home</a></li>
-                <li><a href="#about" class="nav__link">About</a></li>
-                <li><a href="#routine" class="nav__link">Routine</a></li>
-                <li><a href="#templates" class="nav__link">Templates</a></li>
-                <li><a href="#connect" class="nav__link">Connect</a></li>
+                <li><a href="#about" class="nav__link">브랜드 철학</a></li>
+                <li><a href="#routine" class="nav__link">제품</a></li>
+                <li><a href="#templates" class="nav__link">템플릿</a></li>
+                <li><a href="#connect" class="nav__link">연결</a></li>
             </ul>
         </div>
     </nav>
@@ -50,8 +50,10 @@
     <section id="home" class="hero">
         <div class="hero__container">
             <h1 class="hero__title">
-                <span class="hero__line">시끄러운 세상 속, 나는 고요를 설계한다.</span>
-                <span class="hero__line" lang="en">In a noisy world, I design stillness.</span>
+                <span class="hero__line hero__line--main">시스템을 끈다.</span>
+                <span class="hero__line hero__line--sub">감정은 흐른다.</span>
+                <span class="hero__line hero__line--sub">나는 중심에 남는다.</span>
+                <span class="hero__line hero__line--en" lang="en">System off. Emotions flow. I remain centered.</span>
                 <span class="hero__moon">🌙</span>
             </h1>
             
@@ -60,15 +62,15 @@
                    class="btn btn--primary" 
                    target="_blank" 
                    rel="noopener noreferrer"
-                   aria-label="Begin Stillness - Visit Gumroad">
-                    Begin Stillness
+                   aria-label="첫 오디오 체험하기 - Gumroad 방문">
+                    첫 오디오 체험하기
                 </a>
                 <a href="https://youtube.com/@luwei.system" 
                    class="btn btn--secondary" 
                    target="_blank" 
                    rel="noopener noreferrer"
-                   aria-label="Experience Water - Watch on YouTube">
-                    Experience Water
+                   aria-label="무료 명상 오디오 듣기 - YouTube 방문">
+                    무료 명상 오디오 듣기
                 </a>
             </div>
             
@@ -81,55 +83,88 @@
     <!-- About Section -->
     <section id="about" class="about">
         <div class="about__container">
-            <h2 class="section__title">About</h2>
+            <h2 class="section__title">브랜드 철학</h2>
             
-            <div class="about__content">
-                <p class="about__text">
-                    감정을 정지시키는 구조를 설계합니다. LUWEI SYSTEM은 디지털 공간에서 당신의 감정을 일시정지시키고 고요로 돌아가게 하는 구조를 만듭니다. 
-                    <span lang="en">LUWEI SYSTEM designs digital structures to pause emotions and bring you back to stillness.</span>
-                </p>
+            <div class="about__grid">
+                <div class="about__card">
+                    <h3 class="about__card-title">존재 이유</h3>
+                    <p class="about__card-text">
+                        세상이 시끄러울수록, 사람들에게 고요의 시스템을 제공하기 위해.
+                    </p>
+                    <p class="about__card-text" lang="en">
+                        The noisier the world becomes, the more we need systems of stillness.
+                    </p>
+                </div>
                 
-                <p class="about__text">
-                    우리는 무편집의 진실을 추구합니다. 과장되지 않은 순수한 경험을 제공하며, 자극적인 요소는 배제합니다. 
-                    감정을 수치화하거나 복잡하게 만들지 않습니다. 모든 것은 한 문장으로 끝낼 수 있는 단순함 속에서 완성됩니다.
-                </p>
+                <div class="about__card">
+                    <h3 class="about__card-title">브랜드 톤</h3>
+                    <p class="about__card-text">
+                        단정 · 느림 · 대칭 · 무편집 · 진짜.
+                    </p>
+                    <p class="about__card-text" lang="en">
+                        Orderly · Slow · Symmetrical · Unedited · Real.
+                    </p>
+                </div>
                 
-                <blockquote class="about__quote">
-                    <p>아무것도 하지 않는다. 나는 흐름을 놓아준다.</p>
-                    <p lang="en">Do nothing. I let the flow go on.</p>
-                </blockquote>
+                <div class="about__card">
+                    <h3 class="about__card-title">색감 코드</h3>
+                    <div class="color-palette">
+                        <div class="color-item">
+                            <div class="color-swatch" style="background-color: #CFE8FF;"></div>
+                            <span class="color-name">하늘색<br><small>개방/평온</small></span>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background-color: #E9EEF2;"></div>
+                            <span class="color-name">연회색<br><small>안정/균형</small></span>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background-color: #DFF5E1;"></div>
+                            <span class="color-name">연초록<br><small>자연/흐름</small></span>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background-color: #FFD7E5;"></div>
+                            <span class="color-name">옅은 분홍<br><small>따뜻함/연결</small></span>
+                        </div>
+                    </div>
+                </div>
             </div>
+            
+            <blockquote class="about__quote">
+                <p>아무것도 하지 않는다. 나는 흐름을 놓아준다.</p>
+                <p lang="en">Do nothing. I let the flow go on.</p>
+            </blockquote>
         </div>
     </section>
 
     <!-- Routine Section -->
     <section id="routine" class="routine">
         <div class="routine__container">
-            <h2 class="section__title">Routine</h2>
+            <h2 class="section__title">제품</h2>
             
             <div class="routine__grid">
                 <!-- Water Card -->
                 <div class="routine-card routine-card--active">
                     <div class="routine-card__icon">🌊</div>
-                    <h3 class="routine-card__title">Water</h3>
+                    <h3 class="routine-card__title">무 루틴 : 물</h3>
                     <p class="routine-card__subtitle" lang="en">the element of flow</p>
                     <p class="routine-card__description">
-                        무 루틴 : 물 — 9분 Audio-visual Meditation
+                        9분 Audio-visual Meditation
                     </p>
+                    <div class="routine-card__price">₩4,900</div>
                     <div class="routine-card__actions">
                         <a href="https://youtube.com/@luwei.system" 
                            class="btn btn--small" 
                            target="_blank" 
                            rel="noopener noreferrer"
-                           aria-label="Watch Water routine on YouTube">
-                            Watch on YouTube
+                           aria-label="무료 미리듣기 - YouTube 방문">
+                            무료 미리듣기
                         </a>
                         <a href="https://luweisystem.gumroad.com" 
                            class="btn btn--small btn--outline" 
                            target="_blank" 
                            rel="noopener noreferrer"
-                           aria-label="Get the full Water routine on Gumroad">
-                            Get the Full Routine on Gumroad
+                           aria-label="전체 오디오 구매 - Gumroad 방문">
+                            전체 오디오 구매
                         </a>
                     </div>
                 </div>
@@ -137,7 +172,7 @@
                 <!-- Light Card -->
                 <div class="routine-card routine-card--coming-soon">
                     <div class="routine-card__icon">💡</div>
-                    <h3 class="routine-card__title">Light</h3>
+                    <h3 class="routine-card__title">무 루틴 : 빛</h3>
                     <p class="routine-card__subtitle" lang="en">the element of clarity</p>
                     <p class="routine-card__description">
                         <span lang="en">Coming soon</span>
@@ -147,7 +182,7 @@
                 <!-- Wind Card -->
                 <div class="routine-card routine-card--coming-soon">
                     <div class="routine-card__icon">🌬</div>
-                    <h3 class="routine-card__title">Wind</h3>
+                    <h3 class="routine-card__title">무 루틴 : 바람</h3>
                     <p class="routine-card__subtitle" lang="en">the element of movement</p>
                     <p class="routine-card__description">
                         <span lang="en">Coming soon</span>
@@ -157,7 +192,7 @@
                 <!-- Balance Card -->
                 <div class="routine-card routine-card--coming-soon">
                     <div class="routine-card__icon">🌾</div>
-                    <h3 class="routine-card__title">Balance</h3>
+                    <h3 class="routine-card__title">무 루틴 : 균형</h3>
                     <p class="routine-card__subtitle" lang="en">the element of order</p>
                     <p class="routine-card__description">
                         <span lang="en">Coming soon</span>
@@ -174,28 +209,40 @@
     <!-- Templates Section -->
     <section id="templates" class="templates">
         <div class="templates__container">
-            <h2 class="section__title">Templates</h2>
+            <h2 class="section__title">템플릿</h2>
             
             <div class="templates__grid">
                 <div class="template-card">
                     <h3 class="template-card__title">하루 OFF 루틴</h3>
                     <p class="template-card__description">
-                        <span lang="en">Available soon on Gumroad</span>
+                        감정 OFF 루틴 기록용 Notion 템플릿
                     </p>
+                    <div class="template-card__price">₩2,900</div>
+                    <div class="template-card__status">
+                        <span lang="en">Available soon on Gumroad</span>
+                    </div>
                 </div>
                 
                 <div class="template-card">
                     <h3 class="template-card__title">감정 루틴 캘린더</h3>
                     <p class="template-card__description">
-                        <span lang="en">Available soon on Gumroad</span>
+                        월간 감정 흐름 추적 캘린더
                     </p>
+                    <div class="template-card__price">₩3,900</div>
+                    <div class="template-card__status">
+                        <span lang="en">Available soon on Gumroad</span>
+                    </div>
                 </div>
                 
                 <div class="template-card">
                     <h3 class="template-card__title">시스템 OFF 대시보드</h3>
                     <p class="template-card__description">
-                        <span lang="en">Available soon on Gumroad</span>
+                        개인 고요 시스템 관리 대시보드
                     </p>
+                    <div class="template-card__price">₩4,900</div>
+                    <div class="template-card__status">
+                        <span lang="en">Available soon on Gumroad</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -204,18 +251,18 @@
     <!-- Connect Section -->
     <section id="connect" class="connect">
         <div class="connect__container">
-            <h2 class="section__title">Connect</h2>
+            <h2 class="section__title">연결</h2>
             
             <div class="connect__links">
                 <a href="https://luweisystem.gumroad.com" 
                    class="connect__link" 
                    target="_blank" 
                    rel="noopener noreferrer"
-                   aria-label="Visit Gumroad for experiences">
+                   aria-label="Gumroad에서 제품 구매하기">
                     <div class="connect__icon">🛒</div>
                     <div class="connect__content">
                         <span class="connect__title">Gumroad</span>
-                        <span class="connect__subtitle" lang="en">Experience</span>
+                        <span class="connect__subtitle" lang="en">Purchase</span>
                     </div>
                 </a>
                 
@@ -223,7 +270,7 @@
                    class="connect__link" 
                    target="_blank" 
                    rel="noopener noreferrer"
-                   aria-label="Visit Instagram for archive">
+                   aria-label="Instagram에서 브랜드 아카이브 보기">
                     <div class="connect__icon">📸</div>
                     <div class="connect__content">
                         <span class="connect__title">Instagram</span>
@@ -235,11 +282,11 @@
                    class="connect__link" 
                    target="_blank" 
                    rel="noopener noreferrer"
-                   aria-label="Visit YouTube to watch">
+                   aria-label="YouTube에서 무료 오디오 듣기">
                     <div class="connect__icon">🎥</div>
                     <div class="connect__content">
                         <span class="connect__title">YouTube</span>
-                        <span class="connect__subtitle" lang="en">Watch</span>
+                        <span class="connect__subtitle" lang="en">Free Audio</span>
                     </div>
                 </a>
                 
@@ -247,11 +294,11 @@
                    class="connect__link" 
                    target="_blank" 
                    rel="noopener noreferrer"
-                   aria-label="Visit GitHub to build">
+                   aria-label="GitHub에서 프로젝트 보기">
                     <div class="connect__icon">⚙️</div>
                     <div class="connect__content">
                         <span class="connect__title">GitHub</span>
-                        <span class="connect__subtitle" lang="en">Build</span>
+                        <span class="connect__subtitle" lang="en">Projects</span>
                     </div>
                 </a>
             </div>
