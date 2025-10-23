@@ -489,6 +489,21 @@ section {
     border-radius: 20px;
 }
 
+.about__card-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.about__card-text {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--color-text-light);
+    text-align: center;
+}
+
 .about__card:hover {
     border-color: var(--color-primary);
     transform: translateY(-2px);
