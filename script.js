@@ -374,3 +374,123 @@
     };
 
 })();
+
+// Social Share Functions
+function shareToKakao() {
+    const url = window.location.href;
+    const title = 'LUWEI SYSTEM — 명상 오디오와 감정 루틴 템플릿';
+    const description = '서울의 디지털 감정 브랜드. 루웨이의 숨결 출간, 명상 오디오와 템플릿으로 고요의 시스템을 경험하세요.';
+    
+    if (window.Kakao && window.Kakao.isInitialized()) {
+        window.Kakao.Link.sendDefault({
+            objectType: 'feed',
+            content: {
+                title: title,
+                description: description,
+                imageUrl: window.location.origin + '/assets/og-image.png',
+                link: {
+                    mobileWebUrl: url,
+                    webUrl: url,
+                },
+            },
+        });
+    } else {
+        // Fallback: 카카오톡이 없을 경우 링크 복사
+        copyToClipboard();
+    }
+}
+
+function shareToFacebook() {
+    const url = encodeURIComponent(window.location.href);
+    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+    window.open(facebookUrl, '_blank', 'width=600,height=400');
+}
+
+function shareToTwitter() {
+    const url = encodeURIComponent(window.location.href);
+    const text = encodeURIComponent('LUWEI SYSTEM — 명상 오디오와 감정 루틴 템플릿');
+    const twitterUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
+    window.open(twitterUrl, '_blank', 'width=600,height=400');
+}
+
+function copyToClipboard() {
+    const url = window.location.href;
+    
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(url).then(() => {
+            showToast('링크가 복사되었습니다!');
+        }).catch(() => {
+            fallbackCopyToClipboard(url);
+        });
+    } else {
+        fallbackCopyToClipboard(url);
+    }
+}
+
+function fallbackCopyToClipboard(text) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    textArea.style.top = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    
+    try {
+        document.execCommand('copy');
+        showToast('링크가 복사되었습니다!');
+    } catch (err) {
+        showToast('링크 복사에 실패했습니다.');
+    }
+    
+    document.body.removeChild(textArea);
+}
+
+function showToast(message) {
+    // 간단한 토스트 메시지 표시
+    const toast = document.createElement('div');
+    toast.textContent = message;
+    toast.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: var(--color-primary);
+        color: var(--color-text);
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        z-index: 10000;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        animation: slideIn 0.3s ease;
+    `;
+    
+    // CSS 애니메이션 추가
+    if (!document.querySelector('#toast-styles')) {
+        const style = document.createElement('style');
+        style.id = 'toast-styles';
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+        toast.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => {
+            if (toast.parentNode) {
+                toast.parentNode.removeChild(toast);
+            }
+        }, 300);
+    }, 2000);
+}

@@ -1385,3 +1385,136 @@ section {
         font-size: 11px;
     }
 }
+
+/* Social Share Styles */
+.connect__share {
+    grid-column: 1 / -1;
+    margin-top: 40px;
+    padding: 32px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    border: 1px solid var(--color-border);
+    backdrop-filter: blur(10px);
+}
+
+.connect__share-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 24px;
+    text-align: center;
+    letter-spacing: -0.02em;
+}
+
+.connect__share-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 16px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.share-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px 12px;
+    background-color: var(--color-secondary);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    font-size: 14px;
+    position: relative;
+    overflow: hidden;
+}
+
+.share-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--color-secondary) 0%, rgba(233, 238, 242, 0.8) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.share-btn:hover::before {
+    opacity: 1;
+}
+
+.share-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    border-color: var(--color-primary);
+}
+
+.share-icon {
+    font-size: 24px;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+}
+
+.share-text {
+    font-size: 13px;
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+}
+
+.share-btn--kakao:hover {
+    background-color: #FEE500;
+    color: #3C1E1E;
+}
+
+.share-btn--facebook:hover {
+    background-color: #1877F2;
+    color: #FFFFFF;
+}
+
+.share-btn--twitter:hover {
+    background-color: #1DA1F2;
+    color: #FFFFFF;
+}
+
+.share-btn--link:hover {
+    background-color: var(--color-primary);
+    color: var(--color-text);
+}
+
+/* Mobile Responsive for Share */
+@media (max-width: 768px) {
+    .connect__share {
+        margin-top: 24px;
+        padding: 24px 20px;
+    }
+    
+    .connect__share-title {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+    
+    .connect__share-links {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        max-width: none;
+    }
+    
+    .share-btn {
+        padding: 14px 10px;
+    }
+    
+    .share-icon {
+        font-size: 20px;
+        margin-bottom: 6px;
+    }
+    
+    .share-text {
+        font-size: 12px;
+    }
+}
