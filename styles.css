@@ -104,16 +104,12 @@ p {
 }
 
 /* Navigation */
+/* Clean Navigation Design - Not Fixed */
 .nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
     background-color: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--color-border-light);
+    border-bottom: 1px solid rgba(233, 238, 242, 0.5);
     z-index: 1000;
-    transition: border-color 0.2s ease;
 }
 
 .nav__container {
@@ -137,34 +133,51 @@ p {
 }
 
 .nav__logo-img {
-    height: 32px;
+    height: 28px;
     width: auto;
     opacity: 0.9;
-    transition: all 0.3s ease;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    transition: opacity 0.2s ease;
 }
 
 .nav__logo:hover .nav__logo-img {
     opacity: 1;
-    transform: scale(1.05);
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
 }
 
 .nav__menu {
     display: flex;
     list-style: none;
-    gap: 32px;
+    gap: 24px;
+    margin: 0;
+    padding: 0;
 }
 
 .nav__link {
     color: var(--color-text-light);
     text-decoration: none;
     font-size: 14px;
+    font-weight: 400;
+    padding: 8px 0;
     transition: color 0.2s ease;
+    position: relative;
 }
 
 .nav__link:hover {
     color: var(--color-text);
+}
+
+.nav__link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-primary);
+    transition: width 0.3s ease;
+}
+
+.nav__link:hover::after {
+    width: 100%;
 }
 
 .nav__link:focus {
@@ -174,26 +187,117 @@ p {
 
 /* Language Toggle */
 .lang-toggle {
-    background: none;
-    border: 2px solid var(--color-primary);
-    padding: 8px 16px;
+    background: rgba(207, 232, 255, 0.1);
+    border: 1px solid rgba(207, 232, 255, 0.3);
+    padding: 8px 12px;
     font-size: 14px;
     font-weight: 500;
     color: var(--color-text);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
     border-radius: 20px;
     font-family: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 36px;
+    position: relative;
+    overflow: hidden;
+}
+
+.lang-toggle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(207, 232, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .lang-toggle:hover {
-    background-color: var(--color-primary);
-    color: var(--color-text);
+    background-color: rgba(207, 232, 255, 0.2);
+    border-color: rgba(207, 232, 255, 0.5);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.lang-toggle:hover::before {
+    opacity: 1;
+}
+
+.lang-toggle:active {
+    transform: translateY(0);
+    background-color: rgba(207, 232, 255, 0.3);
 }
 
 .lang-toggle:focus {
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
+}
+
+/* Share Toggle Button */
+.share-toggle {
+    background: rgba(207, 232, 255, 0.1);
+    border: 1px solid rgba(207, 232, 255, 0.3);
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 20px;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 36px;
+    position: relative;
+    overflow: hidden;
+}
+
+.share-toggle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(207, 232, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.share-toggle:hover {
+    background-color: rgba(207, 232, 255, 0.2);
+    border-color: rgba(207, 232, 255, 0.5);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.share-toggle:hover::before {
+    opacity: 1;
+}
+
+.share-toggle:active {
+    transform: translateY(0);
+    background-color: rgba(207, 232, 255, 0.3);
+}
+
+.share-toggle:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* Button group styling */
+.nav__button-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .lang-toggle__text {
