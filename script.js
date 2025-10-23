@@ -338,8 +338,9 @@
         const savedLang = localStorage.getItem('luwei-lang');
         if (savedLang) {
             currentLang = savedLang;
-            updateLanguage(currentLang);
         }
+        // Always update language on page load
+        updateLanguage(currentLang);
         
         if (langToggle) {
             langToggle.addEventListener('click', function() {
