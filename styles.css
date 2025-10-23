@@ -1133,6 +1133,16 @@ section {
     color: #FFFFFF;
 }
 
+.schedule__item--global {
+    border-color: var(--color-accent);
+    background-color: rgba(223, 245, 225, 0.1);
+}
+
+.schedule__item--global .schedule__date {
+    background-color: var(--color-accent);
+    color: var(--color-text);
+}
+
 .schedule__content {
     flex: 1;
 }
@@ -1178,6 +1188,51 @@ section {
     display: inline-block;
 }
 
+/* Connect Bookstores Styles */
+.connect__bookstores {
+    grid-column: 1 / -1;
+    margin-top: 32px;
+    padding: 24px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 16px;
+    border: 1px solid var(--color-border);
+}
+
+.connect__bookstores-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.connect__bookstore-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+}
+
+.connect__bookstore-link {
+    display: block;
+    padding: 12px 16px;
+    background-color: var(--color-primary);
+    color: var(--color-text);
+    text-decoration: none;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 1px solid var(--color-primary);
+}
+
+.connect__bookstore-link:hover {
+    background-color: var(--color-text);
+    color: #FFFFFF;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
 /* Mobile Responsive for Schedule */
 @media (max-width: 768px) {
     .hero__schedule {
@@ -1215,5 +1270,24 @@ section {
     
     .schedule__description {
         font-size: 15px;
+    }
+    
+    .connect__bookstores {
+        margin-top: 24px;
+        padding: 20px;
+    }
+    
+    .connect__bookstores-title {
+        font-size: 16px;
+    }
+    
+    .connect__bookstore-links {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+    
+    .connect__bookstore-link {
+        padding: 10px 12px;
+        font-size: 13px;
     }
 }
