@@ -32,7 +32,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="./styles.css?v=20241219-remove-schedule-restore-bookstore">
+    <link rel="stylesheet" href="./styles.css?v=20241219-beautiful-schedule-cards">
 </head>
 <body>
     <!-- Navigation -->
@@ -46,6 +46,7 @@
                 <li><a href="#about" class="nav__link" data-ko="브랜드 철학" data-en="Philosophy">브랜드 철학</a></li>
                 <li><a href="#routine" class="nav__link" data-ko="제품" data-en="Products">제품</a></li>
                 <li><a href="#templates" class="nav__link" data-ko="템플릿" data-en="Templates">템플릿</a></li>
+                <li><a href="#schedule" class="nav__link" data-ko="출시 일정" data-en="Schedule">출시 일정</a></li>
                 <li><a href="#connect" class="nav__link" data-ko="연결" data-en="Connect">연결</a></li>
             </ul>
             <button class="lang-toggle" aria-label="언어 전환">
@@ -305,6 +306,50 @@
         </div>
     </section>
 
+    <!-- Release Schedule Section -->
+    <section id="schedule" class="release-schedule">
+        <div class="release-schedule__container">
+            <h2 class="section__title" data-ko="출시 일정" data-en="Release Schedule">출시 일정</h2>
+            
+            <div class="schedule-cards">
+                <div class="schedule-card schedule-card--current">
+                    <div class="schedule-card__date">11월 중</div>
+                    <div class="schedule-card__content">
+                        <h3 class="schedule-card__title" data-ko="무 루틴 오디오 '물·빛' 시리즈" data-en="'Water·Light' Meditation Audio Series">무 루틴 오디오 '물·빛' 시리즈</h3>
+                        <p class="schedule-card__description" data-ko="1분 명상 오디오로 시작하는 고요의 여행" data-en="Begin your journey to stillness with 1-minute meditation audio">1분 명상 오디오로 시작하는 고요의 여행</p>
+                    </div>
+                </div>
+                
+                <div class="schedule-card">
+                    <div class="schedule-card__date">12월 초</div>
+                    <div class="schedule-card__content">
+                        <h3 class="schedule-card__title" data-ko="하루 OFF 템플릿" data-en="Daily OFF Templates">하루 OFF 템플릿</h3>
+                        <p class="schedule-card__description" data-ko="감정 OFF 루틴을 기록하는 Notion 템플릿" data-en="Notion templates for recording your OFF routine">감정 OFF 루틴을 기록하는 Notion 템플릿</p>
+                    </div>
+                </div>
+                
+                <div class="schedule-card">
+                    <div class="schedule-card__date">12월 말</div>
+                    <div class="schedule-card__content">
+                        <h3 class="schedule-card__title" data-ko="루웨이 패키지" data-en="LUWEI Package">루웨이 패키지</h3>
+                        <p class="schedule-card__description" data-ko="오디오 + 템플릿이 함께하는 완전한 고요 시스템" data-en="Complete stillness system with audio + templates">오디오 + 템플릿이 함께하는 완전한 고요 시스템</p>
+                    </div>
+                </div>
+                
+                <div class="schedule-card schedule-card--global">
+                    <div class="schedule-card__date">2025년 연말</div>
+                    <div class="schedule-card__content">
+                        <h3 class="schedule-card__title" data-ko="글로벌 영문판 출간" data-en="Global English Edition">글로벌 영문판 출간</h3>
+                        <p class="schedule-card__description" data-ko="감정의 흐름을 국내를 넘어 세계로 확장합니다" data-en="Expanding the flow of emotions beyond Korea to the world">감정의 흐름을 국내를 넘어 세계로 확장합니다</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="schedule-notice">
+                <p class="schedule-notice__text" data-ko="※ 일정은 내부 사정에 따라 변경될 수 있습니다." data-en="※ Schedule subject to change based on internal circumstances.">※ 일정은 내부 사정에 따라 변경될 수 있습니다.</p>
+            </div>
+        </div>
+    </section>
 
     <!-- Connect Section -->
     <section id="connect" class="connect">
@@ -408,6 +453,6 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="./script.js?v=20241219-remove-schedule-restore-bookstore"></script>
+    <script src="./script.js?v=20241219-beautiful-schedule-cards"></script>
 </body>
 </html>
