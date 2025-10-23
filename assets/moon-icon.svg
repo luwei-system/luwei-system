@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <!-- Gradient for the moon -->
+    <linearGradient id="moonGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E8F4FD;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#CFE8FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#B8DDFF;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Soft shadow for depth -->
+    <filter id="softShadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+      <feOffset dx="2" dy="2" result="offset"/>
+      <feFlood flood-color="#CFE8FF" flood-opacity="0.3"/>
+      <feComposite in2="offset" operator="in"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Paper texture pattern -->
+    <pattern id="paperTexture" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <rect width="20" height="20" fill="#FFFFFF"/>
+      <circle cx="5" cy="5" r="0.5" fill="#F0F0F0" opacity="0.3"/>
+      <circle cx="15" cy="10" r="0.3" fill="#F0F0F0" opacity="0.2"/>
+      <circle cx="10" cy="15" r="0.4" fill="#F0F0F0" opacity="0.25"/>
+    </pattern>
+  </defs>
+  
+  <!-- Background with paper texture -->
+  <rect width="200" height="200" fill="url(#paperTexture)"/>
+  
+  <!-- Moon crescent -->
+  <path d="M100 20 C140 20, 170 50, 170 90 C170 130, 140 160, 100 160 C60 160, 30 130, 30 90 C30 50, 60 20, 100 20 Z M100 40 C130 40, 150 60, 150 90 C150 120, 130 140, 100 140 C70 140, 50 120, 50 90 C50 60, 70 40, 100 40 Z" 
+        fill="url(#moonGradient)" 
+        filter="url(#softShadow)"
+        opacity="0.9"/>
+  
+  <!-- Subtle inner highlight -->
+  <path d="M100 30 C125 30, 140 45, 140 70 C140 95, 125 110, 100 110 C75 110, 60 95, 60 70 C60 45, 75 30, 100 30 Z" 
+        fill="#FFFFFF" 
+        opacity="0.4"/>
+</svg>

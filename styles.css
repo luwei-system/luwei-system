@@ -237,11 +237,22 @@ p {
 
 .hero__moon {
     display: block;
-    font-size: 56px;
     margin-top: 20px;
     opacity: 0.9;
-    color: var(--color-primary);
-    filter: drop-shadow(0 0 8px rgba(207, 232, 255, 0.6));
+}
+
+.moon-icon {
+    width: 80px;
+    height: 80px;
+    display: block;
+    margin: 0 auto;
+    filter: drop-shadow(0 0 12px rgba(207, 232, 255, 0.4));
+    transition: all 0.3s ease;
+}
+
+.moon-icon:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 16px rgba(207, 232, 255, 0.6));
 }
 
 .hero__cta {
