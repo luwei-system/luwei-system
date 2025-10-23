@@ -499,6 +499,76 @@ section {
     text-align: center;
 }
 
+/* Brand Tone Grid Layout */
+.brand-tone-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 16px;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.brand-tone-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text);
+    text-align: center;
+    line-height: 1.4;
+    border-radius: 8px;
+    background-color: rgba(207, 232, 255, 0.1);
+    transition: all 0.2s ease;
+}
+
+.brand-tone-item:hover {
+    background-color: rgba(207, 232, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+/* Grid positioning for 2x3 layout with 5 items */
+.brand-tone-item--top-left {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.brand-tone-item--top-center {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.brand-tone-item--top-right {
+    grid-column: 3;
+    grid-row: 1;
+}
+
+.brand-tone-item--bottom-left {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.brand-tone-item--bottom-center {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+/* Mobile responsive for brand tone grid */
+@media (max-width: 768px) {
+    .brand-tone-grid {
+        max-width: 250px;
+        gap: 12px;
+    }
+    
+    .brand-tone-item {
+        padding: 10px 6px;
+        font-size: 13px;
+    }
+}
+
 .about__card-text {
     font-size: 16px;
     line-height: 1.6;

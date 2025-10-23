@@ -319,6 +319,22 @@
                 }
             });
             
+            // Handle brand tone grid language switching
+            const brandToneGrid = document.querySelector('.brand-tone-grid');
+            if (brandToneGrid) {
+                const koTexts = brandToneGrid.getAttribute('data-ko').split('|');
+                const enTexts = brandToneGrid.getAttribute('data-en').split('|');
+                const items = brandToneGrid.querySelectorAll('.brand-tone-item');
+                
+                items.forEach((item, index) => {
+                    if (lang === 'en') {
+                        item.textContent = enTexts[index] || enTexts[0];
+                    } else {
+                        item.textContent = koTexts[index] || koTexts[0];
+                    }
+                });
+            }
+            
             // Update toggle button text
             if (lang === 'en') {
                 langText.textContent = '한';
