@@ -307,7 +307,7 @@
         let currentLang = 'ko'; // Default to Korean
         
         function updateLanguage(lang) {
-            const elements = document.querySelectorAll('[data-ko][data-en]');
+            const elements = document.querySelectorAll('[data-ko][data-en]:not(.brand-tone-grid)');
             
             elements.forEach(element => {
                 if (lang === 'en') {
