@@ -350,6 +350,19 @@
             currentLang = lang;
         }
         
+        // Initialize brand tone grid on page load
+        function initBrandToneGrid() {
+            const brandToneGrid = document.querySelector('.brand-tone-grid');
+            if (brandToneGrid) {
+                const koTexts = brandToneGrid.getAttribute('data-ko').split('|');
+                const items = brandToneGrid.querySelectorAll('.brand-tone-item');
+                
+                items.forEach((item, index) => {
+                    item.textContent = koTexts[index] || koTexts[0];
+                });
+            }
+        }
+        
         // Load saved language preference
         const savedLang = localStorage.getItem('luwei-lang');
         if (savedLang) {
@@ -357,6 +370,9 @@
         }
         // Always update language on page load
         updateLanguage(currentLang);
+        
+        // Initialize brand tone grid
+        initBrandToneGrid();
         
         if (langToggle) {
             langToggle.addEventListener('click', function() {
