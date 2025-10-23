@@ -37,12 +37,15 @@
         <div class="nav__container">
             <a href="#home" class="nav__logo" aria-label="LUWEI SYSTEM Home">LUWEI SYSTEM</a>
             <ul class="nav__menu">
-                <li><a href="#home" class="nav__link">Home</a></li>
-                <li><a href="#about" class="nav__link">브랜드 철학</a></li>
-                <li><a href="#routine" class="nav__link">제품</a></li>
-                <li><a href="#templates" class="nav__link">템플릿</a></li>
-                <li><a href="#connect" class="nav__link">연결</a></li>
+                <li><a href="#home" class="nav__link" data-ko="Home" data-en="Home">Home</a></li>
+                <li><a href="#about" class="nav__link" data-ko="브랜드 철학" data-en="Philosophy">브랜드 철학</a></li>
+                <li><a href="#routine" class="nav__link" data-ko="제품" data-en="Products">제품</a></li>
+                <li><a href="#templates" class="nav__link" data-ko="템플릿" data-en="Templates">템플릿</a></li>
+                <li><a href="#connect" class="nav__link" data-ko="연결" data-en="Connect">연결</a></li>
             </ul>
+            <button class="lang-toggle" aria-label="언어 전환">
+                <span class="lang-toggle__text">EN</span>
+            </button>
         </div>
     </nav>
 
@@ -50,9 +53,9 @@
     <section id="home" class="hero">
         <div class="hero__container">
             <h1 class="hero__title">
-                <span class="hero__line hero__line--main">시스템을 끈다.</span>
-                <span class="hero__line hero__line--sub">감정은 흐른다.</span>
-                <span class="hero__line hero__line--sub">나는 중심에 남는다.</span>
+                <span class="hero__line hero__line--main" data-ko="시스템을 끈다." data-en="Turn off the system.">시스템을 끈다.</span>
+                <span class="hero__line hero__line--sub" data-ko="감정은 흐른다." data-en="Emotions flow.">감정은 흐른다.</span>
+                <span class="hero__line hero__line--sub" data-ko="나는 중심에 남는다." data-en="I remain centered.">나는 중심에 남는다.</span>
                 <span class="hero__line hero__line--en" lang="en">System off. Emotions flow. I remain centered.</span>
                 <span class="hero__moon">🌙</span>
             </h1>
@@ -62,14 +65,18 @@
                    class="btn btn--primary" 
                    target="_blank" 
                    rel="noopener noreferrer"
-                   aria-label="첫 오디오 체험하기 - Gumroad 방문">
+                   aria-label="첫 오디오 체험하기 - Gumroad 방문"
+                   data-ko="첫 오디오 체험하기"
+                   data-en="Try First Audio">
                     첫 오디오 체험하기
                 </a>
                 <a href="https://youtube.com/@luwei.system" 
                    class="btn btn--secondary" 
                    target="_blank" 
                    rel="noopener noreferrer"
-                   aria-label="무료 명상 오디오 듣기 - YouTube 방문">
+                   aria-label="무료 명상 오디오 듣기 - YouTube 방문"
+                   data-ko="무료 명상 오디오 듣기"
+                   data-en="Listen Free Audio">
                     무료 명상 오디오 듣기
                 </a>
             </div>
@@ -83,55 +90,48 @@
     <!-- About Section -->
     <section id="about" class="about">
         <div class="about__container">
-            <h2 class="section__title">브랜드 철학</h2>
+            <h2 class="section__title" data-ko="브랜드 철학" data-en="Brand Philosophy">브랜드 철학</h2>
             
             <div class="about__grid">
                 <div class="about__card">
-                    <h3 class="about__card-title">존재 이유</h3>
-                    <p class="about__card-text">
+                    <h3 class="about__card-title" data-ko="존재 이유" data-en="Purpose">존재 이유</h3>
+                    <p class="about__card-text" data-ko="세상이 시끄러울수록, 사람들에게 고요의 시스템을 제공하기 위해." data-en="The noisier the world becomes, the more we need systems of stillness.">
                         세상이 시끄러울수록, 사람들에게 고요의 시스템을 제공하기 위해.
                     </p>
-                    <p class="about__card-text" lang="en">
-                        The noisier the world becomes, the more we need systems of stillness.
-                    </p>
                 </div>
                 
                 <div class="about__card">
-                    <h3 class="about__card-title">브랜드 톤</h3>
-                    <p class="about__card-text">
+                    <h3 class="about__card-title" data-ko="브랜드 톤" data-en="Brand Tone">브랜드 톤</h3>
+                    <p class="about__card-text" data-ko="단정 · 느림 · 대칭 · 무편집 · 진짜." data-en="Orderly · Slow · Symmetrical · Unedited · Real.">
                         단정 · 느림 · 대칭 · 무편집 · 진짜.
                     </p>
-                    <p class="about__card-text" lang="en">
-                        Orderly · Slow · Symmetrical · Unedited · Real.
-                    </p>
                 </div>
                 
                 <div class="about__card">
-                    <h3 class="about__card-title">색감 코드</h3>
+                    <h3 class="about__card-title" data-ko="색감 코드" data-en="Color Palette">색감 코드</h3>
                     <div class="color-palette">
                         <div class="color-item">
                             <div class="color-swatch" style="background-color: #CFE8FF;"></div>
-                            <span class="color-name">하늘색<br><small>개방/평온</small></span>
+                            <span class="color-name" data-ko="하늘색<br><small>개방/평온</small>" data-en="Sky Blue<br><small>Open/Calm</small>">하늘색<br><small>개방/평온</small></span>
                         </div>
                         <div class="color-item">
                             <div class="color-swatch" style="background-color: #E9EEF2;"></div>
-                            <span class="color-name">연회색<br><small>안정/균형</small></span>
+                            <span class="color-name" data-ko="연회색<br><small>안정/균형</small>" data-en="Light Gray<br><small>Stable/Balance</small>">연회색<br><small>안정/균형</small></span>
                         </div>
                         <div class="color-item">
                             <div class="color-swatch" style="background-color: #DFF5E1;"></div>
-                            <span class="color-name">연초록<br><small>자연/흐름</small></span>
+                            <span class="color-name" data-ko="연초록<br><small>자연/흐름</small>" data-en="Light Green<br><small>Nature/Flow</small>">연초록<br><small>자연/흐름</small></span>
                         </div>
                         <div class="color-item">
                             <div class="color-swatch" style="background-color: #FFD7E5;"></div>
-                            <span class="color-name">옅은 분홍<br><small>따뜻함/연결</small></span>
+                            <span class="color-name" data-ko="옅은 분홍<br><small>따뜻함/연결</small>" data-en="Light Pink<br><small>Warmth/Connection</small>">옅은 분홍<br><small>따뜻함/연결</small></span>
                         </div>
                     </div>
                 </div>
             </div>
             
             <blockquote class="about__quote">
-                <p>아무것도 하지 않는다. 나는 흐름을 놓아준다.</p>
-                <p lang="en">Do nothing. I let the flow go on.</p>
+                <p data-ko="아무것도 하지 않는다. 나는 흐름을 놓아준다." data-en="Do nothing. I let the flow go on.">아무것도 하지 않는다. 나는 흐름을 놓아준다.</p>
             </blockquote>
         </div>
     </section>

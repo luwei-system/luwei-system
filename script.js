@@ -268,6 +268,71 @@
         });
     }
 
+    // Language toggle functionality
+    function initLanguageToggle() {
+        const langToggle = document.querySelector('.lang-toggle');
+        const langText = document.querySelector('.lang-toggle__text');
+        let currentLang = 'ko'; // Default to Korean
+        
+        function updateLanguage(lang) {
+            const elements = document.querySelectorAll('[data-ko][data-en]');
+            
+            elements.forEach(element => {
+                if (lang === 'en') {
+                    element.textContent = element.getAttribute('data-en');
+                    element.setAttribute('lang', 'en');
+                } else {
+                    element.textContent = element.getAttribute('data-ko');
+                    element.setAttribute('lang', 'ko');
+                }
+            });
+            
+            // Update toggle button text
+            if (lang === 'en') {
+                langText.textContent = '한';
+            } else {
+                langText.textContent = 'EN';
+            }
+            
+            // Update document language
+            document.documentElement.setAttribute('lang', lang);
+            
+            // Save preference
+            localStorage.setItem('luwei-lang', lang);
+            currentLang = lang;
+        }
+        
+        // Load saved language preference
+        const savedLang = localStorage.getItem('luwei-lang');
+        if (savedLang) {
+            currentLang = savedLang;
+            updateLanguage(currentLang);
+        }
+        
+        if (langToggle) {
+            langToggle.addEventListener('click', function() {
+                const newLang = currentLang === 'ko' ? 'en' : 'ko';
+                updateLanguage(newLang);
+            });
+        }
+        
+        // Handle HTML content with innerHTML
+        function updateHTMLContent(lang) {
+            const htmlElements = document.querySelectorAll('[data-ko-html][data-en-html]');
+            
+            htmlElements.forEach(element => {
+                if (lang === 'en') {
+                    element.innerHTML = element.getAttribute('data-en-html');
+                } else {
+                    element.innerHTML = element.getAttribute('data-ko-html');
+                }
+            });
+        }
+        
+        // Expose updateLanguage function globally for external use
+        window.LUWEI.updateLanguage = updateLanguage;
+    }
+
     // Initialize all functionality when DOM is ready
     function init() {
         // Check if DOM is already loaded
@@ -283,6 +348,7 @@
             initKeyboardNavigation();
             initPerformanceOptimizations();
             initErrorHandling();
+            initLanguageToggle();
             
             console.log('LUWEI SYSTEM: Initialized successfully');
         } catch (error) {
