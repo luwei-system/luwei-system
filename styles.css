@@ -131,6 +131,20 @@ p {
     font-weight: 600;
     color: var(--color-text);
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav__logo-img {
+    width: 24px;
+    height: 24px;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+.nav__logo:hover .nav__logo-img {
+    opacity: 1;
 }
 
 .nav__menu {
@@ -205,21 +219,7 @@ p {
     margin-bottom: 48px;
     line-height: 1.3;
     color: #111;
-    position: relative;
-    background-image: url('./assets/Circle_logo.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 300px 300px;
-    background-attachment: local;
-    padding: 60px 20px;
-    border-radius: 20px;
-    background-color: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(10px);
-    min-height: 400px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
 }
 
 .hero__line {
@@ -232,15 +232,7 @@ p {
     font-weight: 400;
     color: #111;
     margin-bottom: 16px;
-    text-shadow: 0 3px 6px rgba(255, 255, 255, 0.9), 0 1px 2px rgba(0, 0, 0, 0.1);
-    position: relative;
-    z-index: 2;
-    background-color: rgba(255, 255, 255, 0.6);
-    padding: 12px 24px;
-    border-radius: 25px;
-    backdrop-filter: blur(5px);
-    display: inline-block;
-    margin: 0 auto 16px;
+    text-align: center;
 }
 
 .hero__line--sub {
@@ -248,15 +240,7 @@ p {
     font-weight: 300;
     color: #333;
     margin-bottom: 8px;
-    text-shadow: 0 3px 6px rgba(255, 255, 255, 0.9), 0 1px 2px rgba(0, 0, 0, 0.1);
-    position: relative;
-    z-index: 2;
-    background-color: rgba(255, 255, 255, 0.5);
-    padding: 10px 20px;
-    border-radius: 20px;
-    backdrop-filter: blur(5px);
-    display: inline-block;
-    margin: 0 auto 8px;
+    text-align: center;
 }
 
 .hero__line--en {
@@ -266,42 +250,9 @@ p {
     font-style: italic;
     margin-top: 24px;
     margin-bottom: 16px;
-    text-shadow: 0 3px 6px rgba(255, 255, 255, 0.9), 0 1px 2px rgba(0, 0, 0, 0.1);
-    position: relative;
-    z-index: 2;
-    background-color: rgba(255, 255, 255, 0.4);
-    padding: 8px 16px;
-    border-radius: 15px;
-    backdrop-filter: blur(5px);
-    display: inline-block;
-    margin: 24px auto 16px;
+    text-align: center;
 }
 
-.hero__moon {
-    display: block;
-    margin-top: 20px;
-    opacity: 0.9;
-    position: relative;
-    z-index: 2;
-}
-
-.moon-icon {
-    width: 80px;
-    height: 80px;
-    display: block;
-    margin: 0 auto;
-    filter: drop-shadow(0 0 12px rgba(207, 232, 255, 0.6));
-    transition: all 0.3s ease;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 50%;
-    padding: 10px;
-}
-
-.moon-icon:hover {
-    transform: scale(1.05);
-    filter: drop-shadow(0 0 16px rgba(207, 232, 255, 0.8));
-    background-color: rgba(255, 255, 255, 0.9);
-}
 
 .hero__cta {
     display: flex;
@@ -338,6 +289,23 @@ section {
 .about__container {
     max-width: 1200px;
     margin: 0 auto;
+}
+
+.about__logo {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.about__logo-img {
+    width: 60px;
+    height: 60px;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.about__logo-img:hover {
+    opacity: 1;
+    transform: scale(1.05);
 }
 
 .about__grid {
@@ -628,6 +596,21 @@ section {
 .footer__container {
     max-width: 800px;
     margin: 0 auto;
+}
+
+.footer__logo {
+    margin-bottom: 24px;
+}
+
+.footer__logo-img {
+    width: 40px;
+    height: 40px;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.footer__logo-img:hover {
+    opacity: 1;
 }
 
 .footer__signature {
