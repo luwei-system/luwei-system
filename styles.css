@@ -283,15 +283,15 @@ p {
 }
 
 .hero__circle-img {
-    width: 200px;
-    height: 200px;
-    opacity: 0.3;
+    width: 280px;
+    height: 280px;
+    opacity: 0.6;
     transition: all 0.3s ease;
     filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1));
 }
 
 .hero__circle-img:hover {
-    opacity: 0.5;
+    opacity: 0.8;
     transform: scale(1.05);
     filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
 }
@@ -925,8 +925,8 @@ section {
     }
     
     .hero__circle-img {
-        width: 120px;
-        height: 120px;
+        width: 160px;
+        height: 160px;
     }
 }
     .nav__menu {
