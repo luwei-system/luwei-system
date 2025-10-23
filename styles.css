@@ -501,33 +501,33 @@ section {
 
 /* Brand Tone Grid Layout - Updated 2024-12-19 */
 .brand-tone-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto auto;
-    gap: 24px;
-    width: 100%;
-    max-width: 320px;
-    margin: 0 auto;
-    padding: 20px 0;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-rows: auto auto auto !important;
+    gap: 24px !important;
+    width: 100% !important;
+    max-width: 320px !important;
+    margin: 0 auto !important;
+    padding: 20px 0 !important;
 }
 
 .brand-tone-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px 16px;
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--color-text);
-    text-align: center;
-    line-height: 1.5;
-    border-radius: 12px;
-    background: linear-gradient(135deg, rgba(207, 232, 255, 0.15) 0%, rgba(233, 238, 242, 0.1) 100%);
-    border: 1px solid rgba(207, 232, 255, 0.2);
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    position: relative;
-    overflow: hidden;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 20px 16px !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    color: var(--color-text) !important;
+    text-align: center !important;
+    line-height: 1.5 !important;
+    border-radius: 12px !important;
+    background: linear-gradient(135deg, rgba(207, 232, 255, 0.15) 0%, rgba(233, 238, 242, 0.1) 100%) !important;
+    border: 1px solid rgba(207, 232, 255, 0.2) !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+    position: relative !important;
+    overflow: hidden !important;
 }
 
 .brand-tone-item::before {
@@ -559,31 +559,31 @@ section {
 
 /* Grid positioning for 2x2 layout with 5 items */
 .brand-tone-item--top-left {
-    grid-column: 1;
-    grid-row: 1;
+    grid-column: 1 !important;
+    grid-row: 1 !important;
 }
 
 .brand-tone-item--top-right {
-    grid-column: 2;
-    grid-row: 1;
+    grid-column: 2 !important;
+    grid-row: 1 !important;
 }
 
 .brand-tone-item--bottom-left {
-    grid-column: 1;
-    grid-row: 2;
+    grid-column: 1 !important;
+    grid-row: 2 !important;
 }
 
 .brand-tone-item--bottom-right {
-    grid-column: 2;
-    grid-row: 2;
+    grid-column: 2 !important;
+    grid-row: 2 !important;
 }
 
 .brand-tone-item--center {
-    grid-column: 1 / 3;
-    grid-row: 3;
-    margin-top: 8px;
-    background: linear-gradient(135deg, rgba(255, 215, 229, 0.15) 0%, rgba(223, 245, 225, 0.1) 100%);
-    border-color: rgba(255, 215, 229, 0.3);
+    grid-column: 1 / 3 !important;
+    grid-row: 3 !important;
+    margin-top: 8px !important;
+    background: linear-gradient(135deg, rgba(255, 215, 229, 0.15) 0%, rgba(223, 245, 225, 0.1) 100%) !important;
+    border-color: rgba(255, 215, 229, 0.3) !important;
 }
 
 .brand-tone-item--center:hover {
