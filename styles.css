@@ -2170,17 +2170,54 @@ section {
     }
     
     .hero__schedule-text {
-        font-size: 13px;
+        font-size: 14px;
+        line-height: 1.5;
+        padding: 8px 0;
     }
     
     .top-banner__text {
-        font-size: 13px;
+        font-size: 14px;
+        line-height: 1.4;
+        padding: 4px 0;
+    }
+    
+    .top-banner__text strong {
+        display: inline-block;
+        margin: 0 2px;
+    }
+    
+    .hero__schedule-text strong {
+        display: inline-block;
+        margin: 0 2px;
     }
     
     .schedule {
         padding: 60px 0;
     }
     
+/* Mobile Responsive for Small Screens */
+@media (max-width: 480px) {
+    .hero__schedule-text {
+        font-size: 13px;
+        line-height: 1.6;
+        padding: 6px 0;
+    }
+    
+    .top-banner__text {
+        font-size: 13px;
+        line-height: 1.5;
+        padding: 3px 0;
+    }
+    
+    .top-banner__text strong {
+        margin: 0 1px;
+    }
+    
+    .hero__schedule-text strong {
+        margin: 0 1px;
+    }
+}
+
     .schedule__item {
         flex-direction: column;
         gap: 16px;
