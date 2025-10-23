@@ -300,6 +300,46 @@
         });
     }
 
+    // Dynamic content update function
+    function updateDynamicContent() {
+        // Get current language
+        const currentLang = localStorage.getItem('luwei-lang') || 'ko';
+        
+        // Update announcement banner
+        const bannerText = document.querySelector('.top-banner__text');
+        if (bannerText) {
+            if (currentLang === 'en') {
+                bannerText.innerHTML = 'November: <strong>Water·Light</strong> meditation audio series launch';
+            } else {
+                bannerText.innerHTML = '11월 중: <strong>\'무 루틴\' 오디오 \'물·빛\'</strong> 시리즈 첫 출시';
+            }
+        }
+        
+        // Update hero schedule text
+        const heroScheduleText = document.querySelector('.hero__schedule-text');
+        if (heroScheduleText) {
+            if (currentLang === 'en') {
+                heroScheduleText.innerHTML = 'November – <strong>Water·Light</strong> meditation audio<br>December – OFF routine templates<br>End of year – Complete package';
+            } else {
+                heroScheduleText.innerHTML = '11월 중 – <strong>1분 명상 오디오 \'물·빛\'</strong> 출시<br>12월 초 – 감정 OFF 템플릿 공개<br>12월 말 – 패키지 공개';
+            }
+        }
+        
+        // Update schedule section titles
+        const scheduleTitles = document.querySelectorAll('.schedule-card__title');
+        scheduleTitles.forEach(title => {
+            if (currentLang === 'en') {
+                if (title.textContent.includes('Water·Light')) {
+                    title.innerHTML = '<strong>Water·Light</strong> Meditation Audio Series';
+                }
+            } else {
+                if (title.textContent.includes('물·빛')) {
+                    title.innerHTML = '<strong>무 루틴 오디오 \'물·빛\'</strong> 시리즈';
+                }
+            }
+        });
+    }
+
     // Language toggle functionality
     // Language Toggle - Updated 2024-12-19 - Debug Version
     function initLanguageToggle() {
@@ -344,6 +384,9 @@
             // Save preference
             localStorage.setItem('luwei-lang', lang);
             currentLang = lang;
+            
+            // Update dynamic content
+            updateDynamicContent();
         }
         
         // Load saved language preference
