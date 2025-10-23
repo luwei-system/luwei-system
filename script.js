@@ -301,6 +301,7 @@
     }
 
     // Language toggle functionality
+    // Language Toggle - Updated 2024-12-19
     function initLanguageToggle() {
         const langToggle = document.querySelector('.lang-toggle');
         const langText = document.querySelector('.lang-toggle__text');
