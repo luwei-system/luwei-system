@@ -312,8 +312,8 @@
         function updateLanguage(lang) {
             console.log('Updating language to:', lang);
             
-            // Update all elements with data-ko and data-en attributes
-            const elements = document.querySelectorAll('[data-ko][data-en]');
+            // Update all elements with data-ko and data-en attributes, except brand tone grid
+            const elements = document.querySelectorAll('[data-ko][data-en]:not(.brand-tone-grid)');
             console.log('Found elements to update:', elements.length);
             
             elements.forEach(element => {
