@@ -501,6 +501,7 @@ section {
 
 /* Brand Tone Grid Layout */
 .brand-tone-grid {
+    position: relative;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
@@ -511,6 +512,7 @@ section {
 }
 
 .brand-tone-item {
+    position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -532,26 +534,37 @@ section {
 
 /* Grid positioning for 2x2 layout with 5 items */
 .brand-tone-item--top-left {
+    top: 0;
+    left: 0;
     grid-column: 1;
     grid-row: 1;
 }
 
 .brand-tone-item--top-right {
+    top: 0;
+    right: 0;
     grid-column: 2;
     grid-row: 1;
 }
 
 .brand-tone-item--bottom-left {
+    top: 0;
+    left: 0;
     grid-column: 1;
     grid-row: 2;
 }
 
 .brand-tone-item--bottom-right {
+    top: 0;
+    right: 0;
     grid-column: 2;
     grid-row: 2;
 }
 
 .brand-tone-item--center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     grid-column: 1 / 3;
     grid-row: 3;
     margin-top: 10px;
@@ -1079,7 +1092,7 @@ section {
         padding: 24px;
         font-size: 18px;
     }
-}
+
 
 @media (max-width: 480px) {
     .nav__container {
