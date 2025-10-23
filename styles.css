@@ -1068,12 +1068,63 @@ section {
         max-width: none;
     }
 }
+/* Mobile Navigation Improvements */
+@media (max-width: 768px) {
+    .nav {
+        background-color: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(207, 232, 255, 0.2);
+    }
+    
+    .nav__container {
+        padding: 12px 20px;
+    }
+    
+    .nav__logo {
+        font-size: 16px;
+    }
+    
+    .nav__logo-img {
+        height: 28px;
+    }
+    
     .nav__menu {
-        gap: 20px;
+        gap: 24px;
+        flex-wrap: wrap;
+        justify-content: center;
     }
     
     .nav__link {
-        font-size: 13px;
+        font-size: 14px;
+        font-weight: 500;
+        padding: 8px 12px;
+        border-radius: 8px;
+        background-color: rgba(207, 232, 255, 0.1);
+        transition: all 0.3s ease;
+        text-align: center;
+        min-width: 60px;
+    }
+    
+    .nav__link:hover {
+        background-color: rgba(207, 232, 255, 0.2);
+        transform: translateY(-1px);
+    }
+    
+    .nav__link:active {
+        transform: translateY(0);
+        background-color: rgba(207, 232, 255, 0.3);
+    }
+    
+    .lang-toggle {
+        padding: 8px 12px;
+        border-radius: 8px;
+        background-color: rgba(207, 232, 255, 0.1);
+        transition: all 0.3s ease;
+    }
+    
+    .lang-toggle:hover {
+        background-color: rgba(207, 232, 255, 0.2);
+        transform: translateY(-1px);
     }
     
     .hero__cta {
@@ -1115,17 +1166,45 @@ section {
     }
 
 
+/* Small Mobile Navigation */
 @media (max-width: 480px) {
     .nav__container {
-        padding: 0 16px;
+        padding: 10px 16px;
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .nav__logo {
+        font-size: 15px;
+        align-self: center;
+    }
+    
+    .nav__logo-img {
+        height: 26px;
     }
     
     .nav__menu {
         gap: 16px;
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .nav__link {
+        font-size: 13px;
+        padding: 6px 10px;
+        min-width: 50px;
+        flex: 1;
+        max-width: 80px;
+    }
+    
+    .lang-toggle {
+        padding: 6px 10px;
+        font-size: 12px;
+        align-self: center;
     }
     
     .hero {
-        padding: 60px 16px 40px;
+        padding: 80px 16px 40px;
     }
     
     section {
