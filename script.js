@@ -375,46 +375,9 @@
 
 })();
 
-// Social Share Functions
-function shareToKakao() {
-    const url = window.location.origin + '/';
-    const title = 'LUWEI SYSTEM — 명상 오디오와 감정 루틴 템플릿';
-    const description = '서울의 디지털 감정 브랜드. 루웨이의 숨결 출간, 명상 오디오와 템플릿으로 고요의 시스템을 경험하세요.';
-    
-    if (window.Kakao && window.Kakao.isInitialized()) {
-        window.Kakao.Link.sendDefault({
-            objectType: 'feed',
-            content: {
-                title: title,
-                description: description,
-                imageUrl: window.location.origin + '/assets/og-image.png',
-                link: {
-                    mobileWebUrl: url,
-                    webUrl: url,
-                },
-            },
-        });
-    } else {
-        // Fallback: 카카오톡이 없을 경우 링크 복사
-        copyToClipboard();
-    }
-}
-
-function shareToFacebook() {
-    const url = encodeURIComponent(window.location.origin + '/');
-    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-    window.open(facebookUrl, '_blank', 'width=600,height=400');
-}
-
-function shareToTwitter() {
-    const url = encodeURIComponent(window.location.origin + '/');
-    const text = encodeURIComponent('LUWEI SYSTEM — 명상 오디오와 감정 루틴 템플릿');
-    const twitterUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
-    window.open(twitterUrl, '_blank', 'width=600,height=400');
-}
-
+// Simple Share Function
 function copyToClipboard() {
-    const url = window.location.origin + '/';
+    const url = 'https://luweisystem.com/';
     
     if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(url).then(() => {
