@@ -487,6 +487,11 @@ section {
     border: 2px solid var(--color-border);
     transition: all 0.2s ease;
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
 }
 
 .about__card-title,
