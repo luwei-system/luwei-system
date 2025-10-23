@@ -319,14 +319,6 @@
                 }
             });
             
-            // Handle brand tone grid language switching
-            const brandToneGrid = document.querySelector('.brand-tone-grid');
-            if (brandToneGrid) {
-                // Brand tone grid doesn't need language switching
-                // Keep the original Korean text as is
-                return;
-            }
-            
             // Update toggle button text
             if (lang === 'en') {
                 langText.textContent = '한';
