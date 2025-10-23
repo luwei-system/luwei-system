@@ -501,85 +501,106 @@ section {
 
 /* Brand Tone Grid Layout */
 .brand-tone-grid {
-    position: relative;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 20px;
+    grid-template-rows: auto auto auto;
+    gap: 24px;
     width: 100%;
-    max-width: 280px;
+    max-width: 320px;
     margin: 0 auto;
+    padding: 20px 0;
 }
 
 .brand-tone-item {
-    position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 16px 12px;
-    font-size: 14px;
+    padding: 20px 16px;
+    font-size: 15px;
     font-weight: 500;
     color: var(--color-text);
     text-align: center;
-    line-height: 1.4;
-    border-radius: 8px;
-    background-color: rgba(207, 232, 255, 0.1);
-    transition: all 0.2s ease;
+    line-height: 1.5;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(207, 232, 255, 0.15) 0%, rgba(233, 238, 242, 0.1) 100%);
+    border: 1px solid rgba(207, 232, 255, 0.2);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.brand-tone-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(207, 232, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .brand-tone-item:hover {
-    background-color: rgba(207, 232, 255, 0.2);
-    transform: translateY(-1px);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    border-color: rgba(207, 232, 255, 0.4);
+}
+
+.brand-tone-item:hover::before {
+    opacity: 1;
+}
+
+.brand-tone-item span {
+    position: relative;
+    z-index: 1;
 }
 
 /* Grid positioning for 2x2 layout with 5 items */
 .brand-tone-item--top-left {
-    top: 0;
-    left: 0;
     grid-column: 1;
     grid-row: 1;
 }
 
 .brand-tone-item--top-right {
-    top: 0;
-    right: 0;
     grid-column: 2;
     grid-row: 1;
 }
 
 .brand-tone-item--bottom-left {
-    top: 0;
-    left: 0;
     grid-column: 1;
     grid-row: 2;
 }
 
 .brand-tone-item--bottom-right {
-    top: 0;
-    right: 0;
     grid-column: 2;
     grid-row: 2;
 }
 
 .brand-tone-item--center {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     grid-column: 1 / 3;
     grid-row: 3;
-    margin-top: 10px;
+    margin-top: 8px;
+    background: linear-gradient(135deg, rgba(255, 215, 229, 0.15) 0%, rgba(223, 245, 225, 0.1) 100%);
+    border-color: rgba(255, 215, 229, 0.3);
+}
+
+.brand-tone-item--center:hover {
+    border-color: rgba(255, 215, 229, 0.5);
 }
 
 /* Mobile responsive for brand tone grid */
 @media (max-width: 768px) {
     .brand-tone-grid {
-        max-width: 240px;
-        gap: 16px;
+        max-width: 280px;
+        gap: 20px;
+        padding: 16px 0;
     }
     
     .brand-tone-item {
-        padding: 14px 10px;
-        font-size: 13px;
+        padding: 18px 14px;
+        font-size: 14px;
     }
 }
 
