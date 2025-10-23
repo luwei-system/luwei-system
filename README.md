@@ -1,16 +1,17 @@
-## Hi there 👋
+# LUWEI SYSTEM 🌙
 
-<!--
-**luwei-system/luwei-system** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+A calm digital brand from Seoul.  
+Designing emotional stillness through audio, routine, and code.
 
-Here are some ideas to get you started:
+---
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+## Structure
+- `/routine-water` : Audio & visual routine assets
+- `/templates` : Notion templates and design exports
+- `/web` : Website & app source code
+- `/automation` : Gumroad / YouTube sync scripts
+
+---
+
+> 조용한 시스템, 고요한 질서.  
+> LUWEI SYSTEM — A silent system, a quiet order.
