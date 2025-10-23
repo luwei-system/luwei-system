@@ -377,7 +377,7 @@
 
 // Social Share Functions
 function shareToKakao() {
-    const url = window.location.href;
+    const url = window.location.origin + '/';
     const title = 'LUWEI SYSTEM — 명상 오디오와 감정 루틴 템플릿';
     const description = '서울의 디지털 감정 브랜드. 루웨이의 숨결 출간, 명상 오디오와 템플릿으로 고요의 시스템을 경험하세요.';
     
@@ -401,20 +401,20 @@ function shareToKakao() {
 }
 
 function shareToFacebook() {
-    const url = encodeURIComponent(window.location.href);
+    const url = encodeURIComponent(window.location.origin + '/');
     const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
     window.open(facebookUrl, '_blank', 'width=600,height=400');
 }
 
 function shareToTwitter() {
-    const url = encodeURIComponent(window.location.href);
+    const url = encodeURIComponent(window.location.origin + '/');
     const text = encodeURIComponent('LUWEI SYSTEM — 명상 오디오와 감정 루틴 템플릿');
     const twitterUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
     window.open(twitterUrl, '_blank', 'width=600,height=400');
 }
 
 function copyToClipboard() {
-    const url = window.location.href;
+    const url = window.location.origin + '/';
     
     if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(url).then(() => {
