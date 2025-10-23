@@ -6,13 +6,45 @@
     // Smooth scrolling for navigation links
     function initSmoothScrolling() {
         const navLinks = document.querySelectorAll('.nav__link');
+        const navLogo = document.querySelector('.nav__logo');
+        
+        // Handle logo click
+        if (navLogo) {
+            navLogo.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+                
+                // Update URL to clean root
+                history.pushState(null, null, '/');
+                
+                // Update active nav link
+                updateActiveNavLink('home');
+            });
+        }
         
         navLinks.forEach(link => {
             link.addEventListener('click', function(e) {
                 const href = this.getAttribute('href');
                 
+                // Handle home link
+                if (href === '/') {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update URL to clean root
+                    history.pushState(null, null, '/');
+                    
+                    // Update active nav link
+                    updateActiveNavLink('home');
+                }
                 // Only handle internal links
-                if (href.startsWith('#')) {
+                else if (href.startsWith('#')) {
                     e.preventDefault();
                     const targetId = href.substring(1);
                     const targetElement = document.getElementById(targetId);
@@ -96,7 +128,7 @@
     function initFocusManagement() {
         // Skip to main content link
         const skipLink = document.createElement('a');
-        skipLink.href = '#home';
+        skipLink.href = '/';
         skipLink.textContent = 'Skip to main content';
         skipLink.className = 'skip-link';
         skipLink.style.cssText = `
@@ -279,10 +311,10 @@
             
             elements.forEach(element => {
                 if (lang === 'en') {
-                    element.textContent = element.getAttribute('data-en');
+                    element.innerHTML = element.getAttribute('data-en');
                     element.setAttribute('lang', 'en');
                 } else {
-                    element.textContent = element.getAttribute('data-ko');
+                    element.innerHTML = element.getAttribute('data-ko');
                     element.setAttribute('lang', 'ko');
                 }
             });
