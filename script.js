@@ -348,118 +348,9 @@
         setInterval(updateDateTime, 1000);
     }
 
-    // Particle animation system
-    function initParticleAnimation() {
-        const particlesContainer = document.getElementById('particles-container');
-        if (!particlesContainer) return;
-        
-        function createParticle() {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            
-            // Random starting position
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 15 + 's';
-            particle.style.animationDuration = (15 + Math.random() * 10) + 's';
-            
-            particlesContainer.appendChild(particle);
-            
-            // Remove particle after animation
-            setTimeout(() => {
-                if (particle.parentNode) {
-                    particle.parentNode.removeChild(particle);
-                }
-            }, 25000);
-        }
-        
-        // Create initial particles
-        for (let i = 0; i < 8; i++) {
-            setTimeout(createParticle, i * 2000);
-        }
-        
-        // Continue creating particles
-        setInterval(createParticle, 3000);
-    }
+    // Removed particle animation and interactive circle functions
 
-    // Interactive circle effects
-    function initInteractiveCircle() {
-        const circleInteractive = document.getElementById('circle-interactive');
-        const heroCircle = document.querySelector('.hero__circle');
-        
-        if (!circleInteractive || !heroCircle) return;
-        
-        // Mouse move effect
-        heroCircle.addEventListener('mousemove', function(e) {
-            const rect = heroCircle.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-            
-            const distance = Math.sqrt(x * x + y * y);
-            const maxDistance = 100;
-            
-            if (distance < maxDistance) {
-                const intensity = 1 - (distance / maxDistance);
-                circleInteractive.style.transform = `translate(-50%, -50%) scale(${1 + intensity * 0.2})`;
-                circleInteractive.style.opacity = 0.3 + intensity * 0.4;
-            }
-        });
-        
-        heroCircle.addEventListener('mouseleave', function() {
-            circleInteractive.style.transform = 'translate(-50%, -50%) scale(1)';
-            circleInteractive.style.opacity = '0.3';
-        });
-        
-        // Click ripple effect
-        heroCircle.addEventListener('click', function(e) {
-            const rect = heroCircle.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            const ripple = document.createElement('div');
-            ripple.style.cssText = `
-                position: absolute;
-                left: ${x}px;
-                top: ${y}px;
-                width: 0;
-                height: 0;
-                border-radius: 50%;
-                background: rgba(207, 232, 255, 0.3);
-                transform: translate(-50%, -50%);
-                animation: ripple 1s ease-out;
-                pointer-events: none;
-                z-index: 10;
-            `;
-            
-            heroCircle.appendChild(ripple);
-            
-            setTimeout(() => {
-                if (ripple.parentNode) {
-                    ripple.parentNode.removeChild(ripple);
-                }
-            }, 1000);
-        });
-        
-        // Add ripple animation CSS
-        if (!document.querySelector('#ripple-styles')) {
-            const style = document.createElement('style');
-            style.id = 'ripple-styles';
-            style.textContent = `
-                @keyframes ripple {
-                    0% {
-                        width: 0;
-                        height: 0;
-                        opacity: 1;
-                    }
-                    100% {
-                        width: 200px;
-                        height: 200px;
-                        opacity: 0;
-                    }
-                }
-            `;
-            document.head.appendChild(style);
-        }
-    }
+    // Removed interactive circle function
 
     // Real-time counters and progress animations
     function initCountersAndProgress() {
@@ -953,8 +844,6 @@
             initErrorHandling();
             initLanguageToggle();
             initRealTimeClock();
-            initParticleAnimation();
-            initInteractiveCircle();
             initCountersAndProgress();
             initDynamicMessages();
             initWeatherBasedContent();

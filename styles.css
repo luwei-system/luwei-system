@@ -376,79 +376,7 @@ p {
     overflow: hidden;
 }
 
-.hero__background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.hero__bg-circle {
-    width: 400px;
-    height: 400px;
-    opacity: 0.03;
-    animation: float 20s ease-in-out infinite;
-}
-
-.hero__particles {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-}
-
-.particle {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: rgba(207, 232, 255, 0.3);
-    border-radius: 50%;
-    animation: particleFloat 15s linear infinite;
-}
-
-.particle:nth-child(2n) {
-    background: rgba(255, 215, 229, 0.3);
-    animation-duration: 20s;
-}
-
-.particle:nth-child(3n) {
-    background: rgba(223, 245, 225, 0.3);
-    animation-duration: 25s;
-}
-
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0px) rotate(0deg);
-    }
-    50% {
-        transform: translateY(-20px) rotate(180deg);
-    }
-}
-
-@keyframes particleFloat {
-    0% {
-        transform: translateY(100vh) translateX(0px) rotate(0deg);
-        opacity: 0;
-    }
-    10% {
-        opacity: 1;
-    }
-    90% {
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-100px) translateX(100px) rotate(360deg);
-        opacity: 0;
-    }
-}
+/* Removed hero background elements - keeping only main circle image */
 
 .hero__container {
     max-width: 1000px;
@@ -490,56 +418,7 @@ p {
     filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
 }
 
-.hero__circle-interactive {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: min(200px, 20vw);
-    height: min(200px, 20vw);
-    border: 2px solid rgba(207, 232, 255, 0.3);
-    border-radius: 50%;
-    pointer-events: none;
-    animation: pulse 3s ease-in-out infinite;
-    z-index: 2;
-}
-
-.hero__circle-interactive::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: min(150px, 15vw);
-    height: min(150px, 15vw);
-    border: 1px solid rgba(255, 215, 229, 0.4);
-    border-radius: 50%;
-    animation: pulse 3s ease-in-out infinite 0.5s;
-}
-
-.hero__circle-interactive::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: min(100px, 10vw);
-    height: min(100px, 10vw);
-    border: 1px solid rgba(223, 245, 225, 0.5);
-    border-radius: 50%;
-    animation: pulse 3s ease-in-out infinite 1s;
-}
-
-@keyframes pulse {
-    0%, 100% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 0.3;
-    }
-    50% {
-        transform: translate(-50%, -50%) scale(1.1);
-        opacity: 0.6;
-    }
-}
+/* Removed interactive circle elements */
 
 .hero__text {
     flex: 1;
@@ -2757,21 +2636,6 @@ section {
     .hero__circle-img {
         width: min(250px, 50vw) !important;
         height: min(250px, 50vw) !important;
-    }
-    
-    .hero__circle-interactive {
-        width: min(120px, 25vw) !important;
-        height: min(120px, 25vw) !important;
-    }
-    
-    .hero__circle-interactive::before {
-        width: min(90px, 20vw) !important;
-        height: min(90px, 20vw) !important;
-    }
-    
-    .hero__circle-interactive::after {
-        width: min(60px, 15vw) !important;
-        height: min(60px, 15vw) !important;
     }
     
     .hero__cta {
