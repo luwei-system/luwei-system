@@ -16,8 +16,7 @@
     <meta property="og:title" content="LUWEI SYSTEM — 명상 오디오와 감정 루틴 템플릿">
     <meta property="og:description" content="서울의 디지털 감정 브랜드. 11월 중 '물·빛' 명상 오디오 출시, 12월 하루 OFF 템플릿 공개 예정. 감정을 정지시키는 구조를 설계합니다.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://luweisystem.com/">
-    <meta property="og:image" content="./assets/og-image.png">
+    <meta property="og:url" content="https://luweisystem.github.io">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
@@ -32,11 +31,10 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Noto+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="./css/framework.css?v=20241219-v2">
-    <link rel="stylesheet" href="./styles.css?v=20241219-v2">
+    <link rel="stylesheet" href="./styles.css?v=20241219-mobile-cache-bust-999">
 </head>
 <body>
     <!-- Top Banner -->
@@ -53,10 +51,88 @@
     </div>
 
     <!-- Navigation -->
-    <div id="navigation-container"></div>
+    <nav class="nav" aria-label="Main navigation">
+        <div class="nav__container">
+            <a href="/" class="nav__logo" aria-label="LUWEI SYSTEM Home">
+                <img src="./assets/LUWEI SYSTEM.svg" alt="LUWEI SYSTEM" class="nav__logo-img">
+            </a>
+            <ul class="nav__menu">
+                <li><a href="/" class="nav__link" data-ko="Home" data-en="Home">Home</a></li>
+                <li><a href="#about" class="nav__link" data-ko="브랜드 철학" data-en="Philosophy">브랜드 철학</a></li>
+                <li><a href="#routine" class="nav__link" data-ko="제품" data-en="Products">제품</a></li>
+                <li><a href="#templates" class="nav__link" data-ko="템플릿" data-en="Templates">템플릿</a></li>
+                <li><a href="#schedule" class="nav__link" data-ko="출시 일정" data-en="Schedule">출시 일정</a></li>
+                <li><a href="#bookstore" class="nav__link" data-ko="서점" data-en="Bookstore">서점</a></li>
+                <li><a href="#connect" class="nav__link" data-ko="연결" data-en="Connect">연결</a></li>
+            </ul>
+            <div class="nav__button-group">
+                <button class="lang-toggle" aria-label="언어 전환">
+                    <span class="lang-toggle__text">EN</span>
+                </button>
+                <button class="share-toggle" onclick="copyToClipboard()" aria-label="링크 공유">
+                    <span class="share-toggle__text">🔗</span>
+                </button>
+            </div>
+        </div>
+    </nav>
 
-    <!-- Hero Section -->
-    <div id="hero-container"></div>
+    <!-- Home Section -->
+    <section id="home" class="hero">
+        <div class="hero__container">
+            <div class="hero__content">
+                <div class="hero__circle">
+                    <img src="./assets/Circle_logo.svg" alt="" class="hero__circle-img" aria-hidden="true">
+                </div>
+                <div class="hero__text">
+                    <h1 class="hero__title">
+                        <span class="hero__line hero__line--main" data-ko="시스템을 끈다." data-en="Turn off the system.">시스템을 끈다.</span>
+                        <span class="hero__line hero__line--sub" data-ko="감정은 흐른다." data-en="Emotions flow.">감정은 흐른다.</span>
+                        <span class="hero__line hero__line--sub" data-ko="나는 중심에 남는다." data-en="I remain centered.">나는 중심에 남는다.</span>
+                        <span class="hero__line hero__line--en" lang="en">System off. Emotions flow. I remain centered.</span>
+                    </h1>
+                    <div class="hero__schedule">
+                        <p class="hero__schedule-text" data-ko="11월 중 – 1분 명상 오디오 '물·빛' 출시<br>12월 초 – 감정 OFF 템플릿 공개<br>12월 말 – 패키지 공개" data-en="November – 'Water·Light' meditation audio<br>December – OFF routine templates<br>End of year – Complete package">11월 중 – 1분 명상 오디오 '물·빛' 출시<br>12월 초 – 감정 OFF 템플릿 공개<br>12월 말 – 패키지 공개</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero__cta">
+                <a href="https://luweisystem.gumroad.com" 
+                   class="btn btn--primary" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   aria-label="첫 오디오 체험하기 - Gumroad 방문"
+                   data-ko="첫 오디오 체험하기"
+                   data-en="Try First Audio">
+                    첫 오디오 체험하기
+                </a>
+                <a href="https://youtube.com/@luwei.system" 
+                   class="btn btn--secondary" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   aria-label="무료 명상 오디오 듣기 - YouTube 방문"
+                   data-ko="무료 명상 오디오 듣기"
+                   data-en="Listen Free Audio">
+                    무료 명상 오디오 듣기
+                </a>
+            </div>
+            
+            <div class="hero__dynamic-content">
+                <div class="dynamic-message" id="dynamic-message">
+                    <span class="message-text" data-ko="지금 이 순간, 고요함을 느껴보세요." data-en="Feel the stillness in this moment.">지금 이 순간, 고요함을 느껴보세요.</span>
+                </div>
+            </div>
+            
+            <p class="hero__subtitle">
+                LUWEI SYSTEM — <span lang="en">A calm digital brand from Seoul</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider">
+        <img src="./assets/Circle_logo.svg" alt="" class="section-divider__logo" aria-hidden="true">
+    </div>
 
     <!-- About Section -->
     <section id="about" class="about">
@@ -124,12 +200,72 @@
         </div>
     </section>
 
-    <!-- Routines Section -->
-    <section id="routines" class="routines">
-        <div class="routines__container">
-            <div id="routines-category-section"></div>
+    <!-- Routine Section -->
+    <section id="routine" class="routine">
+        <div class="routine__container">
+            <h2 class="section__title" data-ko="제품" data-en="Products">제품</h2>
             
-            <p class="routines__declaration">
+            <div class="routine__grid">
+                <!-- Water Card -->
+                <div class="routine-card routine-card--active">
+                    <div class="routine-card__icon">🌊</div>
+                    <h3 class="routine-card__title" data-ko="무 루틴 : 물" data-en="MU Routine : Water">무 루틴 : 물</h3>
+                    <p class="routine-card__subtitle" data-ko="흐름의 원소" data-en="the element of flow">the element of flow</p>
+                    <p class="routine-card__description" data-ko="9분 오디오-비주얼 명상" data-en="9-minute Audio-visual Meditation">
+                        9분 Audio-visual Meditation
+                    </p>
+                    
+                    <div class="routine-card__price">₩4,900</div>
+                    <div class="routine-card__actions">
+                        <a href="https://youtube.com/@luwei.system" 
+                           class="btn btn--small" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           aria-label="무료 미리듣기 - YouTube 방문">
+                            <span data-ko="무료 미리듣기" data-en="Free Preview">무료 미리듣기</span>
+                        </a>
+                        <a href="https://luweisystem.gumroad.com" 
+                           class="btn btn--small btn--outline" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           aria-label="전체 오디오 구매 - Gumroad 방문">
+                            <span data-ko="전체 오디오 구매" data-en="Get Full Audio">전체 오디오 구매</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Light Card -->
+                <div class="routine-card routine-card--coming-soon">
+                    <div class="routine-card__icon">💡</div>
+                    <h3 class="routine-card__title" data-ko="무 루틴 : 빛" data-en="MU Routine : Light">무 루틴 : 빛</h3>
+                    <p class="routine-card__subtitle" data-ko="명확함의 원소" data-en="the element of clarity">the element of clarity</p>
+                    <p class="routine-card__description">
+                        <span class="routine-card__schedule" data-ko="11월 중 출시 예정" data-en="Coming November">11월 중 출시 예정</span>
+                    </p>
+                </div>
+
+                <!-- Wind Card -->
+                <div class="routine-card routine-card--coming-soon">
+                    <div class="routine-card__icon">🌬</div>
+                    <h3 class="routine-card__title" data-ko="무 루틴 : 바람" data-en="MU Routine : Wind">무 루틴 : 바람</h3>
+                    <p class="routine-card__subtitle" data-ko="움직임의 원소" data-en="the element of movement">the element of movement</p>
+                    <p class="routine-card__description">
+                        <span class="routine-card__schedule" data-ko="2025년 출시 예정" data-en="Coming 2025">2025년 출시 예정</span>
+                    </p>
+                </div>
+
+                <!-- Balance Card -->
+                <div class="routine-card routine-card--coming-soon">
+                    <div class="routine-card__icon">🌾</div>
+                    <h3 class="routine-card__title" data-ko="무 루틴 : 균형" data-en="MU Routine : Balance">무 루틴 : 균형</h3>
+                    <p class="routine-card__subtitle" data-ko="질서의 원소" data-en="the element of order">the element of order</p>
+                    <p class="routine-card__description">
+                        <span class="routine-card__schedule" data-ko="2025년 출시 예정" data-en="Coming 2025">2025년 출시 예정</span>
+                    </p>
+                </div>
+            </div>
+            
+            <p class="routine__declaration">
                 <span data-ko="시스템을 끈다. 감정은 흐른다. 나는 중심에 남는다." data-en="System off. Emotions flow. I remain centered.">System off. Emotions flow. I remain centered.</span>
             </p>
         </div>
@@ -141,21 +277,42 @@
             <img src="./assets/Circle_logo.svg" alt="" class="templates__bg-circle templates__bg-circle--center" aria-hidden="true">
         </div>
         <div class="templates__container">
-            <div id="templates-category-section"></div>
-        </div>
-    </section>
-
-    <!-- Goods Section -->
-    <section id="goods" class="goods">
-        <div class="goods__container">
-            <div id="goods-category-section"></div>
-        </div>
-    </section>
-
-    <!-- Digital Art Section -->
-    <section id="digitalArt" class="digital-art">
-        <div class="digital-art__container">
-            <div id="digitalArt-category-section"></div>
+            <h2 class="section__title" data-ko="템플릿" data-en="Templates">템플릿</h2>
+            
+            <div class="templates__grid">
+                <div class="template-card">
+                    <h3 class="template-card__title" data-ko="하루 OFF 루틴" data-en="Daily OFF Routine">하루 OFF 루틴</h3>
+                    <p class="template-card__description" data-ko="감정 OFF 루틴 기록용 Notion 템플릿" data-en="Notion template for recording OFF routines">
+                        감정 OFF 루틴 기록용 Notion 템플릿
+                    </p>
+                    <div class="template-card__price">₩2,900</div>
+                    <div class="template-card__status">
+                        <span class="template-card__schedule" data-ko="12월 초 출시 예정" data-en="Coming Early December">12월 초 출시 예정</span>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <h3 class="template-card__title" data-ko="감정 루틴 캘린더" data-en="Emotion Routine Calendar">감정 루틴 캘린더</h3>
+                    <p class="template-card__description" data-ko="월간 감정 흐름 추적 캘린더" data-en="Monthly emotion flow tracking calendar">
+                        월간 감정 흐름 추적 캘린더
+                    </p>
+                    <div class="template-card__price">₩3,900</div>
+                    <div class="template-card__status">
+                        <span class="template-card__schedule" data-ko="12월 중 출시 예정" data-en="Coming Mid December">12월 중 출시 예정</span>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <h3 class="template-card__title" data-ko="시스템 OFF 대시보드" data-en="System OFF Dashboard">시스템 OFF 대시보드</h3>
+                    <p class="template-card__description" data-ko="개인 고요 시스템 관리 대시보드" data-en="Personal stillness system management dashboard">
+                        개인 고요 시스템 관리 대시보드
+                    </p>
+                    <div class="template-card__price">₩4,900</div>
+                    <div class="template-card__status">
+                        <span class="template-card__schedule" data-ko="12월 말 출시 예정" data-en="Coming Late December">12월 말 출시 예정</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -260,6 +417,7 @@
                     </div>
                 </a>
                 
+                
                 <a href="https://github.com/luwei-system" 
                    class="connect__link" 
                    target="_blank" 
@@ -354,93 +512,21 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="./js/config.js?v=20241219-v2"></script>
-    <script src="./js/components.js?v=20241219-v2"></script>
-    <script src="./script.js?v=20241219-v2"></script>
-    
-    <!-- Initialize Components -->
-    <script>
-        // DOM이 로드된 후 컴포넌트 초기화
-        document.addEventListener('DOMContentLoaded', function() {
-            // 네비게이션 초기화
-            const navContainer = document.getElementById('navigation-container');
-            if (navContainer) {
-                new LUWEI_COMPONENTS.Navigation(navContainer, {
-                    showLanguageToggle: true,
-                    showShareButton: true,
-                    sticky: true
-                });
-            }
-
-            // 히어로 섹션 초기화
-            const heroContainer = document.getElementById('hero-container');
-            if (heroContainer) {
-                new LUWEI_COMPONENTS.HeroSection(heroContainer, {
-                    showSchedule: true,
-                    showCTA: true,
-                    showDynamicMessage: true
-                });
-            }
-
-            // 루틴 카테고리 섹션 초기화
-            const routinesContainer = document.getElementById('routines-category-section');
-            if (routinesContainer) {
-                new LUWEI_COMPONENTS.CategorySection(routinesContainer, {
-                    categoryId: 'routines',
-                    showViewAll: true,
-                    maxItems: 4
-                });
-            }
-
-            // 템플릿 카테고리 섹션 초기화
-            const templatesContainer = document.getElementById('templates-category-section');
-            if (templatesContainer) {
-                new LUWEI_COMPONENTS.CategorySection(templatesContainer, {
-                    categoryId: 'templates',
-                    showViewAll: true,
-                    maxItems: 3
-                });
-            }
-
-            // 굿즈 카테고리 섹션 초기화
-            const goodsContainer = document.getElementById('goods-category-section');
-            if (goodsContainer) {
-                new LUWEI_COMPONENTS.CategorySection(goodsContainer, {
-                    categoryId: 'goods',
-                    showViewAll: false,
-                    maxItems: 1,
-                    hideTitle: true
-                });
-            }
-
-            // 디지털 아트워크 카테고리 섹션 초기화
-            const digitalArtContainer = document.getElementById('digitalArt-category-section');
-            if (digitalArtContainer) {
-                new LUWEI_COMPONENTS.CategorySection(digitalArtContainer, {
-                    categoryId: 'digitalArt',
-                    showViewAll: false,
-                    maxItems: 1,
-                    hideTitle: true
-                });
-            }
-
-            console.log('LUWEI SYSTEM: All components initialized successfully');
-        });
-    </script>
+    <script src="./script.js?v=20241219-mobile-cache-bust-999"></script>
     
     <!-- Force cache refresh -->
     <script>
         // Force reload CSS
-        const cssLinks = document.querySelectorAll('link[rel="stylesheet"]');
-        cssLinks.forEach(link => {
-            link.href = link.href.split('?')[0] + '?v=' + Date.now();
-        });
+        const cssLink = document.querySelector('link[rel="stylesheet"]');
+        if (cssLink) {
+            cssLink.href = cssLink.href.split('?')[0] + '?v=' + Date.now();
+        }
         
         // Force reload JS
-        const jsScripts = document.querySelectorAll('script[src]');
-        jsScripts.forEach(script => {
-            script.src = script.src.split('?')[0] + '?v=' + Date.now();
-        });
+        const jsScript = document.querySelector('script[src*="script.js"]');
+        if (jsScript) {
+            jsScript.src = jsScript.src.split('?')[0] + '?v=' + Date.now();
+        }
         
         // Clear any cached data
         if ('caches' in window) {
