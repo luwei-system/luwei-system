@@ -21,7 +21,6 @@ const STATIC_ASSETS = [
     '/assets/Circle_logo.svg',
     '/assets/favicon.png',
     '/assets/favicon.svg',
-    '/assets/og-image.png'
 ];
 
 // 캐시할 폰트
