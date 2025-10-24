@@ -1538,7 +1538,78 @@ section {
 }
 
 /* Mobile Navigation - Complete Redesign */
-/* Enhanced Mobile Dynamic Layout */
+/* FORCE MOBILE CENTERING - HIGHEST PRIORITY */
+@media screen and (max-width: 768px) {
+    * {
+        box-sizing: border-box !important;
+    }
+    
+    body {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        overflow-x: hidden !important;
+    }
+    
+    .hero,
+    .hero__container,
+    .hero__content,
+    .hero__text,
+    .hero__title,
+    .hero__line,
+    .hero__schedule,
+    .hero__cta,
+    .btn,
+    .top-banner,
+    .top-banner__announcement,
+    .top-banner__datetime,
+    .nav__container,
+    .nav__menu,
+    .nav__link,
+    .nav__button-group,
+    .about__grid,
+    .about__card,
+    .routine__grid,
+    .routine-card,
+    .template-card,
+    .connect__links,
+    .connect__link,
+    .schedule__tabs,
+    .schedule__tab,
+    .schedule__content,
+    .schedule__item,
+    .footer,
+    .footer__content {
+        text-align: center !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    
+    .hero__line--main,
+    .hero__line--sub,
+    .hero__line--en {
+        text-align: center !important;
+        width: 100% !important;
+        display: block !important;
+    }
+    
+    .hero__circle-img {
+        margin: 0 auto !important;
+        display: block !important;
+    }
+    
+    .btn {
+        width: 100% !important;
+        max-width: min(300px, 90vw) !important;
+        margin: 0 auto !important;
+    }
+}
 @media (max-width: 1024px) {
     .hero__content {
         gap: clamp(16px, 3vw, 24px) !important;
