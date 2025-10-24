@@ -34,7 +34,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="./styles.css?v=20241219-final-mobile-center">
+    <link rel="stylesheet" href="./styles.css?v=20241219-mobile-cache-bust-999">
 </head>
 <body>
     <!-- Top Banner -->
@@ -516,6 +516,30 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="./script.js?v=20241219-force-refresh-001"></script>
+    <script src="./script.js?v=20241219-mobile-cache-bust-999"></script>
+    
+    <!-- Force cache refresh -->
+    <script>
+        // Force reload CSS
+        const cssLink = document.querySelector('link[rel="stylesheet"]');
+        if (cssLink) {
+            cssLink.href = cssLink.href.split('?')[0] + '?v=' + Date.now();
+        }
+        
+        // Force reload JS
+        const jsScript = document.querySelector('script[src*="script.js"]');
+        if (jsScript) {
+            jsScript.src = jsScript.src.split('?')[0] + '?v=' + Date.now();
+        }
+        
+        // Clear any cached data
+        if ('caches' in window) {
+            caches.keys().then(function(names) {
+                for (let name of names) {
+                    caches.delete(name);
+                }
+            });
+        }
+    </script>
 </body>
 </html>
