@@ -1832,6 +1832,99 @@ section {
     .datetime__time {
         font-size: clamp(10px, 2vw, 11px) !important;
     }
+    
+    /* Extra small mobile - Card and tab sections */
+    .about__card {
+        padding: clamp(12px, 2.5vw, 16px) clamp(10px, 2vw, 12px) !important;
+        min-height: clamp(120px, 20vw, 140px) !important;
+    }
+    
+    .about__card-title {
+        font-size: clamp(14px, 3vw, 16px) !important;
+        margin-bottom: clamp(6px, 1.5vw, 8px) !important;
+    }
+    
+    .about__card-text {
+        font-size: clamp(12px, 2.2vw, 13px) !important;
+        line-height: 1.4 !important;
+    }
+    
+    .about__quote {
+        padding: clamp(12px, 2.5vw, 16px) clamp(10px, 2vw, 12px) !important;
+        font-size: clamp(13px, 2.5vw, 14px) !important;
+        margin: clamp(20px, 3vw, 24px) 0 !important;
+    }
+    
+    .routine-card,
+    .template-card {
+        padding: clamp(12px, 2.5vw, 16px) clamp(10px, 2vw, 12px) !important;
+    }
+    
+    .routine-card__title,
+    .template-card__title {
+        font-size: clamp(16px, 3.5vw, 18px) !important;
+        margin-bottom: clamp(4px, 1vw, 6px) !important;
+    }
+    
+    .routine-card__subtitle,
+    .template-card__description {
+        font-size: clamp(11px, 2.2vw, 12px) !important;
+        margin-bottom: clamp(8px, 1.5vw, 10px) !important;
+    }
+    
+    .routine-card__price,
+    .template-card__price {
+        font-size: clamp(14px, 3vw, 16px) !important;
+        margin-bottom: clamp(10px, 2vw, 12px) !important;
+    }
+    
+    .schedule__tab {
+        padding: clamp(8px, 2vw, 10px) clamp(12px, 2.5vw, 16px) !important;
+        font-size: clamp(11px, 2.2vw, 12px) !important;
+    }
+    
+    .schedule__item {
+        padding: clamp(12px, 2.5vw, 16px) !important;
+    }
+    
+    .schedule__item-title {
+        font-size: clamp(14px, 3vw, 16px) !important;
+    }
+    
+    .schedule__item-description {
+        font-size: clamp(11px, 2.2vw, 12px) !important;
+    }
+    
+    .schedule__item-price {
+        font-size: clamp(12px, 2.5vw, 14px) !important;
+    }
+    
+    .schedule__item-image {
+        width: clamp(60px, 12vw, 80px) !important;
+        height: clamp(60px, 12vw, 80px) !important;
+    }
+    
+    .connect__link {
+        padding: clamp(10px, 2vw, 12px) !important;
+        min-height: clamp(45px, 8vw, 50px) !important;
+    }
+    
+    .connect__title {
+        font-size: clamp(12px, 2.2vw, 13px) !important;
+    }
+    
+    .connect__subtitle {
+        font-size: clamp(9px, 1.8vw, 10px) !important;
+    }
+    
+    .section__title {
+        font-size: clamp(18px, 4vw, 20px) !important;
+        margin-bottom: clamp(16px, 3vw, 20px) !important;
+    }
+    
+    section {
+        padding: clamp(25px, 5vw, 30px) clamp(10px, 2vw, 12px) !important;
+    }
 }
     
     .hero {
@@ -2947,6 +3040,197 @@ section {
     
     .connect__subtitle {
         font-size: 10px !important;
+    }
+    
+    /* Card sections mobile optimization */
+    .about__grid {
+        grid-template-columns: 1fr !important;
+        gap: clamp(16px, 3vw, 20px) !important;
+    }
+    
+    .about__card {
+        padding: clamp(16px, 3vw, 20px) clamp(12px, 2.5vw, 16px) !important;
+        min-height: clamp(140px, 25vw, 160px) !important;
+    }
+    
+    .about__card-title {
+        font-size: clamp(16px, 3.5vw, 18px) !important;
+        margin-bottom: clamp(8px, 2vw, 12px) !important;
+    }
+    
+    .about__card-text {
+        font-size: clamp(13px, 2.5vw, 14px) !important;
+        line-height: 1.5 !important;
+    }
+    
+    .about__quote {
+        padding: clamp(16px, 3vw, 20px) clamp(12px, 2.5vw, 16px) !important;
+        font-size: clamp(14px, 2.8vw, 16px) !important;
+        margin: clamp(24px, 4vw, 32px) 0 !important;
+    }
+    
+    .routine__grid {
+        grid-template-columns: 1fr !important;
+        gap: clamp(20px, 4vw, 24px) !important;
+    }
+    
+    .routine-card,
+    .template-card {
+        padding: clamp(16px, 3vw, 20px) clamp(12px, 2.5vw, 16px) !important;
+    }
+    
+    .routine-card__title,
+    .template-card__title {
+        font-size: clamp(18px, 4vw, 20px) !important;
+        margin-bottom: clamp(6px, 1.5vw, 8px) !important;
+    }
+    
+    .routine-card__subtitle,
+    .template-card__description {
+        font-size: clamp(12px, 2.5vw, 13px) !important;
+        margin-bottom: clamp(10px, 2vw, 12px) !important;
+    }
+    
+    .routine-card__price,
+    .template-card__price {
+        font-size: clamp(16px, 3.5vw, 18px) !important;
+        margin-bottom: clamp(12px, 2.5vw, 16px) !important;
+    }
+    
+    .routine-card__stats {
+        gap: clamp(8px, 2vw, 12px) !important;
+        margin-bottom: clamp(12px, 2.5vw, 16px) !important;
+    }
+    
+    .stat-item {
+        padding: clamp(6px, 1.5vw, 8px) clamp(8px, 2vw, 12px) !important;
+    }
+    
+    .stat-number {
+        font-size: clamp(14px, 3vw, 16px) !important;
+    }
+    
+    .stat-label {
+        font-size: clamp(10px, 2vw, 11px) !important;
+    }
+    
+    .schedule-card__progress {
+        margin-top: clamp(8px, 2vw, 12px) !important;
+    }
+    
+    .progress-bar {
+        height: clamp(6px, 1.5vw, 8px) !important;
+        margin-bottom: clamp(6px, 1.5vw, 8px) !important;
+    }
+    
+    .progress-text {
+        font-size: clamp(10px, 2vw, 11px) !important;
+    }
+    
+    .connect__links {
+        grid-template-columns: 1fr !important;
+        gap: clamp(12px, 3vw, 16px) !important;
+    }
+    
+    .connect__link {
+        padding: clamp(12px, 3vw, 16px) !important;
+        min-height: clamp(50px, 10vw, 60px) !important;
+    }
+    
+    .connect__title {
+        font-size: clamp(13px, 2.5vw, 15px) !important;
+    }
+    
+    .connect__subtitle {
+        font-size: clamp(10px, 2vw, 11px) !important;
+    }
+    
+    /* Tab and other sections mobile optimization */
+    .schedule__tabs {
+        flex-direction: column !important;
+        gap: clamp(8px, 2vw, 12px) !important;
+        margin-bottom: clamp(20px, 4vw, 24px) !important;
+    }
+    
+    .schedule__tab {
+        padding: clamp(10px, 2.5vw, 12px) clamp(16px, 3vw, 20px) !important;
+        font-size: clamp(12px, 2.5vw, 14px) !important;
+        border-radius: clamp(8px, 2vw, 12px) !important;
+        min-height: 44px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    .schedule__content {
+        gap: clamp(16px, 3vw, 20px) !important;
+    }
+    
+    .schedule__item {
+        flex-direction: column !important;
+        gap: clamp(12px, 2.5vw, 16px) !important;
+        padding: clamp(16px, 3vw, 20px) !important;
+    }
+    
+    .schedule__item-content {
+        text-align: center !important;
+    }
+    
+    .schedule__item-title {
+        font-size: clamp(16px, 3.5vw, 18px) !important;
+        margin-bottom: clamp(6px, 1.5vw, 8px) !important;
+    }
+    
+    .schedule__item-description {
+        font-size: clamp(12px, 2.5vw, 13px) !important;
+        line-height: 1.4 !important;
+    }
+    
+    .schedule__item-price {
+        font-size: clamp(14px, 3vw, 16px) !important;
+        margin-top: clamp(8px, 2vw, 12px) !important;
+    }
+    
+    .schedule__item-image {
+        width: clamp(80px, 15vw, 100px) !important;
+        height: clamp(80px, 15vw, 100px) !important;
+        margin: 0 auto !important;
+    }
+    
+    /* Footer mobile optimization */
+    .footer {
+        padding: clamp(24px, 5vw, 32px) clamp(16px, 3vw, 20px) !important;
+    }
+    
+    .footer__content {
+        flex-direction: column !important;
+        gap: clamp(16px, 3vw, 20px) !important;
+        text-align: center !important;
+    }
+    
+    .footer__logo {
+        margin-bottom: clamp(8px, 2vw, 12px) !important;
+    }
+    
+    .footer__logo-img {
+        height: clamp(20px, 4vw, 24px) !important;
+    }
+    
+    .footer__text {
+        font-size: clamp(12px, 2.5vw, 13px) !important;
+        line-height: 1.5 !important;
+    }
+    
+    /* Section titles mobile optimization */
+    .section__title {
+        font-size: clamp(20px, 5vw, 24px) !important;
+        margin-bottom: clamp(20px, 4vw, 24px) !important;
+        text-align: center !important;
+    }
+    
+    /* General section padding */
+    section {
+        padding: clamp(30px, 6vw, 40px) clamp(12px, 3vw, 16px) !important;
     }
     
     /* Touch-friendly interface improvements */
