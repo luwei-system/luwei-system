@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F8FAFC;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="moonGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#CFE8FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E9EEF2;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#111111;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#222222;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  
+  <!-- Water texture pattern -->
+  <defs>
+    <pattern id="waterPattern" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+      <circle cx="50" cy="50" r="2" fill="#CFE8FF" opacity="0.1"/>
+      <circle cx="150" cy="100" r="1.5" fill="#CFE8FF" opacity="0.08"/>
+      <circle cx="100" cy="150" r="1" fill="#CFE8FF" opacity="0.06"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#waterPattern)"/>
+  
+  <!-- Main moon icon -->
+  <g transform="translate(600, 200)">
+    <circle cx="0" cy="0" r="80" fill="#FFFFFF" stroke="#CFE8FF" stroke-width="4"/>
+    <path d="M0 -60 C30 -60, 60 -30, 60 0 C60 30, 30 60, 0 60 C-30 60, -60 30, -60 0 C-60 -30, -30 -60, 0 -60 Z" 
+          fill="url(#moonGradient)"/>
+    
+    <!-- Water ripples -->
+    <path d="M-80 40 Q0 60, 80 40" stroke="#CFE8FF" stroke-width="3" fill="none" opacity="0.7"/>
+    <path d="M-70 50 Q0 70, 70 50" stroke="#CFE8FF" stroke-width="2" fill="none" opacity="0.5"/>
+    <path d="M-60 60 Q0 75, 60 60" stroke="#CFE8FF" stroke-width="1.5" fill="none" opacity="0.3"/>
+  </g>
+  
+  <!-- Brand text -->
+  <text x="600" y="380" text-anchor="middle" font-family="Inter, sans-serif" font-size="48" font-weight="300" fill="url(#textGradient)">
+    LUWEI SYSTEM
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="600" y="430" text-anchor="middle" font-family="Inter, sans-serif" font-size="24" font-weight="300" fill="#222222">
+    A calm digital brand from Seoul
+  </text>
+  
+  <!-- Korean subtitle -->
+  <text x="600" y="470" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="20" font-weight="300" fill="#444444">
+    조용한 시스템, 고요한 질서
+  </text>
+  
+  <!-- Decorative elements -->
+  <circle cx="200" cy="150" r="3" fill="#CFE8FF" opacity="0.3"/>
+  <circle cx="1000" cy="200" r="2" fill="#DFF5E1" opacity="0.4"/>
+  <circle cx="150" cy="500" r="2.5" fill="#FFD7E5" opacity="0.3"/>
+  <circle cx="1050" cy="450" r="2" fill="#E9EEF2" opacity="0.4"/>
+</svg>
