@@ -424,7 +424,15 @@ window.LUWEI_UTILS = {
     setLanguage: (lang) => {
         localStorage.setItem('luwei-lang', lang);
         console.log('Language set to:', lang); // 디버깅용
-        location.reload(); // 페이지 새로고침으로 언어 변경 적용
+        
+        // 네비게이션 컴포넌트 찾아서 언어 업데이트
+        const navContainer = document.querySelector('#navigation-container');
+        if (navContainer && navContainer._navigation) {
+            navContainer._navigation.updatePageLanguage(lang);
+        } else {
+            // 네비게이션이 없으면 페이지 새로고침
+            location.reload();
+        }
     },
     
     // 제품 데이터 가져오기

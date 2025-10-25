@@ -372,11 +372,13 @@
             // 네비게이션 초기화
             const navContainer = document.getElementById('navigation-container');
             if (navContainer) {
-                new LUWEI_COMPONENTS.Navigation(navContainer, {
+                const navigation = new LUWEI_COMPONENTS.Navigation(navContainer, {
                     showLanguageToggle: true,
                     showShareButton: true,
                     sticky: true
                 });
+                // 네비게이션 참조 저장
+                navContainer._navigation = navigation;
             }
 
             // 히어로 섹션 초기화

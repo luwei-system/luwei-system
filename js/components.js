@@ -297,11 +297,6 @@ class Navigation extends LUWEIComponent {
         
         // 전체 페이지 언어 업데이트
         this.updatePageLanguage(newLang);
-        
-        // 네비게이션 다시 렌더링 (언어 설정 후)
-        setTimeout(() => {
-            this.render();
-        }, 100);
     }
 
     updatePageLanguage(lang) {
@@ -314,12 +309,16 @@ class Navigation extends LUWEIComponent {
         elements.forEach(element => {
             if (lang === 'en') {
                 const englishText = element.getAttribute('data-en');
-                element.innerHTML = englishText;
-                element.setAttribute('lang', 'en');
+                if (englishText) {
+                    element.innerHTML = englishText;
+                    element.setAttribute('lang', 'en');
+                }
             } else {
                 const koreanText = element.getAttribute('data-ko');
-                element.innerHTML = koreanText;
-                element.setAttribute('lang', 'ko');
+                if (koreanText) {
+                    element.innerHTML = koreanText;
+                    element.setAttribute('lang', 'ko');
+                }
             }
         });
         
@@ -329,7 +328,20 @@ class Navigation extends LUWEIComponent {
         // 동적 콘텐츠 업데이트
         this.updateDynamicContent(lang);
         
+        // 언어 토글 버튼 텍스트 업데이트
+        this.updateLanguageToggleButton(lang);
+        
         console.log('Page language update completed');
+    }
+    
+    updateLanguageToggleButton(lang) {
+        const langToggle = document.querySelector('.lang-toggle');
+        if (langToggle) {
+            const toggleText = langToggle.querySelector('.lang-toggle__text');
+            if (toggleText) {
+                toggleText.textContent = lang === 'ko' ? 'EN' : '한';
+            }
+        }
     }
     
     updateAboutSection(lang) {
@@ -404,7 +416,7 @@ class Navigation extends LUWEIComponent {
         });
         
         // 히어로 섹션 다시 렌더링
-        const heroContainer = document.querySelector('.hero__container');
+        const heroContainer = document.getElementById('hero-container');
         if (heroContainer) {
             new LUWEI_COMPONENTS.HeroSection(heroContainer, {
                 showSchedule: true,
