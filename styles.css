@@ -3225,6 +3225,7 @@ section {
     border-radius: 4px;
     transition: width 2s ease-in-out;
     position: relative;
+    width: 100%; /* 기본값 설정 */
 }
 
 .progress-fill::after {

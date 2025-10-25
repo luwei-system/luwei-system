@@ -410,7 +410,7 @@
             const progressElements = document.querySelectorAll('.progress-fill');
             
             progressElements.forEach(element => {
-                const targetWidth = element.style.width;
+                const targetWidth = element.style.width || element.getAttribute('data-width') || '100%';
                 element.style.width = '0%';
                 
                 setTimeout(() => {
