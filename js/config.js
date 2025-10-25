@@ -133,7 +133,9 @@ const LUWEI_CONFIG = {
                 status: "active",
                 icon: "🌊",
                 features: ["9분 명상", "비주얼 가이드", "다운로드 가능"],
-                featuresEn: ["9-min meditation", "Visual guide", "Downloadable"]
+                featuresEn: ["9-min meditation", "Visual guide", "Downloadable"],
+                youtubeUrl: "https://www.youtube.com/watch?v=lsxubjDemZA",
+                gumroadUrl: "https://luweisystem.gumroad.com/l/ahqlv?layout=profile"
             },
             {
                 id: "light",
