@@ -139,15 +139,17 @@ const LUWEI_CONFIG = {
                 id: "light",
                 name: "무 루틴 : 빛", 
                 nameEn: "MU Routine : Light",
-                subtitle: "명확함의 원소",
-                subtitleEn: "the element of clarity",
-                description: "11월 중 출시 예정",
-                descriptionEn: "Coming November",
-                price: 4900,
-                status: "coming-soon",
+                subtitle: "빛의 본질",
+                subtitleEn: "the element of light",
+                description: "10분 Audio-visual Meditation",
+                descriptionEn: "10-minute Audio-visual Meditation",
+                price: 9900,
+                status: "active",
                 icon: "💡",
-                features: ["명확함 집중", "빛의 가이드", "고요한 순간"],
-                featuresEn: ["Clarity focus", "Light guide", "Peaceful moments"]
+                features: ["10분 명상", "비주얼 가이드", "다운로드 가능"],
+                featuresEn: ["10-min meditation", "Visual guide", "Downloadable"],
+                youtubeUrl: "https://youtu.be/UXK9_QSWdSo",
+                gumroadUrl: "https://luweisystem.gumroad.com/l/ddvpx?layout=profile"
             },
             {
                 id: "wind",
@@ -249,10 +251,10 @@ const LUWEI_CONFIG = {
             dateEn: "Mid-November", 
             title: "무 루틴 오디오 '물·빛' 시리즈",
             titleEn: "'Water·Light' Meditation Audio Series",
-            description: "1분 명상 오디오로 시작하는 고요의 여행",
-            descriptionEn: "Begin your journey to stillness with 1-minute meditation audio",
-            status: "current",
-            progress: 85
+            description: "물과 빛의 명상 오디오로 시작하는 고요의 여행",
+            descriptionEn: "Begin your journey to stillness with Water and Light meditation audio",
+            status: "completed",
+            progress: 100
         },
         {
             id: "daily-templates",

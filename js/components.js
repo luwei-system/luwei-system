@@ -85,22 +85,26 @@ class ProductCard extends LUWEIComponent {
                     
                     ${this.options.showActions && product.status === 'active' ? `
                         <div class="product-card__actions">
-                            <a href="${LUWEI_CONFIG.links.youtube}" 
-                               class="btn btn--small" 
-                               target="_blank" 
-                               rel="noopener noreferrer">
-                                <span data-ko="무료 미리듣기" data-en="Free Preview">
-                                    ${isKorean ? '무료 미리듣기' : 'Free Preview'}
-                                </span>
-                            </a>
-                            <a href="${LUWEI_CONFIG.links.gumroad}" 
-                               class="btn btn--small btn--outline" 
-                               target="_blank" 
-                               rel="noopener noreferrer">
-                                <span data-ko="전체 오디오 구매" data-en="Get Full Audio">
-                                    ${isKorean ? '전체 오디오 구매' : 'Get Full Audio'}
-                                </span>
-                            </a>
+                            ${product.youtubeUrl ? `
+                                <a href="${product.youtubeUrl}" 
+                                   class="btn btn--small" 
+                                   target="_blank" 
+                                   rel="noopener noreferrer">
+                                    <span data-ko="무료 미리듣기" data-en="Free Preview">
+                                        ${isKorean ? '무료 미리듣기' : 'Free Preview'}
+                                    </span>
+                                </a>
+                            ` : ''}
+                            ${product.gumroadUrl ? `
+                                <a href="${product.gumroadUrl}" 
+                                   class="btn btn--small btn--outline" 
+                                   target="_blank" 
+                                   rel="noopener noreferrer">
+                                    <span data-ko="전체 오디오 구매" data-en="Get Full Audio">
+                                        ${isKorean ? '전체 오디오 구매' : 'Get Full Audio'}
+                                    </span>
+                                </a>
+                            ` : ''}
                         </div>
                     ` : ''}
                 </div>
@@ -486,11 +490,11 @@ class HeroSection extends LUWEIComponent {
                             ${this.options.showSchedule ? `
                                 <div class="hero__schedule">
                                     <p class="hero__schedule-text" 
-                                       data-ko="11월 중 – 1분 명상 오디오 '물·빛' 출시<br>12월 초 – 감정 OFF 템플릿 공개<br>12월 말 – 패키지 공개" 
-                                       data-en="November – 'Water·Light' meditation audio<br>December – OFF routine templates<br>End of year – Complete package">
+                                       data-ko="✨ '물·빛' 시리즈 출시 완료!<br>12월 초 – 감정 OFF 템플릿 공개<br>12월 말 – 패키지 공개" 
+                                       data-en="✨ 'Water·Light' series is now available!<br>December – OFF routine templates<br>End of year – Complete package">
                                         ${isKorean 
-                                            ? '11월 중 – 1분 명상 오디오 \'물·빛\' 출시<br>12월 초 – 감정 OFF 템플릿 공개<br>12월 말 – 패키지 공개'
-                                            : 'November – \'Water·Light\' meditation audio<br>December – OFF routine templates<br>End of year – Complete package'
+                                            ? '✨ \'물·빛\' 시리즈 출시 완료!<br>12월 초 – 감정 OFF 템플릿 공개<br>12월 말 – 패키지 공개'
+                                            : '✨ \'Water·Light\' series is now available!<br>December – OFF routine templates<br>End of year – Complete package'
                                         }
                                     </p>
                                 </div>

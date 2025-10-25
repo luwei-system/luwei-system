@@ -2856,6 +2856,16 @@ section {
     border-color: rgba(207, 232, 255, 0.4);
 }
 
+.schedule-card--completed {
+    background: linear-gradient(135deg, rgba(223, 245, 225, 0.15) 0%, rgba(255, 255, 255, 0.95) 100%);
+    border-color: rgba(223, 245, 225, 0.4);
+    box-shadow: 0 12px 40px rgba(223, 245, 225, 0.25);
+}
+
+.schedule-card--completed::before {
+    background: linear-gradient(135deg, rgba(223, 245, 225, 0.12) 0%, rgba(255, 255, 255, 0.08) 100%);
+}
+
 .schedule-card--current {
     background: linear-gradient(135deg, rgba(207, 232, 255, 0.15) 0%, rgba(255, 255, 255, 0.95) 100%);
     border-color: rgba(207, 232, 255, 0.4);
@@ -2887,6 +2897,12 @@ section {
     border: 3px solid rgba(207, 232, 255, 0.6);
     box-shadow: 0 4px 16px rgba(207, 232, 255, 0.4);
     z-index: 2;
+}
+
+.schedule-card--completed .schedule-card__timeline-dot {
+    background: linear-gradient(135deg, rgba(223, 245, 225, 1) 0%, rgba(255, 255, 255, 1) 100%);
+    border-color: rgba(223, 245, 225, 0.8);
+    box-shadow: 0 6px 20px rgba(223, 245, 225, 0.6);
 }
 
 .schedule-card--current .schedule-card__timeline-dot {
