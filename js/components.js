@@ -49,6 +49,14 @@ class ProductCard extends LUWEIComponent {
         const currentLang = LUWEI_UTILS.getCurrentLanguage();
         const isKorean = currentLang === 'ko';
 
+        // 디버깅 정보 출력
+        console.log('Rendering product card:', product.id, {
+            status: product.status,
+            youtubeUrl: product.youtubeUrl,
+            gumroadUrl: product.gumroadUrl,
+            showActions: this.options.showActions
+        });
+
         this.element.innerHTML = `
             <div class="product-card ${product.status === 'active' ? 'product-card--active' : ''} ${product.status === 'coming-soon' ? 'product-card--coming-soon' : ''}" 
                  data-product-id="${product.id}">
@@ -83,7 +91,7 @@ class ProductCard extends LUWEIComponent {
                         </div>
                     ` : ''}
                     
-                    ${this.options.showActions && product.status === 'active' ? `
+                    ${this.options.showActions && (product.status === 'active' || product.youtubeUrl || product.gumroadUrl) ? `
                         <div class="product-card__actions">
                             ${product.youtubeUrl ? `
                                 <a href="${product.youtubeUrl}" 
