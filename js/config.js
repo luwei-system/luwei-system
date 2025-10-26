@@ -89,13 +89,13 @@ const LUWEI_CONFIG = {
             icon: "🌊",
             color: "primary"
         },
-        templates: {
-            id: "templates", 
-            name: "템플릿",
-            nameEn: "Templates",
-            description: "감정 OFF 루틴 템플릿",
-            descriptionEn: "Emotion OFF Routine Templates",
-            icon: "📝",
+        app: {
+            id: "app", 
+            name: "앱",
+            nameEn: "App",
+            description: "일상 속 고요함을 찾는 모바일 앱",
+            descriptionEn: "Mobile app for finding stillness in daily life",
+            icon: "📱",
             color: "accent"
         },
         goods: {
@@ -182,39 +182,22 @@ const LUWEI_CONFIG = {
                 featuresEn: ["Perfect balance", "Beauty of order", "Stability"]
             }
         ],
-        templates: [
+        app: [
             {
-                id: "daily-off",
-                name: "하루 OFF",
-                nameEn: "Daily OFF",
-                description: "감정 OFF 루틴 기록 템플릿",
-                descriptionEn: "OFF routine recording template",
-                price: 2900,
+                id: "luwei-app",
+                name: "LUWEI 앱",
+                nameEn: "LUWEI App",
+                subtitle: "일상 속 고요함",
+                subtitleEn: "Stillness in daily life",
+                description: "물과 빛 루틴이 포함된 모바일 앱",
+                descriptionEn: "Mobile app with Water and Light routines",
+                price: 0,
                 status: "coming-soon",
-                releaseDate: "12월 초",
-                releaseDateEn: "Early December"
-            },
-            {
-                id: "emotion-calendar",
-                name: "감정 캘린더", 
-                nameEn: "Emotion Calendar",
-                description: "월간 감정 흐름 추적 캘린더",
-                descriptionEn: "Monthly emotion flow calendar",
-                price: 3900,
-                status: "coming-soon",
-                releaseDate: "12월 중",
-                releaseDateEn: "Mid December"
-            },
-            {
-                id: "system-dashboard",
-                name: "시스템 대시보드",
-                nameEn: "System Dashboard", 
-                description: "개인 고요 시스템 관리 대시보드",
-                descriptionEn: "Personal stillness system dashboard",
-                price: 4900,
-                status: "coming-soon",
-                releaseDate: "12월 말",
-                releaseDateEn: "Late December"
+                icon: "📱",
+                features: ["물·빛 루틴", "일일 추적", "오프라인 모드"],
+                featuresEn: ["Water·Light routines", "Daily tracking", "Offline mode"],
+                releaseDate: "2025년 1월",
+                releaseDateEn: "January 2025"
             }
         ],
         goods: [
@@ -259,13 +242,13 @@ const LUWEI_CONFIG = {
             progress: 100
         },
         {
-            id: "daily-templates",
-            date: "12월 초",
-            dateEn: "Early December",
-            title: "하루 OFF 템플릿", 
-            titleEn: "Daily OFF Templates",
-            description: "감정 OFF 루틴을 기록하는 Notion 템플릿",
-            descriptionEn: "Notion templates for recording your OFF routine",
+            id: "luwei-app",
+            date: "2025년 1월",
+            dateEn: "January 2025",
+            title: "LUWEI 모바일 앱", 
+            titleEn: "LUWEI Mobile App",
+            description: "물과 빛 루틴이 포함된 모바일 앱 출시",
+            descriptionEn: "Mobile app release with Water and Light routines",
             status: "upcoming"
         },
         {

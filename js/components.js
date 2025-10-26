@@ -253,7 +253,7 @@ class Navigation extends LUWEIComponent {
                         <li><a href="/" class="nav__link" data-ko="Home" data-en="Home">${isKorean ? 'Home' : 'Home'}</a></li>
                         <li><a href="#about" class="nav__link" data-ko="브랜드 철학" data-en="Philosophy">${isKorean ? '브랜드 철학' : 'Philosophy'}</a></li>
                         <li><a href="#routines" class="nav__link" data-ko="무 루틴" data-en="MU Routine">${isKorean ? '무 루틴' : 'MU Routine'}</a></li>
-                        <li><a href="#templates" class="nav__link" data-ko="템플릿" data-en="Templates">${isKorean ? '템플릿' : 'Templates'}</a></li>
+                        <li><a href="#app" class="nav__link" data-ko="앱" data-en="App">${isKorean ? '앱' : 'App'}</a></li>
                         <li><a href="#goods" class="nav__link" data-ko="굿즈" data-en="Goods">${isKorean ? '굿즈' : 'Goods'}</a></li>
                         <li><a href="#schedule" class="nav__link" data-ko="출시 일정" data-en="Schedule">${isKorean ? '출시 일정' : 'Schedule'}</a></li>
                         <li><a href="#connect" class="nav__link" data-ko="연결" data-en="Connect">${isKorean ? '연결' : 'Connect'}</a></li>
@@ -510,11 +510,11 @@ class HeroSection extends LUWEIComponent {
                             ${this.options.showSchedule ? `
                                 <div class="hero__schedule">
                                     <p class="hero__schedule-text" 
-                                       data-ko="✨ '물·빛' 시리즈 출시 완료!<br>12월 초 – 감정 OFF 템플릿 공개<br>12월 말 – 패키지 공개" 
-                                       data-en="✨ 'Water·Light' series is now available!<br>December – OFF routine templates<br>End of year – Complete package">
+                                       data-ko="✨ '물·빛' 시리즈 출시 완료!<br>2025년 1월 – LUWEI 모바일 앱 출시<br>12월 말 – 패키지 공개" 
+                                       data-en="✨ 'Water·Light' series is now available!<br>January 2025 – LUWEI mobile app<br>End of year – Complete package">
                                         ${isKorean 
-                                            ? '✨ \'물·빛\' 시리즈 출시 완료!<br>12월 초 – 감정 OFF 템플릿 공개<br>12월 말 – 패키지 공개'
-                                            : '✨ \'Water·Light\' series is now available!<br>December – OFF routine templates<br>End of year – Complete package'
+                                            ? '✨ \'물·빛\' 시리즈 출시 완료!<br>2025년 1월 – LUWEI 모바일 앱 출시<br>12월 말 – 패키지 공개'
+                                            : '✨ \'Water·Light\' series is now available!<br>January 2025 – LUWEI mobile app<br>End of year – Complete package'
                                         }
                                     </p>
                                 </div>
