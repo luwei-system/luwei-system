@@ -437,31 +437,59 @@
             width: 280px;
             min-height: 200px;
             max-height: 200px;
-            overflow: hidden;
+            overflow-y: auto;
+            overflow-x: hidden;
             border-radius: 12px;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(17, 17, 17, 0.3) transparent;
         }
         
-        /* Positioning for sections */
+        .room-section::-webkit-scrollbar {
+            width: 4px;
+        }
+        
+        .room-section::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        .room-section::-webkit-scrollbar-thumb {
+            background: rgba(17, 17, 17, 0.3);
+            border-radius: 2px;
+        }
+        
+        /* Positioning for sections - will be randomized by JavaScript */
         .room-section:nth-of-type(1) { /* ① Emotion Archive */
-            top: 5%;
-            left: 5%;
+            top: 0;
+            left: 0;
         }
         
         .room-section:nth-of-type(2) { /* ② Diary */
-            top: 5%;
-            right: 5%;
+            top: 0;
+            left: 0;
         }
         
         .room-section:nth-of-type(3) { /* ③ Gallery */
-            top: 5%;
-            left: 50%;
-            transform: translateX(-50%);
+            top: 0;
+            left: 0;
         }
         
         .room-section:nth-of-type(4) { /* ④ Calendar */
-            bottom: 5%;
-            left: 50%;
-            transform: translateX(-50%);
+            top: 0;
+            left: 0;
+        }
+        
+        .room-section.centered {
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+        }
+        
+        .room-section.left-aligned {
+            left: 5% !important;
+        }
+        
+        .room-section.right-aligned {
+            right: 5% !important;
+            left: auto !important;
         }
         
         .room-section.visible {
@@ -470,18 +498,30 @@
             animation: breathe 8s ease-in-out infinite;
         }
         
-        .room-section.visible:nth-of-type(3) {
+        .room-section.visible.centered {
             animation: breathe 8s ease-in-out infinite;
-            transform: translateX(-50%) translateY(0);
+            transform: translateX(-50%) !important;
         }
         
-        .room-section.visible:nth-of-type(4) {
+        .room-section.visible.left-aligned,
+        .room-section.visible.right-aligned {
             animation: breathe 8s ease-in-out infinite;
-            transform: translateX(-50%) translateY(0);
+            transform: translateY(0) !important;
         }
         
         .room-section:nth-child(even).visible {
             animation: breathe 9s ease-in-out infinite;
+        }
+        
+        .room-section:nth-child(even).visible.centered {
+            animation: breathe 9s ease-in-out infinite;
+            transform: translateX(-50%) !important;
+        }
+        
+        .room-section:nth-child(even).visible.left-aligned,
+        .room-section:nth-child(even).visible.right-aligned {
+            animation: breathe 9s ease-in-out infinite;
+            transform: translateY(0) !important;
         }
         
         .section-container {
@@ -952,9 +992,55 @@
             // Show sections on scroll
             observeSections();
             
+            // Randomize section positions
+            randomizeSectionPositions();
+            
             // Cursor wave effect
             addCursorWave();
         });
+        
+        function randomizeSectionPositions() {
+            const sections = document.querySelectorAll('.room-section');
+            const positions = [
+                { vertical: 'top', value: '10%', horizontal: 'left', horizontalValue: '5%', alignment: 'left-aligned' },
+                { vertical: 'top', value: '10%', horizontal: 'right', horizontalValue: '5%', alignment: 'right-aligned' },
+                { vertical: 'top', value: '10%', horizontal: 'center', horizontalValue: '50%', alignment: 'centered' },
+                { vertical: 'top', value: '35%', horizontal: 'left', horizontalValue: '5%', alignment: 'left-aligned' },
+                { vertical: 'top', value: '35%', horizontal: 'right', horizontalValue: '5%', alignment: 'right-aligned' },
+                { vertical: 'top', value: '35%', horizontal: 'center', horizontalValue: '50%', alignment: 'centered' },
+                { vertical: 'bottom', value: '5%', horizontal: 'center', horizontalValue: '50%', alignment: 'centered' },
+                { vertical: 'bottom', value: '5%', horizontal: 'left', horizontalValue: '5%', alignment: 'left-aligned' },
+                { vertical: 'bottom', value: '5%', horizontal: 'right', horizontalValue: '5%', alignment: 'right-aligned' }
+            ];
+            
+            // Shuffle positions randomly
+            const shuffledPositions = positions.sort(() => Math.random() - 0.5);
+            
+            sections.forEach((section, index) => {
+                const pos = shuffledPositions[index % shuffledPositions.length];
+                
+                // Apply vertical position
+                section.style.top = pos.vertical === 'top' ? pos.value : 'auto';
+                section.style.bottom = pos.vertical === 'bottom' ? pos.value : 'auto';
+                
+                // Apply horizontal position and alignment
+                if (pos.horizontal === 'left') {
+                    section.style.left = pos.horizontalValue;
+                    section.style.right = 'auto';
+                    section.classList.add(pos.alignment);
+                    section.classList.remove('centered', 'right-aligned');
+                } else if (pos.horizontal === 'right') {
+                    section.style.right = pos.horizontalValue;
+                    section.style.left = 'auto';
+                    section.classList.add(pos.alignment);
+                    section.classList.remove('centered', 'left-aligned');
+                } else {
+                    section.style.left = pos.horizontalValue;
+                    section.classList.add(pos.alignment);
+                    section.classList.remove('left-aligned', 'right-aligned');
+                }
+            });
+        }
         
         function createParticles() {
             const roomEntrance = document.querySelector('.room-entrance');
