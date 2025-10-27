@@ -156,6 +156,10 @@
             pointer-events: none;
         }
         
+        .room-overlay.fadeOut {
+            animation: fadeOut 3s ease-out forwards;
+        }
+        
         .room-overlay.hidden {
             display: none;
         }
@@ -788,16 +792,7 @@
     
     <!-- Room Entrance -->
     <section class="room-entrance">
-        <h1 class="luwei-title">LUWEI SYSTEM</h1>
-        <p class="luwei-subtitle">존재의 네트워크</p>
-        <div class="room-description">
-            <p style="margin-bottom: 8px; font-size: 10px;">
-                <strong>① APP</strong> — 존재의 내면화 · <strong>② WEB</strong> — 존재의 기록화
-            </p>
-            <p style="font-size: 9px; color: rgba(17, 17, 17, 0.5);">
-                감정이 아니라 존재의 구조
-            </p>
-        </div>
+        <h1 class="luwei-title">LUWEI ROOM</h1>
     </section>
     
     <!-- ① App Launch Announcement -->
@@ -872,39 +867,33 @@
                 document.body.classList.add('loaded');
             }, 100);
             
-            // Remove overlay after animation
-            setTimeout(function() {
-                const overlay = document.querySelector('.room-overlay');
-                if (overlay) {
-                    overlay.classList.add('hidden');
-                    overlay.remove();
-                }
-            }, 6000);
-            
-            // Smooth scroll to entrance message
-            setTimeout(function() {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
+            // Click overlay to enter room
+            const overlay = document.querySelector('.room-overlay');
+            if (overlay) {
+                overlay.style.cursor = 'pointer';
+                overlay.addEventListener('click', function() {
+                    overlay.classList.add('fadeOut');
+                    setTimeout(function() {
+                        overlay.classList.add('hidden');
+                        overlay.remove();
+                        
+                        // Add breathing animation
+                        document.body.classList.add('breath-active');
+                        
+                        // Add floating particles
+                        createParticles();
+                        
+                        // Show sections
+                        observeSections();
+                        
+                        // Randomize section positions
+                        randomizeSectionPositions();
+                        
+                        // Cursor wave effect
+                        addCursorWave();
+                    }, 3000);
                 });
-            }, 6200);
-            
-            // Add breathing animation after overlay is gone
-            setTimeout(function() {
-                document.body.classList.add('breath-active');
-            }, 6500);
-            
-            // Add floating particles
-            createParticles();
-            
-            // Show sections on scroll
-            observeSections();
-            
-            // Randomize section positions
-            randomizeSectionPositions();
-            
-            // Cursor wave effect
-            addCursorWave();
+            }
         });
         
         function randomizeSectionPositions() {
