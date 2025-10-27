@@ -417,22 +417,33 @@
         
         /* Room Sections */
         .room-section {
-            min-height: 30vh;
-            padding: 30px 20px;
+            min-height: auto;
+            padding: 20px 30px;
             display: flex;
             align-items: center;
             opacity: 0;
             transform: translateY(40px);
             transition: all 1s ease;
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(3px);
-            margin: 20px 0;
-            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(2px);
+            margin: 15px auto;
             position: relative;
             z-index: 1;
-            max-width: 70vw;
+            max-width: 400px;
             margin-left: auto;
             margin-right: auto;
+        }
+        
+        /* Cloud shape */
+        .room-section.云 {
+            border-radius: 50px;
+            padding: 25px 35px;
+        }
+        
+        /* Water drop shape */
+        .room-section.💧 {
+            border-radius: 50px 50px 50px 5px;
+            padding: 20px 30px;
         }
         
         .room-section.visible {
@@ -447,31 +458,31 @@
         }
         
         .section-container {
-            max-width: 800px;
+            max-width: 300px;
             width: 100%;
             margin: 0 auto;
         }
         
         .section-header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 12px;
         }
         
         .section-number {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 600;
             color: rgba(17, 17, 17, 0.4);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
         
         .section-title {
-            font-size: 32px;
+            font-size: 24px;
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
         
         .section-subtitle {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 300;
             color: rgba(17, 17, 17, 0.6);
         }
@@ -737,7 +748,7 @@
     </section>
     
     <!-- ① Emotion Archive -->
-    <section class="room-section emotion-archive">
+    <section class="room-section emotion-archive 云">
         <div class="section-container">
             <div class="section-header">
                 <h2 class="section-number">①</h2>
@@ -766,7 +777,7 @@
     </section>
     
     <!-- ② Diary of Stillness -->
-    <section class="room-section diary-stillness">
+    <section class="room-section diary-stillness 💧">
         <div class="section-container">
             <div class="section-header">
                 <h2 class="section-number">②</h2>
@@ -792,7 +803,7 @@
     </section>
     
     <!-- ③ Routine Gallery -->
-    <section class="room-section routine-gallery">
+    <section class="room-section routine-gallery 云">
         <div class="section-container">
             <div class="section-header">
                 <h2 class="section-number">③</h2>
@@ -826,7 +837,7 @@
     </section>
     
     <!-- ④ Flow Calendar -->
-    <section class="room-section flow-calendar">
+    <section class="room-section flow-calendar 💧">
         <div class="section-container">
             <div class="section-header">
                 <h2 class="section-number">④</h2>
@@ -860,7 +871,7 @@
     </section>
     
     <!-- ⑤ Center Table -->
-    <section class="room-section center-table">
+    <section class="room-section center-table 云">
         <div class="section-container">
             <div class="section-header">
                 <h2 class="section-number">⑤</h2>
