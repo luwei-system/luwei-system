@@ -34,6 +34,9 @@
             overflow-x: hidden;
             opacity: 0;
             transition: opacity 1s ease;
+        }
+        
+        body.loaded.breath-active {
             animation: breathe 4s ease-in-out infinite;
         }
         
@@ -109,16 +112,17 @@
         }
         
         .room-overlay__image {
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             background-image: url('./assets/door.png');
-            background-size: cover;
-            background-position: center;
+            background-size: contain;
+            background-position: center center;
             background-repeat: no-repeat;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            overflow: hidden;
         }
         
         .room-overlay__text {
@@ -791,6 +795,11 @@
                     behavior: 'smooth'
                 });
             }, 6200);
+            
+            // Add breathing animation after overlay is gone
+            setTimeout(function() {
+                document.body.classList.add('breath-active');
+            }, 6500);
             
             // Add floating particles
             createParticles();
