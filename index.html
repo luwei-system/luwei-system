@@ -397,15 +397,21 @@
             background-image: url('./assets/door.png');
             background-size: cover;
             background-position: center;
-            border-radius: 50%;
+            border-radius: 50% !important;
             overflow: hidden;
             cursor: pointer;
             transition: transform 0.3s ease;
             filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
             position: relative;
             z-index: 1;
-            border: none;
-            outline: none;
+            border: none !important;
+            outline: none !important;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-clip: padding-box;
+            -webkit-tap-highlight-color: transparent;
+            box-sizing: border-box;
         }
         
         .web-door-image:hover {
