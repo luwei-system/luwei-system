@@ -30,8 +30,8 @@
             background-position: center;
             background-attachment: fixed;
             color: #111111;
-            min-height: 100vh;
-            overflow-x: hidden;
+            height: 100vh;
+            overflow: hidden;
             opacity: 0;
             transition: opacity 1s ease;
             position: relative;
@@ -253,13 +253,16 @@
             align-items: center;
             padding: 30px 20px;
             text-align: center;
-            position: relative;
+            position: fixed;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
             background: rgba(255, 255, 255, 0.5);
             backdrop-filter: blur(5px);
-            animation: roomGlow 8s ease-in-out infinite, float 4s ease-in-out infinite;
-            z-index: 1;
-            margin: 10px auto;
+            animation: breathe 8s ease-in-out infinite;
+            z-index: 10;
             max-width: 600px;
+            width: 90%;
             border-radius: 16px;
         }
         
@@ -449,16 +452,6 @@
         }
         
         /* Positioning for sections */
-        .room-entrance {
-            position: fixed;
-            top: 10%;
-            left: 50%;
-            transform: translateX(-50%);
-            max-width: 500px;
-            width: 90%;
-            z-index: 10;
-        }
-        
         .room-section:nth-of-type(1) { /* ① Emotion Archive */
             top: 5%;
             left: 5%;
@@ -483,22 +476,22 @@
         
         .room-section.visible {
             opacity: 1;
-            animation: breathe 6s ease-in-out infinite, float 5s ease-in-out infinite;
+            transform: translateY(0);
+            animation: breathe 8s ease-in-out infinite;
         }
         
         .room-section.visible:nth-of-type(3) {
-            animation: breathe 6s ease-in-out infinite, float 5s ease-in-out infinite;
-            transform: translateX(-50%);
+            animation: breathe 8s ease-in-out infinite;
+            transform: translateX(-50%) translateY(0);
         }
         
         .room-section.visible:nth-of-type(4) {
-            animation: breathe 6s ease-in-out infinite, float 5s ease-in-out infinite;
-            transform: translateX(-50%);
+            animation: breathe 8s ease-in-out infinite;
+            transform: translateX(-50%) translateY(0);
         }
         
         .room-section:nth-child(even).visible {
-            animation: breathe 6s ease-in-out infinite, float 5s ease-in-out infinite;
-            animation-delay: 0s, 0.5s;
+            animation: breathe 9s ease-in-out infinite;
         }
         
         .section-container {
