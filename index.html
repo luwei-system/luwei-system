@@ -424,8 +424,7 @@
         
         /* Room Sections */
         .room-section {
-            min-height: auto;
-            padding: 12px 18px;
+            padding: 15px 20px;
             display: flex;
             align-items: center;
             opacity: 0;
@@ -435,20 +434,11 @@
             backdrop-filter: blur(8px);
             position: fixed;
             z-index: 1;
-            max-width: 280px;
+            width: 280px;
+            min-height: 200px;
+            max-height: 200px;
+            overflow: hidden;
             border-radius: 12px;
-        }
-        
-        /* Cloud shape */
-        .room-section.云 {
-            border-radius: 50px;
-            padding: 25px 35px;
-        }
-        
-        /* Water drop shape */
-        .room-section.💧 {
-            border-radius: 50px 50px 50px 5px;
-            padding: 20px 30px;
         }
         
         /* Positioning for sections */
@@ -495,9 +485,12 @@
         }
         
         .section-container {
-            max-width: 260px;
             width: 100%;
             margin: 0 auto;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         
         .section-header {
