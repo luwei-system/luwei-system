@@ -163,6 +163,53 @@
                 height: 130px;
             }
         }
+        
+        /* Language Switcher */
+        .language-switcher {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            cursor: pointer;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            color: white;
+            font-weight: 500;
+        }
+        
+        .language-switcher:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .language-switcher:active {
+            transform: scale(0.95);
+        }
+        
+        .lang-kr {
+            display: block;
+        }
+        
+        .lang-en {
+            display: none;
+        }
+        
+        body.lang-english .lang-kr {
+            display: none;
+        }
+        
+        body.lang-english .lang-en {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -190,7 +237,17 @@
         window.addEventListener('load', function() {
             document.body.classList.add('loaded');
         });
+        
+        function toggleLanguage() {
+            document.body.classList.toggle('lang-english');
+        }
     </script>
+    
+    <!-- Language Switcher -->
+    <div class="language-switcher" onclick="toggleLanguage()">
+        <span class="lang-kr">한</span>
+        <span class="lang-en">EN</span>
+    </div>
 </body>
 </html>
 

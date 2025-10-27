@@ -1169,6 +1169,53 @@
                 align-items: center;
             }
         }
+        
+        /* Language Switcher */
+        .language-switcher {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            cursor: pointer;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            color: white;
+            font-weight: 500;
+        }
+        
+        .language-switcher:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .language-switcher:active {
+            transform: scale(0.95);
+        }
+        
+        .lang-kr {
+            display: block;
+        }
+        
+        .lang-en {
+            display: none;
+        }
+        
+        body.lang-english .lang-kr {
+            display: none;
+        }
+        
+        body.lang-english .lang-en {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -1182,35 +1229,53 @@
                 </div>
                 <div class="web-door-container">
                     <div class="web-door-image"></div>
-                    <div class="home-welcome">누르면 방에 들어갑니다</div>
+                    <div class="home-welcome">
+                        <span class="lang-kr">누르면 방에 들어갑니다</span>
+                        <span class="lang-en">Click to enter the room</span>
+                    </div>
                 </div>
             </div>
             
             <div class="layer-card layer-emotion app-card-with-bg">
                 <div class="layer-header">
-                    <div class="layer-title">APP</div>
+                    <div class="layer-title">
+                        <span class="lang-kr">앱</span>
+                        <span class="lang-en">APP</span>
                     </div>
                 </div>
+            </div>
                 
             <div class="layer-card layer-time layer-card-with-image">
                 <div class="layer-card-background"></div>
                 <div class="layer-header">
-                    <div class="layer-title">WATCH</div>
+                    <div class="layer-title">
+                        <span class="lang-kr">시계</span>
+                        <span class="lang-en">WATCH</span>
                     </div>
                 </div>
+            </div>
                 
             <div class="layer-card layer-space layer-card-with-image">
                 <div class="layer-card-background"></div>
                 <div class="layer-header">
-                    <div class="layer-title">VISION PRO</div>
+                    <div class="layer-title">
+                        <span class="lang-kr">비전프로</span>
+                        <span class="lang-en">VISION PRO</span>
                     </div>
                 </div>
+            </div>
             </div>
                 
     <!-- Home Button -->
     <div class="home-button" onclick="location.reload()">
         <img src="./assets/home.jpg" alt="Home" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
         </div>
+    
+    <!-- Language Switcher -->
+    <div class="language-switcher" onclick="toggleLanguage()">
+        <span class="lang-kr">한</span>
+        <span class="lang-en">EN</span>
+    </div>
                 
     <!-- Room Entrance -->
     <section class="room-entrance">
@@ -1283,6 +1348,10 @@
     
     <script>
         // Home entrance experience
+        function toggleLanguage() {
+            document.body.classList.toggle('lang-english');
+        }
+        
         window.addEventListener('load', function() {
             // Add loaded class to body
             setTimeout(function() {

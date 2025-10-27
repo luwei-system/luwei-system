@@ -163,6 +163,53 @@
                 transform: translate(0, 0) rotate(0deg);
             }
         }
+        
+        /* Language Switcher */
+        .language-switcher {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100003;
+            cursor: pointer;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            color: white;
+            font-weight: 500;
+        }
+        
+        .language-switcher:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .language-switcher:active {
+            transform: scale(0.95);
+        }
+        
+        .lang-kr {
+            display: block;
+        }
+        
+        .lang-en {
+            display: none;
+        }
+        
+        body.lang-english .lang-kr {
+            display: none;
+        }
+        
+        body.lang-english .lang-en {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -170,7 +217,10 @@
         <div class="door-image"></div>
     </div>
     
-    <div class="entrance-text">루웨이 방으로 진입합니다</div>
+    <div class="entrance-text">
+        <span class="lang-kr">루웨이 방으로 진입합니다</span>
+        <span class="lang-en">Entering LUWEI's Room</span>
+    </div>
     
     <!-- Home Button -->
     <div class="home-button" onclick="window.location.href='index.html'">
@@ -213,6 +263,18 @@
                     }, 3000);
                 });
         });
+    </script>
+    
+    <!-- Language Switcher -->
+    <div class="language-switcher" onclick="toggleLanguage()">
+        <span class="lang-kr">한</span>
+        <span class="lang-en">EN</span>
+    </div>
+    
+    <script>
+        function toggleLanguage() {
+            document.body.classList.toggle('lang-english');
+        }
     </script>
 </body>
 </html>
