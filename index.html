@@ -30,8 +30,8 @@
             background-position: center;
             background-attachment: fixed;
             color: #111111;
-            min-height: 100vh;
-            overflow-x: hidden;
+            height: 100vh;
+            overflow: hidden;
             opacity: 0;
             transition: opacity 1s ease;
             position: relative;
@@ -265,17 +265,20 @@
         
         /* LUWEI ROOM — Entrance */
         .room-entrance {
-            min-height: 100vh;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             padding: 40px 20px;
             text-align: center;
-            position: relative;
+            position: fixed;
             background: transparent;
             animation: float 12s ease-in-out infinite;
             z-index: 1;
+            top: 0;
+            left: 0;
+            width: 100%;
         }
         
         .room-entrance-text {
@@ -443,8 +446,7 @@
         
         /* Room Sections */
         .room-section {
-            min-height: auto;
-            padding: 20px 30px;
+            padding: 15px 20px;
             display: flex;
             align-items: center;
             opacity: 0;
@@ -452,40 +454,39 @@
             transition: all 1s ease;
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(2px);
-            margin: 15px;
             z-index: 2;
-            max-width: 400px;
+            width: 220px;
         }
         
         .room-section:nth-child(1) {
-            position: absolute;
-            top: 10%;
-            left: 5%;
+            position: fixed;
+            top: 15vh;
+            left: 3vw;
         }
         
         .room-section:nth-child(2) {
-            position: absolute;
-            top: 25%;
-            right: 8%;
+            position: fixed;
+            top: 15vh;
+            right: 3vw;
         }
         
         .room-section:nth-child(3) {
-            position: absolute;
-            bottom: 30%;
-            left: 12%;
+            position: fixed;
+            top: 50vh;
+            left: 3vw;
         }
         
         .room-section:nth-child(4) {
-            position: absolute;
-            bottom: 10%;
-            right: 12%;
+            position: fixed;
+            top: 50vh;
+            right: 3vw;
         }
         
         .room-section:nth-child(5) {
-            position: absolute;
-            top: 45%;
-            right: 50%;
-            transform: translateX(50%);
+            position: fixed;
+            top: 50vh;
+            left: 50vw;
+            transform: translate(-50%, -50%);
         }
         
         /* Cloud shape */
@@ -511,31 +512,30 @@
         }
         
         .section-container {
-            max-width: 300px;
             width: 100%;
-            margin: 0 auto;
+            margin: 0;
         }
         
         .section-header {
             text-align: center;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
         }
         
         .section-number {
-            font-size: 14px;
+            font-size: 10px;
             font-weight: 600;
             color: rgba(17, 17, 17, 0.4);
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
         
         .section-title {
-            font-size: 24px;
+            font-size: 16px;
             font-weight: 600;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
         
         .section-subtitle {
-            font-size: 14px;
+            font-size: 11px;
             font-weight: 300;
             color: rgba(17, 17, 17, 0.6);
         }
