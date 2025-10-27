@@ -527,6 +527,7 @@
             flex-direction: column;
             justify-content: flex-start;
             box-sizing: border-box;
+            overflow: hidden;
         }
         
         .section-header {
@@ -556,16 +557,16 @@
         /* ① Emotion Archive */
         .emotion-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            grid-template-columns: 1fr;
+            gap: 10px;
         }
         
         .emotion-item {
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(207, 232, 255, 0.3);
-            border-radius: 20px;
-            padding: 40px;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(207, 232, 255, 0.2);
+            border-radius: 8px;
+            padding: 8px;
             text-align: center;
             transition: transform 0.3s ease;
         }
@@ -576,10 +577,10 @@
         
         .emotion-wave {
             width: 100%;
-            height: 120px;
+            height: 40px;
             background: linear-gradient(90deg, var(--wave-color) 0%, transparent 100%);
-            border-radius: 8px;
-            margin-bottom: 24px;
+            border-radius: 4px;
+            margin-bottom: 8px;
             position: relative;
             overflow: hidden;
         }
@@ -599,13 +600,13 @@
         }
         
         .emotion-text {
-            font-size: 18px;
-            margin-bottom: 12px;
-            line-height: 1.5;
+            font-size: 12px;
+            margin-bottom: 4px;
+            line-height: 1.4;
         }
         
         .emotion-time {
-            font-size: 14px;
+            font-size: 9px;
             color: rgba(17, 17, 17, 0.5);
         }
         
@@ -613,51 +614,47 @@
         .diary-entries {
             display: flex;
             flex-direction: column;
-            gap: 40px;
-            max-width: 800px;
-            margin: 0 auto;
+            gap: 8px;
         }
         
         .diary-entry {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(10px);
-            border-left: 4px solid #CFE8FF;
-            padding: 40px;
-            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(5px);
+            border-left: 2px solid #CFE8FF;
+            padding: 8px;
+            border-radius: 6px;
             transition: transform 0.3s ease;
         }
         
         .diary-entry:hover {
-            transform: translateX(8px);
+            transform: translateX(4px);
         }
         
         .diary-text {
-            font-size: 24px;
+            font-size: 12px;
             font-weight: 300;
-            line-height: 1.6;
-            margin-bottom: 12px;
+            line-height: 1.4;
+            margin-bottom: 4px;
         }
         
         .diary-subtext {
-            font-size: 16px;
+            font-size: 9px;
             color: rgba(17, 17, 17, 0.5);
         }
         
         /* ③ Routine Gallery */
         .routine-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-            max-width: 800px;
-            margin: 0 auto;
+            grid-template-columns: 1fr;
+            gap: 10px;
         }
         
         .routine-card {
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(207, 232, 255, 0.3);
-            border-radius: 24px;
-            padding: 40px;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(207, 232, 255, 0.2);
+            border-radius: 8px;
+            padding: 8px;
             text-align: center;
             transition: transform 0.3s ease;
         }
@@ -667,18 +664,18 @@
         }
         
         .routine-icon {
-            font-size: 64px;
-            margin-bottom: 20px;
+            font-size: 24px;
+            margin-bottom: 4px;
         }
         
         .routine-name {
-            font-size: 24px;
+            font-size: 12px;
             font-weight: 600;
-            margin-bottom: 30px;
+            margin-bottom: 6px;
         }
         
         .routine-wave {
-            margin: 30px 0;
+            margin: 4px 0;
         }
         
         .wave-line {
@@ -703,7 +700,7 @@
         }
         
         .routine-duration {
-            font-size: 18px;
+            font-size: 10px;
             color: rgba(17, 17, 17, 0.6);
         }
         
