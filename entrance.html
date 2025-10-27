@@ -96,8 +96,6 @@
         /* Home Button */
         .home-button {
             position: fixed;
-            top: 20%;
-            right: 10%;
             width: 100px;
             height: 100px;
             z-index: 100003;
@@ -106,26 +104,63 @@
             overflow: hidden;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             transition: transform 0.2s ease;
-            animation: floatButton 6s ease-in-out infinite;
+            animation: floatAround 40s ease-in-out infinite;
         }
         
         .home-button:hover {
             transform: scale(1.1);
+            animation-play-state: paused;
         }
         
         .home-button:active {
             transform: scale(0.95);
         }
         
-        @keyframes floatButton {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
+        @keyframes floatAround {
+            0% {
+                top: 10%;
+                left: 15%;
+                transform: translate(0, 0) rotate(0deg);
             }
-            33% {
-                transform: translateY(-15px) rotate(3deg);
+            12.5% {
+                top: 5%;
+                left: 50%;
+                transform: translate(0, 0) rotate(5deg);
             }
-            66% {
-                transform: translateY(-5px) rotate(-3deg);
+            25% {
+                top: 15%;
+                left: 85%;
+                transform: translate(0, 0) rotate(-5deg);
+            }
+            37.5% {
+                top: 50%;
+                left: 90%;
+                transform: translate(0, 0) rotate(5deg);
+            }
+            50% {
+                top: 85%;
+                left: 70%;
+                transform: translate(0, 0) rotate(-5deg);
+            }
+            62.5% {
+                top: 95%;
+                left: 30%;
+                transform: translate(0, 0) rotate(5deg);
+            }
+            75% {
+                top: 70%;
+                left: 5%;
+                transform: translate(0, 0) rotate(-5deg);
+            }
+            87.5% {
+                top: 40%;
+                left: 10%;
+                transform: translate(0, 0) rotate(5deg);
+            }
+            100% {
+                top: 10%;
+                left: 15%;
+                transform: translate(0, 0) rotate(0deg);
             }
         }
     </style>
