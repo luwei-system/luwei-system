@@ -29,6 +29,12 @@
             box-sizing: border-box;
         }
         
+        html {
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            height: 100%;
+        }
+        
         body {
             font-family: 'Noto Sans KR', 'Inter', sans-serif;
             background: url('./assets/room.jpg');
@@ -38,8 +44,10 @@
             background-repeat: no-repeat;
             color: #111111;
             min-height: 100vh;
+            height: auto;
             overflow-x: hidden;
-            overflow-y: auto;
+            overflow-y: scroll;
+            -webkit-overflow-scrolling: touch;
             opacity: 0;
             transition: opacity 1s ease;
             position: relative;
