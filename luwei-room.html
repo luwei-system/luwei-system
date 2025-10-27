@@ -156,6 +156,10 @@
             pointer-events: none;
         }
         
+        .room-overlay.fadeOut {
+            animation: fadeOut 3s ease-out forwards;
+        }
+        
         .room-overlay.hidden {
             display: none;
         }
@@ -863,39 +867,33 @@
                 document.body.classList.add('loaded');
             }, 100);
             
-            // Remove overlay after animation
-            setTimeout(function() {
-                const overlay = document.querySelector('.room-overlay');
-                if (overlay) {
-                    overlay.classList.add('hidden');
-                    overlay.remove();
-                }
-            }, 6000);
-            
-            // Smooth scroll to entrance message
-            setTimeout(function() {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
+            // Click overlay to enter room
+            const overlay = document.querySelector('.room-overlay');
+            if (overlay) {
+                overlay.style.cursor = 'pointer';
+                overlay.addEventListener('click', function() {
+                    overlay.classList.add('fadeOut');
+                    setTimeout(function() {
+                        overlay.classList.add('hidden');
+                        overlay.remove();
+                        
+                        // Add breathing animation
+                        document.body.classList.add('breath-active');
+                        
+                        // Add floating particles
+                        createParticles();
+                        
+                        // Show sections
+                        observeSections();
+                        
+                        // Randomize section positions
+                        randomizeSectionPositions();
+                        
+                        // Cursor wave effect
+                        addCursorWave();
+                    }, 3000);
                 });
-            }, 6200);
-            
-            // Add breathing animation after overlay is gone
-            setTimeout(function() {
-                document.body.classList.add('breath-active');
-            }, 6500);
-            
-            // Add floating particles
-            createParticles();
-            
-            // Show sections on scroll
-            observeSections();
-            
-            // Randomize section positions
-            randomizeSectionPositions();
-            
-            // Cursor wave effect
-            addCursorWave();
+            }
         });
         
         function randomizeSectionPositions() {
