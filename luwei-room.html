@@ -821,6 +821,32 @@
     <section class="room-entrance">
     </section>
     
+    <!-- Droplet Links -->
+    <div class="droplets-container">
+        <!-- Welcome Message -->
+        <div class="welcome-message">
+            <p>루웨이의 방에 들어왔습니다.<br>감정은 고요히 흐르고, 링크는 물결 위에 떠 있습니다.</p>
+        </div>
+        
+        <!-- Droplet 1: Instagram -->
+        <a href="https://www.instagram.com/luweisystem/" class="droplet instagram-droplet" target="_blank">
+            <div class="droplet-content">
+                <div class="droplet-icon">🌙</div>
+                <div class="droplet-text">Instagram 아카이브</div>
+                <div class="droplet-desc">감정의 잔상</div>
+            </div>
+        </a>
+        
+        <!-- Droplet 2: YouTube -->
+        <a href="https://youtube.com/@luwei.system" class="droplet youtube-droplet" target="_blank">
+            <div class="droplet-content">
+                <div class="droplet-icon">🌊</div>
+                <div class="droplet-text">YouTube 채널</div>
+                <div class="droplet-desc">소리의 중심으로 들어가세요</div>
+            </div>
+        </a>
+        
+    </div>
     
     <script>
         // Room entrance experience
@@ -828,8 +854,188 @@
             // Add loaded class to body immediately
             document.body.classList.add('loaded');
             document.body.classList.add('breath-active');
+            
+            // Add cursor ripple effect
+            document.addEventListener('mousemove', function(e) {
+                const ripple = document.createElement('div');
+                ripple.className = 'cursor-ripple';
+                ripple.style.left = e.clientX + 'px';
+                ripple.style.top = e.clientY + 'px';
+                document.body.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 1000);
+            });
         });
     </script>
+    
+    <style>
+        .droplets-container {
+            position: relative;
+            min-height: 100vh;
+            padding: 100px 20px;
+            z-index: 10;
+        }
+        
+        .welcome-message {
+            text-align: center;
+            margin-bottom: 60px;
+            opacity: 0.8;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 18px;
+            line-height: 1.8;
+            animation: fadeInUp 3s ease;
+        }
+        
+        .droplet {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            animation: float 6s ease-in-out infinite;
+            box-shadow: 0 8px 32px rgba(207, 232, 255, 0.2);
+        }
+        
+        .droplet:hover {
+            transform: scale(1.2);
+            box-shadow: 0 12px 48px rgba(207, 232, 255, 0.4);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Instagram droplet */
+        .instagram-droplet {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .instagram-droplet:hover {
+            background: rgba(207, 232, 255, 0.25);
+            box-shadow: 0 12px 48px rgba(255, 105, 180, 0.4);
+        }
+        
+        /* YouTube droplet */
+        .youtube-droplet {
+            top: 30%;
+            right: 15%;
+            animation-delay: 1s;
+            animation: float 7s ease-in-out infinite;
+        }
+        
+        .youtube-droplet:hover {
+            background: rgba(207, 232, 255, 0.25);
+            box-shadow: 0 12px 48px rgba(135, 206, 250, 0.4);
+        }
+        
+        
+        .droplet-content {
+            text-align: center;
+            z-index: 1;
+        }
+        
+        .droplet-icon {
+            font-size: 48px;
+            margin-bottom: 8px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        }
+        
+        .droplet-text {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 4px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .droplet-desc {
+            font-size: 12px;
+            opacity: 0.8;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            33% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+            66% {
+                transform: translateY(-10px) rotate(-5deg);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 0.8;
+                transform: translateY(0);
+            }
+        }
+        
+        .cursor-ripple {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(207, 232, 255, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: ripple 1s ease-out forwards;
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(5);
+                opacity: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .droplet {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .droplet-icon {
+                font-size: 36px;
+            }
+            
+            .droplet-text {
+                font-size: 14px;
+            }
+            
+            .droplet-desc {
+                font-size: 11px;
+            }
+            
+            .instagram-droplet {
+                top: 15%;
+                left: 5%;
+            }
+            
+            .youtube-droplet {
+                top: 20%;
+                right: 5%;
+            }
+            
+        }
+    </style>
 </body>
 </html>
 
