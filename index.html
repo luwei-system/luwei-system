@@ -32,6 +32,51 @@
             opacity: 1;
         }
         
+        /* Cursor wave effect */
+        .cursor-wave {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(207, 232, 255, 0.6);
+            pointer-events: none;
+            z-index: 9999;
+            animation: ripple 1s ease-out forwards;
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(80);
+                opacity: 0;
+            }
+        }
+        
+        /* Floating particles */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(207, 232, 255, 0.3);
+            border-radius: 50%;
+            animation: float 20s infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            33% {
+                transform: translateY(-100px) translateX(50px);
+            }
+            66% {
+                transform: translateY(-200px) translateX(-30px);
+            }
+        }
+        
         /* Dark room entrance overlay */
         .room-overlay {
             position: fixed;
@@ -232,6 +277,14 @@
             padding: 120px 20px;
             display: flex;
             align-items: center;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s ease;
+        }
+        
+        .room-section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         .section-container {
@@ -686,7 +739,59 @@
                     behavior: 'smooth'
                 });
             }, 3200);
+            
+            // Add floating particles
+            createParticles();
+            
+            // Show sections on scroll
+            observeSections();
+            
+            // Cursor wave effect
+            addCursorWave();
         });
+        
+        function createParticles() {
+            const roomEntrance = document.querySelector('.room-entrance');
+            for (let i = 0; i < 15; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                roomEntrance.appendChild(particle);
+            }
+        }
+        
+        function observeSections() {
+            const sections = document.querySelectorAll('.room-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => observer.observe(section));
+        }
+        
+        function addCursorWave() {
+            let waveTimer;
+            document.addEventListener('mousemove', function(e) {
+                if (waveTimer) return;
+                
+                waveTimer = setTimeout(() => {
+                    const wave = document.createElement('div');
+                    wave.className = 'cursor-wave';
+                    wave.style.left = e.clientX + 'px';
+                    wave.style.top = e.clientY + 'px';
+                    document.body.appendChild(wave);
+                    
+                    setTimeout(() => wave.remove(), 1000);
+                    waveTimer = null;
+                }, 100);
+            });
+        }
     </script>
 </body>
 </html>
