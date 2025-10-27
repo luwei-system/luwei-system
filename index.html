@@ -574,6 +574,41 @@
             color: #FFE8A5;
         }
         
+        /* Gumroad Card */
+        .gumroad-card {
+            border-left: 3px solid #A5F4FF;
+            background: rgba(165, 244, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gumroad-card-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            opacity: 0.7;
+        }
+        
+        .gumroad-card .layer-title {
+            color: #A5F4FF;
+        }
+        
+        .gumroad-card:hover {
+            background: rgba(165, 244, 255, 0.2);
+        }
+        
+        /* Layer Subtitle */
+        .layer-subtitle {
+            font-size: 14px;
+            font-weight: 400;
+            margin-top: 8px;
+            opacity: 0.8;
+        }
+        
         @media (max-width: 768px) {
             .layers-container {
                 grid-template-columns: 1fr;
@@ -1168,18 +1203,31 @@
                 flex-direction: column;
                 align-items: center;
             }
+            
+        }
+        
+        /* Footer */
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         /* Language Switcher */
         .language-switcher {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
             cursor: pointer;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
+            width: 50px;
+            height: 40px;
+            border-radius: 8px;
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
             border: 2px solid rgba(255, 255, 255, 0.3);
@@ -1190,6 +1238,8 @@
             font-size: 14px;
             color: white;
             font-weight: 500;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .language-switcher:hover {
@@ -1264,6 +1314,13 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Gumroad Card -->
+            <div class="layer-card gumroad-card" onclick="window.open('https://luweisystem.gumroad.com/', '_blank', 'noopener,noreferrer')">
+                <video class="gumroad-card-video" autoplay loop muted playsinline>
+                    <source src="./assets/상점.mp4" type="video/mp4">
+                </video>
+            </div>
             </div>
                 
     <!-- Home Button -->
@@ -1271,11 +1328,13 @@
         <img src="./assets/home.jpg" alt="Home" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
         </div>
     
-    <!-- Language Switcher -->
-    <div class="language-switcher" id="langSwitcher">
-        <span class="lang-kr">한</span>
-        <span class="lang-en">EN</span>
-    </div>
+    <!-- Footer with Language Switcher -->
+    <footer class="footer">
+        <div class="language-switcher" id="langSwitcher">
+            <span class="lang-kr">한</span>
+            <span class="lang-en">EN</span>
+        </div>
+    </footer>
                 
     <!-- Room Entrance -->
     <section class="room-entrance">

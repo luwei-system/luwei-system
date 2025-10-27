@@ -164,16 +164,28 @@
             }
         }
         
+        /* Footer */
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
         /* Language Switcher */
         .language-switcher {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
             cursor: pointer;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
+            width: 50px;
+            height: 40px;
+            border-radius: 8px;
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
             border: 2px solid rgba(255, 255, 255, 0.3);
@@ -184,6 +196,8 @@
             font-size: 14px;
             color: white;
             font-weight: 500;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
         }
         
         .language-switcher:hover {
@@ -243,11 +257,13 @@
         }
     </script>
     
-    <!-- Language Switcher -->
-    <div class="language-switcher" onclick="toggleLanguage()">
-        <span class="lang-kr">한</span>
-        <span class="lang-en">EN</span>
-    </div>
+    <!-- Footer with Language Switcher -->
+    <footer class="footer">
+        <div class="language-switcher" onclick="toggleLanguage()">
+            <span class="lang-kr">한</span>
+            <span class="lang-en">EN</span>
+        </div>
+    </footer>
 </body>
 </html>
 
