@@ -23,15 +23,22 @@
             box-sizing: border-box;
         }
         
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+        
         body {
             font-family: 'Noto Sans KR', 'Inter', sans-serif;
             background: url('./assets/room.jpg');
-            background-size: 120% 120%;
+            background-size: 100% 100%;
             background-position: center;
             background-attachment: fixed;
+            background-repeat: no-repeat;
             color: #111111;
-            min-height: 100vh;
-            overflow-x: hidden;
+            height: 100vh;
+            overflow: hidden;
             opacity: 0;
             transition: opacity 1s ease;
             position: relative;
@@ -44,10 +51,10 @@
         
         @keyframes breatheBackground {
             0%, 100% {
-                background-size: 120% 120%;
+                background-size: 105% 105%;
             }
             50% {
-                background-size: 110% 110%;
+                background-size: 100% 100%;
             }
         }
         
@@ -59,7 +66,7 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(180deg, rgba(207, 232, 255, 0.1) 0%, rgba(233, 238, 242, 0.05) 50%, rgba(207, 232, 255, 0.1) 100%);
-            z-index: 0;
+            z-index: 1;
             animation: floatBackground 20s ease-in-out infinite;
         }
         
@@ -81,7 +88,7 @@
                 transform: translateY(0);
             }
             50% {
-                transform: translateY(-10px);
+                transform: translateY(-3px);
             }
         }
         
@@ -245,18 +252,26 @@
         
         /* LUWEI ROOM — Entrance */
         .room-entrance {
-            min-height: 100vh;
+            min-height: auto;
+            max-height: auto;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 40px 20px;
+            padding: 10px 20px;
             text-align: center;
-            position: relative;
-            background: rgba(255, 255, 255, 0.2);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            transform: none;
+            background: rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(3px);
-            animation: roomGlow 8s ease-in-out infinite, float 6s ease-in-out infinite;
-            z-index: 1;
+            animation: breathe 8s ease-in-out infinite;
+            z-index: 2;
+            border-radius: 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
         
         @keyframes roomGlow {
@@ -277,29 +292,29 @@
         }
         
         .luwei-title {
-            font-size: 72px;
+            font-size: 24px;
             font-weight: 600;
-            letter-spacing: -0.02em;
-            margin-bottom: 24px;
+            letter-spacing: -0.01em;
+            margin-bottom: 4px;
             animation: fadeInUp 1.5s ease-out, breatheText 3s ease-in-out infinite 1.5s;
             color: #111111;
         }
         
         .luwei-subtitle {
-            font-size: 24px;
+            font-size: 14px;
             font-weight: 300;
             color: rgba(17, 17, 17, 0.7);
-            margin-bottom: 60px;
-            line-height: 1.6;
+            margin-bottom: 2px;
+            line-height: 1.4;
             animation: fadeInUp 1.5s ease-out 0.3s backwards;
         }
         
         .room-description {
-            max-width: 800px;
-            font-size: 16px;
-            line-height: 1.8;
+            max-width: 100%;
+            font-size: 11px;
+            line-height: 1.3;
             color: rgba(17, 17, 17, 0.6);
-            margin-bottom: 80px;
+            margin-bottom: 0px;
             animation: fadeInUp 1.5s ease-out 0.6s backwards;
         }
         
@@ -325,7 +340,7 @@
                 transform: scale(1);
             }
             50% {
-                transform: scale(1.02);
+                transform: scale(1.01);
             }
         }
         
@@ -417,50 +432,103 @@
         
         /* Room Sections */
         .room-section {
-            min-height: auto;
-            padding: 20px 30px;
+            padding: 20px 16px;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             opacity: 0;
             transform: translateY(40px);
             transition: all 1s ease;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(2px);
-            margin: 15px auto;
-            position: relative;
-            z-index: 1;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(4px);
+            position: fixed;
+            z-index: 2;
+            width: 250px;
+            max-width: 250px;
+            min-height: auto;
+            max-height: none;
+            overflow: visible;
+            border-radius: 16px;
+            box-sizing: border-box;
+            pointer-events: auto;
         }
         
-        /* Cloud shape */
-        .room-section.云 {
-            border-radius: 50px;
-            padding: 25px 35px;
+        /* Positioning for sections - will be randomized by JavaScript */
+        .room-section:nth-of-type(1) { /* ① Emotion Archive */
+            top: 0;
+            left: 0;
         }
         
-        /* Water drop shape */
-        .room-section.💧 {
-            border-radius: 50px 50px 50px 5px;
-            padding: 20px 30px;
+        .room-section:nth-of-type(2) { /* ② Diary */
+            top: 0;
+            left: 0;
+        }
+        
+        .room-section:nth-of-type(3) { /* ③ Gallery */
+            top: 0;
+            left: 0;
+        }
+        
+        .room-section:nth-of-type(4) { /* ④ Calendar */
+            top: 0;
+            left: 0;
+        }
+        
+        .room-section.centered {
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+        }
+        
+        .room-section.left-aligned {
+            left: 5% !important;
+        }
+        
+        .room-section.right-aligned {
+            right: 5% !important;
+            left: auto !important;
         }
         
         .room-section.visible {
             opacity: 1;
             transform: translateY(0);
-            animation: breathe 5s ease-in-out infinite, float 8s ease-in-out infinite;
+            animation: breathe 8s ease-in-out infinite;
+        }
+        
+        .room-section.visible.centered {
+            animation: breathe 8s ease-in-out infinite;
+            transform: translateX(-50%) !important;
+        }
+        
+        .room-section.visible.left-aligned,
+        .room-section.visible.right-aligned {
+            animation: breathe 8s ease-in-out infinite;
+            transform: translateY(0) !important;
         }
         
         .room-section:nth-child(even).visible {
-            animation: breathe 5s ease-in-out infinite, float 7s ease-in-out infinite;
-            animation-delay: 0s, 0.5s;
+            animation: breathe 9s ease-in-out infinite;
+        }
+        
+        .room-section:nth-child(even).visible.centered {
+            animation: breathe 9s ease-in-out infinite;
+            transform: translateX(-50%) !important;
+        }
+        
+        .room-section:nth-child(even).visible.left-aligned,
+        .room-section:nth-child(even).visible.right-aligned {
+            animation: breathe 9s ease-in-out infinite;
+            transform: translateY(0) !important;
         }
         
         .section-container {
-            max-width: 300px;
             width: 100%;
-            margin: 0 auto;
+            max-width: 100%;
+            margin: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            box-sizing: border-box;
+            overflow: hidden;
         }
         
         .section-header {
@@ -469,20 +537,20 @@
         }
         
         .section-number {
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 600;
             color: rgba(17, 17, 17, 0.4);
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
         
         .section-title {
             font-size: 24px;
             font-weight: 600;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
         
         .section-subtitle {
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 300;
             color: rgba(17, 17, 17, 0.6);
         }
@@ -490,16 +558,16 @@
         /* ① Emotion Archive */
         .emotion-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            grid-template-columns: 1fr;
+            gap: 16px;
         }
         
         .emotion-item {
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(207, 232, 255, 0.3);
-            border-radius: 20px;
-            padding: 40px;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(207, 232, 255, 0.2);
+            border-radius: 12px;
+            padding: 14px;
             text-align: center;
             transition: transform 0.3s ease;
         }
@@ -510,10 +578,10 @@
         
         .emotion-wave {
             width: 100%;
-            height: 120px;
+            height: 60px;
             background: linear-gradient(90deg, var(--wave-color) 0%, transparent 100%);
             border-radius: 8px;
-            margin-bottom: 24px;
+            margin-bottom: 12px;
             position: relative;
             overflow: hidden;
         }
@@ -533,13 +601,13 @@
         }
         
         .emotion-text {
-            font-size: 18px;
-            margin-bottom: 12px;
-            line-height: 1.5;
+            font-size: 16px;
+            margin-bottom: 8px;
+            line-height: 1.4;
         }
         
         .emotion-time {
-            font-size: 14px;
+            font-size: 13px;
             color: rgba(17, 17, 17, 0.5);
         }
         
@@ -547,51 +615,47 @@
         .diary-entries {
             display: flex;
             flex-direction: column;
-            gap: 40px;
-            max-width: 800px;
-            margin: 0 auto;
+            gap: 12px;
         }
         
         .diary-entry {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(10px);
-            border-left: 4px solid #CFE8FF;
-            padding: 40px;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(5px);
+            border-left: 3px solid #CFE8FF;
+            padding: 12px;
             border-radius: 8px;
             transition: transform 0.3s ease;
         }
         
         .diary-entry:hover {
-            transform: translateX(8px);
+            transform: translateX(4px);
         }
         
         .diary-text {
-            font-size: 24px;
+            font-size: 16px;
             font-weight: 300;
-            line-height: 1.6;
-            margin-bottom: 12px;
+            line-height: 1.5;
+            margin-bottom: 8px;
         }
         
         .diary-subtext {
-            font-size: 16px;
+            font-size: 13px;
             color: rgba(17, 17, 17, 0.5);
         }
         
         /* ③ Routine Gallery */
         .routine-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-            max-width: 800px;
-            margin: 0 auto;
+            grid-template-columns: 1fr;
+            gap: 16px;
         }
         
         .routine-card {
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(207, 232, 255, 0.3);
-            border-radius: 24px;
-            padding: 40px;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(207, 232, 255, 0.2);
+            border-radius: 12px;
+            padding: 14px;
             text-align: center;
             transition: transform 0.3s ease;
         }
@@ -601,18 +665,18 @@
         }
         
         .routine-icon {
-            font-size: 64px;
-            margin-bottom: 20px;
+            font-size: 40px;
+            margin-bottom: 8px;
         }
         
         .routine-name {
-            font-size: 24px;
+            font-size: 16px;
             font-weight: 600;
-            margin-bottom: 30px;
+            margin-bottom: 8px;
         }
         
         .routine-wave {
-            margin: 30px 0;
+            margin: 8px 0;
         }
         
         .wave-line {
@@ -637,7 +701,7 @@
         }
         
         .routine-duration {
-            font-size: 18px;
+            font-size: 14px;
             color: rgba(17, 17, 17, 0.6);
         }
         
@@ -836,55 +900,6 @@
         </div>
     </section>
     
-    <!-- ④ Flow Calendar -->
-    <section class="room-section flow-calendar">
-        <div class="section-container">
-            <div class="section-header">
-                <h2 class="section-number">④</h2>
-                <h3 class="section-title">Flow Calendar</h3>
-                <p class="section-subtitle">시간의 기록</p>
-            </div>
-            
-            <div class="calendar-days">
-                <div class="calendar-day">
-                    <span class="day-number">19</span>
-                    <span class="day-breaths">22,981숨</span>
-                </div>
-                <div class="calendar-day">
-                    <span class="day-number">18</span>
-                    <span class="day-breaths">18,432숨</span>
-                </div>
-                <div class="calendar-day">
-                    <span class="day-number">17</span>
-                    <span class="day-breaths">25,673숨</span>
-                </div>
-                <div class="calendar-day">
-                    <span class="day-number">16</span>
-                    <span class="day-breaths">20,145숨</span>
-                </div>
-                <div class="calendar-day">
-                    <span class="day-number">15</span>
-                    <span class="day-breaths">21,892숨</span>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- ⑤ Center Table -->
-    <section class="room-section center-table">
-        <div class="section-container">
-            <div class="section-header">
-                <h2 class="section-number">⑤</h2>
-                <h3 class="section-title">Center Table</h3>
-                <p class="section-subtitle">모든 것의 중심</p>
-            </div>
-            
-            <p class="center-message">
-                "리듬의 중심"<br>
-                모든 감정과 시간이 모이는 곳
-            </p>
-        </div>
-    </section>
     
     <script>
         // Room entrance experience
@@ -922,9 +937,49 @@
             // Show sections on scroll
             observeSections();
             
+            // Randomize section positions
+            randomizeSectionPositions();
+            
             // Cursor wave effect
             addCursorWave();
         });
+        
+        function randomizeSectionPositions() {
+            const sections = document.querySelectorAll('.room-section');
+            // Define 3 fixed positions: left, center, right
+            const positions = [
+                { vertical: 'top', value: '25vh', horizontal: 'left', horizontalValue: '5vw', alignment: 'left-aligned' },
+                { vertical: 'top', value: '25vh', horizontal: 'center', horizontalValue: '50%', alignment: 'centered' },
+                { vertical: 'top', value: '25vh', horizontal: 'right', horizontalValue: '5vw', alignment: 'right-aligned' }
+            ];
+            
+            sections.forEach((section, index) => {
+                if (index < positions.length) {
+                    const pos = positions[index];
+                    
+                    // Apply vertical position
+                    section.style.top = pos.vertical === 'top' ? pos.value : 'auto';
+                    section.style.bottom = pos.vertical === 'bottom' ? pos.value : 'auto';
+                    
+                    // Apply horizontal position and alignment
+                    if (pos.horizontal === 'left') {
+                        section.style.left = pos.horizontalValue;
+                        section.style.right = 'auto';
+                        section.classList.add(pos.alignment);
+                        section.classList.remove('centered', 'right-aligned');
+                    } else if (pos.horizontal === 'right') {
+                        section.style.right = pos.horizontalValue;
+                        section.style.left = 'auto';
+                        section.classList.add(pos.alignment);
+                        section.classList.remove('centered', 'left-aligned');
+                    } else {
+                        section.style.left = pos.horizontalValue;
+                        section.classList.add(pos.alignment);
+                        section.classList.remove('left-aligned', 'right-aligned');
+                    }
+                }
+            });
+        }
         
         function createParticles() {
             const roomEntrance = document.querySelector('.room-entrance');
