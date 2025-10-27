@@ -34,6 +34,7 @@
             overflow-x: hidden;
             opacity: 0;
             transition: opacity 1s ease;
+            animation: breathe 4s ease-in-out infinite;
         }
         
         body.loaded {
@@ -181,7 +182,7 @@
             font-weight: 600;
             letter-spacing: -0.02em;
             margin-bottom: 24px;
-            animation: fadeInUp 1.5s ease-out;
+            animation: fadeInUp 1.5s ease-out, breatheText 3s ease-in-out infinite 1.5s;
             color: #111111;
         }
         
@@ -216,6 +217,27 @@
             to { 
                 opacity: 1;
                 transform: translateY(0);
+            }
+        }
+        
+        /* Breathing animation */
+        @keyframes breathe {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.02);
+            }
+        }
+        
+        @keyframes breatheText {
+            0%, 100% {
+                opacity: 1;
+                letter-spacing: normal;
+            }
+            50% {
+                opacity: 0.9;
+                letter-spacing: 0.02em;
             }
         }
         
@@ -303,6 +325,7 @@
             opacity: 0;
             transform: translateY(40px);
             transition: all 1s ease;
+            animation: breathe 5s ease-in-out infinite;
         }
         
         .room-section.visible {
