@@ -1272,7 +1272,7 @@
         </div>
     
     <!-- Language Switcher -->
-    <div class="language-switcher" onclick="toggleLanguage()">
+    <div class="language-switcher" id="langSwitcher">
         <span class="lang-kr">한</span>
         <span class="lang-en">EN</span>
     </div>
@@ -1353,6 +1353,14 @@
         }
         
         window.addEventListener('load', function() {
+            // Language switcher event
+            const langSwitcher = document.getElementById('langSwitcher');
+            if (langSwitcher) {
+                langSwitcher.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    toggleLanguage();
+                });
+            }
             // Add loaded class to body
             setTimeout(function() {
                 document.body.classList.add('loaded');
@@ -1376,6 +1384,13 @@
             // WEB door click handler
             if (webDoorImage) {
                 webDoorImage.addEventListener('click', enterRoom);
+            }
+            
+            // WEB card click handler
+            const webCard = document.querySelector('.room-bg-card');
+            if (webCard) {
+                webCard.addEventListener('click', enterRoom);
+                webCard.style.cursor = 'pointer';
             }
         });
         
