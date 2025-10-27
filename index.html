@@ -275,7 +275,7 @@
         .layer-card {
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: none;
             border-radius: 16px;
             padding: 24px;
             text-align: left;
@@ -290,6 +290,7 @@
             max-height: 280px;
             overflow: hidden;
             aspect-ratio: 1;
+            outline: none;
         }
         
         .layer-card .layer-header,
@@ -305,6 +306,15 @@
         .layer-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+            outline: none;
+        }
+        
+        .layer-card:focus {
+            outline: none;
+        }
+        
+        .layer-card:active {
+            outline: none;
         }
         
         .layer-card-with-image {
