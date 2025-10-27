@@ -25,15 +25,28 @@
         
         body {
             font-family: 'Noto Sans KR', 'Inter', sans-serif;
-            background: linear-gradient(180deg, #E8F4F8 0%, #CFE8FF 50%, #E8F4F8 100%);
-            background-image: 
-                radial-gradient(circle at 20% 50%, rgba(207, 232, 255, 0.4) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(233, 238, 242, 0.3) 0%, transparent 50%);
+            background: url('./assets/room.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             color: #111111;
             min-height: 100vh;
             overflow-x: hidden;
             opacity: 0;
             transition: opacity 1s ease;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(207, 232, 255, 0.3) 0%, rgba(233, 238, 242, 0.2) 50%, rgba(207, 232, 255, 0.3) 100%);
+            z-index: 0;
+            animation: floatBackground 20s ease-in-out infinite;
         }
         
         body.loaded.breath-active {
@@ -42,6 +55,24 @@
         
         body.loaded {
             opacity: 1;
+        }
+        
+        @keyframes floatBackground {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
         }
         
         /* Cursor wave effect */
@@ -212,8 +243,10 @@
             padding: 40px 20px;
             text-align: center;
             position: relative;
-            background: radial-gradient(circle at center, rgba(143, 203, 255, 0.15) 0%, transparent 70%);
-            animation: roomGlow 8s ease-in-out infinite;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            animation: roomGlow 8s ease-in-out infinite, float 6s ease-in-out infinite;
+            z-index: 1;
         }
         
         @keyframes roomGlow {
@@ -381,12 +414,23 @@
             opacity: 0;
             transform: translateY(40px);
             transition: all 1s ease;
-            animation: breathe 5s ease-in-out infinite;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(15px);
+            margin: 40px 0;
+            border-radius: 24px;
+            position: relative;
+            z-index: 1;
         }
         
         .room-section.visible {
             opacity: 1;
             transform: translateY(0);
+            animation: breathe 5s ease-in-out infinite, float 8s ease-in-out infinite;
+        }
+        
+        .room-section:nth-child(even).visible {
+            animation: breathe 5s ease-in-out infinite, float 7s ease-in-out infinite;
+            animation-delay: 0s, 0.5s;
         }
         
         .section-container {
