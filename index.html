@@ -37,8 +37,9 @@
             background-attachment: fixed;
             background-repeat: no-repeat;
             color: #111111;
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh;
+            overflow-x: hidden;
+            overflow-y: auto;
             opacity: 0;
             transition: opacity 1s ease;
             position: relative;
@@ -260,7 +261,7 @@
             align-items: center;
             padding: 10px 20px;
             text-align: center;
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             right: 0;
@@ -440,7 +441,7 @@
             transition: all 1s ease;
             background: rgba(255, 255, 255, 0.4);
             backdrop-filter: blur(4px);
-            position: fixed;
+            position: absolute;
             z-index: 2;
             width: 210px;
             max-width: 210px;
