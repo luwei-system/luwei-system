@@ -873,6 +873,26 @@
         </div>
     </div>
     
+    <!-- Music Player -->
+    <div class="music-player">
+        <audio id="backgroundMusic" loop>
+            <source id="musicSource" src="" type="audio/mpeg">
+        </audio>
+        <div class="music-controls">
+            <div class="music-track" onclick="selectTrack('room1')">
+                <span class="lang-kr">트랙 1</span>
+                <span class="lang-en">Track 1</span>
+            </div>
+            <div class="music-track" onclick="selectTrack('room2')">
+                <span class="lang-kr">트랙 2</span>
+                <span class="lang-en">Track 2</span>
+            </div>
+            <div class="music-toggle" onclick="toggleMusic()">
+                <span id="musicIcon">🔊</span>
+            </div>
+        </div>
+    </div>
+    
     <div class="droplets-container">
         <!-- Droplet 1: Instagram -->
         <div class="droplet instagram-droplet" onclick="navigateToExternal('https://www.instagram.com/luweisystem/')">
@@ -1085,6 +1105,61 @@
             50% { 
                 transform: translateY(-30px) scale(1.2);
             }
+        }
+        
+        /* Music Player */
+        .music-player {
+            position: fixed;
+            bottom: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+        }
+        
+        .music-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            padding: 15px 25px;
+            border-radius: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .music-track {
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.9);
+            font-family: 'Noto Sans KR', 'Inter', sans-serif;
+            font-size: 13px;
+            transition: all 0.3s ease;
+            white-space: normal;
+        }
+        
+        .music-track:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(1.05);
+        }
+        
+        .music-toggle {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 20px;
+        }
+        
+        .music-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
         }
         
         /* Instagram droplet */
@@ -1410,6 +1485,54 @@
         function navigateToExternal(url) {
             // Navigate to external link
             window.open(url, '_blank', 'noopener,noreferrer');
+        }
+        
+        // Music controls
+        let currentTrack = null;
+        let isPlaying = false;
+        const musicPlayer = document.getElementById('backgroundMusic');
+        
+        function selectTrack(track) {
+            // If same track is selected, do nothing if already playing
+            if (currentTrack === track && isPlaying) {
+                return;
+            }
+            
+            const track1 = track === 'room1';
+            currentTrack = track;
+            const source = track1 ? './assets/music/room1.mp3' : './assets/music/room2.mp3';
+            
+            // Pause and reset current music
+            musicPlayer.pause();
+            musicPlayer.currentTime = 0;
+            
+            // Load new track
+            document.getElementById('musicSource').src = source;
+            musicPlayer.load();
+            
+            // Play immediately
+            musicPlayer.play().then(() => {
+                isPlaying = true;
+                document.getElementById('musicIcon').textContent = '🔊';
+            }).catch(err => {
+                console.log('Auto-play prevented:', err);
+            });
+        }
+        
+        function toggleMusic() {
+            if (currentTrack) {
+                if (isPlaying) {
+                    musicPlayer.pause();
+                    document.getElementById('musicIcon').textContent = '🔇';
+                    isPlaying = false;
+                } else {
+                    musicPlayer.play();
+                    document.getElementById('musicIcon').textContent = '🔊';
+                    isPlaying = true;
+                }
+            } else {
+                alert('먼저 트랙을 선택해주세요.');
+            }
         }
     </script>
 </body>
