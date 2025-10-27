@@ -1364,7 +1364,8 @@
             
             // Room entrance function - Navigate to entrance page
             function enterRoom() {
-                window.location.href = 'entrance.html';
+                history.replaceState(null, '', 'entrance.html');
+                window.location.replace('entrance.html');
             }
             
             // Door click handler
