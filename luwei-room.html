@@ -20,10 +20,112 @@
         
         body {
             font-family: 'Noto Sans KR', 'Inter', sans-serif;
-            background: linear-gradient(135deg, #CFE8FF 0%, #E9EEF2 50%, #FFFFFF 100%);
+            background: linear-gradient(180deg, #E8F4F8 0%, #CFE8FF 50%, #E8F4F8 100%);
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(207, 232, 255, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(233, 238, 242, 0.3) 0%, transparent 50%);
             color: #111111;
             min-height: 100vh;
             overflow-x: hidden;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        
+        body.loaded {
+            opacity: 1;
+        }
+        
+        /* Cursor wave effect */
+        .cursor-wave {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(143, 203, 255, 0.6);
+            pointer-events: none;
+            z-index: 9999;
+            animation: ripple 1s ease-out forwards;
+            box-shadow: 0 0 15px rgba(143, 203, 255, 0.4);
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(80);
+                opacity: 0;
+            }
+        }
+        
+        /* Floating particles */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(143, 203, 255, 0.5);
+            border-radius: 50%;
+            animation: float 20s infinite;
+            box-shadow: 0 0 6px rgba(143, 203, 255, 0.3);
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            33% {
+                transform: translateY(-100px) translateX(50px);
+            }
+            66% {
+                transform: translateY(-200px) translateX(-30px);
+            }
+        }
+        
+        /* Dark room entrance overlay */
+        .room-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeOut 3s ease-out forwards;
+        }
+        
+        .room-overlay__content {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .room-overlay__title {
+            font-size: 24px;
+            font-weight: 300;
+            margin-bottom: 80px;
+            animation: fadeIn 2s ease-in;
+        }
+        
+        .room-overlay__message {
+            font-size: 18px;
+            font-weight: 400;
+            animation: fadeIn 2s ease-in 0.5s backwards;
+        }
+        
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+            70% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                pointer-events: none;
+            }
         }
         
         /* LUWEI ROOM — Entrance */
@@ -36,12 +138,23 @@
             padding: 40px 20px;
             text-align: center;
             position: relative;
+            background: radial-gradient(circle at center, rgba(143, 203, 255, 0.15) 0%, transparent 70%);
+            animation: roomGlow 8s ease-in-out infinite;
+        }
+        
+        @keyframes roomGlow {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
         }
         
         .entrance-message {
             font-size: 18px;
             font-weight: 400;
-            color: rgba(17, 17, 17, 0.6);
+            color: rgba(17, 17, 17, 0.4);
             margin-bottom: 80px;
             animation: fadeIn 2s ease-in;
         }
@@ -52,12 +165,13 @@
             letter-spacing: -0.02em;
             margin-bottom: 24px;
             animation: fadeInUp 1.5s ease-out;
+            color: #111111;
         }
         
         .luwei-subtitle {
             font-size: 24px;
             font-weight: 300;
-            color: rgba(17, 17, 17, 0.8);
+            color: rgba(17, 17, 17, 0.7);
             margin-bottom: 60px;
             line-height: 1.6;
             animation: fadeInUp 1.5s ease-out 0.3s backwards;
@@ -67,7 +181,7 @@
             max-width: 800px;
             font-size: 16px;
             line-height: 1.8;
-            color: rgba(17, 17, 17, 0.7);
+            color: rgba(17, 17, 17, 0.6);
             margin-bottom: 80px;
             animation: fadeInUp 1.5s ease-out 0.6s backwards;
         }
@@ -163,6 +277,251 @@
             color: rgba(17, 17, 17, 0.7);
         }
         
+        /* Room Sections */
+        .room-section {
+            min-height: 80vh;
+            padding: 120px 20px;
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s ease;
+        }
+        
+        .room-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .section-container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        
+        .section-number {
+            font-size: 20px;
+            font-weight: 600;
+            color: rgba(17, 17, 17, 0.4);
+            margin-bottom: 16px;
+        }
+        
+        .section-title {
+            font-size: 48px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .section-subtitle {
+            font-size: 18px;
+            font-weight: 300;
+            color: rgba(17, 17, 17, 0.6);
+        }
+        
+        /* ① Emotion Archive */
+        .emotion-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .emotion-item {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(207, 232, 255, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .emotion-item:hover {
+            transform: translateY(-8px);
+        }
+        
+        .emotion-wave {
+            width: 100%;
+            height: 120px;
+            background: linear-gradient(90deg, var(--wave-color) 0%, transparent 100%);
+            border-radius: 8px;
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .emotion-wave::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(255, 255, 255, 0.1) 2px,
+                rgba(255, 255, 255, 0.1) 4px
+            );
+        }
+        
+        .emotion-text {
+            font-size: 18px;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+        
+        .emotion-time {
+            font-size: 14px;
+            color: rgba(17, 17, 17, 0.5);
+        }
+        
+        /* ② Diary of Stillness */
+        .diary-entries {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .diary-entry {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border-left: 4px solid #CFE8FF;
+            padding: 40px;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .diary-entry:hover {
+            transform: translateX(8px);
+        }
+        
+        .diary-text {
+            font-size: 24px;
+            font-weight: 300;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+        
+        .diary-subtext {
+            font-size: 16px;
+            color: rgba(17, 17, 17, 0.5);
+        }
+        
+        /* ③ Routine Gallery */
+        .routine-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .routine-card {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(207, 232, 255, 0.3);
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .routine-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .routine-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+        
+        .routine-name {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+        
+        .routine-wave {
+            margin: 30px 0;
+        }
+        
+        .wave-line {
+            height: 3px;
+            background: #CFE8FF;
+            margin-bottom: 8px;
+            border-radius: 2px;
+            animation: wave 2s ease-in-out infinite;
+        }
+        
+        .wave-line:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .wave-line:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes wave {
+            0%, 100% { transform: scaleX(1); }
+            50% { transform: scaleX(0.7); }
+        }
+        
+        .routine-duration {
+            font-size: 18px;
+            color: rgba(17, 17, 17, 0.6);
+        }
+        
+        /* ④ Flow Calendar */
+        .calendar-days {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .calendar-day {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(207, 232, 255, 0.3);
+            border-radius: 16px;
+            padding: 40px 60px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .calendar-day:hover {
+            transform: translateY(-8px);
+        }
+        
+        .day-number {
+            display: block;
+            font-size: 48px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .day-breaths {
+            font-size: 14px;
+            color: rgba(17, 17, 17, 0.6);
+        }
+        
+        /* ⑤ Center Table */
+        .center-message {
+            font-size: 32px;
+            font-weight: 300;
+            text-align: center;
+            line-height: 1.8;
+            color: #111111;
+        }
+        
         @media (max-width: 768px) {
             .luwei-title {
                 font-size: 48px;
@@ -175,14 +534,34 @@
             .center-sentence {
                 font-size: 24px;
             }
+            
+            .section-title {
+                font-size: 32px;
+            }
+            
+            .emotion-grid,
+            .routine-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .calendar-days {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Dark Room Overlay -->
+    <div class="room-overlay">
+        <div class="room-overlay__content">
+            <p class="room-overlay__title">지금, 루웨이의 방에 들어갑니다.</p>
+            <p class="room-overlay__message">잠시만요...</p>
+        </div>
+    </div>
+    
     <!-- Room Entrance -->
     <section class="room-entrance">
-        <p class="entrance-message">지금, 루웨이의 방에 들어갑니다.</p>
-        
         <h1 class="luwei-title">🌙</h1>
         
         <h1 class="luwei-title">LUWEI ROOM</h1>
@@ -204,39 +583,221 @@
         </div>
     </section>
     
-    <!-- Center Table -->
-    <section class="center-table">
-        <div class="center-table__content">
-            <p class="center-sentence" style="margin-bottom: 80px;">
-                "지금, 루웨이의 방에 들어갑니다."
-            </p>
-            
-            <div class="wip-message">
-                <h2 class="wip-title">방이 준비되고 있습니다</h2>
-                <p class="wip-text">
-                    루웨이의 방은 현재 조용히 준비 중입니다.<br>
-                    곧 감정의 파동과 하루의 흔적이 전시될 예정입니다.
-                </p>
+    <!-- ① Emotion Archive -->
+    <section class="room-section emotion-archive">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-number">①</h2>
+                <h3 class="section-title">Emotion Archive</h3>
+                <p class="section-subtitle">감정의 파편들</p>
             </div>
             
-            <div class="section-note">
-                <h3>방의 구조 (준비 중)</h3>
-                <ul>
-                    <li>① Emotion Archive — 감정의 파편</li>
-                    <li>② Diary of Stillness — 하루의 일기</li>
-                    <li>③ Routine Gallery — 루틴의 시각화</li>
-                    <li>④ Flow Calendar — 시간의 기록</li>
-                    <li>⑤ Center Table — 모든 것의 중심</li>
-                </ul>
+            <div class="emotion-grid">
+                <div class="emotion-item">
+                    <div class="emotion-wave" style="--wave-color: #CFE8FF;"></div>
+                    <p class="emotion-text">차가운 푸른 빛이 흐릅니다</p>
+                    <span class="emotion-time">2024.12.19 14:32</span>
+                </div>
+                <div class="emotion-item">
+                    <div class="emotion-wave" style="--wave-color: #DFF5E1;"></div>
+                    <p class="emotion-text">느린 진동이 내려옵니다</p>
+                    <span class="emotion-time">2024.12.19 18:15</span>
+                </div>
+                <div class="emotion-item">
+                    <div class="emotion-wave" style="--wave-color: #FFD7E5;"></div>
+                    <p class="emotion-text">낮은 파동이 가득합니다</p>
+                    <span class="emotion-time">2024.12.20 09:42</span>
+                </div>
             </div>
         </div>
     </section>
     
+    <!-- ② Diary of Stillness -->
+    <section class="room-section diary-stillness">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-number">②</h2>
+                <h3 class="section-title">Diary of Stillness</h3>
+                <p class="section-subtitle">하루의 일기</p>
+            </div>
+            
+            <div class="diary-entries">
+                <div class="diary-entry">
+                    <p class="diary-text">"오늘 하루는 자유로웠습니다."</p>
+                    <p class="diary-subtext">22,981숨의 하루</p>
+                </div>
+                <div class="diary-entry">
+                    <p class="diary-text">"나는 존재합니다."</p>
+                    <p class="diary-subtext">18,432숨의 하루</p>
+                </div>
+                <div class="diary-entry">
+                    <p class="diary-text">"감정은 흐르고, 나는 중심에 남았습니다."</p>
+                    <p class="diary-subtext">25,673숨의 하루</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ③ Routine Gallery -->
+    <section class="room-section routine-gallery">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-number">③</h2>
+                <h3 class="section-title">Routine Gallery</h3>
+                <p class="section-subtitle">루틴의 시각화</p>
+            </div>
+            
+            <div class="routine-cards">
+                <div class="routine-card">
+                    <div class="routine-icon">🌊</div>
+                    <h4 class="routine-name">물 루틴</h4>
+                    <div class="routine-wave">
+                        <div class="wave-line"></div>
+                        <div class="wave-line"></div>
+                        <div class="wave-line"></div>
+                    </div>
+                    <p class="routine-duration">9분</p>
+                </div>
+                <div class="routine-card">
+                    <div class="routine-icon">💡</div>
+                    <h4 class="routine-name">빛 루틴</h4>
+                    <div class="routine-wave">
+                        <div class="wave-line"></div>
+                        <div class="wave-line"></div>
+                        <div class="wave-line"></div>
+                    </div>
+                    <p class="routine-duration">10분</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ④ Flow Calendar -->
+    <section class="room-section flow-calendar">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-number">④</h2>
+                <h3 class="section-title">Flow Calendar</h3>
+                <p class="section-subtitle">시간의 기록</p>
+            </div>
+            
+            <div class="calendar-days">
+                <div class="calendar-day">
+                    <span class="day-number">19</span>
+                    <span class="day-breaths">22,981숨</span>
+                </div>
+                <div class="calendar-day">
+                    <span class="day-number">18</span>
+                    <span class="day-breaths">18,432숨</span>
+                </div>
+                <div class="calendar-day">
+                    <span class="day-number">17</span>
+                    <span class="day-breaths">25,673숨</span>
+                </div>
+                <div class="calendar-day">
+                    <span class="day-number">16</span>
+                    <span class="day-breaths">20,145숨</span>
+                </div>
+                <div class="calendar-day">
+                    <span class="day-number">15</span>
+                    <span class="day-breaths">21,892숨</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ⑤ Center Table -->
+    <section class="room-section center-table">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-number">⑤</h2>
+                <h3 class="section-title">Center Table</h3>
+                <p class="section-subtitle">모든 것의 중심</p>
+            </div>
+            
+            <p class="center-message">
+                "리듬의 중심"<br>
+                모든 감정과 시간이 모이는 곳
+            </p>
+        </div>
+    </section>
+    
     <script>
-        // Minimal entrance animation
+        // Room entrance experience
         window.addEventListener('load', function() {
-            document.body.style.opacity = '1';
+            // Add loaded class to body
+            setTimeout(function() {
+                document.body.classList.add('loaded');
+            }, 100);
+            
+            // Remove overlay after animation
+            setTimeout(function() {
+                const overlay = document.querySelector('.room-overlay');
+                if (overlay) {
+                    overlay.style.display = 'none';
+                }
+            }, 3000);
+            
+            // Smooth scroll to entrance message
+            setTimeout(function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }, 3200);
+            
+            // Add floating particles
+            createParticles();
+            
+            // Show sections on scroll
+            observeSections();
+            
+            // Cursor wave effect
+            addCursorWave();
         });
+        
+        function createParticles() {
+            const roomEntrance = document.querySelector('.room-entrance');
+            for (let i = 0; i < 15; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                roomEntrance.appendChild(particle);
+            }
+        }
+        
+        function observeSections() {
+            const sections = document.querySelectorAll('.room-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => observer.observe(section));
+        }
+        
+        function addCursorWave() {
+            let waveTimer;
+            document.addEventListener('mousemove', function(e) {
+                if (waveTimer) return;
+                
+                waveTimer = setTimeout(() => {
+                    const wave = document.createElement('div');
+                    wave.className = 'cursor-wave';
+                    wave.style.left = e.clientX + 'px';
+                    wave.style.top = e.clientY + 'px';
+                    document.body.appendChild(wave);
+                    
+                    setTimeout(() => wave.remove(), 1000);
+                    waveTimer = null;
+                }, 100);
+            });
+        }
     </script>
 </body>
 </html>
