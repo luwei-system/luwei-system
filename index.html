@@ -104,6 +104,27 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .room-overlay__text {
+            font-size: 24px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 12px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 2s ease-in;
+        }
+        
+        .room-overlay__text-en {
+            font-size: 18px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.7);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 2s ease-in 0.3s backwards;
         }
         
         @keyframes fadeOut {
@@ -545,7 +566,10 @@
 <body>
     <!-- Dark Room Overlay -->
     <div class="room-overlay">
-        <div class="room-overlay__image"></div>
+        <div class="room-overlay__image">
+            <div class="room-overlay__text">루웨이의 방으로 들어갑니다.</div>
+            <div class="room-overlay__text-en">Entering LUWEI's Room</div>
+        </div>
     </div>
     
     <!-- Room Entrance -->
