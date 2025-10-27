@@ -119,6 +119,25 @@
             transform: scale(0.95);
         }
         
+        .home-button.bounce {
+            animation: floatAround 40s ease-in-out infinite, bounceUp 0.5s ease !important;
+        }
+        
+        @keyframes bounceUp {
+            0%, 100% { 
+                transform: scale(1) translateY(0);
+            }
+            25% {
+                transform: scale(1.3) translateY(-50px);
+            }
+            50% {
+                transform: scale(1.2) translateY(-70px);
+            }
+            75% {
+                transform: scale(1.1) translateY(-30px);
+            }
+        }
+        
         @keyframes floatAround {
             0% {
                 top: 10%;
@@ -300,6 +319,20 @@
             // Show text immediately and make it clickable
             const text = document.querySelector('.entrance-text');
             text.classList.add('show');
+            
+            // Make home button bounce when background is clicked
+            const homeButton = document.querySelector('.home-button');
+            document.addEventListener('click', function(e) {
+                // Only trigger if clicking on the background (not on buttons or text)
+                if (!e.target.closest('.entrance-text') && !e.target.closest('.home-button')
+                    && !e.target.closest('.footer') && !e.target.closest('.language-switcher')) {
+                    // Add bounce animation
+                    homeButton.classList.add('bounce');
+                    setTimeout(() => {
+                        homeButton.classList.remove('bounce');
+                    }, 500);
+                }
+            });
             
             // Make text clickable immediately
                 text.addEventListener('click', function() {
