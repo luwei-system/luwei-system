@@ -23,6 +23,12 @@
             box-sizing: border-box;
         }
         
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+        
         body {
             font-family: 'Noto Sans KR', 'Inter', sans-serif;
             background: url('./assets/room.jpg');
@@ -424,9 +430,9 @@
         
         /* Room Sections */
         .room-section {
-            padding: 15px 20px;
+            padding: 12px 15px;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             opacity: 0;
             transform: translateY(40px);
             transition: all 1s ease;
@@ -434,14 +440,16 @@
             backdrop-filter: blur(8px);
             position: fixed;
             z-index: 1;
-            width: 280px;
-            min-height: 200px;
-            max-height: 200px;
+            width: 240px;
+            max-width: 240px;
+            min-height: 180px;
+            max-height: 180px;
             overflow-y: auto;
             overflow-x: hidden;
             border-radius: 12px;
             scrollbar-width: thin;
             scrollbar-color: rgba(17, 17, 17, 0.3) transparent;
+            box-sizing: border-box;
         }
         
         .room-section::-webkit-scrollbar {
@@ -526,33 +534,35 @@
         
         .section-container {
             width: 100%;
-            margin: 0 auto;
+            max-width: 100%;
+            margin: 0;
             height: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
+            box-sizing: border-box;
         }
         
         .section-header {
             text-align: center;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
         
         .section-number {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 600;
             color: rgba(17, 17, 17, 0.4);
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
         
         .section-title {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
         
         .section-subtitle {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 300;
             color: rgba(17, 17, 17, 0.6);
         }
