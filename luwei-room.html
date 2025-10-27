@@ -36,6 +36,10 @@
             transition: opacity 1s ease;
         }
         
+        body.loaded.breath-active {
+            animation: breathe 4s ease-in-out infinite;
+        }
+        
         body.loaded {
             opacity: 1;
         }
@@ -100,19 +104,57 @@
             justify-content: center;
             align-items: center;
             animation: fadeOut 6s ease-out forwards;
+            pointer-events: none;
+        }
+        
+        .room-overlay.hidden {
+            display: none;
         }
         
         .room-overlay__image {
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             background-image: url('./assets/door.png');
             background-size: cover;
-            background-position: center;
+            background-position: center center;
             background-repeat: no-repeat;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            overflow: hidden;
+            position: relative;
+            animation: zoomIn 6s ease-out forwards;
+        }
+        
+        @keyframes zoomIn {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.1);
+            }
+        }
+        
+        .room-overlay__image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, 
+                rgba(0, 0, 0, 0.1) 0%, 
+                transparent 30%, 
+                transparent 70%, 
+                rgba(0, 0, 0, 0.1) 100%
+            );
+            animation: fadeInGradient 2s ease-in;
+        }
+        
+        @keyframes fadeInGradient {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         
         .room-overlay__text {
@@ -121,7 +163,9 @@
             color: rgba(255, 255, 255, 0.9);
             margin-bottom: 12px;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-            animation: fadeIn 2s ease-in;
+            animation: fadeInText 1.5s ease-in, breatheText 3s ease-in-out infinite 1.5s;
+            z-index: 1;
+            position: relative;
         }
         
         .room-overlay__text-en {
@@ -129,7 +173,20 @@
             font-weight: 300;
             color: rgba(255, 255, 255, 0.7);
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-            animation: fadeIn 2s ease-in 0.3s backwards;
+            animation: fadeInText 1.5s ease-in 0.3s backwards, breatheText 3s ease-in-out infinite 1.8s;
+            z-index: 1;
+            position: relative;
+        }
+        
+        @keyframes fadeInText {
+            from { 
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         @keyframes fadeOut {
@@ -181,7 +238,7 @@
             font-weight: 600;
             letter-spacing: -0.02em;
             margin-bottom: 24px;
-            animation: fadeInUp 1.5s ease-out;
+            animation: fadeInUp 1.5s ease-out, breatheText 3s ease-in-out infinite 1.5s;
             color: #111111;
         }
         
@@ -216,6 +273,27 @@
             to { 
                 opacity: 1;
                 transform: translateY(0);
+            }
+        }
+        
+        /* Breathing animation */
+        @keyframes breathe {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.02);
+            }
+        }
+        
+        @keyframes breatheText {
+            0%, 100% {
+                opacity: 1;
+                letter-spacing: normal;
+            }
+            50% {
+                opacity: 0.9;
+                letter-spacing: 0.02em;
             }
         }
         
@@ -303,6 +381,7 @@
             opacity: 0;
             transform: translateY(40px);
             transition: all 1s ease;
+            animation: breathe 5s ease-in-out infinite;
         }
         
         .room-section.visible {
@@ -751,7 +830,8 @@
             setTimeout(function() {
                 const overlay = document.querySelector('.room-overlay');
                 if (overlay) {
-                    overlay.style.display = 'none';
+                    overlay.classList.add('hidden');
+                    overlay.remove();
                 }
             }, 6000);
             
@@ -762,6 +842,11 @@
                     behavior: 'smooth'
                 });
             }, 6200);
+            
+            // Add breathing animation after overlay is gone
+            setTimeout(function() {
+                document.body.classList.add('breath-active');
+            }, 6500);
             
             // Add floating particles
             createParticles();
