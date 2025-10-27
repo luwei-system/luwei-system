@@ -450,21 +450,12 @@
             border-radius: 12px;
             box-sizing: border-box;
             pointer-events: auto;
-            scrollbar-width: thin;
-            scrollbar-color: rgba(17, 17, 17, 0.2) transparent;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
         }
         
         .room-section::-webkit-scrollbar {
-            width: 3px;
-        }
-        
-        .room-section::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        
-        .room-section::-webkit-scrollbar-thumb {
-            background: rgba(17, 17, 17, 0.2);
-            border-radius: 2px;
+            display: none;
         }
         
         /* Positioning for sections - will be randomized by JavaScript */
