@@ -222,6 +222,30 @@
             }
         }
         
+        /* Hourglass Music Toggle Button */
+        .hourglass-music-toggle {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1001;
+            transition: all 0.3s ease;
+        }
+        
+        .hourglass-music-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
         @media (max-width: 768px) {
             .home-button {
                 width: 50px;
@@ -433,6 +457,16 @@
     <div class="sand-grain"></div>
     <div class="sand-grain"></div>
     
+    <!-- Background Music -->
+    <audio id="hourglassMusic" loop autoplay>
+        <source src="./assets/music/Hourglass Drift.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- Music Toggle Button -->
+    <div class="hourglass-music-toggle" onclick="toggleHourglassMusic()">
+        <span id="hourglassMusicIcon">🔊</span>
+    </div>
+    
     <script>
         window.addEventListener('load', function() {
             document.body.classList.add('loaded');
@@ -440,6 +474,22 @@
         
         function toggleLanguage() {
             document.body.classList.toggle('lang-english');
+        }
+        
+        // Hourglass music controls
+        let isHourglassMusicPlaying = true;
+        const hourglassMusic = document.getElementById('hourglassMusic');
+        
+        function toggleHourglassMusic() {
+            if (isHourglassMusicPlaying) {
+                hourglassMusic.pause();
+                document.getElementById('hourglassMusicIcon').textContent = '🔇';
+                isHourglassMusicPlaying = false;
+            } else {
+                hourglassMusic.play();
+                document.getElementById('hourglassMusicIcon').textContent = '🔊';
+                isHourglassMusicPlaying = true;
+            }
         }
     </script>
     
