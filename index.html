@@ -3,524 +3,241 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
     <title>LUWEI ROOM — 루웨이의 방</title>
     <meta name="description" content="이곳은 루웨이의 시간과 감정이 머무는 방입니다. 감정의 잔상, 파동의 흔적, 하루의 일기가 조용히 전시되는 디지털 아틀리에.">
-    
-    <!-- Keywords -->
-    <meta name="keywords" content="명상 오디오, 감정 루틴, 하루 OFF 템플릿, 고요 브랜드, 루웨이 시스템, 명상, 감정 관리, 루틴 템플릿">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="LUWEI SYSTEM — 고요의 시스템">
-    <meta property="og:description" content="세상이 시끄러울수록, 사람들에게 고요의 시스템을 제공합니다. 명상 오디오와 감정 루틴 템플릿으로 일상의 고요함을 찾아보세요.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://luweisystem.com/">
-    <meta property="og:image" content="https://luweisystem.com/assets/Circle_logo.svg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="LUWEI SYSTEM - 고요의 시스템">
-    <meta property="og:site_name" content="LUWEI SYSTEM">
-    <meta property="og:locale" content="ko_KR">
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="LUWEI SYSTEM — 고요의 시스템">
-    <meta name="twitter:description" content="세상이 시끄러울수록, 사람들에게 고요의 시스템을 제공합니다. 명상 오디오와 감정 루틴 템플릿으로 일상의 고요함을 찾아보세요.">
-    <meta name="twitter:image" content="https://luweisystem.com/assets/Circle_logo.svg">
-    <meta name="twitter:image:alt" content="LUWEI SYSTEM - 고요의 시스템">
-    <meta name="twitter:site" content="@luweisystem">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="./assets/Circle_logo.svg">
-    <link rel="icon" type="image/png" href="./assets/favicon.png">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Noto+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
     
-    <!-- Styles -->
-    <link rel="stylesheet" href="./css/framework.css?v=20241219-v4">
-    <link rel="stylesheet" href="./styles.css?v=20241219-v4">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans KR', 'Inter', sans-serif;
+            background: linear-gradient(135deg, #CFE8FF 0%, #E9EEF2 50%, #FFFFFF 100%);
+            color: #111111;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* LUWEI ROOM — Entrance */
+        .room-entrance {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .entrance-message {
+            font-size: 18px;
+            font-weight: 400;
+            color: rgba(17, 17, 17, 0.6);
+            margin-bottom: 80px;
+            animation: fadeIn 2s ease-in;
+        }
+        
+        .luwei-title {
+            font-size: 72px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            animation: fadeInUp 1.5s ease-out;
+        }
+        
+        .luwei-subtitle {
+            font-size: 24px;
+            font-weight: 300;
+            color: rgba(17, 17, 17, 0.8);
+            margin-bottom: 60px;
+            line-height: 1.6;
+            animation: fadeInUp 1.5s ease-out 0.3s backwards;
+        }
+        
+        .room-description {
+            max-width: 800px;
+            font-size: 16px;
+            line-height: 1.8;
+            color: rgba(17, 17, 17, 0.7);
+            margin-bottom: 80px;
+            animation: fadeInUp 1.5s ease-out 0.6s backwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Center Table Section */
+        .center-table {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 20px;
+            position: relative;
+        }
+        
+        .center-table__content {
+            max-width: 1000px;
+            text-align: center;
+        }
+        
+        .center-sentence {
+            font-size: 32px;
+            font-weight: 400;
+            color: #111111;
+            margin-bottom: 60px;
+            line-height: 1.6;
+        }
+        
+        /* WIP Message */
+        .wip-message {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(207, 232, 255, 0.3);
+            border-radius: 20px;
+            padding: 60px 40px;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .wip-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #111111;
+        }
+        
+        .wip-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: rgba(17, 17, 17, 0.7);
+        }
+        
+        .section-note {
+            margin-top: 100px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .section-note h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        
+        .section-note ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .section-note li {
+            font-size: 15px;
+            line-height: 2;
+            color: rgba(17, 17, 17, 0.7);
+        }
+        
+        @media (max-width: 768px) {
+            .luwei-title {
+                font-size: 48px;
+            }
+            
+            .luwei-subtitle {
+                font-size: 18px;
+            }
+            
+            .center-sentence {
+                font-size: 24px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Top Banner -->
-    <div class="top-banner">
-        <div class="top-banner__announcement">
-            <span class="top-banner__text" data-ko="✨ '무 루틴 : 빛' 출시 완료! 유튜브에서 무료 체험 가능" data-en="✨ 'MU Routine : Light' is now available! Free preview on YouTube">✨ '무 루틴 : 빛' 출시 완료! 유튜브에서 무료 체험 가능</span>
-        </div>
-        <div class="top-banner__datetime">
-            <div class="datetime__container">
-                <div class="datetime__date" id="current-date"></div>
-                <div class="datetime__time" id="current-time"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Navigation -->
-    <div id="navigation-container"></div>
-
-    <!-- Hero Section -->
-    <div id="hero-container"></div>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="about__background">
-            <img src="./assets/Circle_logo.svg" alt="" class="about__bg-circle about__bg-circle--left" aria-hidden="true">
-            <img src="./assets/Circle_logo.svg" alt="" class="about__bg-circle about__bg-circle--right" aria-hidden="true">
-        </div>
-        <div class="about__container">
-            <h2 class="section__title" data-ko="브랜드 철학" data-en="Brand Philosophy">브랜드 철학</h2>
-            
-            <div class="about__grid">
-                <div class="about__card">
-                    <h3 class="about__card-title" data-ko="존재 이유" data-en="Purpose">존재 이유</h3>
-                    <p class="about__card-text" data-ko="세상이 시끄러울수록,<br>사람들에게 고요의 시스템을 제공하기 위해." data-en="The noisier the world becomes,<br>the more we need systems of stillness.">
-                        세상이 시끄러울수록,<br>
-                        사람들에게 고요의 시스템을 제공하기 위해.
-                    </p>
-                </div>
-                
-                <div class="about__card">
-                    <h3 class="about__card-title" data-ko="브랜드 톤" data-en="Brand Tone">브랜드 톤</h3>
-                    <div class="brand-tone-grid">
-                        <div class="brand-tone-item brand-tone-item--top-left" data-ko="단정한 질서" data-en="Orderly">단정한 질서</div>
-                        <div class="brand-tone-item brand-tone-item--top-right" data-ko="느린 흐름" data-en="Slow">느린 흐름</div>
-                        <div class="brand-tone-item brand-tone-item--bottom-left" data-ko="대칭의 아름다움" data-en="Symmetrical">대칭의 아름다움</div>
-                        <div class="brand-tone-item brand-tone-item--bottom-right" data-ko="무편집의 진실" data-en="Unedited">무편집의 진실</div>
-                        <div class="brand-tone-item brand-tone-item--center" data-ko="진짜의 순간" data-en="Real">진짜의 순간</div>
-                    </div>
-                </div>
-                
-                <div class="about__card">
-                    <h3 class="about__card-title" data-ko="저서 출간" data-en="Published Works">저서 출간</h3>
-                    <p class="about__card-text" data-ko="루웨이의 숨결 (7,200원)<br>국내 주요 서점 입점 완료" data-en="LUWEI's Breath (₩7,200)<br>Available at major Korean bookstores">
-                        <strong>루웨이의 숨결</strong> (7,200원)<br>
-                        <small>국내 주요 서점 입점 완료</small>
-                    </p>
-                </div>
-                
-                <div class="about__card">
-                    <h3 class="about__card-title" data-ko="색감 코드" data-en="Color Palette">색감 코드</h3>
-                    <div class="color-palette">
-                        <div class="color-item">
-                            <div class="color-swatch" style="background-color: #CFE8FF;"></div>
-                            <span class="color-name" data-ko="하늘색<br><small>개방/평온</small>" data-en="Sky Blue<br><small>Open/Calm</small>">하늘색<br><small>개방/평온</small></span>
-                        </div>
-                        <div class="color-item">
-                            <div class="color-swatch" style="background-color: #E9EEF2;"></div>
-                            <span class="color-name" data-ko="연회색<br><small>안정/균형</small>" data-en="Light Gray<br><small>Stable/Balance</small>">연회색<br><small>안정/균형</small></span>
-                        </div>
-                        <div class="color-item">
-                            <div class="color-swatch" style="background-color: #DFF5E1;"></div>
-                            <span class="color-name" data-ko="연초록<br><small>자연/흐름</small>" data-en="Light Green<br><small>Nature/Flow</small>">연초록<br><small>자연/흐름</small></span>
-                        </div>
-                        <div class="color-item">
-                            <div class="color-swatch" style="background-color: #FFD7E5;"></div>
-                            <span class="color-name" data-ko="옅은 분홍<br><small>따뜻함/연결</small>" data-en="Light Pink<br><small>Warmth/Connection</small>">옅은 분홍<br><small>따뜻함/연결</small></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <blockquote class="about__quote">
-                <p data-ko="아무것도 하지 않는다. 나는 흐름을 놓아준다." data-en="Do nothing. I let the flow go on.">아무것도 하지 않는다. 나는 흐름을 놓아준다.</p>
-            </blockquote>
-        </div>
-    </section>
-
-    <!-- Routines Section -->
-    <section id="routines" class="routines">
-        <div class="routines__container">
-            <div id="routines-category-section"></div>
-            
-            <p class="routines__declaration">
-                <span data-ko="시스템을 끈다. 감정은 흐른다. 나는 중심에 남는다." data-en="System off. Emotions flow. I remain centered.">System off. Emotions flow. I remain centered.</span>
-            </p>
-        </div>
-    </section>
-
-    <!-- App Section -->
-    <section id="app" class="app">
-        <div class="app__container">
-            <div class="app__header">
-                <h2 class="section__title" data-ko="LUWEI 앱" data-en="LUWEI App">LUWEI 앱</h2>
-                <p class="app__description" data-ko="일상 속 고요함을 찾는 모바일 앱" data-en="Mobile app for finding stillness in daily life">일상 속 고요함을 찾는 모바일 앱</p>
-            </div>
-            
-            <div class="app__content">
-                <div class="app__preview">
-                    <div class="app__mockup">
-                        <div class="app__screen">
-                            <div class="app__status-bar">
-                                <span class="app__time">9:41</span>
-                                <div class="app__indicators">
-                                    <span class="app__signal"></span>
-                                    <span class="app__wifi"></span>
-                                    <span class="app__battery"></span>
-                                </div>
-                            </div>
-                            <div class="app__content-area">
-                                <div class="app__logo">🌙</div>
-                                <h3 class="app__title" data-ko="LUWEI" data-en="LUWEI">LUWEI</h3>
-                                <p class="app__subtitle" data-ko="고요의 시스템" data-en="System of Stillness">고요의 시스템</p>
-                                <div class="app__features">
-                                    <div class="app__feature">
-                                        <span class="app__feature-icon">🌊</span>
-                                        <span class="app__feature-text" data-ko="물 루틴" data-en="Water Routine">물 루틴</span>
-                                    </div>
-                                    <div class="app__feature">
-                                        <span class="app__feature-icon">💡</span>
-                                        <span class="app__feature-text" data-ko="빛 루틴" data-en="Light Routine">빛 루틴</span>
-                                    </div>
-                                    <div class="app__feature">
-                                        <span class="app__feature-icon">📱</span>
-                                        <span class="app__feature-text" data-ko="일일 추적" data-en="Daily Tracking">일일 추적</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="app__info">
-                    <h3 class="app__info-title" data-ko="앱 특징" data-en="App Features">앱 특징</h3>
-                    <ul class="app__features-list">
-                        <li class="app__feature-item" data-ko="• 9분 물 루틴과 10분 빛 루틴 제공" data-en="• 9-minute Water routine and 10-minute Light routine">• 9분 물 루틴과 10분 빛 루틴 제공</li>
-                        <li class="app__feature-item" data-ko="• 일일 감정 추적 및 기록" data-en="• Daily emotion tracking and recording">• 일일 감정 추적 및 기록</li>
-                        <li class="app__feature-item" data-ko="• 개인화된 고요 루틴" data-en="• Personalized stillness routines">• 개인화된 고요 루틴</li>
-                        <li class="app__feature-item" data-ko="• 오프라인 모드 지원" data-en="• Offline mode support">• 오프라인 모드 지원</li>
-                    </ul>
-                    
-                    <div class="app__download">
-                        <a href="#" class="app__download-btn app__download-btn--ios" data-ko="App Store에서 다운로드" data-en="Download on App Store">
-                            <span class="app__download-icon">📱</span>
-                            <span class="app__download-text">App Store에서 다운로드</span>
-                        </a>
-                        <a href="#" class="app__download-btn app__download-btn--android" data-ko="Google Play에서 다운로드" data-en="Download on Google Play">
-                            <span class="app__download-icon">🤖</span>
-                            <span class="app__download-text">Google Play에서 다운로드</span>
-                        </a>
-                    </div>
-                    
-                    <div class="app__status">
-                        <span class="app__status-badge" data-ko="곧 출시 예정" data-en="Coming Soon">곧 출시 예정</span>
-                        <p class="app__status-text" data-ko="2025년 1월 출시 예정" data-en="Expected release: January 2025">2025년 1월 출시 예정</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Goods Section -->
-    <section id="goods" class="goods">
-        <div class="goods__container">
-            <div id="goods-category-section"></div>
-        </div>
-    </section>
-
-    <!-- Digital Art Section -->
-    <section id="digitalArt" class="digital-art">
-        <div class="digital-art__container">
-            <div id="digitalArt-category-section"></div>
-        </div>
-    </section>
-
-    <!-- Release Schedule Section -->
-    <section id="schedule" class="release-schedule">
-        <div class="release-schedule__container">
-            <h2 class="section__title" data-ko="출시 일정" data-en="Release Schedule">출시 일정</h2>
-            
-            <div class="schedule-cards">
-                <div class="schedule-card schedule-card--completed">
-                    <div class="schedule-card__timeline-dot"></div>
-                    <div class="schedule-card__date" data-ko="11월 중" data-en="Mid-November">11월 중</div>
-                    <div class="schedule-card__content">
-                        <h3 class="schedule-card__title" data-ko="무 루틴 오디오 '물·빛' 시리즈" data-en="'Water·Light' Meditation Audio Series">무 루틴 오디오 '물·빛' 시리즈</h3>
-                        <p class="schedule-card__description" data-ko="물과 빛의 명상 오디오로 시작하는 고요의 여행" data-en="Begin your journey to stillness with Water and Light meditation audio">물과 빛의 명상 오디오로 시작하는 고요의 여행</p>
-                        <div class="schedule-card__progress">
-                            <div class="progress-bar">
-                                <div class="progress-fill" id="progress-water" style="width: 100%" data-width="100%"></div>
-                            </div>
-                            <div class="progress-text" data-ko="100% 완료" data-en="100% Complete">100% 완료</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="schedule-card">
-                    <div class="schedule-card__timeline-dot"></div>
-                    <div class="schedule-card__date" data-ko="2025년 1월" data-en="January 2025">2025년 1월</div>
-                    <div class="schedule-card__content">
-                        <h3 class="schedule-card__title" data-ko="LUWEI 모바일 앱" data-en="LUWEI Mobile App">LUWEI 모바일 앱</h3>
-                        <p class="schedule-card__description" data-ko="물과 빛 루틴이 포함된 모바일 앱 출시" data-en="Mobile app release with Water and Light routines">물과 빛 루틴이 포함된 모바일 앱 출시</p>
-                    </div>
-                </div>
-                
-                <div class="schedule-card">
-                    <div class="schedule-card__timeline-dot"></div>
-                    <div class="schedule-card__date" data-ko="12월 말" data-en="Late December">12월 말</div>
-                    <div class="schedule-card__content">
-                        <h3 class="schedule-card__title" data-ko="루웨이 패키지" data-en="LUWEI Package">루웨이 패키지</h3>
-                        <p class="schedule-card__description" data-ko="오디오 + 템플릿이 함께하는 완전한 고요 시스템" data-en="Complete stillness system with audio + templates">오디오 + 템플릿이 함께하는 완전한 고요 시스템</p>
-                    </div>
-                </div>
-                
-                <div class="schedule-card schedule-card--global">
-                    <div class="schedule-card__timeline-dot"></div>
-                    <div class="schedule-card__date" data-ko="2025년 연말" data-en="End of 2025">2025년 연말</div>
-                    <div class="schedule-card__content">
-                        <h3 class="schedule-card__title" data-ko="글로벌 영문판 출간" data-en="Global English Edition">글로벌 영문판 출간</h3>
-                        <p class="schedule-card__description" data-ko="감정의 흐름을 국내를 넘어 세계로 확장합니다" data-en="Expanding the flow of emotions beyond Korea to the world">감정의 흐름을 국내를 넘어 세계로 확장합니다</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="schedule-notice">
-                <p class="schedule-notice__text" data-ko="※ 일정은 내부 사정에 따라 변경될 수 있습니다." data-en="※ Schedule subject to change based on internal circumstances.">※ 일정은 내부 사정에 따라 변경될 수 있습니다.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Connect Section -->
-    <section id="connect" class="connect">
-        <div class="connect__background">
-            <img src="./assets/Circle_logo.svg" alt="" class="connect__bg-circle connect__bg-circle--left" aria-hidden="true">
-            <img src="./assets/Circle_logo.svg" alt="" class="connect__bg-circle connect__bg-circle--right" aria-hidden="true">
-        </div>
-        <div class="connect__container">
-            <h2 class="section__title" data-ko="연결" data-en="Connect">연결</h2>
-            
-            <div class="connect__links">
-                <a href="https://luweisystem.gumroad.com" 
-                   class="connect__link" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   aria-label="Gumroad에서 제품 구매하기">
-                    <div class="connect__icon">🛒</div>
-                    <div class="connect__content">
-                        <span class="connect__title">Gumroad</span>
-                        <span class="connect__subtitle" data-ko="구매" data-en="Purchase">구매</span>
-                    </div>
-                </a>
-                
-                <a href="https://instagram.com/luweisystem" 
-                   class="connect__link" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   aria-label="Instagram에서 브랜드 아카이브 보기">
-                    <div class="connect__icon">📸</div>
-                    <div class="connect__content">
-                        <span class="connect__title">Instagram</span>
-                        <span class="connect__subtitle" data-ko="아카이브" data-en="Archive">아카이브</span>
-                    </div>
-                </a>
-                
-                <a href="https://youtube.com/@luwei.system" 
-                   class="connect__link" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   aria-label="YouTube에서 무료 오디오 듣기">
-                    <div class="connect__icon">🎥</div>
-                    <div class="connect__content">
-                        <span class="connect__title">YouTube</span>
-                        <span class="connect__subtitle" data-ko="무료 오디오" data-en="Free Audio">무료 오디오</span>
-                    </div>
-                </a>
-                
-                <a href="https://github.com/luwei-system" 
-                   class="connect__link" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   aria-label="GitHub에서 프로젝트 보기">
-                    <div class="connect__icon">⚙️</div>
-                    <div class="connect__content">
-                        <span class="connect__title">GitHub</span>
-                        <span class="connect__subtitle" data-ko="프로젝트" data-en="Projects">프로젝트</span>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Bookstore Section -->
-    <section id="bookstore" class="bookstore">
-        <div class="bookstore__container">
-            <div class="bookstore__header">
-                <h2 class="section__title" data-ko="주요 서점에서 구매하기" data-en="Available at Major Bookstores">주요 서점에서 구매하기</h2>
-                <div class="bookstore__book-info">
-                    <div class="bookstore__book-title" data-ko="루웨이의 숨결" data-en="LUWEI's Breath">루웨이의 숨결</div>
-                    <div class="bookstore__book-price">₩7,200</div>
-                </div>
-            </div>
-            
-            <div class="bookstore__cards">
-                <a href="https://product.kyobobook.co.kr/detail/S000217121886" class="bookstore__card" target="_blank" rel="noopener noreferrer">
-                    <div class="bookstore__card-icon">📚</div>
-                    <div class="bookstore__card-content">
-                        <div class="bookstore__card-name">교보문고</div>
-                        <div class="bookstore__card-action" data-ko="구매하기" data-en="Buy Now">구매하기</div>
-                    </div>
-                </a>
-                
-                <a href="https://www.aladin.co.kr/shop/wproduct.aspx?ISBN=K162030191&start=pnaver_02" class="bookstore__card" target="_blank" rel="noopener noreferrer">
-                    <div class="bookstore__card-icon">🔍</div>
-                    <div class="bookstore__card-content">
-                        <div class="bookstore__card-name">알라딘</div>
-                        <div class="bookstore__card-action" data-ko="구매하기" data-en="Buy Now">구매하기</div>
-                    </div>
-                </a>
-                
-                <a href="https://www.yes24.com/Product/Goods/148703380" class="bookstore__card" target="_blank" rel="noopener noreferrer">
-                    <div class="bookstore__card-icon">📖</div>
-                    <div class="bookstore__card-content">
-                        <div class="bookstore__card-name">예스24</div>
-                        <div class="bookstore__card-action" data-ko="구매하기" data-en="Buy Now">구매하기</div>
-                    </div>
-                </a>
-                
-                <a href="https://www.ypbooks.co.kr/books/202507086796725471?gubun=NV&NaPm=ct%3Dmh36qnu8%7Cci%3Dc9d76ae840ed7ed6c22ba6c803a7ac717b1fa66a%7Ctr%3Dboksl1%7Csn%3D5295494%7Chk%3D277fe9f006ef1a073c6083bd47170eceae1554e7" class="bookstore__card" target="_blank" rel="noopener noreferrer">
-                    <div class="bookstore__card-icon">🏪</div>
-                    <div class="bookstore__card-content">
-                        <div class="bookstore__card-name">영풍문고</div>
-                        <div class="bookstore__card-action" data-ko="구매하기" data-en="Buy Now">구매하기</div>
-                    </div>
-                </a>
-                
-                <a href="https://bookk.co.kr/bookStore/68510a460804ee1e87094088" class="bookstore__card" target="_blank" rel="noopener noreferrer">
-                    <div class="bookstore__card-icon">📘</div>
-                    <div class="bookstore__card-content">
-                        <div class="bookstore__card-name">부크크</div>
-                        <div class="bookstore__card-action" data-ko="구매하기" data-en="Buy Now">구매하기</div>
-                    </div>
-                </a>
-                
-                <a href="https://smartstore.naver.com/yes24book/products/12072646134" class="bookstore__card" target="_blank" rel="noopener noreferrer">
-                    <div class="bookstore__card-icon">🛒</div>
-                    <div class="bookstore__card-content">
-                        <div class="bookstore__card-name">네이버 스마트스토어</div>
-                        <div class="bookstore__card-action" data-ko="구매하기" data-en="Buy Now">구매하기</div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer__container">
-            <div class="footer__logo">
-                <img src="./assets/LUWEI SYSTEM.svg" alt="LUWEI SYSTEM Logo" class="footer__logo-img">
-            </div>
-            <p class="footer__signature">
-                조용한 시스템, 고요한 질서. / <span lang="en">A silent system, a quiet order.</span>
-            </p>
-            <p class="footer__copyright">
-                © LUWEI SYSTEM
-            </p>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="./js/config.js?v=20241219-v2"></script>
-    <script src="./js/components.js?v=20241219-v2"></script>
-    <script src="./script.js?v=20241219-v2"></script>
-    
-    <!-- Initialize Components -->
-    <script>
-        // DOM이 로드된 후 컴포넌트 초기화
-        document.addEventListener('DOMContentLoaded', function() {
-            // 네비게이션 초기화
-            const navContainer = document.getElementById('navigation-container');
-            if (navContainer) {
-                const navigation = new LUWEI_COMPONENTS.Navigation(navContainer, {
-                    showLanguageToggle: true,
-                    showShareButton: true,
-                    sticky: true
-                });
-                // 네비게이션 참조 저장
-                navContainer._navigation = navigation;
-            }
-
-            // 히어로 섹션 초기화
-            const heroContainer = document.getElementById('hero-container');
-            if (heroContainer) {
-                new LUWEI_COMPONENTS.HeroSection(heroContainer, {
-                    showSchedule: true,
-                    showCTA: true,
-                    showDynamicMessage: true
-                });
-            }
-
-            // 루틴 카테고리 섹션 초기화
-            const routinesContainer = document.getElementById('routines-category-section');
-            if (routinesContainer) {
-                new LUWEI_COMPONENTS.CategorySection(routinesContainer, {
-                    categoryId: 'routines',
-                    showViewAll: true,
-                    maxItems: 4
-                });
-            }
-
-            // 템플릿 카테고리 섹션 초기화
-            const templatesContainer = document.getElementById('templates-category-section');
-            if (templatesContainer) {
-                new LUWEI_COMPONENTS.CategorySection(templatesContainer, {
-                    categoryId: 'templates',
-                    showViewAll: true,
-                    maxItems: 3
-                });
-            }
-
-            // 굿즈 카테고리 섹션 초기화
-            const goodsContainer = document.getElementById('goods-category-section');
-            if (goodsContainer) {
-                new LUWEI_COMPONENTS.CategorySection(goodsContainer, {
-                    categoryId: 'goods',
-                    showViewAll: false,
-                    maxItems: 1,
-                    hideTitle: true
-                });
-            }
-
-            // 디지털 아트워크 카테고리 섹션 초기화
-            const digitalArtContainer = document.getElementById('digitalArt-category-section');
-            if (digitalArtContainer) {
-                new LUWEI_COMPONENTS.CategorySection(digitalArtContainer, {
-                    categoryId: 'digitalArt',
-                    showViewAll: false,
-                    maxItems: 1,
-                    hideTitle: true
-                });
-            }
-
-            console.log('LUWEI SYSTEM: All components initialized successfully');
-        });
-    </script>
-    
-    <!-- Force cache refresh -->
-    <script>
-        // Force reload CSS
-        const cssLinks = document.querySelectorAll('link[rel="stylesheet"]');
-        cssLinks.forEach(link => {
-            link.href = link.href.split('?')[0] + '?v=' + Date.now();
-        });
+    <!-- Room Entrance -->
+    <section class="room-entrance">
+        <p class="entrance-message">지금, 루웨이의 방에 들어갑니다.</p>
         
-        // Force reload JS
-        const jsScripts = document.querySelectorAll('script[src]');
-        jsScripts.forEach(script => {
-            script.src = script.src.split('?')[0] + '?v=' + Date.now();
-        });
+        <h1 class="luwei-title">🌙</h1>
         
-        // Clear any cached data
-        if ('caches' in window) {
-            caches.keys().then(function(names) {
-                for (let name of names) {
-                    caches.delete(name);
-                }
-            });
-        }
+        <h1 class="luwei-title">LUWEI ROOM</h1>
+        
+        <p class="luwei-subtitle">
+            이곳은 루웨이의 시간과 감정이 머무는 방입니다.
+        </p>
+        
+        <div class="room-description">
+            <p style="margin-bottom: 24px;">
+                여기에 기록된 것은 하루의 일기이자,<br>
+                감정의 잔상이며,<br>
+                파동의 흔적입니다.
+            </p>
+            <p>
+                루웨이는 세상의 리듬을 멈추지 않습니다.<br>
+                다만 그 안에서 고요의 질서를 설계합니다.
+            </p>
+        </div>
+    </section>
+    
+    <!-- Center Table -->
+    <section class="center-table">
+        <div class="center-table__content">
+            <p class="center-sentence" style="margin-bottom: 80px;">
+                "지금, 루웨이의 방에 들어갑니다."
+            </p>
+            
+            <div class="wip-message">
+                <h2 class="wip-title">방이 준비되고 있습니다</h2>
+                <p class="wip-text">
+                    루웨이의 방은 현재 조용히 준비 중입니다.<br>
+                    곧 감정의 파동과 하루의 흔적이 전시될 예정입니다.
+                </p>
+            </div>
+            
+            <div class="section-note">
+                <h3>방의 구조 (준비 중)</h3>
+                <ul>
+                    <li>① Emotion Archive — 감정의 파편</li>
+                    <li>② Diary of Stillness — 하루의 일기</li>
+                    <li>③ Routine Gallery — 루틴의 시각화</li>
+                    <li>④ Flow Calendar — 시간의 기록</li>
+                    <li>⑤ Center Table — 모든 것의 중심</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        // Minimal entrance animation
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '1';
+        });
     </script>
 </body>
 </html>
+
