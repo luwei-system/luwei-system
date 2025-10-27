@@ -30,23 +30,12 @@
             background-position: center;
             background-attachment: fixed;
             color: #111111;
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh;
+            overflow-x: hidden;
             opacity: 0;
             transition: opacity 1s ease;
             position: relative;
             animation: breatheBackground 8s ease-in-out infinite;
-        }
-        
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 0;
         }
         
         body.loaded {
@@ -92,16 +81,7 @@
                 transform: translateY(0);
             }
             50% {
-                transform: translateY(-10px);
-            }
-        }
-        
-        @keyframes floatSlow {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
+                transform: translateY(-3px);
             }
         }
         
@@ -265,28 +245,22 @@
         
         /* LUWEI ROOM — Entrance */
         .room-entrance {
-            height: 100vh;
+            min-height: auto;
+            max-height: 30vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 40px 20px;
+            padding: 30px 20px;
             text-align: center;
-            position: fixed;
-            background: transparent;
-            animation: float 12s ease-in-out infinite;
+            position: relative;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(5px);
+            animation: roomGlow 8s ease-in-out infinite, float 4s ease-in-out infinite;
             z-index: 1;
-            top: 0;
-            left: 0;
-            width: 100%;
-        }
-        
-        .room-entrance-text {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-            padding: 40px 60px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            margin: 10px auto;
+            max-width: 600px;
+            border-radius: 16px;
         }
         
         @keyframes roomGlow {
@@ -355,7 +329,7 @@
                 transform: scale(1);
             }
             50% {
-                transform: scale(1.02);
+                transform: scale(1.01);
             }
         }
         
@@ -447,48 +421,22 @@
         
         /* Room Sections */
         .room-section {
-            padding: 15px 20px;
+            min-height: auto;
+            padding: 12px 18px;
             display: flex;
             align-items: center;
             opacity: 0;
             transform: translateY(40px);
             transition: all 1s ease;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-            z-index: 2;
-            width: 220px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-        }
-        
-        .room-section:nth-child(1) {
-            position: fixed;
-            top: 15vh;
-            left: 3vw;
-        }
-        
-        .room-section:nth-child(2) {
-            position: fixed;
-            top: 15vh;
-            right: 3vw;
-        }
-        
-        .room-section:nth-child(3) {
-            position: fixed;
-            top: 50vh;
-            left: 3vw;
-        }
-        
-        .room-section:nth-child(4) {
-            position: fixed;
-            top: 50vh;
-            right: 3vw;
-        }
-        
-        .room-section:nth-child(5) {
-            position: fixed;
-            top: 50vh;
-            left: 50vw;
-            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            margin: 8px auto;
+            position: relative;
+            z-index: 1;
+            max-width: 280px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 12px;
         }
         
         /* Cloud shape */
@@ -505,17 +453,19 @@
         
         .room-section.visible {
             opacity: 1;
-            animation: breathe 5s ease-in-out infinite, float 16s ease-in-out infinite;
+            transform: translateY(0);
+            animation: breathe 6s ease-in-out infinite, float 5s ease-in-out infinite;
         }
         
         .room-section:nth-child(even).visible {
-            animation: breathe 5s ease-in-out infinite, float 14s ease-in-out infinite;
+            animation: breathe 6s ease-in-out infinite, float 5s ease-in-out infinite;
             animation-delay: 0s, 0.5s;
         }
         
         .section-container {
+            max-width: 260px;
             width: 100%;
-            margin: 0;
+            margin: 0 auto;
         }
         
         .section-header {
@@ -524,28 +474,22 @@
         }
         
         .section-number {
-            font-size: 10px;
+            font-size: 11px;
             font-weight: 600;
             color: rgba(17, 17, 17, 0.4);
             margin-bottom: 4px;
         }
         
         .section-title {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 600;
             margin-bottom: 4px;
-            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
         }
         
         .section-subtitle {
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 300;
             color: rgba(17, 17, 17, 0.6);
-            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
-        }
-        
-        .section-note {
-            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
         }
         
         /* ① Emotion Archive */
@@ -787,16 +731,15 @@
     
     <!-- Room Entrance -->
     <section class="room-entrance">
-        <div class="room-entrance-text">
-            <h1 class="luwei-title">🌙</h1>
-            
-            <h1 class="luwei-title">LUWEI ROOM</h1>
-            
-            <p class="luwei-subtitle">
-                이곳은 루웨이의 시간과 감정이 머무는 방입니다.
-            </p>
-            
-            <div class="room-description">
+        <h1 class="luwei-title">🌙</h1>
+        
+        <h1 class="luwei-title">LUWEI ROOM</h1>
+        
+        <p class="luwei-subtitle">
+            이곳은 루웨이의 시간과 감정이 머무는 방입니다.
+        </p>
+        
+        <div class="room-description">
             <p style="margin-bottom: 24px;">
                 여기에 기록된 것은 하루의 일기이자,<br>
                 감정의 잔상이며,<br>
@@ -806,7 +749,6 @@
                 루웨이는 세상의 리듬을 멈추지 않습니다.<br>
                 다만 그 안에서 고요의 질서를 설계합니다.
             </p>
-            </div>
         </div>
     </section>
     
@@ -840,7 +782,7 @@
     </section>
     
     <!-- ② Diary of Stillness -->
-    <section class="room-section diary-stillness 💧">
+    <section class="room-section diary-stillness">
         <div class="section-container">
             <div class="section-header">
                 <h2 class="section-number">②</h2>
@@ -866,7 +808,7 @@
     </section>
     
     <!-- ③ Routine Gallery -->
-    <section class="room-section routine-gallery 云">
+    <section class="room-section routine-gallery">
         <div class="section-container">
             <div class="section-header">
                 <h2 class="section-number">③</h2>
@@ -900,7 +842,7 @@
     </section>
     
     <!-- ④ Flow Calendar -->
-    <section class="room-section flow-calendar 💧">
+    <section class="room-section flow-calendar">
         <div class="section-container">
             <div class="section-header">
                 <h2 class="section-number">④</h2>
@@ -934,7 +876,7 @@
     </section>
     
     <!-- ⑤ Center Table -->
-    <section class="room-section center-table 云">
+    <section class="room-section center-table">
         <div class="section-container">
             <div class="section-header">
                 <h2 class="section-number">⑤</h2>
