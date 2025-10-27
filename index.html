@@ -443,27 +443,11 @@
             z-index: 1;
             width: 240px;
             max-width: 240px;
-            min-height: 180px;
-            max-height: 180px;
-            overflow-y: auto;
-            overflow-x: hidden;
+            min-height: auto;
+            max-height: none;
+            overflow: visible;
             border-radius: 12px;
-            scrollbar-width: thin;
-            scrollbar-color: rgba(17, 17, 17, 0.3) transparent;
             box-sizing: border-box;
-        }
-        
-        .room-section::-webkit-scrollbar {
-            width: 4px;
-        }
-        
-        .room-section::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        
-        .room-section::-webkit-scrollbar-thumb {
-            background: rgba(17, 17, 17, 0.3);
-            border-radius: 2px;
         }
         
         /* Positioning for sections - will be randomized by JavaScript */
