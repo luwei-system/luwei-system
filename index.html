@@ -253,22 +253,22 @@
         /* LUWEI ROOM — Entrance */
         .room-entrance {
             min-height: auto;
-            max-height: 30vh;
+            max-height: 25vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 30px 20px;
+            padding: 20px 15px;
             text-align: center;
             position: fixed;
-            top: 10%;
+            top: 5%;
             left: 50%;
             transform: translateX(-50%);
             background: rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(3px);
             animation: breathe 8s ease-in-out infinite;
             z-index: 2;
-            max-width: 600px;
+            max-width: 500px;
             width: 90%;
             border-radius: 16px;
         }
@@ -997,16 +997,13 @@
         
         function randomizeSectionPositions() {
             const sections = document.querySelectorAll('.room-section');
+            // Define non-overlapping positions with proper spacing
             const positions = [
-                { vertical: 'top', value: '10%', horizontal: 'left', horizontalValue: '5%', alignment: 'left-aligned' },
-                { vertical: 'top', value: '10%', horizontal: 'right', horizontalValue: '5%', alignment: 'right-aligned' },
-                { vertical: 'top', value: '10%', horizontal: 'center', horizontalValue: '50%', alignment: 'centered' },
-                { vertical: 'top', value: '35%', horizontal: 'left', horizontalValue: '5%', alignment: 'left-aligned' },
-                { vertical: 'top', value: '35%', horizontal: 'right', horizontalValue: '5%', alignment: 'right-aligned' },
-                { vertical: 'top', value: '35%', horizontal: 'center', horizontalValue: '50%', alignment: 'centered' },
-                { vertical: 'bottom', value: '5%', horizontal: 'center', horizontalValue: '50%', alignment: 'centered' },
-                { vertical: 'bottom', value: '5%', horizontal: 'left', horizontalValue: '5%', alignment: 'left-aligned' },
-                { vertical: 'bottom', value: '5%', horizontal: 'right', horizontalValue: '5%', alignment: 'right-aligned' }
+                { vertical: 'top', value: '15vh', horizontal: 'left', horizontalValue: '3vw', alignment: 'left-aligned' },
+                { vertical: 'top', value: '15vh', horizontal: 'right', horizontalValue: '3vw', alignment: 'right-aligned' },
+                { vertical: 'top', value: '50vh', horizontal: 'left', horizontalValue: '3vw', alignment: 'left-aligned' },
+                { vertical: 'top', value: '50vh', horizontal: 'right', horizontalValue: '3vw', alignment: 'right-aligned' },
+                { vertical: 'bottom', value: '15vh', horizontal: 'center', horizontalValue: '50%', alignment: 'centered' }
             ];
             
             // Shuffle positions randomly
