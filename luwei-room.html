@@ -37,8 +37,9 @@
             background-attachment: fixed;
             background-repeat: no-repeat;
             color: #111111;
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh;
+            overflow-x: hidden;
+            overflow-y: auto;
             opacity: 0;
             transition: opacity 1s ease;
             position: relative;
@@ -260,7 +261,7 @@
             align-items: center;
             padding: 10px 20px;
             text-align: center;
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             right: 0;
@@ -440,16 +441,31 @@
             transition: all 1s ease;
             background: rgba(255, 255, 255, 0.4);
             backdrop-filter: blur(4px);
-            position: fixed;
+            position: absolute;
             z-index: 2;
-            width: 210px;
-            max-width: 210px;
+            width: 320px;
+            max-width: 90%;
             min-height: auto;
             max-height: none;
             overflow: visible;
             border-radius: 16px;
             box-sizing: border-box;
             pointer-events: auto;
+            left: 50% !important;
+            transform: translateX(-50%);
+        }
+        
+        @media (max-width: 768px) {
+            .room-section {
+                width: 90% !important;
+                max-width: 90% !important;
+            }
+        }
+        
+        @media (min-width: 1200px) {
+            .room-section {
+                width: 400px !important;
+            }
         }
         
         /* Positioning for sections - will be randomized by JavaScript */
@@ -489,34 +505,13 @@
         
         .room-section.visible {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateX(-50%);
             animation: breathe 8s ease-in-out infinite;
-        }
-        
-        .room-section.visible.centered {
-            animation: breathe 8s ease-in-out infinite;
-            transform: translateX(-50%) !important;
-        }
-        
-        .room-section.visible.left-aligned,
-        .room-section.visible.right-aligned {
-            animation: breathe 8s ease-in-out infinite;
-            transform: translateY(0) !important;
         }
         
         .room-section:nth-child(even).visible {
             animation: breathe 9s ease-in-out infinite;
-        }
-        
-        .room-section:nth-child(even).visible.centered {
-            animation: breathe 9s ease-in-out infinite;
-            transform: translateX(-50%) !important;
-        }
-        
-        .room-section:nth-child(even).visible.left-aligned,
-        .room-section:nth-child(even).visible.right-aligned {
-            animation: breathe 9s ease-in-out infinite;
-            transform: translateY(0) !important;
+            transform: translateX(-50%);
         }
         
         .section-container {
@@ -751,25 +746,30 @@
         }
         
         @media (max-width: 768px) {
-            .luwei-title {
-                font-size: 48px;
-            }
-            
-            .luwei-subtitle {
-                font-size: 18px;
-            }
-            
-            .center-sentence {
-                font-size: 24px;
+            .room-section {
+                padding: 15px 12px !important;
             }
             
             .section-title {
-                font-size: 32px;
+                font-size: 18px !important;
+            }
+            
+            .section-subtitle {
+                font-size: 12px !important;
+            }
+            
+            .emotion-text, .diary-text {
+                font-size: 13px !important;
+            }
+            
+            .emotion-time, .diary-subtext {
+                font-size: 10px !important;
             }
             
             .emotion-grid,
             .routine-cards {
                 grid-template-columns: 1fr;
+                gap: 12px !important;
             }
             
             .calendar-days {
@@ -930,9 +930,9 @@
             const sections = document.querySelectorAll('.room-section');
             // Define 3 fixed positions: left, center, right
             const positions = [
-                { vertical: 'top', value: '35vh', horizontal: 'left', horizontalValue: '10vw', alignment: 'left-aligned' },
-                { vertical: 'top', value: '35vh', horizontal: 'center', horizontalValue: '50%', alignment: 'centered' },
-                { vertical: 'top', value: '35vh', horizontal: 'right', horizontalValue: '10vw', alignment: 'right-aligned' }
+                { vertical: 'top', value: '120px', horizontal: 'center', horizontalValue: '50%', alignment: 'centered' },
+                { vertical: 'top', value: '420px', horizontal: 'center', horizontalValue: '50%', alignment: 'centered' },
+                { vertical: 'top', value: '720px', horizontal: 'center', horizontalValue: '50%', alignment: 'centered' }
             ];
             
             sections.forEach((section, index) => {
