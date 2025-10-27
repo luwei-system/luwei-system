@@ -282,10 +282,11 @@
         }
         
         .room-entrance-text {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(10px);
             padding: 40px 60px;
             border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
         }
         
         @keyframes roomGlow {
@@ -452,10 +453,11 @@
             opacity: 0;
             transform: translateY(40px);
             transition: all 1s ease;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(2px);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
             z-index: 2;
             width: 220px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
         }
         
         .room-section:nth-child(1) {
@@ -532,12 +534,18 @@
             font-size: 16px;
             font-weight: 600;
             margin-bottom: 4px;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
         }
         
         .section-subtitle {
             font-size: 11px;
             font-weight: 300;
             color: rgba(17, 17, 17, 0.6);
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+        }
+        
+        .section-note {
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
         }
         
         /* ① Emotion Archive */
