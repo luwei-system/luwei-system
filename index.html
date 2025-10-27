@@ -161,11 +161,15 @@
             background-repeat: no-repeat;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             z-index: 10000;
             transition: opacity 1s ease, visibility 1s ease;
             pointer-events: auto;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+            padding: 20px 0;
         }
         
         .home-entrance.hidden {
