@@ -752,25 +752,32 @@
         }
         
         @media (max-width: 768px) {
-            .luwei-title {
-                font-size: 48px;
-            }
-            
-            .luwei-subtitle {
-                font-size: 18px;
-            }
-            
-            .center-sentence {
-                font-size: 24px;
+            .room-section {
+                width: 150px !important;
+                max-width: 150px !important;
+                padding: 15px 12px !important;
             }
             
             .section-title {
-                font-size: 32px;
+                font-size: 18px !important;
+            }
+            
+            .section-subtitle {
+                font-size: 12px !important;
+            }
+            
+            .emotion-text, .diary-text {
+                font-size: 13px !important;
+            }
+            
+            .emotion-time, .diary-subtext {
+                font-size: 10px !important;
             }
             
             .emotion-grid,
             .routine-cards {
                 grid-template-columns: 1fr;
+                gap: 12px !important;
             }
             
             .calendar-days {
@@ -931,9 +938,9 @@
             const sections = document.querySelectorAll('.room-section');
             // Define 3 fixed positions: left, center, right
             const positions = [
-                { vertical: 'top', value: '15vh', horizontal: 'left', horizontalValue: '5vw', alignment: 'left-aligned' },
-                { vertical: 'top', value: '15vh', horizontal: 'center', horizontalValue: '50%', alignment: 'centered' },
-                { vertical: 'top', value: '15vh', horizontal: 'right', horizontalValue: '5vw', alignment: 'right-aligned' }
+                { vertical: 'top', value: '20vh', horizontal: 'left', horizontalValue: '2vw', alignment: 'left-aligned' },
+                { vertical: 'top', value: '20vh', horizontal: 'center', horizontalValue: '50%', alignment: 'centered' },
+                { vertical: 'top', value: '20vh', horizontal: 'right', horizontalValue: '2vw', alignment: 'right-aligned' }
             ];
             
             sections.forEach((section, index) => {
