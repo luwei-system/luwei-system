@@ -20,12 +20,11 @@
         
         body {
             font-family: 'Noto Sans KR', 'Inter', sans-serif;
-            background: #000000;
+            background: #F5F5F0;
             background-image: 
-                radial-gradient(circle at 20% 50%, rgba(0, 60, 255, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(80, 0, 255, 0.08) 0%, transparent 50%),
-                linear-gradient(180deg, #000000 0%, #0a0a0a 100%);
-            color: #ffffff;
+                radial-gradient(circle at 20% 50%, rgba(233, 238, 242, 0.5) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(223, 245, 225, 0.3) 0%, transparent 50%);
+            color: #111111;
             min-height: 100vh;
             overflow-x: hidden;
             opacity: 0;
@@ -42,11 +41,10 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: rgba(0, 255, 173, 0.6);
+            background: rgba(207, 232, 255, 0.5);
             pointer-events: none;
             z-index: 9999;
             animation: ripple 1s ease-out forwards;
-            box-shadow: 0 0 20px rgba(0, 255, 173, 0.4);
         }
         
         @keyframes ripple {
@@ -65,10 +63,9 @@
             position: absolute;
             width: 4px;
             height: 4px;
-            background: rgba(0, 255, 173, 0.3);
+            background: rgba(207, 232, 255, 0.3);
             border-radius: 50%;
             animation: float 20s infinite;
-            box-shadow: 0 0 10px rgba(0, 255, 173, 0.5);
         }
         
         @keyframes float {
@@ -139,7 +136,7 @@
             padding: 40px 20px;
             text-align: center;
             position: relative;
-            background: radial-gradient(circle at center, rgba(0, 255, 173, 0.03) 0%, transparent 70%);
+            background: radial-gradient(circle at center, rgba(207, 232, 255, 0.2) 0%, transparent 70%);
             animation: roomGlow 8s ease-in-out infinite;
         }
         
@@ -155,10 +152,9 @@
         .entrance-message {
             font-size: 18px;
             font-weight: 400;
-            color: rgba(0, 255, 173, 0.6);
+            color: rgba(17, 17, 17, 0.4);
             margin-bottom: 80px;
             animation: fadeIn 2s ease-in;
-            text-shadow: 0 0 20px rgba(0, 255, 173, 0.3);
         }
         
         .luwei-title {
@@ -167,17 +163,13 @@
             letter-spacing: -0.02em;
             margin-bottom: 24px;
             animation: fadeInUp 1.5s ease-out;
-            background: linear-gradient(135deg, #00ffad 0%, #7c3aed 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 40px rgba(0, 255, 173, 0.3);
+            color: #111111;
         }
         
         .luwei-subtitle {
             font-size: 24px;
             font-weight: 300;
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(17, 17, 17, 0.7);
             margin-bottom: 60px;
             line-height: 1.6;
             animation: fadeInUp 1.5s ease-out 0.3s backwards;
@@ -187,7 +179,7 @@
             max-width: 800px;
             font-size: 16px;
             line-height: 1.8;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(17, 17, 17, 0.6);
             margin-bottom: 80px;
             animation: fadeInUp 1.5s ease-out 0.6s backwards;
         }
