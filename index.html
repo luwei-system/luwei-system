@@ -1290,57 +1290,9 @@
             const doorImage = document.querySelector('.door-image');
             const webDoorImage = document.querySelector('.web-door-image');
             
-            // Room entrance function
+            // Room entrance function - Navigate to entrance page
             function enterRoom() {
-                // Step 1: Expand door image and use it as background
-                const roomCard = document.querySelector('.room-bg-card');
-                if (roomCard) {
-                    roomCard.classList.add('clicked');
-                    roomCard.style.position = 'fixed';
-                    roomCard.style.top = '50%';
-                    roomCard.style.left = '50%';
-                    roomCard.style.transform = 'translate(-50%, -50%)';
-                    roomCard.style.zIndex = '100001';
-                    
-                    // Hide all other cards immediately
-                    const cards = homeEntrance.querySelectorAll('.layer-card');
-                    cards.forEach(card => {
-                        if (!card.classList.contains('room-bg-card')) {
-                            card.style.opacity = '0';
-                            card.style.pointerEvents = 'none';
-                        }
-                    });
-                }
-                
-                // Step 2: Show entrance text after door expansion
-                setTimeout(function() {
-                    // Add text overlay
-                    const textOverlay = document.createElement('div');
-                    textOverlay.style.position = 'fixed';
-                    textOverlay.style.top = '50%';
-                    textOverlay.style.left = '50%';
-                    textOverlay.style.transform = 'translate(-50%, -50%)';
-                    textOverlay.style.zIndex = '100002';
-                    textOverlay.style.fontSize = '24px';
-                    textOverlay.style.fontWeight = '400';
-                    textOverlay.style.color = 'rgba(255, 255, 255, 0.9)';
-                    textOverlay.style.textShadow = '0 2px 10px rgba(0, 0, 0, 0.5)';
-                    textOverlay.style.textAlign = 'center';
-                    textOverlay.style.opacity = '0';
-                    textOverlay.style.transition = 'opacity 2s ease';
-                    textOverlay.textContent = '루웨이 방으로 진입합니다';
-                    document.body.appendChild(textOverlay);
-                    
-                    // Fade in text
-                    setTimeout(function() {
-                        textOverlay.style.opacity = '1';
-                    }, 100);
-                }, 2000);
-                
-                // Step 3: Navigate to room page after text appears
-                setTimeout(function() {
-                    window.location.href = 'luwei-room.html';
-                }, 5000);
+                window.location.href = 'entrance.html';
             }
             
             // Door click handler
