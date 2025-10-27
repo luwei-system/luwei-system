@@ -253,10 +253,16 @@
             padding: 40px 20px;
             text-align: center;
             position: relative;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(3px);
-            animation: roomGlow 8s ease-in-out infinite, float 6s ease-in-out infinite;
+            background: transparent;
+            animation: float 6s ease-in-out infinite;
             z-index: 1;
+        }
+        
+        .room-entrance-text {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px 60px;
+            border-radius: 20px;
         }
         
         @keyframes roomGlow {
@@ -726,15 +732,16 @@
     
     <!-- Room Entrance -->
     <section class="room-entrance">
-        <h1 class="luwei-title">🌙</h1>
-        
-        <h1 class="luwei-title">LUWEI ROOM</h1>
-        
-        <p class="luwei-subtitle">
-            이곳은 루웨이의 시간과 감정이 머무는 방입니다.
-        </p>
-        
-        <div class="room-description">
+        <div class="room-entrance-text">
+            <h1 class="luwei-title">🌙</h1>
+            
+            <h1 class="luwei-title">LUWEI ROOM</h1>
+            
+            <p class="luwei-subtitle">
+                이곳은 루웨이의 시간과 감정이 머무는 방입니다.
+            </p>
+            
+            <div class="room-description">
             <p style="margin-bottom: 24px;">
                 여기에 기록된 것은 하루의 일기이자,<br>
                 감정의 잔상이며,<br>
@@ -744,6 +751,7 @@
                 루웨이는 세상의 리듬을 멈추지 않습니다.<br>
                 다만 그 안에서 고요의 질서를 설계합니다.
             </p>
+            </div>
         </div>
     </section>
     
