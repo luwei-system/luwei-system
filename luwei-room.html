@@ -439,8 +439,8 @@
             opacity: 0;
             transform: translateY(40px);
             transition: all 1s ease;
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(4px);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(2px);
             position: absolute;
             z-index: 10;
             width: 320px;
@@ -791,90 +791,64 @@
         <h1 class="luwei-title">LUWEI ROOM</h1>
     </section>
     
-    <!-- ① Emotion Archive -->
+    <!-- ① App Launch Announcement -->
     <section class="room-section emotion-archive 云">
         <div class="section-container">
             <div class="section-header">
                 <h2 class="section-number">①</h2>
-                <h3 class="section-title">Emotion Archive</h3>
-                <p class="section-subtitle">감정의 파편들</p>
+                <h3 class="section-title">존재의 내면화</h3>
+                <p class="section-subtitle">EXISTENCE INTERFACE</p>
             </div>
             
             <div class="emotion-grid">
                 <div class="emotion-item">
                     <div class="emotion-wave" style="--wave-color: #CFE8FF;"></div>
-                    <p class="emotion-text">차가운 푸른 빛이 흐릅니다</p>
-                    <span class="emotion-time">2024.12.19 14:32</span>
+                    <p class="emotion-text">"나는 지금, 존재를 느낀다."</p>
+                    <span class="emotion-time">LUWEI APP</span>
                 </div>
                 <div class="emotion-item">
                     <div class="emotion-wave" style="--wave-color: #DFF5E1;"></div>
-                    <p class="emotion-text">느린 진동이 내려옵니다</p>
-                    <span class="emotion-time">2024.12.19 18:15</span>
+                    <p class="emotion-text">존재를 감각으로 환원</p>
+                    <span class="emotion-time">호흡 · 소리 · 빛 · 진동</span>
                 </div>
                 <div class="emotion-item">
                     <div class="emotion-wave" style="--wave-color: #FFD7E5;"></div>
-                    <p class="emotion-text">낮은 파동이 가득합니다</p>
-                    <span class="emotion-time">2024.12.20 09:42</span>
+                    <p class="emotion-text">나는 나의 존재를 체험한다</p>
+                    <span class="emotion-time">2025년 1월 출시</span>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- ② Diary of Stillness -->
-    <section class="room-section diary-stillness">
-        <div class="section-container">
-            <div class="section-header">
-                <h2 class="section-number">②</h2>
-                <h3 class="section-title">Diary of Stillness</h3>
-                <p class="section-subtitle">하루의 일기</p>
-            </div>
-            
-            <div class="diary-entries">
-                <div class="diary-entry">
-                    <p class="diary-text">"오늘 하루는 자유로웠습니다."</p>
-                    <p class="diary-subtext">22,981숨의 하루</p>
-                </div>
-                <div class="diary-entry">
-                    <p class="diary-text">"나는 존재합니다."</p>
-                    <p class="diary-subtext">18,432숨의 하루</p>
-                </div>
-                <div class="diary-entry">
-                    <p class="diary-text">"감정은 흐르고, 나는 중심에 남았습니다."</p>
-                    <p class="diary-subtext">25,673숨의 하루</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- ③ Routine Gallery -->
+    <!-- ② Existence Archive -->
     <section class="room-section routine-gallery">
         <div class="section-container">
             <div class="section-header">
-                <h2 class="section-number">③</h2>
-                <h3 class="section-title">Routine Gallery</h3>
-                <p class="section-subtitle">루틴의 시각화</p>
+                <h2 class="section-number">②</h2>
+                <h3 class="section-title">존재의 기록화</h3>
+                <p class="section-subtitle">EXISTENCE ARCHIVE</p>
             </div>
             
             <div class="routine-cards">
                 <div class="routine-card">
-                    <div class="routine-icon">🌊</div>
-                    <h4 class="routine-name">물 루틴</h4>
+                    <div class="routine-icon">☁️</div>
+                    <h4 class="routine-name">루웨이의 방</h4>
                     <div class="routine-wave">
                         <div class="wave-line"></div>
                         <div class="wave-line"></div>
                         <div class="wave-line"></div>
                     </div>
-                    <p class="routine-duration">9분</p>
+                    <p class="routine-duration">"이곳에 나의 존재가 머문다"</p>
                 </div>
                 <div class="routine-card">
-                    <div class="routine-icon">💡</div>
-                    <h4 class="routine-name">빛 루틴</h4>
+                    <div class="routine-icon">💧</div>
+                    <h4 class="routine-name">기억의 흔적</h4>
                     <div class="routine-wave">
                         <div class="wave-line"></div>
                         <div class="wave-line"></div>
                         <div class="wave-line"></div>
                     </div>
-                    <p class="routine-duration">10분</p>
+                    <p class="routine-duration">하루의 파동 · 문장 · 일기</p>
                 </div>
             </div>
         </div>
@@ -928,9 +902,8 @@
             const sections = document.querySelectorAll('.room-section');
             // Define 3 fixed positions: left, center, right
             const positions = [
-                { vertical: 'top', value: '150px', horizontal: 'center', horizontalValue: '50%', alignment: 'centered' },
-                { vertical: 'top', value: '800px', horizontal: 'center', horizontalValue: '50%', alignment: 'centered' },
-                { vertical: 'top', value: '1450px', horizontal: 'center', horizontalValue: '50%', alignment: 'centered' }
+                { vertical: 'top', value: '200px', horizontal: 'center', horizontalValue: '50%', alignment: 'centered' },
+                { vertical: 'top', value: '1000px', horizontal: 'center', horizontalValue: '50%', alignment: 'centered' }
             ];
             
             sections.forEach((section, index) => {
