@@ -431,7 +431,7 @@
         
         /* Room Sections */
         .room-section {
-            padding: 12px 15px;
+            padding: 10px 12px;
             display: flex;
             align-items: flex-start;
             opacity: 0;
@@ -441,8 +441,8 @@
             backdrop-filter: blur(4px);
             position: fixed;
             z-index: 2;
-            width: 240px;
-            max-width: 240px;
+            width: 200px;
+            max-width: 200px;
             min-height: auto;
             max-height: none;
             overflow: visible;
@@ -997,12 +997,12 @@
         
         function randomizeSectionPositions() {
             const sections = document.querySelectorAll('.room-section');
-            // Define non-overlapping positions with proper spacing
+            // Define non-overlapping positions with larger spacing
             const positions = [
-                { vertical: 'top', value: '15vh', horizontal: 'left', horizontalValue: '3vw', alignment: 'left-aligned' },
-                { vertical: 'top', value: '15vh', horizontal: 'right', horizontalValue: '3vw', alignment: 'right-aligned' },
-                { vertical: 'top', value: '50vh', horizontal: 'left', horizontalValue: '3vw', alignment: 'left-aligned' },
-                { vertical: 'top', value: '50vh', horizontal: 'right', horizontalValue: '3vw', alignment: 'right-aligned' },
+                { vertical: 'top', value: '18vh', horizontal: 'left', horizontalValue: '2vw', alignment: 'left-aligned' },
+                { vertical: 'top', value: '18vh', horizontal: 'right', horizontalValue: '2vw', alignment: 'right-aligned' },
+                { vertical: 'top', value: '55vh', horizontal: 'left', horizontalValue: '2vw', alignment: 'left-aligned' },
+                { vertical: 'top', value: '55vh', horizontal: 'right', horizontalValue: '2vw', alignment: 'right-aligned' },
                 { vertical: 'bottom', value: '15vh', horizontal: 'center', horizontalValue: '50%', alignment: 'centered' }
             ];
             
