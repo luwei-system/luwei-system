@@ -253,24 +253,24 @@
         /* LUWEI ROOM — Entrance */
         .room-entrance {
             min-height: auto;
-            max-height: 25vh;
+            max-height: auto;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 20px 15px;
+            padding: 15px 12px;
             text-align: center;
             position: fixed;
-            top: 5%;
+            bottom: 5%;
             left: 50%;
             transform: translateX(-50%);
             background: rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(3px);
             animation: breathe 8s ease-in-out infinite;
             z-index: 2;
-            max-width: 500px;
-            width: 90%;
-            border-radius: 16px;
+            max-width: 450px;
+            width: 85%;
+            border-radius: 12px;
         }
         
         @keyframes roomGlow {
@@ -902,55 +902,6 @@
         </div>
     </section>
     
-    <!-- ④ Flow Calendar -->
-    <section class="room-section flow-calendar">
-        <div class="section-container">
-            <div class="section-header">
-                <h2 class="section-number">④</h2>
-                <h3 class="section-title">Flow Calendar</h3>
-                <p class="section-subtitle">시간의 기록</p>
-            </div>
-            
-            <div class="calendar-days">
-                <div class="calendar-day">
-                    <span class="day-number">19</span>
-                    <span class="day-breaths">22,981숨</span>
-                </div>
-                <div class="calendar-day">
-                    <span class="day-number">18</span>
-                    <span class="day-breaths">18,432숨</span>
-                </div>
-                <div class="calendar-day">
-                    <span class="day-number">17</span>
-                    <span class="day-breaths">25,673숨</span>
-                </div>
-                <div class="calendar-day">
-                    <span class="day-number">16</span>
-                    <span class="day-breaths">20,145숨</span>
-                </div>
-                <div class="calendar-day">
-                    <span class="day-number">15</span>
-                    <span class="day-breaths">21,892숨</span>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- ⑤ Center Table -->
-    <section class="room-section center-table">
-        <div class="section-container">
-            <div class="section-header">
-                <h2 class="section-number">⑤</h2>
-                <h3 class="section-title">Center Table</h3>
-                <p class="section-subtitle">모든 것의 중심</p>
-            </div>
-            
-            <p class="center-message">
-                "리듬의 중심"<br>
-                모든 감정과 시간이 모이는 곳
-            </p>
-        </div>
-    </section>
     
     <script>
         // Room entrance experience
@@ -997,40 +948,37 @@
         
         function randomizeSectionPositions() {
             const sections = document.querySelectorAll('.room-section');
-            // Define non-overlapping positions with larger spacing
+            // Define 3 fixed positions: left, center, right
             const positions = [
-                { vertical: 'top', value: '18vh', horizontal: 'left', horizontalValue: '2vw', alignment: 'left-aligned' },
-                { vertical: 'top', value: '18vh', horizontal: 'right', horizontalValue: '2vw', alignment: 'right-aligned' },
-                { vertical: 'top', value: '55vh', horizontal: 'left', horizontalValue: '2vw', alignment: 'left-aligned' },
-                { vertical: 'top', value: '55vh', horizontal: 'right', horizontalValue: '2vw', alignment: 'right-aligned' },
-                { vertical: 'bottom', value: '15vh', horizontal: 'center', horizontalValue: '50%', alignment: 'centered' }
+                { vertical: 'top', value: '25vh', horizontal: 'left', horizontalValue: '10vw', alignment: 'left-aligned' },
+                { vertical: 'top', value: '25vh', horizontal: 'center', horizontalValue: '50%', alignment: 'centered' },
+                { vertical: 'top', value: '25vh', horizontal: 'right', horizontalValue: '10vw', alignment: 'right-aligned' }
             ];
             
-            // Shuffle positions randomly
-            const shuffledPositions = positions.sort(() => Math.random() - 0.5);
-            
             sections.forEach((section, index) => {
-                const pos = shuffledPositions[index % shuffledPositions.length];
-                
-                // Apply vertical position
-                section.style.top = pos.vertical === 'top' ? pos.value : 'auto';
-                section.style.bottom = pos.vertical === 'bottom' ? pos.value : 'auto';
-                
-                // Apply horizontal position and alignment
-                if (pos.horizontal === 'left') {
-                    section.style.left = pos.horizontalValue;
-                    section.style.right = 'auto';
-                    section.classList.add(pos.alignment);
-                    section.classList.remove('centered', 'right-aligned');
-                } else if (pos.horizontal === 'right') {
-                    section.style.right = pos.horizontalValue;
-                    section.style.left = 'auto';
-                    section.classList.add(pos.alignment);
-                    section.classList.remove('centered', 'left-aligned');
-                } else {
-                    section.style.left = pos.horizontalValue;
-                    section.classList.add(pos.alignment);
-                    section.classList.remove('left-aligned', 'right-aligned');
+                if (index < positions.length) {
+                    const pos = positions[index];
+                    
+                    // Apply vertical position
+                    section.style.top = pos.vertical === 'top' ? pos.value : 'auto';
+                    section.style.bottom = pos.vertical === 'bottom' ? pos.value : 'auto';
+                    
+                    // Apply horizontal position and alignment
+                    if (pos.horizontal === 'left') {
+                        section.style.left = pos.horizontalValue;
+                        section.style.right = 'auto';
+                        section.classList.add(pos.alignment);
+                        section.classList.remove('centered', 'right-aligned');
+                    } else if (pos.horizontal === 'right') {
+                        section.style.right = pos.horizontalValue;
+                        section.style.left = 'auto';
+                        section.classList.add(pos.alignment);
+                        section.classList.remove('centered', 'left-aligned');
+                    } else {
+                        section.style.left = pos.horizontalValue;
+                        section.classList.add(pos.alignment);
+                        section.classList.remove('left-aligned', 'right-aligned');
+                    }
                 }
             });
         }
