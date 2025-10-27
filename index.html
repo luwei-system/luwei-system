@@ -20,10 +20,10 @@
         
         body {
             font-family: 'Noto Sans KR', 'Inter', sans-serif;
-            background: #F5F5F0;
+            background: linear-gradient(180deg, #E8F4F8 0%, #CFE8FF 50%, #E8F4F8 100%);
             background-image: 
-                radial-gradient(circle at 20% 50%, rgba(233, 238, 242, 0.5) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(223, 245, 225, 0.3) 0%, transparent 50%);
+                radial-gradient(circle at 20% 50%, rgba(207, 232, 255, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(233, 238, 242, 0.3) 0%, transparent 50%);
             color: #111111;
             min-height: 100vh;
             overflow-x: hidden;
@@ -41,10 +41,11 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: rgba(207, 232, 255, 0.5);
+            background: rgba(143, 203, 255, 0.6);
             pointer-events: none;
             z-index: 9999;
             animation: ripple 1s ease-out forwards;
+            box-shadow: 0 0 15px rgba(143, 203, 255, 0.4);
         }
         
         @keyframes ripple {
@@ -63,9 +64,10 @@
             position: absolute;
             width: 4px;
             height: 4px;
-            background: rgba(207, 232, 255, 0.3);
+            background: rgba(143, 203, 255, 0.5);
             border-radius: 50%;
             animation: float 20s infinite;
+            box-shadow: 0 0 6px rgba(143, 203, 255, 0.3);
         }
         
         @keyframes float {
@@ -136,7 +138,7 @@
             padding: 40px 20px;
             text-align: center;
             position: relative;
-            background: radial-gradient(circle at center, rgba(207, 232, 255, 0.2) 0%, transparent 70%);
+            background: radial-gradient(circle at center, rgba(143, 203, 255, 0.15) 0%, transparent 70%);
             animation: roomGlow 8s ease-in-out infinite;
         }
         
