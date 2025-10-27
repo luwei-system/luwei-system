@@ -862,7 +862,7 @@
     <!-- Droplet Links -->
     <div class="droplets-container">
         <!-- Droplet 1: Instagram -->
-        <div class="droplet instagram-droplet" onclick="window.open('https://www.instagram.com/luweisystem/', '_blank', 'noopener,noreferrer')">
+        <div class="droplet instagram-droplet" onclick="navigateToExternal('https://www.instagram.com/luweisystem/')">
             <div class="droplet-content">
                 <div class="droplet-icon">🌙</div>
                 <div class="droplet-text">
@@ -877,7 +877,7 @@
         </div>
         
         <!-- Droplet 2: YouTube -->
-        <div class="droplet youtube-droplet" onclick="window.open('https://youtube.com/@luwei.system', '_blank', 'noopener,noreferrer')">
+        <div class="droplet youtube-droplet" onclick="navigateToExternal('https://youtube.com/@luwei.system')">
             <div class="droplet-content">
                 <div class="droplet-icon">🌊</div>
                 <div class="droplet-text">
@@ -1153,6 +1153,14 @@
     <script>
         function toggleLanguage() {
             document.body.classList.toggle('lang-english');
+        }
+        
+        function navigateToExternal(url) {
+            const a = document.createElement('a');
+            a.href = url;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            a.click();
         }
     </script>
 </body>
