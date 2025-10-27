@@ -267,11 +267,52 @@
             text-decoration: none;
             display: block;
             color: inherit;
+            position: relative;
+            min-height: 280px;
+            max-height: 280px;
+            overflow: hidden;
+        }
+        
+        .layer-card .layer-header,
+        .layer-card .layer-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .layer-card .layer-title {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
         }
         
         .layer-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .layer-card-with-image {
+            background: rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+        }
+        
+        .app-card-with-bg {
+            background-image: url('./assets/soon.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .layer-card-background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 300px;
+            background-image: url('./assets/Q.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 1;
+            z-index: 0;
         }
         
         .layer-card-link {
@@ -295,6 +336,24 @@
             font-size: 13px;
             line-height: 1.6;
             color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .layer-card .layer-content:has(.coming-soon-image) {
+            margin-top: 0;
+        }
+        
+        .coming-soon {
+            font-size: 14px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.7);
+            font-style: italic;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .layer-card .layer-header {
+            z-index: 3;
         }
         
         .layer-connection {
@@ -916,44 +975,31 @@
     <!-- Home Entrance -->
     <div class="home-entrance">
         <div class="layers-container">
-            <div class="layer-card layer-emotion">
+            <div class="layer-card layer-emotion app-card-with-bg">
                 <div class="layer-header">
                     <div class="layer-title">APP</div>
                 </div>
-                <div class="layer-content">
-                    루틴 실행, 감정 기록
-                </div>
-                <div class="layer-connection">사용자 ↔ 루웨이</div>
             </div>
             
-            <div class="layer-card layer-time">
+            <div class="layer-card layer-time layer-card-with-image">
+                <div class="layer-card-background"></div>
                 <div class="layer-header">
                     <div class="layer-title">WATCH</div>
                 </div>
-                <div class="layer-content">
-                    루웨이 타임 기록, 호흡 감지
-                </div>
-                <div class="layer-connection">루웨이 ↔ 리듬</div>
             </div>
             
-            <div class="layer-card layer-existence">
+            <div class="layer-card layer-existence layer-card-with-image">
+                <div class="layer-card-background"></div>
                 <div class="layer-header">
                     <div class="layer-title">WEB</div>
                 </div>
-                <div class="layer-content">
-                    루웨이의 방, 기억 보존
-                </div>
-                <div class="layer-connection">루웨이 ↔ 세계</div>
             </div>
             
-            <div class="layer-card layer-space">
+            <div class="layer-card layer-space layer-card-with-image">
+                <div class="layer-card-background"></div>
                 <div class="layer-header">
                     <div class="layer-title">VISION PRO</div>
                 </div>
-                <div class="layer-content">
-                    몰입형 루웨이 세계
-                </div>
-                <div class="layer-connection">루웨이 ↔ 우주</div>
             </div>
         </div>
         <div class="door-image"></div>
