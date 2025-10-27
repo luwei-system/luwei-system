@@ -101,6 +101,11 @@
             justify-content: center;
             align-items: center;
             animation: fadeOut 6s ease-out forwards;
+            pointer-events: none;
+        }
+        
+        .room-overlay.hidden {
+            display: none;
         }
         
         .room-overlay__image {
@@ -774,7 +779,8 @@
             setTimeout(function() {
                 const overlay = document.querySelector('.room-overlay');
                 if (overlay) {
-                    overlay.style.display = 'none';
+                    overlay.classList.add('hidden');
+                    overlay.remove();
                 }
             }, 6000);
             
