@@ -394,6 +394,8 @@
             filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
             position: relative;
             z-index: 1;
+            border: none;
+            outline: none;
         }
         
         .web-door-image:hover {
@@ -402,6 +404,16 @@
         
         .web-door-image:active {
             transform: scale(0.95);
+        }
+        
+        .web-door-image:focus {
+            outline: none;
+            box-shadow: none;
+        }
+        
+        .web-door-image * {
+            border: none;
+            outline: none;
         }
         
         .web-door-image.clicked {
