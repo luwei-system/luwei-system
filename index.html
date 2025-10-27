@@ -14,7 +14,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@200;300;400;500&family=Cormorant+Garamond:wght@300;400;500&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
     
     <style>
         * {
@@ -36,7 +36,7 @@
         }
         
         body {
-            font-family: 'Noto Sans KR', 'Inter', sans-serif;
+            font-family: 'Noto Sans KR', 'Cormorant Garamond', serif;
             background: url('./assets/room.jpg');
             background-size: 100% 100%;
             background-position: center;
@@ -52,6 +52,7 @@
             transition: opacity 1s ease;
             position: relative;
             animation: breatheBackground 8s ease-in-out infinite;
+            font-weight: 300;
         }
         
         body.loaded {
@@ -146,6 +147,64 @@
             66% {
                 transform: translateY(-200px) translateX(-30px);
             }
+        }
+        
+        /* Main Headline */
+        .main-headline {
+            text-align: center;
+            padding: 40px 20px 20px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .headline-title {
+            font-family: 'Noto Sans KR', 'Cormorant Garamond', serif;
+            font-size: 36px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 1);
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+            line-height: 1.6;
+            text-shadow: 0 3px 30px rgba(0, 0, 0, 0.8), 0 1px 10px rgba(0, 0, 0, 0.6);
+            word-wrap: break-word;
+            word-break: keep-all;
+            overflow-wrap: break-word;
+            padding: 0 20px;
+        }
+        
+        .headline-subtitle {
+            font-family: 'Noto Sans KR', 'Playfair Display', serif;
+            font-size: 16px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.95);
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            font-style: italic;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.7);
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            padding: 0 20px;
+        }
+        
+        .headline-description {
+            font-family: 'Noto Sans KR', 'Cormorant Garamond', serif;
+            font-size: 14px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.95);
+            margin-top: 20px;
+            line-height: 1.8;
+            letter-spacing: 1px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            word-wrap: break-word;
+            word-break: keep-all;
+            overflow-wrap: break-word;
         }
         
         /* Home Page Entrance */
@@ -528,10 +587,12 @@
         }
         
         .layer-title {
+            font-family: 'Noto Sans KR', 'Playfair Display', serif;
             font-size: 24px;
-            font-weight: 600;
+            font-weight: 300;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 4px;
+            font-style: italic;
         }
         
         .layer-content {
@@ -679,6 +740,25 @@
         
         /* Mobile */
         @media (max-width: 768px) {
+            .main-headline {
+                padding: 30px 15px 15px 15px;
+            }
+            
+            .headline-title {
+                font-size: 24px;
+                letter-spacing: 1px;
+            }
+            
+            .headline-subtitle {
+                font-size: 14px;
+                letter-spacing: 3px;
+            }
+            
+            .headline-description {
+                font-size: 12px;
+                padding: 0 10px;
+            }
+            
             .home-entrance {
                 background-size: 100% 100%;
             }
@@ -727,6 +807,26 @@
         
         /* Small Mobile */
         @media (max-width: 480px) {
+            .main-headline {
+                padding: 20px 10px 10px 10px;
+            }
+            
+            .headline-title {
+                font-size: 20px;
+                letter-spacing: 0.5px;
+            }
+            
+            .headline-subtitle {
+                font-size: 12px;
+                letter-spacing: 2px;
+            }
+            
+            .headline-description {
+                font-size: 11px;
+                padding: 0 10px;
+                margin-top: 15px;
+            }
+            
             .home-entrance {
                 background-size: 100% 100%;
             }
@@ -1432,6 +1532,22 @@
 <body>
     <!-- Home Entrance -->
     <div class="home-entrance">
+        <!-- Main Headline -->
+        <div class="main-headline">
+            <h1 class="headline-title">
+                <span class="lang-kr">당신의 중심으로 돌아가는 세계</span>
+                <span class="lang-en">Return to Your Center</span>
+            </h1>
+            <p class="headline-subtitle">
+                <span class="lang-kr">LUWEI SYSTEM</span>
+                <span class="lang-en">LUWEI SYSTEM</span>
+            </p>
+            <p class="headline-description">
+                <span class="lang-kr">기기나 조건에 구애받지 않고, 당신이 가진 어떤 도구로든 이 순간이 시작됩니다.</span>
+                <span class="lang-en">Start this moment with whatever tool you have, regardless of device or conditions.</span>
+            </p>
+        </div>
+        
         <div class="layers-container">
             <!-- WEB Card with Door Button -->
             <div class="layer-card layer-existence web-entrance-card room-bg-card">

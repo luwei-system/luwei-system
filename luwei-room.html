@@ -14,7 +14,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@200;300;400;500&family=Cormorant+Garamond:wght@300;400;500&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
     
     <style>
         * {
@@ -30,7 +30,7 @@
         }
         
         body {
-            font-family: 'Noto Sans KR', 'Inter', sans-serif;
+            font-family: 'Noto Sans KR', 'Cormorant Garamond', serif;
             background: url('./assets/room.jpg');
             background-size: 100% 100%;
             background-position: center;
@@ -44,6 +44,7 @@
             transition: opacity 3s ease;
             position: relative;
             animation: breatheBackground 8s ease-in-out infinite;
+            font-weight: 300;
         }
         
         body.loaded {
@@ -860,6 +861,18 @@
     </section>
     
     <!-- Droplet Links -->
+    <!-- Room Reminder -->
+    <div class="room-reminder">
+        <div class="room-reminder-text">
+            <span class="lang-kr">당신은 이 세계의 중심입니다</span>
+            <span class="lang-en">You are the center of this world</span>
+        </div>
+        <div class="room-reminder-subtitle">
+            <span class="lang-kr">세상의 시간이 아닌 당신의 시간이 흐릅니다</span>
+            <span class="lang-en">Your time flows, not the world's time</span>
+        </div>
+    </div>
+    
     <div class="droplets-container">
         <!-- Droplet 1: Instagram -->
         <div class="droplet instagram-droplet" onclick="navigateToExternal('https://www.instagram.com/luweisystem/')">
@@ -917,6 +930,44 @@
     </script>
     
     <style>
+        .room-reminder {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 5;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.9);
+            pointer-events: none;
+            animation: fadeInOut 8s ease-in-out infinite;
+        }
+        
+        .room-reminder-text {
+            font-family: 'Noto Sans KR', 'Cormorant Garamond', serif;
+            font-size: 24px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            line-height: 1.8;
+            text-shadow: 0 3px 30px rgba(0, 0, 0, 0.8), 0 1px 10px rgba(0, 0, 0, 0.6);
+            margin-bottom: 15px;
+            color: rgba(255, 255, 255, 1);
+        }
+        
+        .room-reminder-subtitle {
+            font-family: 'Noto Sans KR', 'Playfair Display', serif;
+            font-size: 16px;
+            font-weight: 400;
+            font-style: italic;
+            letter-spacing: 3px;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.7);
+            color: rgba(255, 255, 255, 1);
+        }
+        
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
         .droplets-container {
             position: relative;
             min-height: 100vh;
@@ -1006,16 +1057,22 @@
         }
         
         .droplet-text {
+            font-family: 'Noto Sans KR', 'Cormorant Garamond', serif;
             font-size: 16px;
-            font-weight: 500;
+            font-weight: 300;
             margin-bottom: 4px;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
         }
         
         .droplet-desc {
+            font-family: 'Noto Sans KR', 'Playfair Display', serif;
             font-size: 12px;
-            opacity: 0.8;
+            font-weight: 300;
+            opacity: 0.9;
             text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+            font-style: italic;
+            letter-spacing: 0.5px;
         }
         
         @keyframes float {
@@ -1063,6 +1120,14 @@
         }
         
         @media (max-width: 768px) {
+            .room-reminder-text {
+                font-size: 18px;
+            }
+            
+            .room-reminder-subtitle {
+                font-size: 13px;
+            }
+            
             .home-button {
                 width: 50px;
                 height: 50px;
@@ -1126,6 +1191,14 @@
         }
         
         @media (max-width: 480px) {
+            .room-reminder-text {
+                font-size: 16px;
+            }
+            
+            .room-reminder-subtitle {
+                font-size: 12px;
+            }
+            
             .home-button {
                 width: 45px;
                 height: 45px;
