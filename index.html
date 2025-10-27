@@ -256,7 +256,7 @@
             max-width: 900px;
             width: 90%;
             margin: 40px auto;
-            z-index: 10001;
+            z-index: 9999;
         }
         
         @keyframes fadeInUpCard {
@@ -420,7 +420,7 @@
         
         .room-bg-card.clicked {
             animation: roomCardExpand 4s ease-out forwards;
-            z-index: 100001;
+            z-index: 99999;
         }
         
         @keyframes roomCardExpand {
@@ -621,6 +621,29 @@
                 min-height: 240px;
                 max-height: 240px;
             }
+            
+            .home-welcome {
+                font-size: 16px;
+            }
+            
+            .footer {
+                height: 55px;
+            }
+            
+            .language-switcher {
+                width: 48px;
+                height: 38px;
+                font-size: 13px;
+            }
+            
+            .home-button {
+                width: 55px;
+                height: 55px;
+            }
+            
+            .layer-title {
+                font-size: 22px;
+            }
         }
         
         /* Mobile */
@@ -629,7 +652,8 @@
                 grid-template-columns: 1fr;
                 width: 95%;
                 gap: 12px;
-                margin: 20px auto;
+                margin: 80px auto 120px auto;
+                padding-bottom: 60px;
             }
             
             .layer-card {
@@ -654,19 +678,47 @@
                 top: 10px;
                 right: 10px;
             }
+            
+            .layer-title {
+                font-size: 20px;
+                letter-spacing: 1.5px;
+            }
+            
+            .home-welcome {
+                font-size: 14px;
+                margin-top: 12px;
+            }
         }
         
         /* Small Mobile */
         @media (max-width: 480px) {
+            .home-button {
+                width: 50px;
+                height: 50px;
+                top: 8px;
+                right: 8px;
+            }
+            
             .layers-container {
                 gap: 10px;
-                margin: 15px auto;
+                margin: 70px auto 100px auto;
+                padding-bottom: 50px;
             }
             
             .layer-card {
                 min-height: 180px;
                 max-height: 180px;
                 padding: 12px;
+            }
+            
+            .layer-title {
+                font-size: 18px;
+                letter-spacing: 1px;
+            }
+            
+            .home-welcome {
+                font-size: 12px;
+                margin-top: 8px;
             }
             
             .footer {
@@ -679,6 +731,7 @@
                 font-size: 11px;
             }
         }
+        
         
         @keyframes fadeInUp {
             from {
@@ -732,7 +785,7 @@
             left: 10px;
             width: 50px;
             height: 50px;
-            z-index: 1000;
+            z-index: 10000;
             cursor: pointer;
             border-radius: 8px;
             overflow: hidden;
@@ -1340,24 +1393,24 @@
             <div class="layer-card layer-existence web-entrance-card room-bg-card">
                 <div class="layer-header">
                     <div class="layer-title">WEB</div>
-                </div>
+                            </div>
                 <div class="web-door-container">
                     <div class="web-door-image"></div>
                     <div class="home-welcome">
                         <span class="lang-kr">누르면 방에 들어갑니다</span>
                         <span class="lang-en">Click to enter the room</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
+                
             <div class="layer-card layer-emotion app-card-with-bg">
                 <div class="layer-header">
                     <div class="layer-title">
                         <span class="lang-kr">앱</span>
                         <span class="lang-en">APP</span>
                     </div>
+                    </div>
                 </div>
-            </div>
                 
             <div class="layer-card layer-time layer-card-with-image">
                 <div class="layer-card-background"></div>
@@ -1366,8 +1419,8 @@
                         <span class="lang-kr">시계</span>
                         <span class="lang-en">WATCH</span>
                     </div>
+                    </div>
                 </div>
-            </div>
                 
             <div class="layer-card layer-space layer-card-with-image">
                 <div class="layer-card-background"></div>
@@ -1385,7 +1438,7 @@
                     <source src="./assets/상점.mp4" type="video/mp4">
                 </video>
             </div>
-            </div>
+        </div>
                 
     <!-- Home Button -->
     <div class="home-button" onclick="location.reload()">
@@ -1397,7 +1450,7 @@
         <div class="language-switcher" id="langSwitcher">
             <span class="lang-kr">한</span>
             <span class="lang-en">EN</span>
-        </div>
+                    </div>
     </footer>
                 
     <!-- Room Entrance -->
@@ -1424,14 +1477,14 @@
                     <div class="emotion-wave" style="--wave-color: #DFF5E1;"></div>
                     <p class="emotion-text">존재를 감각으로 환원</p>
                     <span class="emotion-time">호흡 · 소리 · 빛 · 진동</span>
-                    </div>
+            </div>
                 <div class="emotion-item">
                     <div class="emotion-wave" style="--wave-color: #FFD7E5;"></div>
                     <p class="emotion-text">나는 나의 존재를 체험한다</p>
                     <span class="emotion-time">2026년 출시</span>
-                    </div>
-            </div>
         </div>
+                </div>
+            </div>
     </section>
 
     <!-- ② Existence Archive -->
@@ -1441,7 +1494,7 @@
                 <h2 class="section-number">②</h2>
                 <h3 class="section-title">존재의 기록화</h3>
                 <p class="section-subtitle">EXISTENCE ARCHIVE</p>
-            </div>
+                    </div>
             
             <div class="routine-cards">
                 <div class="routine-card">
