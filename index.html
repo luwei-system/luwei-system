@@ -85,6 +85,15 @@
             }
         }
         
+        @keyframes floatSlow {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
         /* Cursor wave effect */
         .cursor-wave {
             position: fixed;
@@ -254,7 +263,7 @@
             text-align: center;
             position: relative;
             background: transparent;
-            animation: float 6s ease-in-out infinite;
+            animation: float 12s ease-in-out infinite;
             z-index: 1;
         }
         
@@ -455,11 +464,11 @@
         .room-section.visible {
             opacity: 1;
             transform: translateY(0);
-            animation: breathe 5s ease-in-out infinite, float 8s ease-in-out infinite;
+            animation: breathe 5s ease-in-out infinite, float 16s ease-in-out infinite;
         }
         
         .room-section:nth-child(even).visible {
-            animation: breathe 5s ease-in-out infinite, float 7s ease-in-out infinite;
+            animation: breathe 5s ease-in-out infinite, float 14s ease-in-out infinite;
             animation-delay: 0s, 0.5s;
         }
         
