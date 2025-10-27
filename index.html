@@ -355,19 +355,16 @@
         }
         
         .room-bg-card {
-            background-image: none;
-            background: rgba(255, 255, 255, 0);
-            backdrop-filter: none;
+            background-image: url('./assets/door.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             overflow: hidden;
             border-radius: 20px;
         }
         
         .room-bg-card::before {
             display: none;
-        }
-        
-        .room-bg-card:hover {
-            background: rgba(255, 255, 255, 0.1);
         }
         
         .room-bg-card .layer-header,
@@ -1440,11 +1437,8 @@
             <div class="layer-card layer-existence web-entrance-card room-bg-card">
                 <div class="layer-header">
                     <div class="layer-title">WEB</div>
-                            </div>
-                <div class="web-door-container">
-                    <div class="web-door-image"></div>
-                    </div>
                 </div>
+            </div>
                 
             <div class="layer-card layer-emotion app-card-with-bg">
                 <div class="layer-header">
@@ -1587,7 +1581,6 @@
             
             const homeEntrance = document.querySelector('.home-entrance');
             const doorImage = document.querySelector('.door-image');
-            const webDoorImage = document.querySelector('.web-door-image');
             
             // Room entrance function - Navigate to entrance page
             function enterRoom() {
@@ -1598,11 +1591,6 @@
             // Door click handler
             if (doorImage) {
                 doorImage.addEventListener('click', enterRoom);
-            }
-            
-            // WEB door click handler
-            if (webDoorImage) {
-                webDoorImage.addEventListener('click', enterRoom);
             }
             
             // WEB card click handler
