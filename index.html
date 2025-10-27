@@ -443,8 +443,8 @@
             backdrop-filter: blur(4px);
             position: absolute;
             z-index: 2;
-            width: 90vw;
-            max-width: 600px;
+            width: 320px;
+            max-width: 90%;
             min-height: auto;
             max-height: none;
             overflow: visible;
@@ -453,6 +453,19 @@
             pointer-events: auto;
             left: 50% !important;
             transform: translateX(-50%);
+        }
+        
+        @media (max-width: 768px) {
+            .room-section {
+                width: 90% !important;
+                max-width: 90% !important;
+            }
+        }
+        
+        @media (min-width: 1200px) {
+            .room-section {
+                width: 400px !important;
+            }
         }
         
         /* Positioning for sections - will be randomized by JavaScript */
@@ -734,8 +747,6 @@
         
         @media (max-width: 768px) {
             .room-section {
-                width: 90vw !important;
-                max-width: 90vw !important;
                 padding: 15px 12px !important;
             }
             
@@ -919,9 +930,9 @@
             const sections = document.querySelectorAll('.room-section');
             // Define 3 fixed positions: left, center, right
             const positions = [
-                { vertical: 'top', value: '30vh', horizontal: 'center', horizontalValue: '50%', alignment: 'centered' },
-                { vertical: 'top', value: '100vh', horizontal: 'center', horizontalValue: '50%', alignment: 'centered' },
-                { vertical: 'top', value: '170vh', horizontal: 'center', horizontalValue: '50%', alignment: 'centered' }
+                { vertical: 'top', value: '120px', horizontal: 'center', horizontalValue: '50%', alignment: 'centered' },
+                { vertical: 'top', value: '420px', horizontal: 'center', horizontalValue: '50%', alignment: 'centered' },
+                { vertical: 'top', value: '720px', horizontal: 'center', horizontalValue: '50%', alignment: 'centered' }
             ];
             
             sections.forEach((section, index) => {
