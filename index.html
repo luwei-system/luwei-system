@@ -94,7 +94,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            animation: fadeOut 3s ease-out forwards;
+            animation: fadeOut 6s ease-out forwards;
         }
         
         .room-overlay__image {
@@ -131,7 +131,7 @@
             0% {
                 opacity: 1;
             }
-            70% {
+            80% {
                 opacity: 1;
             }
             100% {
@@ -748,7 +748,7 @@
                 if (overlay) {
                     overlay.style.display = 'none';
                 }
-            }, 3000);
+            }, 6000);
             
             // Smooth scroll to entrance message
             setTimeout(function() {
@@ -756,7 +756,7 @@
                     top: 0,
                     behavior: 'smooth'
                 });
-            }, 3200);
+            }, 6200);
             
             // Add floating particles
             createParticles();
