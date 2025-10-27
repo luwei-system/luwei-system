@@ -26,7 +26,7 @@
         body {
             font-family: 'Noto Sans KR', 'Inter', sans-serif;
             background: url('./assets/room.jpg');
-            background-size: cover;
+            background-size: 120% 120%;
             background-position: center;
             background-attachment: fixed;
             color: #111111;
@@ -35,6 +35,20 @@
             opacity: 0;
             transition: opacity 1s ease;
             position: relative;
+            animation: breatheBackground 8s ease-in-out infinite;
+        }
+        
+        body.loaded {
+            opacity: 1;
+        }
+        
+        @keyframes breatheBackground {
+            0%, 100% {
+                background-size: 120% 120%;
+            }
+            50% {
+                background-size: 110% 110%;
+            }
         }
         
         body::before {
@@ -50,11 +64,7 @@
         }
         
         body.loaded.breath-active {
-            animation: breathe 4s ease-in-out infinite;
-        }
-        
-        body.loaded {
-            opacity: 1;
+            animation: breatheBackground 8s ease-in-out infinite, breathe 4s ease-in-out infinite;
         }
         
         @keyframes floatBackground {
