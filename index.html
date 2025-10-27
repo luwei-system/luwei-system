@@ -261,7 +261,7 @@
             padding: 15px 12px;
             text-align: center;
             position: fixed;
-            bottom: 5%;
+            top: 2%;
             left: 50%;
             transform: translateX(-50%);
             background: rgba(255, 255, 255, 0.3);
@@ -444,11 +444,27 @@
             width: 200px;
             max-width: 200px;
             min-height: auto;
-            max-height: none;
-            overflow: visible;
+            max-height: 400px;
+            overflow-y: auto;
+            overflow-x: hidden;
             border-radius: 12px;
             box-sizing: border-box;
             pointer-events: auto;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(17, 17, 17, 0.2) transparent;
+        }
+        
+        .room-section::-webkit-scrollbar {
+            width: 3px;
+        }
+        
+        .room-section::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        .room-section::-webkit-scrollbar-thumb {
+            background: rgba(17, 17, 17, 0.2);
+            border-radius: 2px;
         }
         
         /* Positioning for sections - will be randomized by JavaScript */
@@ -950,9 +966,9 @@
             const sections = document.querySelectorAll('.room-section');
             // Define 3 fixed positions: left, center, right
             const positions = [
-                { vertical: 'top', value: '25vh', horizontal: 'left', horizontalValue: '10vw', alignment: 'left-aligned' },
-                { vertical: 'top', value: '25vh', horizontal: 'center', horizontalValue: '50%', alignment: 'centered' },
-                { vertical: 'top', value: '25vh', horizontal: 'right', horizontalValue: '10vw', alignment: 'right-aligned' }
+                { vertical: 'top', value: '15vh', horizontal: 'left', horizontalValue: '8vw', alignment: 'left-aligned' },
+                { vertical: 'top', value: '15vh', horizontal: 'center', horizontalValue: '50%', alignment: 'centered' },
+                { vertical: 'top', value: '15vh', horizontal: 'right', horizontalValue: '8vw', alignment: 'right-aligned' }
             ];
             
             sections.forEach((section, index) => {
