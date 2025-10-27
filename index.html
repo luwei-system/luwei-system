@@ -443,14 +443,16 @@
             backdrop-filter: blur(4px);
             position: absolute;
             z-index: 2;
-            width: 210px;
-            max-width: 210px;
+            width: 90vw;
+            max-width: 600px;
             min-height: auto;
             max-height: none;
             overflow: visible;
             border-radius: 16px;
             box-sizing: border-box;
             pointer-events: auto;
+            left: 50% !important;
+            transform: translateX(-50%);
         }
         
         /* Positioning for sections - will be randomized by JavaScript */
@@ -490,34 +492,13 @@
         
         .room-section.visible {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateX(-50%);
             animation: breathe 8s ease-in-out infinite;
-        }
-        
-        .room-section.visible.centered {
-            animation: breathe 8s ease-in-out infinite;
-            transform: translateX(-50%) !important;
-        }
-        
-        .room-section.visible.left-aligned,
-        .room-section.visible.right-aligned {
-            animation: breathe 8s ease-in-out infinite;
-            transform: translateY(0) !important;
         }
         
         .room-section:nth-child(even).visible {
             animation: breathe 9s ease-in-out infinite;
-        }
-        
-        .room-section:nth-child(even).visible.centered {
-            animation: breathe 9s ease-in-out infinite;
-            transform: translateX(-50%) !important;
-        }
-        
-        .room-section:nth-child(even).visible.left-aligned,
-        .room-section:nth-child(even).visible.right-aligned {
-            animation: breathe 9s ease-in-out infinite;
-            transform: translateY(0) !important;
+            transform: translateX(-50%);
         }
         
         .section-container {
@@ -756,14 +737,6 @@
                 width: 90vw !important;
                 max-width: 90vw !important;
                 padding: 15px 12px !important;
-                left: 50% !important;
-                transform: translateX(-50%) !important;
-                right: auto !important;
-            }
-            
-            .room-section.left-aligned,
-            .room-section.right-aligned {
-                transform: translateX(-50%) !important;
             }
             
             .section-title {
@@ -791,18 +764,6 @@
             .calendar-days {
                 flex-direction: column;
                 align-items: center;
-            }
-            
-            .room-section:nth-of-type(1) { 
-                top: 15vh !important;
-            }
-            
-            .room-section:nth-of-type(2) { 
-                top: 35vh !important;
-            }
-            
-            .room-section:nth-of-type(3) { 
-                top: 55vh !important;
             }
         }
     </style>
@@ -958,9 +919,9 @@
             const sections = document.querySelectorAll('.room-section');
             // Define 3 fixed positions: left, center, right
             const positions = [
-                { vertical: 'top', value: '25vh', horizontal: 'left', horizontalValue: '3vw', alignment: 'left-aligned' },
-                { vertical: 'top', value: '45vh', horizontal: 'center', horizontalValue: '50%', alignment: 'centered' },
-                { vertical: 'top', value: '25vh', horizontal: 'right', horizontalValue: '3vw', alignment: 'right-aligned' }
+                { vertical: 'top', value: '20vh', horizontal: 'center', horizontalValue: '50%', alignment: 'centered' },
+                { vertical: 'top', value: '55vh', horizontal: 'center', horizontalValue: '50%', alignment: 'centered' },
+                { vertical: 'top', value: '90vh', horizontal: 'center', horizontalValue: '50%', alignment: 'centered' }
             ];
             
             sections.forEach((section, index) => {
