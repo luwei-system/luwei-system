@@ -1156,11 +1156,17 @@
         }
         
         function navigateToExternal(url) {
-            const a = document.createElement('a');
-            a.href = url;
-            a.target = '_blank';
-            a.rel = 'noopener noreferrer';
-            a.click();
+            // Create a hidden form and submit it to mask the URL
+            const form = document.createElement('form');
+            form.method = 'GET';
+            form.action = url;
+            form.target = '_blank';
+            document.body.appendChild(form);
+            form.submit();
+            document.body.removeChild(form);
+            
+            // Also update the current URL to mask internal structure
+            history.replaceState(null, '', window.location.pathname);
         }
     </script>
 </body>
