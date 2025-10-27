@@ -916,15 +916,75 @@
             document.body.classList.add('loaded');
             document.body.classList.add('breath-active');
             
+            // Prevent background scroll on touch
+            document.body.style.touchAction = 'none';
+            document.addEventListener('touchmove', function(e) {
+                // Only prevent default on background, not on interactive elements
+                if (!e.target.closest('.droplet') && !e.target.closest('.home-button') 
+                    && !e.target.closest('.back-button') && !e.target.closest('.tag-color-btn')
+                    && !e.target.closest('.music-control-room') && !e.target.closest('.footer')
+                    && !e.target.closest('.language-switcher') && !e.target.closest('.room-reminder')) {
+                    e.preventDefault();
+                }
+            }, { passive: false });
+            
             // Add cursor ripple effect
+            let lastRippleTime = 0;
             document.addEventListener('mousemove', function(e) {
-                const ripple = document.createElement('div');
-                ripple.className = 'cursor-ripple';
-                ripple.style.left = e.clientX + 'px';
-                ripple.style.top = e.clientY + 'px';
-                document.body.appendChild(ripple);
-                
-                setTimeout(() => ripple.remove(), 1000);
+                const now = Date.now();
+                if (now - lastRippleTime > 100) { // Throttle to create ripple every 100ms
+                    const ripple = document.createElement('div');
+                    ripple.className = 'cursor-ripple';
+                    ripple.style.left = e.clientX + 'px';
+                    ripple.style.top = e.clientY + 'px';
+                    document.body.appendChild(ripple);
+                    
+                    setTimeout(() => ripple.remove(), 1000);
+                    lastRippleTime = now;
+                }
+            });
+            
+            // Make all droplets bounce when background is clicked
+            const droplets = document.querySelectorAll('.droplet');
+            const tagBtn = document.querySelectorAll('.tag-color-btn');
+            const musicBtn = document.querySelectorAll('.music-control-room');
+            
+            document.addEventListener('click', function(e) {
+                // Only trigger if clicking on the background (not on interactive elements)
+                if (!e.target.closest('.droplet') && !e.target.closest('.home-button') 
+                    && !e.target.closest('.back-button') && !e.target.closest('.tag-color-btn')
+                    && !e.target.closest('.music-control-room') && !e.target.closest('.footer')
+                    && !e.target.closest('.language-switcher') && !e.target.closest('.room-reminder')) {
+                    // Apply bounce animation to all droplets
+                    droplets.forEach((droplet, index) => {
+                        setTimeout(() => {
+                            droplet.classList.add('bounce');
+                            setTimeout(() => {
+                                droplet.classList.remove('bounce');
+                            }, 500);
+                        }, index * 50);
+                    });
+                    
+                    // Apply bounce animation to tag button
+                    if (tagBtn.length > 0) {
+                        setTimeout(() => {
+                            tagBtn[0].classList.add('bounce');
+                            setTimeout(() => {
+                                tagBtn[0].classList.remove('bounce');
+                            }, 500);
+                        }, 0);
+                    }
+                    
+                    // Apply bounce animation to music button
+                    if (musicBtn.length > 0) {
+                        setTimeout(() => {
+                            musicBtn[0].classList.add('bounce');
+                            setTimeout(() => {
+                                musicBtn[0].classList.remove('bounce');
+                            }, 500);
+                        }, 0);
+                    }
+                }
             });
         });
     </script>
@@ -1007,6 +1067,24 @@
             transform: scale(1.2);
             box-shadow: 0 12px 48px rgba(207, 232, 255, 0.4);
             border-color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .droplet.bounce {
+            animation: bounceUp 0.5s ease;
+        }
+        
+        .tag-color-btn.bounce,
+        .music-control-room.bounce {
+            animation: bounceUp 0.5s ease;
+        }
+        
+        @keyframes bounceUp {
+            0%, 100% { 
+                transform: translateY(0) scale(1);
+            }
+            50% { 
+                transform: translateY(-30px) scale(1.2);
+            }
         }
         
         /* Instagram droplet */
