@@ -1593,15 +1593,15 @@
                 <span class="lang-kr">당신이 가진 어떤 도구로든 시작할 수 있습니다.</span>
                 <span class="lang-en">You can start with any tool you have.</span>
             </p>
-        </div>
+                            </div>
         
         <div class="layers-container">
             <!-- WEB Card with Door Button -->
             <div class="layer-card layer-existence web-entrance-card room-bg-card">
                 <div class="layer-header">
                     <div class="layer-title">WEB</div>
+                    </div>
                 </div>
-            </div>
                 
             <div class="layer-card layer-emotion app-card-with-bg">
                 <div class="layer-header">
@@ -1632,18 +1632,20 @@
                 </div>
             </div>
             
-            <!-- Gumroad Card -->
-            <div class="layer-card gumroad-card" onclick="window.open('https://luweisystem.gumroad.com/', '_blank', 'noopener,noreferrer')">
-                <video class="gumroad-card-video" autoplay loop muted playsinline>
-                    <source src="./assets/상점.mp4" type="video/mp4">
-                </video>
+            <!-- Books Card -->
+            <div class="layer-card gumroad-card" style="background-image: url('./assets/책.png'); background-size: 150%; background-position: center; background-repeat: no-repeat;">
+                <div class="layer-header" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 3; display: flex; flex-direction: column; gap: 10px; align-items: center;">
+                    <div class="layer-title" style="background: rgba(255, 255, 255, 0.9); padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); cursor: pointer; white-space: nowrap; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(255,255,255,1)'; this.style.transform='scale(1.05)';" onmouseout="this.style.background='rgba(255,255,255,0.9)'; this.style.transform='scale(1)';" onclick="window.open('https://product.kyobobook.co.kr/detail/S000217121886', '_blank', 'noopener,noreferrer'); event.stopPropagation();"><span class="lang-kr">교보문고</span><span class="lang-en">Kyobo</span></div>
+                    <div class="layer-title" style="background: rgba(255, 255, 255, 0.9); padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); cursor: pointer; white-space: nowrap; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(255,255,255,1)'; this.style.transform='scale(1.05)';" onmouseout="this.style.background='rgba(255,255,255,0.9)'; this.style.transform='scale(1)';" onclick="window.open('https://www.yes24.com/product/goods/147732376', '_blank', 'noopener,noreferrer'); event.stopPropagation();"><span class="lang-kr">YES24</span><span class="lang-en">YES24</span></div>
+                    <div class="layer-title" style="background: rgba(255, 255, 255, 0.9); padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); cursor: pointer; white-space: nowrap; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(255,255,255,1)'; this.style.transform='scale(1.05)';" onmouseout="this.style.background='rgba(255,255,255,0.9)'; this.style.transform='scale(1)';" onclick="window.open('https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=367266664', '_blank', 'noopener,noreferrer'); event.stopPropagation();"><span class="lang-kr">알라딘</span><span class="lang-en">Aladin</span></div>
+                </div>
             </div>
         </div>
                 
     <!-- Home Button -->
     <div class="home-button" onclick="location.reload()">
         <img src="./assets/home.jpg" alt="Home" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
-        </div>
+                    </div>
     
     <!-- Footer with Language Switcher -->
     <footer class="footer">
