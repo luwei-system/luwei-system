@@ -2,7 +2,7 @@
   'use strict';
   const FALLBACK = {
     url: 'https://ngyjzclndgffwzhoukuj.supabase.co',
-    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5neWp6Y2xuZGdmZnd6aG91a3VqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE2Mzc3MDksImV4cCI6MjA3NzIxMzcwOX0.z2HvEUaVjiJ2HhfC8Qxf1Ka0Acpc3DtW4IM8dLYV_o0'
+    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5neWp6Y2xuZGdmZnd6aG91a3VqIiwicm9zZSI6ImFub24iLCJpYXQiOjE3NjE2Mzc3MDksImV4cCI6MjA3NzIxMzcwOX0.z2HvEUaVjiJ2HhfC8Qxf1Ka0Acpc3DtW4IM8dLYV_o0'
   };
   const cfg = () => {
     const fromUtil = (window.luweiSupabase && window.luweiSupabase.getConfig && window.luweiSupabase.getConfig()) || {};
@@ -86,12 +86,30 @@
     setupAuthStateListener();
   }
 
-  (function handleCallback(){
+  (async function handleCallback(){
+    // v2 OAuth code flow: code/state in querystring
+    const qs = new URLSearchParams(location.search);
+    const hasCode = qs.get('code') && qs.get('state');
+    if (hasCode){
+      const client = ensureClient();
+      if (client){
+        try{
+          const { data, error } = await client.auth.exchangeCodeForSession({ currentUrl: location.href });
+          console.log('[luwei-auth] exchangeCodeForSession', !!(data && data.session), error);
+          if (data && data.session){
+            localStorage.setItem('luwei_auth', JSON.stringify({ user: data.session.user, access_token: data.session.access_token }));
+          }
+          // clean url
+          history.replaceState({}, '', location.origin + location.pathname);
+        }catch(e){ console.warn('[luwei-auth] exchange failed', e); }
+      }
+    }
+
+    // legacy hash flow fallback
     const h = location.hash.match(/[#&]access_token=([^&]+)/);
     if (h){
       console.log('[luwei-auth] OAuth callback detected');
       location.hash = '';
-      // Retry if config not ready yet
       let tries = 0; const maxTries = 10; const t = 200;
       const attempt = ()=>{
         tries++;
