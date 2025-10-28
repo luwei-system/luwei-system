@@ -11,32 +11,6 @@
     return sp;
   }
 
-  async function signUpEmail(email, password){
-    const { url, anonKey } = cfg();
-    if(!url || !anonKey) throw new Error('supabase config missing');
-    const res = await fetch(url.replace(/\/$/, '') + '/auth/v1/signup', {
-      method:'POST',
-      headers:{ 'content-type':'application/json', 'apikey': anonKey },
-      body: JSON.stringify({ email, password })
-    });
-    return await res.json();
-  }
-
-  async function signInEmail(email, password){
-    const { url, anonKey } = cfg();
-    if(!url || !anonKey) throw new Error('supabase config missing');
-    const res = await fetch(url.replace(/\/$/, '') + '/auth/v1/token?grant_type=password', {
-      method:'POST',
-      headers:{ 'content-type':'application/json', 'apikey': anonKey },
-      body: JSON.stringify({ email, password })
-    });
-    const json = await res.json();
-    if(json && json.user && json.access_token){
-      localStorage.setItem('luwei_auth', JSON.stringify(json));
-    }
-    return json;
-  }
-
   function getSession(){
     try{ return JSON.parse(localStorage.getItem('luwei_auth')||'null'); }catch(_){ return null; }
   }
@@ -51,10 +25,7 @@
     try {
       const { data, error } = await client.auth.signInWithOAuth({ 
         provider, 
-        options:{ 
-          redirectTo,
-          skipBrowserRedirect: false
-        } 
+        options:{ redirectTo, skipBrowserRedirect: false } 
       });
       console.log('[luwei-auth] OAuth response', { data, error });
       if (error) throw error;
@@ -69,47 +40,35 @@
     const client = ensureClient();
     if(!client) return null;
     const { data, error } = await client.auth.getSession();
-    if (error) {
-      console.warn('[luwei-auth] refresh error', error);
-      return null;
-    }
+    if (error) { console.warn('[luwei-auth] refresh error', error); return null; }
     if (data && data.session){ 
-      localStorage.setItem('luwei_auth', JSON.stringify({ 
-        user: data.session.user, 
-        access_token: data.session.access_token 
-      }));
+      localStorage.setItem('luwei_auth', JSON.stringify({ user: data.session.user, access_token: data.session.access_token }));
       console.log('[luwei-auth] session restored');
     }
     return data && data.session ? data.session : null;
   }
-  
-  // Persist session on auth state change
+
   function setupAuthStateListener(){
     const client = ensureClient();
     if (!client) return;
     client.auth.onAuthStateChange((event, session) => {
       console.log('[luwei-auth] state change', event, !!session);
       if (event === 'SIGNED_IN' && session){
-        localStorage.setItem('luwei_auth', JSON.stringify({ 
-          user: session.user, 
-          access_token: session.access_token 
-        }));
+        localStorage.setItem('luwei_auth', JSON.stringify({ user: session.user, access_token: session.access_token }));
       } else if (event === 'SIGNED_OUT'){
         localStorage.removeItem('luwei_auth');
       }
     });
   }
 
-  window.luweiAuth = { signUpEmail, signInEmail, getSession, signOut, oauthSignIn, refreshSession, setupAuthStateListener };
-  
-  // Initialize auth state listener
+  window.luweiAuth = { getSession, signOut, oauthSignIn, refreshSession, setupAuthStateListener };
+
   if (document.readyState === 'loading'){
     document.addEventListener('DOMContentLoaded', () => setupAuthStateListener());
   } else {
     setupAuthStateListener();
   }
-  
-  // Check for OAuth callback hash and auto-restore session
+
   (function handleCallback(){
     const h = location.hash.match(/[#&]access_token=([^&]+)/);
     if (h){
@@ -125,5 +84,3 @@
     }
   })();
 })();
-
-
