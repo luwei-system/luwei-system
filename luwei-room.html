@@ -913,7 +913,7 @@
         <a href="hourglass.html" class="droplet hourglass-droplet"></a>
         
         <!-- Music Toggle Button -->
-        <div class="music-toggle-room" onclick="toggleMusicRoom()" style="position: fixed; width: 80px; height: 80px; border-radius: 50%; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border: 3px solid rgba(255, 255, 255, 0.8); cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 99999 !important; transition: all 0.3s ease; animation: floatAround 60s ease-in-out infinite; box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);">
+        <div class="music-toggle-room" id="musicToggleRoom" onclick="toggleMusicRoom()" style="position: fixed; width: 80px; height: 80px; border-radius: 50%; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border: 3px solid rgba(255, 255, 255, 0.8); cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 99999 !important; transition: all 0.3s ease; animation: floatAround 60s ease-in-out infinite; box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);">
             <img src="./assets/음악아이콘.png" alt="Music" id="musicIconRoom" style="width: 60px; height: 60px; object-fit: contain; pointer-events: none;">
         </div>
     </div>
@@ -1528,18 +1528,51 @@
                 roomMusic = document.getElementById('roomBackgroundMusic');
             }
             
+            // Get the button element
+            const button = document.getElementById('musicToggleRoom');
+            
+            // Add ripple effect
+            const ripple = document.createElement('div');
+            ripple.style.position = 'fixed';
+            ripple.style.width = '20px';
+            ripple.style.height = '20px';
+            ripple.style.borderRadius = '50%';
+            ripple.style.border = '2px solid rgba(207, 232, 255, 0.6)';
+            ripple.style.pointerEvents = 'none';
+            ripple.style.zIndex = '99999';
+            ripple.style.left = window.innerWidth / 2 + 'px';
+            ripple.style.top = window.innerHeight / 2 + 'px';
+            ripple.style.transform = 'translate(-50%, -50%)';
+            ripple.style.animation = 'rippleExpand 1s ease-out forwards';
+            document.body.appendChild(ripple);
+            
+            setTimeout(() => ripple.remove(), 1000);
+            
             if (isMusicPlayingRoom) {
                 roomMusic.pause();
                 isMusicPlayingRoom = false;
+                // Music paused - opacity 0.7 (70%)
+                if (button) {
+                    button.style.opacity = '0.7';
+                }
             } else {
                 roomMusic.play().catch(e => console.log('Could not play music:', e));
                 isMusicPlayingRoom = true;
+                // Music playing - opacity 0.2 (20%)
+                if (button) {
+                    button.style.opacity = '0.2';
+                }
             }
         }
         
         // Initialize music on page load
         window.addEventListener('load', function() {
             roomMusic = document.getElementById('roomBackgroundMusic');
+            // Set initial opacity based on music state
+            const button = document.getElementById('musicToggleRoom');
+            if (button) {
+                button.style.opacity = '0.2'; // Music is playing initially
+            }
         });
     </script>
     
@@ -1580,6 +1613,17 @@
             100% {
                 top: 10%;
                 left: 15%;
+            }
+        }
+        
+        @keyframes rippleExpand {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(100);
+                opacity: 0;
             }
         }
     </style>

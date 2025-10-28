@@ -264,33 +264,33 @@
         /* Hourglass Music Toggle Button */
         .hourglass-music-toggle {
             position: fixed;
-            width: 80px;
-            height: 80px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
-            border: 3px solid rgba(255, 255, 255, 0.8);
+            border: 2px solid rgba(255, 255, 255, 0.3);
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 99999;
+            z-index: 99999 !important;
             transition: all 0.3s ease;
             animation: floatAround 60s ease-in-out infinite;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
         }
         
         .hourglass-music-toggle img {
-            width: 60px;
-            height: 60px;
+            width: 35px;
+            height: 35px;
             object-fit: contain;
             pointer-events: none;
         }
         
         .hourglass-music-toggle:hover {
-            background: rgba(255, 255, 255, 1);
+            background: rgba(255, 255, 255, 0.25);
             transform: scale(1.1);
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
         }
         
         @media (max-width: 768px) {
@@ -465,6 +465,17 @@
         body.lang-english .lang-en {
             display: block;
         }
+        
+        @keyframes rippleExpand {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(100);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -510,12 +521,18 @@
     </audio>
     
     <!-- Music Toggle Button -->
-    <div class="hourglass-music-toggle" onclick="toggleHourglassMusic()">
+    <div class="hourglass-music-toggle" id="musicToggleHourglass" onclick="toggleHourglassMusic()">
         <img src="./assets/음악아이콘.png" alt="Music" id="hourglassMusicIcon">
     </div>
     
     <script>
         window.addEventListener('load', function() {
+            // Set initial opacity based on music state
+            const button = document.getElementById('musicToggleHourglass');
+            if (button) {
+                button.style.opacity = '0.2'; // Music is playing initially
+            }
+            
             document.body.classList.add('loaded');
         });
         
@@ -528,12 +545,40 @@
         const hourglassMusic = document.getElementById('hourglassMusic');
         
         function toggleHourglassMusic() {
+            // Get the button element
+            const button = document.getElementById('musicToggleHourglass');
+            
+            // Add ripple effect
+            const ripple = document.createElement('div');
+            ripple.style.position = 'fixed';
+            ripple.style.width = '20px';
+            ripple.style.height = '20px';
+            ripple.style.borderRadius = '50%';
+            ripple.style.border = '2px solid rgba(222, 192, 162, 0.6)';
+            ripple.style.pointerEvents = 'none';
+            ripple.style.zIndex = '99999';
+            ripple.style.left = window.innerWidth / 2 + 'px';
+            ripple.style.top = window.innerHeight / 2 + 'px';
+            ripple.style.transform = 'translate(-50%, -50%)';
+            ripple.style.animation = 'rippleExpand 1s ease-out forwards';
+            document.body.appendChild(ripple);
+            
+            setTimeout(() => ripple.remove(), 1000);
+            
             if (isHourglassMusicPlaying) {
                 hourglassMusic.pause();
                 isHourglassMusicPlaying = false;
+                // Music paused - opacity 0.7 (70%)
+                if (button) {
+                    button.style.opacity = '0.7';
+                }
             } else {
                 hourglassMusic.play();
                 isHourglassMusicPlaying = true;
+                // Music playing - opacity 0.2 (20%)
+                if (button) {
+                    button.style.opacity = '0.2';
+                }
             }
         }
     </script>

@@ -489,6 +489,17 @@
             transform: scale(1.1);
             box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
         }
+        
+        @keyframes rippleExpand {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(100);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -518,6 +529,12 @@
     
     <script>
         window.addEventListener('load', function() {
+            // Set initial opacity based on music state
+            const button = document.getElementById('musicToggleEntrance');
+            if (button) {
+                button.style.opacity = '0.2'; // Music is playing initially
+            }
+            
             // Show text immediately and make it clickable
             const text = document.querySelector('.entrance-text');
             text.classList.add('show');
@@ -546,7 +563,7 @@
     </script>
     
     <!-- Music Toggle Button -->
-    <div class="music-toggle-entrance" onclick="toggleMusicEntrance()">
+    <div class="music-toggle-entrance" id="musicToggleEntrance" onclick="toggleMusicEntrance()">
         <img src="./assets/음악아이콘.png" alt="Music" id="musicIconEntrance">
     </div>
     
@@ -568,14 +585,40 @@
         const entranceMusic = document.getElementById('entranceMusic');
         
         function toggleMusicEntrance() {
+            // Get the button element
+            const button = document.getElementById('musicToggleEntrance');
+            
+            // Add ripple effect
+            const ripple = document.createElement('div');
+            ripple.style.position = 'fixed';
+            ripple.style.width = '20px';
+            ripple.style.height = '20px';
+            ripple.style.borderRadius = '50%';
+            ripple.style.border = '2px solid rgba(255, 255, 255, 0.6)';
+            ripple.style.pointerEvents = 'none';
+            ripple.style.zIndex = '99999';
+            ripple.style.left = window.innerWidth / 2 + 'px';
+            ripple.style.top = window.innerHeight / 2 + 'px';
+            ripple.style.transform = 'translate(-50%, -50%)';
+            ripple.style.animation = 'rippleExpand 1s ease-out forwards';
+            document.body.appendChild(ripple);
+            
+            setTimeout(() => ripple.remove(), 1000);
+            
             if (isMusicPlayingEntrance) {
                 entranceMusic.pause();
-                document.getElementById('musicIconEntrance').textContent = '🔇';
                 isMusicPlayingEntrance = false;
+                // Music paused - opacity 0.7 (70%)
+                if (button) {
+                    button.style.opacity = '0.7';
+                }
             } else {
                 entranceMusic.play();
-                document.getElementById('musicIconEntrance').textContent = '🔊';
                 isMusicPlayingEntrance = true;
+                // Music playing - opacity 0.2 (20%)
+                if (button) {
+                    button.style.opacity = '0.2';
+                }
             }
         }
         
