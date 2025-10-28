@@ -1,6 +1,15 @@
 (function(){
   'use strict';
   const cfg = () => (window.luweiSupabase && window.luweiSupabase.getConfig && window.luweiSupabase.getConfig()) || {};
+  let sp = null;
+  function ensureClient(){
+    if (sp) return sp;
+    if (!window.supabase){ console.warn('[luwei-auth] supabase-js UMD not loaded'); return null; }
+    const { url, anonKey } = cfg();
+    if(!url || !anonKey){ console.warn('[luwei-auth] missing config'); return null; }
+    sp = window.supabase.createClient(url, anonKey);
+    return sp;
+  }
 
   async function signUpEmail(email, password){
     const { url, anonKey } = cfg();
@@ -34,7 +43,24 @@
 
   function signOut(){ localStorage.removeItem('luwei_auth'); }
 
-  window.luweiAuth = { signUpEmail, signInEmail, getSession, signOut };
+  async function oauthSignIn(provider){
+    const client = ensureClient();
+    if(!client) throw new Error('supabase client not ready');
+    const redirectTo = location.origin + '/index.html';
+    const { data, error } = await client.auth.signInWithOAuth({ provider, options:{ redirectTo } });
+    if (error) throw error;
+    return data;
+  }
+
+  async function refreshSession(){
+    const client = ensureClient();
+    if(!client) return null;
+    const { data } = await client.auth.getSession();
+    if (data && data.session){ localStorage.setItem('luwei_auth', JSON.stringify({ user:data.session.user, access_token:data.session.access_token })); }
+    return data && data.session ? data.session : null;
+  }
+
+  window.luweiAuth = { signUpEmail, signInEmail, getSession, signOut, oauthSignIn, refreshSession };
 })();
 
 

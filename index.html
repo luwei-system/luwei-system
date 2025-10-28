@@ -1943,6 +1943,8 @@
     <!-- LUWEI Phase 1 Scripts (Player removed) -->
     <script src="./js/luwei-sync.js"></script>
     <script src="./js/luwei-supabase.js"></script>
+    <!-- Supabase UMD for OAuth -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
     <script src="./js/luwei-auth.js"></script>
     <script>
         // Supabase config injection
@@ -1951,30 +1953,30 @@
             anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5neWp6Y2xuZGdmZnd6aG91a3VqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE2Mzc3MDksImV4cCI6MjA3NzIxMzcwOX0.z2HvEUaVjiJ2HhfC8Qxf1Ka0Acpc3DtW4IM8dLYV_o0',
             functionsUrl: 'https://ngyjzclndgffwzhoukuj.supabase.co/functions/v1'
         });
-        // Minimal inline auth UI (bottom-right)
+        // Minimal OAuth auth UI (bottom-right)
         (function(){
           const box = document.createElement('div');
           box.style.cssText = 'position:fixed;right:10px;bottom:10px;background:rgba(255,255,255,.9);backdrop-filter:blur(8px);border:1px solid rgba(0,0,0,.08);border-radius:12px;padding:10px;z-index:99999;box-shadow:0 2px 16px rgba(0,0,0,.1);font-family:\'Noto Sans KR\'';
           box.innerHTML = `
-            <div style="display:flex;gap:6px;align-items:center">
-              <input id="auth_email" type="email" placeholder="email" style="height:32px;border:1px solid #ddd;border-radius:8px;padding:0 8px"/>
-              <input id="auth_pw" type="password" placeholder="password" style="height:32px;border:1px solid #ddd;border-radius:8px;padding:0 8px"/>
-              <button id="auth_in" class="btn" style="height:32px;padding:0 10px">로그인</button>
-              <button id="auth_up" class="btn" style="height:32px;padding:0 10px">가입</button>
-              <button id="auth_out" class="btn" style="height:32px;padding:0 10px;display:none">로그아웃</button>
+            <div style="display:flex;gap:8px;align-items:center">
+              <button id="auth_apple" class="btn" style="height:36px;padding:0 12px">Apple로 시작</button>
+              <button id="auth_google" class="btn" style="height:36px;padding:0 12px">Google로 시작</button>
+              <button id="auth_kakao" class="btn" style="height:36px;padding:0 12px">Kakao로 시작</button>
+              <button id="auth_instagram" class="btn" style="height:36px;padding:0 12px">Instagram로 시작</button>
+              <button id="auth_out" class="btn" style="height:36px;padding:0 12px;display:none">로그아웃</button>
             </div>`;
           document.body.appendChild(box);
+          if (window.luweiAuth && window.luweiAuth.refreshSession) { window.luweiAuth.refreshSession().catch(()=>{}); }
           const sess = window.luweiAuth && window.luweiAuth.getSession && window.luweiAuth.getSession();
           const outBtn = box.querySelector('#auth_out');
           if(sess){ outBtn.style.display='inline-block'; }
-          box.querySelector('#auth_in').onclick = async ()=>{
-            const email = (box.querySelector('#auth_email')||{}).value; const pw = (box.querySelector('#auth_pw')||{}).value;
-            try{ await window.luweiAuth.signInEmail(email, pw); outBtn.style.display='inline-block'; alert('로그인 완료'); }catch(e){ alert('로그인 실패'); }
+          const signWith = async (provider)=>{
+            try{ await window.luweiAuth.oauthSignIn(provider); }catch(e){ alert(provider+' 로그인 실패'); }
           };
-          box.querySelector('#auth_up').onclick = async ()=>{
-            const email = (box.querySelector('#auth_email')||{}).value; const pw = (box.querySelector('#auth_pw')||{}).value;
-            try{ await window.luweiAuth.signUpEmail(email, pw); alert('가입 완료. 로그인 해주세요'); }catch(e){ alert('가입 실패'); }
-          };
+          box.querySelector('#auth_google').onclick = ()=> signWith('google');
+          box.querySelector('#auth_kakao').onclick = ()=> signWith('kakao');
+          box.querySelector('#auth_instagram').onclick = ()=> signWith('instagram');
+          box.querySelector('#auth_apple').onclick = ()=> signWith('apple');
           outBtn.onclick = ()=>{ window.luweiAuth.signOut(); outBtn.style.display='none'; alert('로그아웃'); };
         })();
     </script>
