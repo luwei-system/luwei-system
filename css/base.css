@@ -1,0 +1,64 @@
+/* LUWEI SYSTEM Base Styles */
+:root {
+  --lu-font-kr: 'Noto Sans KR', system-ui;
+  --lu-font-en: 'Cormorant Garamond', serif;
+  --lu-gray: rgba(200, 200, 200, 0.3);
+  --lu-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  --lu-bg: #fff;
+  --lu-text: #111;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--lu-font-kr);
+  background: var(--lu-bg);
+  color: var(--lu-text);
+  overflow-x: hidden;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--lu-gray);
+  background: #fff;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-family: var(--lu-font-kr);
+  transition: all 0.2s ease;
+  box-shadow: var(--lu-shadow);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+  }
+}

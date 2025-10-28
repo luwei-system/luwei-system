@@ -16,6 +16,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@200;300;400;500&family=Cormorant+Garamond:wght@300;400;500&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
     
+    <!-- LUWEI Base CSS -->
+    <link rel="stylesheet" href="./css/base.css">
+    
     <style>
         * {
             margin: 0;
@@ -1627,6 +1630,23 @@
             }
         }
     </style>
+    
+    <!-- LUWEI Player Widget -->
+    <div style="position: fixed; bottom: 100px; left: 1rem; z-index: 1000;">
+        <luwei-player
+            data-id="light_60s_v1"
+            title="Light Routine — 60s"
+            audio-src="./assets/music/room2.mp3"
+            duration="60"
+            color="#FFFBEF">
+        </luwei-player>
+    </div>
+    
+    <!-- LUWEI Phase 0 Scripts -->
+    <script src="./js/room.js"></script>
+    <script src="./js/luwei-player.js"></script>
+    <script src="./js/luwei-reflection.js"></script>
+    <script src="./js/luwei-sync.js"></script>
 </body>
 </html>
 

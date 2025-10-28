@@ -6,6 +6,10 @@
     <title>LUWEI ROOM — 루웨이의 방</title>
     <meta name="description" content="이곳은 루웨이의 시간과 감정이 머무는 방입니다. 감정의 잔상, 파동의 흔적, 하루의 일기가 조용히 전시되는 디지털 아틀리에.">
     
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#CFE8FF">
+    
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="./assets/Circle_logo.svg">
     <link rel="icon" type="image/png" href="./assets/favicon.png">
@@ -15,6 +19,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@200;300;400;500&family=Cormorant+Garamond:wght@300;400;500&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- LUWEI Base CSS -->
+    <link rel="stylesheet" href="./css/base.css">
     
     <style>
         * {
@@ -1651,6 +1658,17 @@
                     <div class="layer-title" style="background: rgba(255, 255, 255, 0.9); padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); cursor: pointer; white-space: nowrap; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(255,255,255,1)'; this.style.transform='scale(1.05)';" onmouseout="this.style.background='rgba(255,255,255,0.9)'; this.style.transform='scale(1)';" onclick="window.open('https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=367266664', '_blank', 'noopener,noreferrer'); event.stopPropagation();"><span class="lang-kr">알라딘</span><span class="lang-en">Aladin</span></div>
             </div>
         </div>
+        
+        <!-- LUWEI Player Widget -->
+        <div style="position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%); z-index: 1000; display: flex; gap: 1rem;">
+            <luwei-player
+                data-id="water_60s_v1"
+                title="Water Routine — 60s"
+                audio-src="./assets/music/Weightless Mist.mp3"
+                duration="60"
+                color="#CFE8FF">
+            </luwei-player>
+        </div>
         </div>
                 
     <!-- Home Button -->
@@ -1930,6 +1948,22 @@
                 }
             }
         }, { once: true });
+    </script>
+    
+    <!-- LUWEI Phase 0 Scripts -->
+    <script src="./js/luwei-player.js"></script>
+    <script src="./js/luwei-reflection.js"></script>
+    <script src="./js/luwei-sync.js"></script>
+    
+    <!-- Register Service Worker -->
+    <script>
+        if('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./service-worker.js').then(() => {
+                console.log('[SW] Service worker registered');
+            }).catch(err => {
+                console.log('[SW] Service worker registration failed:', err);
+            });
+        }
     </script>
     
     <!-- Music Toggle Button -->

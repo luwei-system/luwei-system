@@ -16,6 +16,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
     
+    <!-- LUWEI Base CSS -->
+    <link rel="stylesheet" href="./css/base.css">
+    
     <style>
         * {
             margin: 0;
@@ -627,8 +630,8 @@
             const portalsContainer = document.getElementById('portals');
             const allElements = ['sand', 'water', 'light', 'wind', 'void', 'ether', 'stone', 'flame', 'mist', 'star'];
             
-            // Check for active portal from session storage
-            const activeElement = sessionStorage.getItem('activeElement');
+            // Check for active portal from local storage (luwei_active_element)
+            const activeElement = localStorage.getItem('luwei_active_element');
             
             // Create room entrance portal (always visible)
             const roomPortal = document.createElement('div');
@@ -672,8 +675,13 @@
                 portal.setAttribute('data-element', actualElement);
                 portal.classList.add('active');
                 portal.addEventListener('click', function() {
+                    // Navigate to world page
                     window.location.href = `world_${actualElement}.html`;
                 });
+            } else {
+                // Portal is locked
+                portal.style.opacity = '0.3';
+                portal.style.pointerEvents = 'none';
             }
             
             portalsContainer.appendChild(portal);
@@ -701,6 +709,11 @@
             location.reload();
         }
     </script>
+    
+    <!-- LUWEI Phase 0 Scripts -->
+    <script src="./js/portal-bridge.js"></script>
+    <script src="./js/plaza.js"></script>
+    <script src="./js/luwei-sync.js"></script>
 </body>
 </html>
 
