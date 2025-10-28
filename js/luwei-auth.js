@@ -46,10 +46,23 @@
   async function oauthSignIn(provider){
     const client = ensureClient();
     if(!client) throw new Error('supabase client not ready');
-    const redirectTo = location.origin + '/index.html';
-    const { data, error } = await client.auth.signInWithOAuth({ provider, options:{ redirectTo } });
-    if (error) throw error;
-    return data;
+    const redirectTo = location.origin + location.pathname;
+    console.log('[luwei-auth] OAuth sign in', { provider, redirectTo });
+    try {
+      const { data, error } = await client.auth.signInWithOAuth({ 
+        provider, 
+        options:{ 
+          redirectTo,
+          skipBrowserRedirect: false
+        } 
+      });
+      console.log('[luwei-auth] OAuth response', { data, error });
+      if (error) throw error;
+      return data;
+    } catch (err) {
+      console.error('[luwei-auth] OAuth failed', err);
+      throw err;
+    }
   }
 
   async function refreshSession(){
