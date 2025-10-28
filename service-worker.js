@@ -12,10 +12,11 @@ const ASSETS = [
   '/js/luwei-sync.js',
   '/js/luwei-supabase.js',
   '/js/explore.js',
-  '/assets/music/Weightless Mist.mp3',
-  '/assets/music/room1.mp3',
-  '/assets/music/room2.mp3',
-  '/assets/music/Hourglass Drift.mp3',
+  // Large media are excluded to avoid 206 partial responses during install
+  // '/assets/music/Weightless Mist.mp3',
+  // '/assets/music/room1.mp3',
+  // '/assets/music/room2.mp3',
+  // '/assets/music/Hourglass Drift.mp3',
   '/assets/home.jpg',
   '/assets/door.png',
   '/assets/room.jpg',
@@ -24,13 +25,27 @@ const ASSETS = [
   '/assets/Circle_logo.svg'
 ];
 
-// Install event - cache assets
+// Install event - cache assets (skip 206 partial responses)
 self.addEventListener('install', (e) => {
   console.log('[SW] Installing service worker...');
+  self.skipWaiting();
   e.waitUntil(
-    caches.open(CACHE).then((cache) => {
-      console.log('[SW] Caching assets');
-      return cache.addAll(ASSETS);
+    caches.open(CACHE).then(async (cache) => {
+      console.log('[SW] Caching assets individually');
+      await Promise.all(
+        ASSETS.map(async (url) => {
+          try {
+            const res = await fetch(url, { cache: 'no-store' });
+            if (res && res.ok && res.status === 200) {
+              await cache.put(url, res.clone());
+            } else {
+              console.warn('[SW] Skip caching (non-200):', url, res && res.status);
+            }
+          } catch (err) {
+            console.warn('[SW] Failed to cache:', url, err);
+          }
+        })
+      );
     })
   );
 });
@@ -58,30 +73,15 @@ self.addEventListener('fetch', (e) => {
   }
   e.respondWith(
     caches.match(e.request).then((res) => {
-      // Return cached version if found
-      if (res) {
-        return res;
-      }
-      
-      // Otherwise fetch from network
-      return fetch(e.request).then((res) => {
-        // Don't cache if not a successful response
-        if (!res || res.status !== 200 || res.type !== 'basic') {
-          return res;
+      if (res) return res;
+      return fetch(e.request).then((networkRes) => {
+        if (!networkRes || networkRes.status !== 200 || networkRes.type !== 'basic') {
+          return networkRes;
         }
-        
-        // Clone the response
-        const responseToCache = res.clone();
-        
-        caches.open(CACHE).then((cache) => {
-          cache.put(e.request, responseToCache);
-        });
-        
-        return res;
+        const responseToCache = networkRes.clone();
+        caches.open(CACHE).then((cache) => { cache.put(e.request, responseToCache); });
+        return networkRes;
       });
-    }).catch(() => {
-      // Return cached version if network fails
-      return caches.match(e.request);
-    })
+    }).catch(() => caches.match('/index.html'))
   );
 });
