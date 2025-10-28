@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 
 // Apple Sign In 설정값
 const TEAM_ID = 'NBR7DCZ9L4';                 // Apple Team ID
-const CLIENT_ID = 'com.luwei.system.login';    // Service ID (Identifier)
+const CLIENT_ID = 'com.luwei.system.signin';   // Service ID (Identifier)
 const KEY_ID = '5CL5MYX8KC';                   // Key ID
 
 // Private Key 파일 경로 (루트에 위치한다고 가정)
