@@ -17,7 +17,13 @@
       functionsUrl: !!config.functionsUrl
     });
   }
-  function getConfig(){ return { ...config }; }
+  function getConfig(){
+    // Lazy init from global if not set yet
+    if ((!config.url || !config.anonKey) && window && window.__LUWEI_SUPABASE_CONFIG){
+      try { setConfig(window.__LUWEI_SUPABASE_CONFIG); } catch(_) {}
+    }
+    return { ...config };
+  }
 
   async function postEmotionBatch(items){
     // 키 없으면 더미 성공 처리
