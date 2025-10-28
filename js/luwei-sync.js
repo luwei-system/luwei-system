@@ -11,22 +11,16 @@
   }
 
   async function flush(){
-    const arr = qload(); 
+    const arr = qload();
     if(arr.length===0) return;
-    
-    // TODO: 실제 서버 엔드포인트로 교체
-    const endpoint = '/edge/emotion/batch'; // 더미
-    
     try{
-      // 실제로는 fetch POST. 여기선 성공 가정 후 비우기
-      // await fetch(endpoint, {
-      //   method:'POST',
-      //   headers:{'content-type':'application/json'},
-      //   body:JSON.stringify(arr)
-      // });
-      
-      console.log('[luwei-sync] flushed', arr.length, 'items');
-      qsave([]); // 성공시 비움
+      if (window.luweiSupabase && window.luweiSupabase.postEmotionBatch){
+        const res = await window.luweiSupabase.postEmotionBatch(arr);
+        console.log('[luwei-sync] flushed', arr.length, 'via supabase', res);
+      } else {
+        console.log('[luwei-sync] no supabase util, dummy flushed', arr.length);
+      }
+      qsave([]);
     }catch(err){
       console.warn('[luwei-sync] flush failed', err);
     }

@@ -1659,16 +1659,6 @@
             </div>
         </div>
         
-        <!-- LUWEI Player Widget -->
-        <div style="position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%); z-index: 1000; display: flex; gap: 1rem;">
-            <luwei-player
-                data-id="water_60s_v1"
-                title="Water Routine — 60s"
-                audio-src="./assets/music/Weightless Mist.mp3"
-                duration="60"
-                color="#CFE8FF">
-            </luwei-player>
-        </div>
         </div>
                 
     <!-- Home Button -->
@@ -1950,10 +1940,44 @@
         }, { once: true });
     </script>
     
-    <!-- LUWEI Phase 0 Scripts -->
-    <script src="./js/luwei-player.js"></script>
-    <script src="./js/luwei-reflection.js"></script>
+    <!-- LUWEI Phase 1 Scripts (Player removed) -->
     <script src="./js/luwei-sync.js"></script>
+    <script src="./js/luwei-supabase.js"></script>
+    <script src="./js/luwei-auth.js"></script>
+    <script>
+        // Supabase config injection
+        window.luweiSupabase && window.luweiSupabase.setConfig({
+            url: 'https://ngyjzclndgffwzhoukuj.supabase.co',
+            anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5neWp6Y2xuZGdmZnd6aG91a3VqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE2Mzc3MDksImV4cCI6MjA3NzIxMzcwOX0.z2HvEUaVjiJ2HhfC8Qxf1Ka0Acpc3DtW4IM8dLYV_o0',
+            functionsUrl: 'https://ngyjzclndgffwzhoukuj.supabase.co/functions/v1'
+        });
+        // Minimal inline auth UI (bottom-right)
+        (function(){
+          const box = document.createElement('div');
+          box.style.cssText = 'position:fixed;right:10px;bottom:10px;background:rgba(255,255,255,.9);backdrop-filter:blur(8px);border:1px solid rgba(0,0,0,.08);border-radius:12px;padding:10px;z-index:99999;box-shadow:0 2px 16px rgba(0,0,0,.1);font-family:\'Noto Sans KR\'';
+          box.innerHTML = `
+            <div style="display:flex;gap:6px;align-items:center">
+              <input id="auth_email" type="email" placeholder="email" style="height:32px;border:1px solid #ddd;border-radius:8px;padding:0 8px"/>
+              <input id="auth_pw" type="password" placeholder="password" style="height:32px;border:1px solid #ddd;border-radius:8px;padding:0 8px"/>
+              <button id="auth_in" class="btn" style="height:32px;padding:0 10px">로그인</button>
+              <button id="auth_up" class="btn" style="height:32px;padding:0 10px">가입</button>
+              <button id="auth_out" class="btn" style="height:32px;padding:0 10px;display:none">로그아웃</button>
+            </div>`;
+          document.body.appendChild(box);
+          const sess = window.luweiAuth && window.luweiAuth.getSession && window.luweiAuth.getSession();
+          const outBtn = box.querySelector('#auth_out');
+          if(sess){ outBtn.style.display='inline-block'; }
+          box.querySelector('#auth_in').onclick = async ()=>{
+            const email = (box.querySelector('#auth_email')||{}).value; const pw = (box.querySelector('#auth_pw')||{}).value;
+            try{ await window.luweiAuth.signInEmail(email, pw); outBtn.style.display='inline-block'; alert('로그인 완료'); }catch(e){ alert('로그인 실패'); }
+          };
+          box.querySelector('#auth_up').onclick = async ()=>{
+            const email = (box.querySelector('#auth_email')||{}).value; const pw = (box.querySelector('#auth_pw')||{}).value;
+            try{ await window.luweiAuth.signUpEmail(email, pw); alert('가입 완료. 로그인 해주세요'); }catch(e){ alert('가입 실패'); }
+          };
+          outBtn.onclick = ()=>{ window.luweiAuth.signOut(); outBtn.style.display='none'; alert('로그아웃'); };
+        })();
+    </script>
     
     <!-- Register Service Worker -->
     <script>

@@ -83,7 +83,15 @@
 
       // 오프라인 큐로도 푸시(나중 동기화)
       if(window.luweiSync && window.luweiSync.enqueue){
-        window.luweiSync.enqueue({ type:'emotion', payload:rec });
+        const sess = (window.luweiAuth && window.luweiAuth.getSession && window.luweiAuth.getSession()) || null;
+        const userId = sess && sess.user && (sess.user.id || sess.user.uid || sess.user.email) || null;
+        window.luweiSync.enqueue({ 
+          type:'emotion', 
+          payload:{
+            session:{ user_id: userId, routine_slug:'water', duration_seconds: rec.duration, device:'web' },
+            emotion:{ color_hex: color, intensity, note }
+          }
+        });
       }
 
       // 원소 활성화(랜덤) → 광장 방문 시 포털 깨어남

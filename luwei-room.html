@@ -1631,22 +1631,17 @@
         }
     </style>
     
-    <!-- LUWEI Player Widget -->
-    <div style="position: fixed; bottom: 100px; left: 1rem; z-index: 1000;">
-        <luwei-player
-            data-id="light_60s_v1"
-            title="Light Routine — 60s"
-            audio-src="./assets/music/room2.mp3"
-            duration="60"
-            color="#FFFBEF">
-        </luwei-player>
-    </div>
-    
     <!-- LUWEI Phase 0 Scripts -->
     <script src="./js/room.js"></script>
-    <script src="./js/luwei-player.js"></script>
-    <script src="./js/luwei-reflection.js"></script>
     <script src="./js/luwei-sync.js"></script>
+    <script src="./js/luwei-supabase.js"></script>
+    <script>
+        window.luweiSupabase && window.luweiSupabase.setConfig({
+            url: 'https://ngyjzclndgffwzhoukuj.supabase.co',
+            anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5neWp6Y2xuZGdmZnd6aG91a3VqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE2Mzc3MDksImV4cCI6MjA3NzIxMzcwOX0.z2HvEUaVjiJ2HhfC8Qxf1Ka0Acpc3DtW4IM8dLYV_o0',
+            functionsUrl: 'https://ngyjzclndgffwzhoukuj.supabase.co/functions/v1'
+        });
+    </script>
 </body>
 </html>
 
