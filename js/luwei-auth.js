@@ -1,10 +1,15 @@
 (function(){
   'use strict';
+  const FALLBACK = {
+    url: 'https://ngyjzclndgffwzhoukuj.supabase.co',
+    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5neWp6Y2xuZGdmZnd6aG91a3VqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE2Mzc3MDksImV4cCI6MjA3NzIxMzcwOX0.z2HvEUaVjiJ2HhfC8Qxf1Ka0Acpc3DtW4IM8dLYV_o0'
+  };
   const cfg = () => {
     const fromUtil = (window.luweiSupabase && window.luweiSupabase.getConfig && window.luweiSupabase.getConfig()) || {};
     if (fromUtil.url && fromUtil.anonKey) return fromUtil;
     const fromGlobal = (window && window.__LUWEI_SUPABASE_CONFIG) || {};
-    return fromGlobal;
+    if (fromGlobal.url && fromGlobal.anonKey) return fromGlobal;
+    return FALLBACK;
   };
   let sp = null;
   function ensureClient(){
