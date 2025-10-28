@@ -1977,6 +1977,9 @@
           document.body.appendChild(box);
           const outBtn = box.querySelector('#auth_out');
           const statusEl = box.querySelector('#auth_status');
+          const loginBtns = ['#auth_apple','#auth_google','#auth_kakao','#auth_instagram']
+            .map(sel => box.querySelector(sel))
+            .filter(Boolean);
           const updateAuthUI = async ()=>{
             let sess = window.luweiAuth && window.luweiAuth.getSession && window.luweiAuth.getSession();
             if (!sess && window.luweiAuth && window.luweiAuth.hasSession){
@@ -1986,6 +1989,7 @@
             const isOn = !!sess;
             outBtn.style.display = isOn ? 'inline-block' : 'none';
             statusEl.style.display = isOn ? 'inline-block' : 'none';
+            loginBtns.forEach(btn => { btn.style.display = isOn ? 'none' : 'inline-block'; });
             if (isOn){
               const email = (sess.user && (sess.user.email || sess.user.phone)) || '로그인됨';
               statusEl.textContent = email ? `로그인됨 · ${email}` : '로그인됨';
