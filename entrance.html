@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>LUWEI ROOM Entrance</title>
+    <title>LUWEI PLAZA — 루웨이의 광장</title>
+    <meta name="description" content="이곳은 루웨이의 광장입니다. 감정의 문들이 잠들어 있습니다.">
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="./assets/Circle_logo.svg">
@@ -56,9 +57,9 @@
         
         .entrance-text {
             position: fixed;
-            top: 50%;
+            top: 80px;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translateX(-50%);
             z-index: 100002;
             font-size: 24px;
             font-weight: 400;
@@ -81,18 +82,16 @@
         
         .entrance-text.show {
             opacity: 1;
-            pointer-events: auto;
-            cursor: pointer;
-            touch-action: manipulation;
+            pointer-events: none;
         }
         
         .entrance-text.show:hover {
             background: rgba(0, 0, 0, 0.5);
-            transform: translate(-50%, -50%) scale(1.05);
+            transform: translateX(-50%) scale(1.05);
         }
         
         .entrance-text.show:active {
-            transform: translate(-50%, -50%) scale(0.95);
+            transform: translateX(-50%) scale(0.95);
             background: rgba(0, 0, 0, 0.6);
         }
         
@@ -297,6 +296,128 @@
                 font-size: 11px;
             }
         }
+        
+        /* Portals Container */
+        .portals-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 20px;
+            z-index: 10;
+            pointer-events: none;
+        }
+        
+        .portal {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            pointer-events: auto;
+            cursor: not-allowed;
+            transition: all 0.3s ease;
+            position: relative;
+            opacity: 0.6;
+            border: 4px solid rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(15px);
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 8s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+        
+        .portal:hover {
+            opacity: 0.8;
+            border-color: rgba(255, 255, 255, 0.7);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+        }
+        
+        .portal.active {
+            opacity: 1;
+            cursor: pointer;
+            border-color: rgba(255, 255, 255, 0.6);
+            animation: portalGlow 2s ease-in-out infinite, float 8s ease-in-out infinite;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+        }
+        
+        .portal.active:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.6);
+        }
+        
+        @keyframes portalGlow {
+            0%, 100% {
+                box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 50px rgba(255, 255, 255, 0.6);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+            }
+            12.5% {
+                transform: translateY(-30px) translateX(40px) rotate(10deg);
+            }
+            25% {
+                transform: translateY(-15px) translateX(80px) rotate(-8deg);
+            }
+            37.5% {
+                transform: translateY(20px) translateX(60px) rotate(12deg);
+            }
+            50% {
+                transform: translateY(40px) translateX(20px) rotate(-5deg);
+            }
+            62.5% {
+                transform: translateY(25px) translateX(-30px) rotate(8deg);
+            }
+            75% {
+                transform: translateY(-10px) translateX(-50px) rotate(-12deg);
+            }
+            87.5% {
+                transform: translateY(-25px) translateX(-20px) rotate(6deg);
+            }
+            100% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+            }
+        }
+        
+        /* Portal colors */
+        .portal.sand {
+            background: linear-gradient(135deg, rgba(222, 192, 162, 0.3), rgba(180, 150, 120, 0.2));
+        }
+        
+        .portal.water {
+            background: linear-gradient(135deg, rgba(207, 232, 255, 0.3), rgba(160, 200, 230, 0.2));
+        }
+        
+        .portal.light {
+            background: linear-gradient(135deg, rgba(255, 250, 200, 0.3), rgba(255, 240, 150, 0.2));
+        }
+        
+        .portal.wind {
+            background: linear-gradient(135deg, rgba(240, 240, 240, 0.3), rgba(200, 220, 240, 0.2));
+        }
+        
+        .portal.void {
+            background: linear-gradient(135deg, rgba(180, 170, 190, 0.3), rgba(140, 130, 150, 0.2));
+        }
+        
+        .portal.room-portal {
+            background: url('./assets/진입로딩.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border: 4px solid rgba(255, 255, 255, 0.7);
+        }
+        
+        .portal.active {
+            animation: portalGlow 2s ease-in-out infinite, float 8s ease-in-out infinite;
+        }
     </style>
 </head>
 <body>
@@ -305,8 +426,13 @@
     </div>
     
     <div class="entrance-text">
-        <span class="lang-kr">루웨이 방으로 진입합니다</span>
-        <span class="lang-en">Entering LUWEI's Room</span>
+        <span class="lang-kr">이곳은 루웨이의 광장입니다. 깨어난 문이 있습니다.</span>
+        <span class="lang-en">This is LUWEI's plaza. There is an awakened door.</span>
+    </div>
+    
+    <!-- Portals -->
+    <div id="portals" class="portals-container">
+        <!-- Portal elements will be added dynamically -->
     </div>
     
     <!-- Home Button -->
@@ -320,12 +446,16 @@
             const text = document.querySelector('.entrance-text');
             text.classList.add('show');
             
+            // Initialize portals
+            createPortals();
+            
             // Make home button bounce when background is clicked
             const homeButton = document.querySelector('.home-button');
             document.addEventListener('click', function(e) {
                 // Only trigger if clicking on the background (not on buttons or text)
                 if (!e.target.closest('.entrance-text') && !e.target.closest('.home-button')
-                    && !e.target.closest('.footer') && !e.target.closest('.language-switcher')) {
+                    && !e.target.closest('.footer') && !e.target.closest('.language-switcher')
+                    && !e.target.closest('.portal')) {
                     // Add bounce animation
                     homeButton.classList.add('bounce');
                     setTimeout(() => {
@@ -334,36 +464,8 @@
                 }
             });
             
-            // Make text clickable immediately
-                text.addEventListener('click', function() {
-                    // Show loading image with fade-in effect
-                    const loadingImage = document.createElement('div');
-                    loadingImage.style.position = 'fixed';
-                    loadingImage.style.top = '0';
-                    loadingImage.style.left = '0';
-                    loadingImage.style.width = '100%';
-                    loadingImage.style.height = '100%';
-                    loadingImage.style.backgroundImage = 'url("./assets/진입로딩.jpg")';
-                    loadingImage.style.backgroundSize = 'cover';
-                    loadingImage.style.backgroundPosition = 'center';
-                    loadingImage.style.backgroundRepeat = 'no-repeat';
-                    loadingImage.style.zIndex = '100000';
-                    loadingImage.style.opacity = '0';
-                    loadingImage.style.transition = 'opacity 2s ease';
-                    document.body.appendChild(loadingImage);
-                    
-                    // Fade in the loading image slowly
-                    setTimeout(function() {
-                        loadingImage.style.transition = 'opacity 3s ease';
-                        loadingImage.style.opacity = '1';
-                    }, 100);
-                    
-                    // Navigate to room page with replaceState to prevent history
-                    setTimeout(function() {
-                        history.replaceState(null, '', 'luwei-room.html');
-                        window.location.replace('luwei-room.html');
-                    }, 3000);
-                });
+            // Text is not clickable anymore
+            // User should click on the portal instead
         });
     </script>
     
@@ -378,6 +480,85 @@
     <script>
         function toggleLanguage() {
             document.body.classList.toggle('lang-english');
+        }
+        
+        // Create portals
+        function createPortals() {
+            const portalsContainer = document.getElementById('portals');
+            const allElements = ['sand', 'water', 'light', 'wind', 'void', 'ether', 'stone', 'flame', 'mist', 'star'];
+            
+            // Check for active portal from session storage
+            const activeElement = sessionStorage.getItem('activeElement');
+            
+            // Create room entrance portal (always visible)
+            const roomPortal = document.createElement('div');
+            roomPortal.className = 'portal room-portal';
+            roomPortal.setAttribute('data-element', 'room');
+            roomPortal.style.animationDelay = '0s';
+            roomPortal.style.width = '250px';
+            roomPortal.style.height = '250px';
+            roomPortal.style.margin = '0 auto';
+            roomPortal.classList.add('active');
+            roomPortal.addEventListener('click', function() {
+                // Navigate to room directly
+                history.replaceState(null, '', 'luwei-room.html');
+                window.location.replace('luwei-room.html');
+            });
+            portalsContainer.appendChild(roomPortal);
+            
+            // Show only ONE random element portal (mysterious effect)
+            const randomIndex = Math.floor(Math.random() * allElements.length);
+            const visibleElement = allElements[randomIndex];
+            
+            const portal = document.createElement('div');
+            portal.className = `portal ${visibleElement}`;
+            portal.setAttribute('data-element', visibleElement);
+            portal.style.animationDelay = '0.5s';
+            portal.style.width = '150px';
+            portal.style.height = '150px';
+            portal.style.position = 'absolute';
+            portal.style.left = '20%';
+            portal.style.top = '30%';
+            
+            // Add a subtle hint that there are more
+            portal.addEventListener('mouseenter', function() {
+                portal.title = allElements.length + '개 이상의 문이 존재합니다...';
+            });
+            
+            // Check if this portal is active
+            if (activeElement === visibleElement || activeElement) {
+                const actualElement = activeElement || visibleElement;
+                portal.className = `portal ${actualElement}`;
+                portal.setAttribute('data-element', actualElement);
+                portal.classList.add('active');
+                portal.addEventListener('click', function() {
+                    window.location.href = `world_${actualElement}.html`;
+                });
+            }
+            
+            portalsContainer.appendChild(portal);
+        }
+        
+        // For demo: activate a random portal (can be replaced with API call)
+        function activatePortal(element) {
+            sessionStorage.setItem('activeElement', element);
+            const portals = document.querySelectorAll('.portal');
+            portals.forEach(portal => {
+                portal.classList.remove('active');
+                if (portal.dataset.element === element) {
+                    portal.classList.add('active');
+                    portal.addEventListener('click', function() {
+                        window.location.href = `world_${element}.html`;
+                    });
+                }
+            });
+            
+            // Update text
+            const text = document.querySelector('.entrance-text');
+            text.innerHTML = '<span class="lang-kr">당신의 감정이 흘러가고, 하나의 문이 깨어났습니다.</span><span class="lang-en">Your emotions flow, and a door has awakened.</span>';
+            
+            // Refresh to show the portal
+            location.reload();
         }
     </script>
 </body>
