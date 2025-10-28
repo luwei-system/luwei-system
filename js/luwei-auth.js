@@ -1,6 +1,11 @@
 (function(){
   'use strict';
-  const cfg = () => (window.luweiSupabase && window.luweiSupabase.getConfig && window.luweiSupabase.getConfig()) || {};
+  const cfg = () => {
+    const fromUtil = (window.luweiSupabase && window.luweiSupabase.getConfig && window.luweiSupabase.getConfig()) || {};
+    if (fromUtil.url && fromUtil.anonKey) return fromUtil;
+    const fromGlobal = (window && window.__LUWEI_SUPABASE_CONFIG) || {};
+    return fromGlobal;
+  };
   let sp = null;
   function ensureClient(){
     if (sp) return sp;
