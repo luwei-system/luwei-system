@@ -64,6 +64,11 @@
     return await res.json();
   }
 
+  // Auto init from global to fix OAuth callback timing issues
+  if (window && window.__LUWEI_SUPABASE_CONFIG) {
+    try { setConfig(window.__LUWEI_SUPABASE_CONFIG); } catch(_) {}
+  }
+
   window.luweiSupabase = {
     setConfig,
     getConfig,
