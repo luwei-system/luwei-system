@@ -1969,9 +1969,9 @@
             <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
               <span id="auth_status" style="font-size:12px;color:#333;background:rgba(207,232,255,.6);border:1px solid rgba(0,0,0,.08);padding:4px 8px;border-radius:999px;display:none">로그인됨</span>
               <button id="auth_apple" class="btn" style="height:36px;padding:0 12px">Apple로 시작</button>
-              <button id="auth_google" class="btn" style="height:36px;padding:0 12px">Google로 시작</button>
-              <button id="auth_kakao" class="btn" style="height:36px;padding:0 12px">Kakao로 시작</button>
-              <button id="auth_instagram" class="btn" style="height:36px;padding:0 12px">Instagram로 시작</button>
+              <button id="auth_google" class="btn" style="height:36px;padding:0 12px;display:none">Google로 시작</button>
+              <button id="auth_kakao" class="btn" style="height:36px;padding:0 12px;display:none">Kakao로 시작</button>
+              <button id="auth_instagram" class="btn" style="height:36px;padding:0 12px;display:none">Instagram로 시작</button>
               <button id="auth_out" class="btn" style="height:36px;padding:0 12px;display:none">로그아웃</button>
             </div>`;
           document.body.appendChild(box);
@@ -1987,6 +1987,7 @@
               if (ok){ await window.luweiAuth.refreshSession(); sess = window.luweiAuth.getSession(); }
             }
             const isOn = !!sess;
+            // 로그인 시: 로그아웃 버튼 + 상태 표시, 로그인 버튼 숨김
             outBtn.style.display = isOn ? 'inline-block' : 'none';
             statusEl.style.display = isOn ? 'inline-block' : 'none';
             loginBtns.forEach(btn => { btn.style.display = isOn ? 'none' : 'inline-block'; });
