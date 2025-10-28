@@ -41,7 +41,7 @@
     try{ return JSON.parse(localStorage.getItem('luwei_auth')||'null'); }catch(_){ return null; }
   }
 
-  function signOut(){ localStorage.removeItem('luwei_auth'); }
+  function signOut(){ localStorage.removeItem('luwei_auth'); sp && sp.auth.signOut(); }
 
   async function oauthSignIn(provider){
     const client = ensureClient();
@@ -61,6 +61,16 @@
   }
 
   window.luweiAuth = { signUpEmail, signInEmail, getSession, signOut, oauthSignIn, refreshSession };
+  
+  // Check for OAuth callback hash and auto-restore session
+  (function handleCallback(){
+    const h = location.hash.match(/[#&]access_token=([^&]+)/);
+    if (h){
+      location.hash = '';
+      const client = ensureClient();
+      if (client){ client.auth.getSession().then(()=>location.reload()).catch(()=>{}); }
+    }
+  })();
 })();
 
 
