@@ -20,7 +20,7 @@
   async function oauthSignIn(provider){
     const client = ensureClient();
     if(!client) throw new Error('supabase client not ready');
-    const redirectTo = location.origin + location.pathname;
+    const redirectTo = 'https://luweisystem.com/index.html';
     console.log('[luwei-auth] OAuth sign in', { provider, redirectTo });
     try {
       const { data, error } = await client.auth.signInWithOAuth({ 
