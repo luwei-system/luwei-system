@@ -1530,9 +1530,53 @@
         body.lang-english .lang-en {
             display: block;
         }
+        
+        @keyframes floatAround {
+            0% {
+                top: 10%;
+                left: 15%;
+            }
+            12.5% {
+                top: 5%;
+                left: 50%;
+            }
+            25% {
+                top: 15%;
+                left: 85%;
+            }
+            37.5% {
+                top: 50%;
+                left: 90%;
+            }
+            50% {
+                top: 85%;
+                left: 70%;
+            }
+            62.5% {
+                top: 95%;
+                left: 30%;
+            }
+            75% {
+                top: 70%;
+                left: 5%;
+            }
+            87.5% {
+                top: 50%;
+                left: 15%;
+            }
+            100% {
+                top: 10%;
+                left: 15%;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Background Music -->
+    <audio id="indexBackgroundMusic" loop autoplay>
+        <source src="./assets/music/Weightless Mist.mp3" type="audio/mpeg">
+    </audio>
+    
     <!-- Home Entrance -->
     <div class="home-entrance">
         <!-- Main Headline -->
@@ -1798,7 +1842,35 @@
                 }, 100);
             });
         }
+        
+        // Music toggle for index page
+        let isMusicPlayingIndex = true;
+        let indexMusic;
+        
+        function toggleMusicIndex() {
+            if (!indexMusic) {
+                indexMusic = document.getElementById('indexBackgroundMusic');
+            }
+            
+            if (isMusicPlayingIndex) {
+                indexMusic.pause();
+                isMusicPlayingIndex = false;
+            } else {
+                indexMusic.play().catch(e => console.log('Could not play music:', e));
+                isMusicPlayingIndex = true;
+            }
+        }
+        
+        // Initialize music on page load
+        window.addEventListener('load', function() {
+            indexMusic = document.getElementById('indexBackgroundMusic');
+        });
     </script>
+    
+    <!-- Music Toggle Button -->
+    <div class="music-toggle-index" onclick="toggleMusicIndex()" style="position: fixed; width: 80px; height: 80px; border-radius: 50%; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border: 3px solid rgba(255, 255, 255, 0.8); cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 99999 !important; transition: all 0.3s ease; animation: floatAround 60s ease-in-out infinite; box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);">
+        <img src="./assets/음악아이콘.png" alt="Music" id="musicIconIndex" style="width: 60px; height: 60px; object-fit: contain; pointer-events: none;">
+    </div>
 </body>
 </html>
 
