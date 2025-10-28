@@ -55,20 +55,60 @@
   async function refreshSession(){
     const client = ensureClient();
     if(!client) return null;
-    const { data } = await client.auth.getSession();
-    if (data && data.session){ localStorage.setItem('luwei_auth', JSON.stringify({ user:data.session.user, access_token:data.session.access_token })); }
+    const { data, error } = await client.auth.getSession();
+    if (error) {
+      console.warn('[luwei-auth] refresh error', error);
+      return null;
+    }
+    if (data && data.session){ 
+      localStorage.setItem('luwei_auth', JSON.stringify({ 
+        user: data.session.user, 
+        access_token: data.session.access_token 
+      }));
+      console.log('[luwei-auth] session restored');
+    }
     return data && data.session ? data.session : null;
   }
+  
+  // Persist session on auth state change
+  function setupAuthStateListener(){
+    const client = ensureClient();
+    if (!client) return;
+    client.auth.onAuthStateChange((event, session) => {
+      console.log('[luwei-auth] state change', event, !!session);
+      if (event === 'SIGNED_IN' && session){
+        localStorage.setItem('luwei_auth', JSON.stringify({ 
+          user: session.user, 
+          access_token: session.access_token 
+        }));
+      } else if (event === 'SIGNED_OUT'){
+        localStorage.removeItem('luwei_auth');
+      }
+    });
+  }
 
-  window.luweiAuth = { signUpEmail, signInEmail, getSession, signOut, oauthSignIn, refreshSession };
+  window.luweiAuth = { signUpEmail, signInEmail, getSession, signOut, oauthSignIn, refreshSession, setupAuthStateListener };
+  
+  // Initialize auth state listener
+  if (document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', () => setupAuthStateListener());
+  } else {
+    setupAuthStateListener();
+  }
   
   // Check for OAuth callback hash and auto-restore session
   (function handleCallback(){
     const h = location.hash.match(/[#&]access_token=([^&]+)/);
     if (h){
+      console.log('[luwei-auth] OAuth callback detected');
       location.hash = '';
       const client = ensureClient();
-      if (client){ client.auth.getSession().then(()=>location.reload()).catch(()=>{}); }
+      if (client){
+        client.auth.getSession().then(({ data }) => {
+          console.log('[luwei-auth] session after OAuth', !!data.session);
+          if (data && data.session) location.reload();
+        }).catch(()=>{});
+      }
     }
   })();
 })();
