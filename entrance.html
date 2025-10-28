@@ -418,6 +418,38 @@
         .portal.active {
             animation: portalGlow 2s ease-in-out infinite, float 8s ease-in-out infinite;
         }
+        
+        /* Music Toggle Button */
+        .music-toggle-entrance {
+            position: fixed;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1001;
+            transition: all 0.3s ease;
+            animation: floatAround 40s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+        
+        .music-toggle-entrance img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            pointer-events: none;
+        }
+        
+        .music-toggle-entrance:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+        }
     </style>
 </head>
 <body>
@@ -474,6 +506,11 @@
         });
     </script>
     
+    <!-- Music Toggle Button -->
+    <div class="music-toggle-entrance" onclick="toggleMusicEntrance()">
+        <img src="./assets/음악아이콘.png" alt="Music" id="musicIconEntrance">
+    </div>
+    
     <!-- Footer with Language Switcher -->
     <footer class="footer">
         <div class="language-switcher" onclick="toggleLanguage()">
@@ -485,6 +522,22 @@
     <script>
         function toggleLanguage() {
             document.body.classList.toggle('lang-english');
+        }
+        
+        // Music toggle for entrance
+        let isMusicPlayingEntrance = true;
+        const entranceMusic = document.getElementById('entranceMusic');
+        
+        function toggleMusicEntrance() {
+            if (isMusicPlayingEntrance) {
+                entranceMusic.pause();
+                document.getElementById('musicIconEntrance').textContent = '🔇';
+                isMusicPlayingEntrance = false;
+            } else {
+                entranceMusic.play();
+                document.getElementById('musicIconEntrance').textContent = '🔊';
+                isMusicPlayingEntrance = true;
+            }
         }
         
         // Create portals

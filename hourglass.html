@@ -225,25 +225,33 @@
         /* Hourglass Music Toggle Button */
         .hourglass-music-toggle {
             position: fixed;
-            bottom: 100px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            border: 3px solid rgba(255, 255, 255, 0.8);
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 1001;
             transition: all 0.3s ease;
+            animation: floatAround 40s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+        
+        .hourglass-music-toggle img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            pointer-events: none;
         }
         
         .hourglass-music-toggle:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 1);
             transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
         }
         
         @media (max-width: 768px) {
@@ -464,7 +472,7 @@
     
     <!-- Music Toggle Button -->
     <div class="hourglass-music-toggle" onclick="toggleHourglassMusic()">
-        <span id="hourglassMusicIcon">🔊</span>
+        <img src="./assets/음악아이콘.png" alt="Music" id="hourglassMusicIcon">
     </div>
     
     <script>
@@ -483,11 +491,9 @@
         function toggleHourglassMusic() {
             if (isHourglassMusicPlaying) {
                 hourglassMusic.pause();
-                document.getElementById('hourglassMusicIcon').textContent = '🔇';
                 isHourglassMusicPlaying = false;
             } else {
                 hourglassMusic.play();
-                document.getElementById('hourglassMusicIcon').textContent = '🔊';
                 isHourglassMusicPlaying = true;
             }
         }
