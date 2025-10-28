@@ -81,13 +81,23 @@
     if (h){
       console.log('[luwei-auth] OAuth callback detected');
       location.hash = '';
-      const client = ensureClient();
-      if (client){
-        client.auth.getSession().then(({ data }) => {
-          console.log('[luwei-auth] session after OAuth', !!data.session);
-          if (data && data.session) location.reload();
-        }).catch(()=>{});
-      }
+      // Retry if config not ready yet
+      let tries = 0; const maxTries = 10; const t = 200;
+      const attempt = ()=>{
+        tries++;
+        const client = ensureClient();
+        if (!client && tries < maxTries){
+          setTimeout(attempt, t);
+        } else if (client) {
+          client.auth.getSession().then(({ data }) => {
+            console.log('[luwei-auth] session after OAuth', !!data.session);
+            if (data && data.session) location.reload();
+          }).catch(()=>{});
+        } else {
+          console.warn('[luwei-auth] client not ready after', maxTries, 'retries');
+        }
+      };
+      attempt();
     }
   })();
 })();
