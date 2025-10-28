@@ -1966,10 +1966,21 @@
               <button id="auth_out" class="btn" style="height:36px;padding:0 12px;display:none">로그아웃</button>
             </div>`;
           document.body.appendChild(box);
-          if (window.luweiAuth && window.luweiAuth.refreshSession) { window.luweiAuth.refreshSession().catch(()=>{}); }
-          const sess = window.luweiAuth && window.luweiAuth.getSession && window.luweiAuth.getSession();
           const outBtn = box.querySelector('#auth_out');
-          if(sess){ outBtn.style.display='inline-block'; }
+          const updateAuthUI = ()=>{
+            const sess = window.luweiAuth && window.luweiAuth.getSession && window.luweiAuth.getSession();
+            outBtn.style.display = sess ? 'inline-block' : 'none';
+          };
+          // Try to refresh session on load and update UI after
+          if (window.luweiAuth && window.luweiAuth.refreshSession) {
+            window.luweiAuth.refreshSession().finally(updateAuthUI);
+          } else {
+            updateAuthUI();
+          }
+          // A few retries in case redirect sets session slightly later
+          let tries = 0; const maxTries = 6;
+          const t = setInterval(()=>{ tries++; updateAuthUI(); if (tries>=maxTries) clearInterval(t); }, 500);
+          document.addEventListener('visibilitychange', updateAuthUI);
           const signWith = async (provider)=>{
             try{ await window.luweiAuth.oauthSignIn(provider); }catch(e){ alert(provider+' 로그인 실패'); }
           };
@@ -1977,7 +1988,7 @@
           box.querySelector('#auth_kakao').onclick = ()=> signWith('kakao');
           box.querySelector('#auth_instagram').onclick = ()=> signWith('instagram');
           box.querySelector('#auth_apple').onclick = ()=> signWith('apple');
-          outBtn.onclick = ()=>{ window.luweiAuth.signOut(); outBtn.style.display='none'; alert('로그아웃'); };
+          outBtn.onclick = ()=>{ window.luweiAuth.signOut(); updateAuthUI(); alert('로그아웃'); };
         })();
     </script>
     
