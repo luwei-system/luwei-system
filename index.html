@@ -1967,8 +1967,12 @@
             </div>`;
           document.body.appendChild(box);
           const outBtn = box.querySelector('#auth_out');
-          const updateAuthUI = ()=>{
-            const sess = window.luweiAuth && window.luweiAuth.getSession && window.luweiAuth.getSession();
+          const updateAuthUI = async ()=>{
+            let sess = window.luweiAuth && window.luweiAuth.getSession && window.luweiAuth.getSession();
+            if (!sess && window.luweiAuth && window.luweiAuth.refreshSession){
+              await window.luweiAuth.refreshSession();
+              sess = window.luweiAuth.getSession();
+            }
             outBtn.style.display = sess ? 'inline-block' : 'none';
           };
           // Try to refresh session on load and update UI after
@@ -1978,8 +1982,8 @@
             updateAuthUI();
           }
           // A few retries in case redirect sets session slightly later
-          let tries = 0; const maxTries = 6;
-          const t = setInterval(()=>{ tries++; updateAuthUI(); if (tries>=maxTries) clearInterval(t); }, 500);
+          let tries = 0; const maxTries = 20;
+          const t = setInterval(async ()=>{ tries++; await updateAuthUI(); if (tries>=maxTries) clearInterval(t); }, 500);
           document.addEventListener('visibilitychange', updateAuthUI);
           const signWith = async (provider)=>{
             try{ await window.luweiAuth.oauthSignIn(provider); }catch(e){ alert(provider+' 로그인 실패'); }
