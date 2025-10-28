@@ -99,7 +99,6 @@
           if (data && data.session){
             localStorage.setItem('luwei_auth', JSON.stringify({ user: data.session.user, access_token: data.session.access_token }));
           }
-          // clean url
           history.replaceState({}, '', location.origin + location.pathname);
         }catch(e){ console.warn('[luwei-auth] exchange failed', e); }
       }
@@ -109,7 +108,10 @@
     const h = location.hash.match(/[#&]access_token=([^&]+)/);
     if (h){
       console.log('[luwei-auth] OAuth callback detected');
-      location.hash = '';
+      // Do NOT clear hash before extracting tokens
+      const hp = new URLSearchParams(location.hash.slice(1));
+      const at = hp.get('access_token');
+      const rt = hp.get('refresh_token');
       let tries = 0; const maxTries = 10; const t = 200;
       const attempt = ()=>{
         tries++;
@@ -117,10 +119,21 @@
         if (!client && tries < maxTries){
           setTimeout(attempt, t);
         } else if (client) {
-          client.auth.getSession().then(({ data }) => {
-            console.log('[luwei-auth] session after OAuth', !!data.session);
-            if (data && data.session) location.reload();
-          }).catch(()=>{});
+          const next = ()=>{
+            client.auth.getSession().then(({ data }) => {
+              console.log('[luwei-auth] session after OAuth', !!(data && data.session));
+              if (data && data.session){
+                localStorage.setItem('luwei_auth', JSON.stringify({ user: data.session.user, access_token: data.session.access_token }));
+                location.hash = '';
+                location.reload();
+              }
+            }).catch(()=>{});
+          };
+          if (at && rt){
+            client.auth.setSession({ access_token: at, refresh_token: rt }).then(() => next()).catch(() => next());
+          } else {
+            next();
+          }
         } else {
           console.warn('[luwei-auth] client not ready after', maxTries, 'retries');
         }
