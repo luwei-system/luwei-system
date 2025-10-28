@@ -1,0 +1,9 @@
+{
+  "name": "LUWEI SYSTEM",
+  "short_name": "LUWEI",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#CFE8FF",
+  "icons": []
+}
