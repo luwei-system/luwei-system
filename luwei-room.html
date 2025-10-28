@@ -878,26 +878,6 @@
         <source src="./assets/music/room2.mp3" type="audio/mpeg">
     </audio>
     
-    <!-- Music Player -->
-    <div class="music-player">
-        <audio id="backgroundMusic" loop>
-            <source id="musicSource" src="" type="audio/mpeg">
-        </audio>
-        <div class="music-controls">
-            <div class="music-track" onclick="selectTrack('room1')">
-                <span class="lang-kr">트랙 1</span>
-                <span class="lang-en">Track 1</span>
-            </div>
-            <div class="music-track" onclick="selectTrack('room2')">
-                <span class="lang-kr">트랙 2</span>
-                <span class="lang-en">Track 2</span>
-            </div>
-            <div class="music-toggle" onclick="toggleMusic()">
-                <span id="musicIcon">🔊</span>
-            </div>
-        </div>
-    </div>
-    
     <div class="droplets-container">
         <!-- Droplet 1: Instagram -->
         <div class="droplet instagram-droplet" onclick="navigateToExternal('https://www.instagram.com/luweisystem/')">
@@ -1492,52 +1472,8 @@
             window.open(url, '_blank', 'noopener,noreferrer');
         }
         
-        // Music controls
-        let currentTrack = null;
-        let isPlaying = false;
-        const musicPlayer = document.getElementById('backgroundMusic');
-        
-        function selectTrack(track) {
-            // If same track is selected, do nothing if already playing
-            if (currentTrack === track && isPlaying) {
-                return;
-            }
-            
-            const track1 = track === 'room1';
-            currentTrack = track;
-            const source = track1 ? './assets/music/room1.mp3' : './assets/music/room2.mp3';
-            
-            // Pause and reset current music
-            musicPlayer.pause();
-            musicPlayer.currentTime = 0;
-            
-            // Load new track
-            document.getElementById('musicSource').src = source;
-            musicPlayer.load();
-            
-            // Play immediately
-            musicPlayer.play().then(() => {
-                isPlaying = true;
-                document.getElementById('musicIcon').textContent = '🔊';
-            }).catch(err => {
-                console.log('Auto-play prevented:', err);
-            });
-        }
-        
-        function toggleMusic() {
-            if (currentTrack) {
-                if (isPlaying) {
-                    musicPlayer.pause();
-                    document.getElementById('musicIcon').textContent = '🔇';
-                    isPlaying = false;
-                } else {
-                    musicPlayer.play();
-                    document.getElementById('musicIcon').textContent = '🔊';
-                    isPlaying = true;
-                }
-            } else {
-                alert('먼저 트랙을 선택해주세요.');
-            }
+        function startTagColor() {
+            alert('기억에 색을 태그해보세요.');
         }
     </script>
 </body>
