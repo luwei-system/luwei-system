@@ -48,6 +48,13 @@
     return data && data.session ? data.session : null;
   }
 
+  async function hasSession(){
+    const client = ensureClient();
+    if (!client) return false;
+    const { data } = await client.auth.getSession();
+    return !!(data && data.session);
+  }
+
   function setupAuthStateListener(){
     const client = ensureClient();
     if (!client) return;
@@ -61,7 +68,7 @@
     });
   }
 
-  window.luweiAuth = { getSession, signOut, oauthSignIn, refreshSession, setupAuthStateListener };
+  window.luweiAuth = { getSession, signOut, oauthSignIn, refreshSession, setupAuthStateListener, hasSession };
 
   if (document.readyState === 'loading'){
     document.addEventListener('DOMContentLoaded', () => setupAuthStateListener());

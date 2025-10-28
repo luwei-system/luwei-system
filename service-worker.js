@@ -1,5 +1,5 @@
 // LUWEI SYSTEM Service Worker - Offline Cache
-const CACHE = 'luwei-pwa-v1';
+const CACHE = 'luwei-pwa-v2';
 const ASSETS = [
   '/',
   '/index.html',
@@ -52,6 +52,10 @@ self.addEventListener('activate', (e) => {
 
 // Fetch event - serve from cache, fallback to network
 self.addEventListener('fetch', (e) => {
+  // Bypass caching for auth script to avoid stale versions
+  if (e.request.url.includes('/js/luwei-auth.js')) {
+    return e.respondWith(fetch(e.request));
+  }
   e.respondWith(
     caches.match(e.request).then((res) => {
       // Return cached version if found

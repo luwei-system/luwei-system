@@ -1969,9 +1969,9 @@
           const outBtn = box.querySelector('#auth_out');
           const updateAuthUI = async ()=>{
             let sess = window.luweiAuth && window.luweiAuth.getSession && window.luweiAuth.getSession();
-            if (!sess && window.luweiAuth && window.luweiAuth.refreshSession){
-              await window.luweiAuth.refreshSession();
-              sess = window.luweiAuth.getSession();
+            if (!sess && window.luweiAuth && window.luweiAuth.hasSession){
+              const ok = await window.luweiAuth.hasSession();
+              if (ok){ await window.luweiAuth.refreshSession(); sess = window.luweiAuth.getSession(); }
             }
             outBtn.style.display = sess ? 'inline-block' : 'none';
           };
@@ -1982,7 +1982,7 @@
             updateAuthUI();
           }
           // A few retries in case redirect sets session slightly later
-          let tries = 0; const maxTries = 20;
+          let tries = 0; const maxTries = 30;
           const t = setInterval(async ()=>{ tries++; await updateAuthUI(); if (tries>=maxTries) clearInterval(t); }, 500);
           document.addEventListener('visibilitychange', updateAuthUI);
           const signWith = async (provider)=>{
