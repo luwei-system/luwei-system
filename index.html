@@ -1958,7 +1958,8 @@
           const box = document.createElement('div');
           box.style.cssText = 'position:fixed;right:10px;bottom:10px;background:rgba(255,255,255,.9);backdrop-filter:blur(8px);border:1px solid rgba(0,0,0,.08);border-radius:12px;padding:10px;z-index:99999;box-shadow:0 2px 16px rgba(0,0,0,.1);font-family:\'Noto Sans KR\'';
           box.innerHTML = `
-            <div style="display:flex;gap:8px;align-items:center">
+            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+              <span id="auth_status" style="font-size:12px;color:#333;background:rgba(207,232,255,.6);border:1px solid rgba(0,0,0,.08);padding:4px 8px;border-radius:999px;display:none">로그인됨</span>
               <button id="auth_apple" class="btn" style="height:36px;padding:0 12px">Apple로 시작</button>
               <button id="auth_google" class="btn" style="height:36px;padding:0 12px">Google로 시작</button>
               <button id="auth_kakao" class="btn" style="height:36px;padding:0 12px">Kakao로 시작</button>
@@ -1967,13 +1968,20 @@
             </div>`;
           document.body.appendChild(box);
           const outBtn = box.querySelector('#auth_out');
+          const statusEl = box.querySelector('#auth_status');
           const updateAuthUI = async ()=>{
             let sess = window.luweiAuth && window.luweiAuth.getSession && window.luweiAuth.getSession();
             if (!sess && window.luweiAuth && window.luweiAuth.hasSession){
               const ok = await window.luweiAuth.hasSession();
               if (ok){ await window.luweiAuth.refreshSession(); sess = window.luweiAuth.getSession(); }
             }
-            outBtn.style.display = sess ? 'inline-block' : 'none';
+            const isOn = !!sess;
+            outBtn.style.display = isOn ? 'inline-block' : 'none';
+            statusEl.style.display = isOn ? 'inline-block' : 'none';
+            if (isOn){
+              const email = (sess.user && (sess.user.email || sess.user.phone)) || '로그인됨';
+              statusEl.textContent = email ? `로그인됨 · ${email}` : '로그인됨';
+            }
           };
           // Try to refresh session on load and update UI after
           if (window.luweiAuth && window.luweiAuth.refreshSession) {
