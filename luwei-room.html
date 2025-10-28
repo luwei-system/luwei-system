@@ -1521,18 +1521,29 @@
         
         // Music toggle for room
         let isMusicPlayingRoom = true;
-        const roomMusic = document.getElementById('roomBackgroundMusic');
+        let roomMusic;
         
         function toggleMusicRoom() {
+            if (!roomMusic) {
+                roomMusic = document.getElementById('roomBackgroundMusic');
+            }
+            
             if (isMusicPlayingRoom) {
                 roomMusic.pause();
                 isMusicPlayingRoom = false;
             } else {
-                roomMusic.play();
+                roomMusic.play().catch(e => console.log('Could not play music:', e));
                 isMusicPlayingRoom = true;
             }
         }
         
+        // Initialize music on page load
+        window.addEventListener('load', function() {
+            roomMusic = document.getElementById('roomBackgroundMusic');
+        });
+    </script>
+    
+    <style>
         @keyframes floatAround {
             0% {
                 top: 10%;
