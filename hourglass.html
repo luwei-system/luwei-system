@@ -895,6 +895,42 @@
                     }, { passive: false });
                 });
             } catch(_) {}
+
+            // Make needle draggable
+            (function(){
+                const needle = document.getElementById('needleToggle');
+                if (!needle) return;
+                let dragging=false, sx=0, sy=0, ox=0, oy=0;
+                const pt = (e)=> (e.touches && e.touches[0]) ? {x:e.touches[0].clientX,y:e.touches[0].clientY}:{x:e.clientX,y:e.clientY};
+                const down = (e)=>{
+                    const p = pt(e); dragging=true; sx=p.x; sy=p.y;
+                    const r = needle.getBoundingClientRect();
+                    ox = r.left; oy = r.top;
+                    needle.style.left = ox + 'px';
+                    needle.style.top  = oy + 'px';
+                    needle.style.right = 'auto';
+                    needle.style.bottom= 'auto';
+                    e.preventDefault();
+                };
+                const move = (e)=>{
+                    if(!dragging) return; const p=pt(e);
+                    let nx = ox + (p.x - sx); let ny = oy + (p.y - sy);
+                    const maxX = window.innerWidth - needle.offsetWidth;
+                    const maxY = window.innerHeight - needle.offsetHeight;
+                    nx = Math.max(0, Math.min(maxX, nx));
+                    ny = Math.max(0, Math.min(maxY, ny));
+                    needle.style.left = nx + 'px';
+                    needle.style.top  = ny + 'px';
+                    e.preventDefault();
+                };
+                const up = ()=>{ dragging=false; };
+                needle.addEventListener('mousedown', down);
+                window.addEventListener('mousemove', move, {passive:false});
+                window.addEventListener('mouseup', up);
+                needle.addEventListener('touchstart', down, {passive:false});
+                window.addEventListener('touchmove', move, {passive:false});
+                window.addEventListener('touchend', up, {passive:true});
+            })();
         });
         
         function toggleLanguage() {
