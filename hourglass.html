@@ -534,6 +534,11 @@
             font-size: 12px;
             padding: 15px;
             z-index: 1000;
+            animation: none !important;
+        }
+        
+        .memory-item.expanded::before {
+            content: '';
         }
         
         @media (max-width: 768px) {
@@ -1079,7 +1084,8 @@
                     memoryEl.setAttribute('data-text', text);
                     
                     // Click to expand
-                    memoryEl.onclick = function() {
+                    memoryEl.onclick = function(e) {
+                        e.stopPropagation();
                         const isExpanded = this.classList.contains('expanded');
                         
                         // Close other expanded items
@@ -1091,8 +1097,12 @@
                         
                         if (isExpanded) {
                             this.classList.remove('expanded');
+                            this.style.fontSize = '0';
+                            this.style.padding = '0';
                         } else {
                             this.classList.add('expanded');
+                            this.style.fontSize = '12px';
+                            this.style.padding = '15px';
                         }
                     };
                     

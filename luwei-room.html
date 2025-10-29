@@ -1315,6 +1315,7 @@
             font-size: 11px;
             padding: 12px;
             z-index: 1000;
+            animation: none !important;
         }
         
         /* Instagram droplet */
@@ -1772,18 +1773,25 @@
                     memoryEl.textContent = text;
                     
                     // Click to expand
-                    memoryEl.onclick = function() {
+                    memoryEl.onclick = function(e) {
+                        e.stopPropagation();
                         const isExpanded = this.classList.contains('expanded');
                         document.querySelectorAll('.room-memory-item.expanded').forEach(item => {
                             if (item !== this) {
                                 item.classList.remove('expanded');
+                                item.style.fontSize = '0';
+                                item.style.padding = '0';
                             }
                         });
                         
                         if (isExpanded) {
                             this.classList.remove('expanded');
+                            this.style.fontSize = '0';
+                            this.style.padding = '0';
                         } else {
                             this.classList.add('expanded');
+                            this.style.fontSize = '11px';
+                            this.style.padding = '12px';
                         }
                     };
                     
