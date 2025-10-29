@@ -1816,6 +1816,26 @@
         window.addEventListener('load', function() {
             loadRoomMemories();
         });
+
+        // Realtime sync: listen to BroadcastChannel from hourglass
+        try {
+            const bc = new BroadcastChannel('luwei-memories');
+            bc.onmessage = (ev) => {
+                if (ev && ev.data && ev.data.type === 'new_memory') {
+                    // If the new memory is public (room 표시), 갱신
+                    if (ev.data.public) {
+                        loadRoomMemories();
+                    }
+                }
+            };
+        } catch(_) {}
+
+        // Fallback sync: storage ping
+        window.addEventListener('storage', function(e){
+            if (e && e.key === 'luwei_room_ping') {
+                loadRoomMemories();
+            }
+        });
     </script>
     
     <style>
