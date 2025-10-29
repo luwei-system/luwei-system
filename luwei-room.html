@@ -1791,8 +1791,16 @@
                 const container = document.getElementById('roomMemoryContainer');
                 if (!container) return;
                 
-                // 공개 버블은 로그인 없이도 표시
-                container.style.display = 'block';
+                // Require auth: 로그인하지 않으면 표시하지 않음
+                let authed = false;
+                try { authed = !!JSON.parse(localStorage.getItem('luwei_auth')||'null'); } catch(_) {}
+                if (!authed) {
+                    container.innerHTML = '';
+                    container.style.display = 'none';
+                    return;
+                } else {
+                    container.style.display = 'block';
+                }
                 container.innerHTML = '';
                 
                 // Load from Supabase
