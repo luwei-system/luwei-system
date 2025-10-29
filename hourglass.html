@@ -1247,6 +1247,17 @@
                 el.style.left = origLeft + 'px';
                 el.style.top = origTop + 'px';
                 el.classList.add('pressed');
+                // Show text immediately on press
+                if (!el.classList.contains('expanded')) {
+                    el.classList.add('expanded');
+                    const full = el.getAttribute('data-text') || '(내용 없음)';
+                    el.textContent = full;
+                    el.style.fontSize = '14px';
+                    el.style.padding = '16px';
+                    const bg = el.style.background || '#CFE8FF';
+                    el.style.color = isDarkColor(bg) ? '#fff' : '#111';
+                    el.style.opacity = '1';
+                }
                 e.preventDefault();
             };
             const pointerMove = (e)=>{

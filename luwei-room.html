@@ -1857,6 +1857,19 @@
                 origLeft = el.offsetLeft; origTop = el.offsetTop;
                 el.style.left = origLeft + 'px'; el.style.top = origTop + 'px';
                 el.classList.add('pressed');
+                // Show text immediately on press
+                if (!el.classList.contains('expanded')) {
+                    el.classList.add('expanded');
+                    const full = el.textContent && el.textContent.trim() ? el.textContent : '(내용 없음)';
+                    el.textContent = full;
+                    el.style.fontSize = '12px';
+                    el.style.padding = '14px';
+                    const bg = el.style.background || '#CFE8FF';
+                    const rgb = (function(h){h=h.replace('#','');if(h.length===3)h=h.split('').map(c=>c+c).join('');const n=parseInt(h,16);return {r:(n>>16)&255,g:(n>>8)&255,b:n&255};})(bg);
+                    const L = 0.299*rgb.r + 0.587*rgb.g + 0.114*rgb.b;
+                    el.style.color = (L<140) ? '#fff' : '#111';
+                    el.style.opacity = '1';
+                }
                 e.preventDefault();
             };
             const move = (e)=>{
