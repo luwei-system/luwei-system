@@ -735,16 +735,43 @@
                 }
             }
         });
-        // Mobile-friendly volume hook
+        // Mobile-friendly volume hook with Web Audio GainNode (iOS 지원)
         (function(){
             const slider = document.getElementById('volumeSlider');
             const audio  = document.getElementById('entranceMusic');
             if(!slider || !audio) return;
-            const applyVol = v=>{ const vol=Math.max(0,Math.min(1,parseFloat(v||'0.5'))); audio.volume=vol; try{localStorage.setItem('luwei_volume',String(vol));}catch(_){} };
-            const wake = ()=>{ audio.muted=false; audio.play().catch(()=>{}); };
+            let ctx = null, src = null, gain = null;
+            const ensureGraph = ()=>{
+                if (!ctx) {
+                    const AC = window.AudioContext || window.webkitAudioContext;
+                    if (!AC) return;
+                    ctx = new AC();
+                }
+                if (ctx && ctx.state === 'suspended') ctx.resume().catch(()=>{});
+                if (ctx && !src) {
+                    try {
+                        src = ctx.createMediaElementSource(audio);
+                        gain = ctx.createGain();
+                        src.connect(gain);
+                        gain.connect(ctx.destination);
+                    } catch(_) {}
+                }
+            };
+            const applyVol = v=>{
+                const vol = Math.max(0, Math.min(1, parseFloat(v||'0.5')));
+                if (gain) { try { gain.gain.value = vol; } catch(_) {} }
+                try{ localStorage.setItem('luwei_volume', String(vol)); }catch(_){ }
+            };
+            const wake = ()=>{
+                ensureGraph();
+                audio.muted = false;
+                audio.play().catch(()=>{});
+            };
             ['touchstart','pointerdown','mousedown'].forEach(evt=> slider.addEventListener(evt, ()=>{ wake(); }, {passive:true}));
             ['input','change'].forEach(evt=> slider.addEventListener(evt, e=>{ wake(); applyVol(e.target.value); }));
             window.addEventListener('pageshow', ()=>{ const saved=localStorage.getItem('luwei_volume'); if(saved!=null) applyVol(saved); });
+            const initSaved = localStorage.getItem('luwei_volume');
+            if (initSaved != null) applyVol(initSaved);
         })();
         
         // Create portals
