@@ -500,6 +500,14 @@
         }
         
         /* Memory items */
+        #memoryContainer {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
         .memory-item {
             position: absolute;
             width: 40px;
@@ -510,6 +518,7 @@
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
             transition: all 0.3s;
             z-index: 2;
+            pointer-events: auto;
             display: flex;
             align-items: center;
             justify-content: center;
