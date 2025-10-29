@@ -1861,9 +1861,23 @@
             window.addEventListener('touchend', up, { passive:true });
         }
         
-        // Load room memories on page load
-        window.addEventListener('load', function() {
-            loadRoomMemories();
+        // Load room memories on page load (with session refresh for mobile Safari)
+        window.addEventListener('load', async function() {
+            try {
+                if (window.luweiAuth && window.luweiAuth.refreshSession) {
+                    await window.luweiAuth.refreshSession();
+                } else if (window.supabase) {
+                    const { createClient } = window.supabase;
+                    const cli = createClient(window.__LUWEI_SUPABASE_CONFIG.url, window.__LUWEI_SUPABASE_CONFIG.anonKey);
+                    const { data } = await cli.auth.getSession();
+                    if (data && data.session) {
+                        try {
+                            localStorage.setItem('luwei_auth', JSON.stringify({ user: data.session.user, access_token: data.session.access_token }));
+                        } catch(_) {}
+                    }
+                }
+            } catch(_) {}
+            setTimeout(loadRoomMemories, 150);
         });
 
         // Realtime sync: listen to BroadcastChannel from hourglass
