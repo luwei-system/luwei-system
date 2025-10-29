@@ -886,6 +886,13 @@
         function toggleLanguage() {
             document.body.classList.toggle('lang-english');
         }
+
+        // Needle toggle (delete tool)
+        window.__NEEDLE_ON = false;
+        function toggleNeedle(){
+            window.__NEEDLE_ON = !window.__NEEDLE_ON;
+            document.body.classList.toggle('needle-on', window.__NEEDLE_ON);
+        }
         
         // Hourglass music controls
         let isHourglassMusicPlaying = true;
@@ -1260,7 +1267,38 @@
                 el.style.top = ny + 'px';
                 e.preventDefault();
             };
-            const pointerUp = ()=>{ dragging = false; };
+            const pointerUp = async ()=>{
+                if (dragging) {
+                    // When released, if overlapping needle tool and needle is ON, delete
+                    try {
+                        const needle = document.getElementById('needleToggle');
+                        if (needle && window.__NEEDLE_ON) {
+                            const nr = needle.getBoundingClientRect();
+                            const br = el.getBoundingClientRect();
+                            const overlap = !(br.right < nr.left || br.left > nr.right || br.bottom < nr.top || br.top > nr.bottom);
+                            if (overlap) {
+                                const id = el.dataset.id;
+                                if (id) {
+                                    const { createClient } = supabase;
+                                    const supabaseClient = createClient(
+                                        window.__LUWEI_SUPABASE_CONFIG.url,
+                                        window.__LUWEI_SUPABASE_CONFIG.anonKey
+                                    );
+                                    const { error: delErr } = await supabaseClient
+                                        .from('artifact')
+                                        .delete()
+                                        .eq('id', id);
+                                    if (delErr) throw delErr;
+                                }
+                                el.remove();
+                                try { localStorage.setItem('luwei_room_ping', String(Date.now())); } catch(_) {}
+                                try { const bc = new BroadcastChannel('luwei-memories'); bc.postMessage({type:'new_memory', public:true}); } catch(_) {}
+                            }
+                        }
+                    } catch(_) {}
+                }
+                dragging = false;
+            };
             el.addEventListener('mousedown', pointerDown);
             window.addEventListener('mousemove', pointerMove, { passive:false });
             window.addEventListener('mouseup', pointerUp);
