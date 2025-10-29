@@ -1288,7 +1288,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            z-index: 5000; /* UI 컨트롤(99999)보다 아래로 두어 버튼이 항상 클릭됨 */
+            z-index: 20000; /* 버블을 확실히 보이게 */
             pointer-events: none; /* 빈 영역은 클릭 통과 */
         }
         .room-memory-item {
@@ -1300,7 +1300,7 @@
             animation: float 6s ease-in-out infinite;
             box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
             transition: all 0.3s;
-            z-index: 6;
+            z-index: 20001;
             pointer-events: auto;
             display: flex;
             align-items: center;
@@ -1312,6 +1312,7 @@
             text-align: center;
             word-wrap: break-word;
             overflow: hidden;
+            transform: translateZ(0);
         }
         
         .room-memory-item:hover {
