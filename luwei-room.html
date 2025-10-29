@@ -1087,6 +1087,7 @@
             cursor: pointer;
             animation: float 6s ease-in-out infinite;
             box-shadow: 0 8px 32px rgba(207, 232, 255, 0.2);
+            z-index: 6000; /* 2) 카드 버튼 계층 */
         }
         
         .droplet:hover {
@@ -1837,6 +1838,14 @@
                 loadRoomMemories();
             }
         });
+
+        // Extra: visibility change and periodic polling (모바일 호환)
+        document.addEventListener('visibilitychange', function(){
+            if (!document.hidden) {
+                loadRoomMemories();
+            }
+        });
+        setInterval(loadRoomMemories, 5000);
     </script>
     
     <style>
