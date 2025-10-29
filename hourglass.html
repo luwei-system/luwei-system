@@ -175,7 +175,8 @@
             animation: float 8s ease-in-out infinite;
             box-shadow: 0 12px 48px rgba(255, 218, 185, 0.5);
             filter: brightness(1.1);
-            z-index: 1;
+            z-index: 9000; /* sand-grain clickable above bubbles */
+            pointer-events: auto;
         }
         
         .sand-grain:nth-child(1) {
@@ -867,6 +868,15 @@
             }
             
             document.body.classList.add('loaded');
+
+            // Ensure sand-grain is tappable on mobile
+            try {
+                document.querySelectorAll('.sand-grain').forEach(function(el){
+                    el.addEventListener('touchstart', function(){
+                        openMemoryModal();
+                    }, { passive: true });
+                });
+            } catch(_) {}
         });
         
         function toggleLanguage() {
