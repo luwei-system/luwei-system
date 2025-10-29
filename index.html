@@ -655,16 +655,15 @@
             // Hide all login buttons when logged in
             if (appleBtn) appleBtn.style.display = 'none';
             if (kakaoBtn) kakaoBtn.style.display = 'none';
+            
+            // Show email
+            const email = (sess.user && (sess.user.email || sess.user.phone || sess.user.user_metadata?.email || sess.user.identities?.[0]?.identity_data?.email)) || '로그인됨';
+            statusEl.textContent = email ? `로그인됨 · ${email}` : '로그인됨';
           } else {
             // Show only Apple and Kakao when not logged in
             if (appleBtn) appleBtn.style.display = 'inline-block';
             if (kakaoBtn) kakaoBtn.style.display = 'inline-block';
           }
-            
-            if (isOn){
-              const email = (sess.user && (sess.user.email || sess.user.phone || sess.user.user_metadata?.email || sess.user.identities?.[0]?.identity_data?.email)) || '로그인됨';
-              statusEl.textContent = email ? `로그인됨 · ${email}` : '로그인됨';
-            }
           };
           // Initial UI update
           updateAuthUI();
