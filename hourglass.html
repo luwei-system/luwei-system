@@ -1135,9 +1135,8 @@
                     return;
                 }
                 
-                // Display memories (only public ones)
-                const filteredData = data.filter(m => m.is_public === true);
-                filteredData.forEach((memory, index) => {
+                // Display memories for hourglass: show ALL (public + private)
+                (data || []).forEach((memory, index) => {
                     const memoryEl = document.createElement('div');
                     memoryEl.className = 'memory-item';
                     
