@@ -493,6 +493,79 @@
             box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
         }
         
+        .volume-control {
+            position: fixed;
+            bottom: 100px;
+            left: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0,0,0,0.08);
+            border-radius: 12px;
+            padding: 12px;
+            z-index: 99999;
+            display: none;
+        }
+        
+        .volume-control.active {
+            display: block;
+        }
+        
+        .volume-control input[type="range"] {
+            width: 120px;
+            height: 6px;
+            border-radius: 3px;
+            background: #ddd;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        .volume-control input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #333;
+            cursor: pointer;
+        }
+        
+        .volume-control input[type="range"]::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #333;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .volume-toggle {
+            position: fixed;
+            bottom: 20px;
+            left: 10px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .volume-toggle:hover {
+            transform: scale(1.1);
+        }
+        
+        .volume-toggle img {
+            width: 30px;
+            height: 30px;
+        }
+        
         @keyframes rippleExpand {
             0% {
                 transform: translate(-50%, -50%) scale(1);
@@ -570,6 +643,17 @@
         <img src="./assets/음악아이콘.png" alt="Music" id="musicIconEntrance">
     </div>
     
+    <!-- Volume Control -->
+    <div class="volume-control" id="volumeControl">
+        <label for="volumeSlider" style="font-size: 12px; color: #333;">볼륨:</label>
+        <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5" oninput="updateVolume(this.value)">
+    </div>
+    
+    <!-- Volume Toggle Button -->
+    <div class="volume-toggle" id="volumeToggle" onclick="toggleVolumeControl()">
+        <img src="./assets/음악아이콘.png" alt="Volume" style="width: 30px; height: 30px;">
+    </div>
+    
     <!-- Footer with Language Switcher -->
     <footer class="footer">
         <div class="language-switcher" onclick="toggleLanguage()">
@@ -624,6 +708,33 @@
                 }
             }
         }
+        
+        // Volume control
+        function toggleVolumeControl() {
+            const control = document.getElementById('volumeControl');
+            if (control) {
+                control.classList.toggle('active');
+            }
+        }
+        
+        function updateVolume(value) {
+            if (entranceMusic) {
+                entranceMusic.volume = value;
+                localStorage.setItem('luwei_volume', value);
+            }
+        }
+        
+        // Load saved volume
+        window.addEventListener('load', function() {
+            const savedVolume = localStorage.getItem('luwei_volume');
+            if (entranceMusic && savedVolume !== null) {
+                entranceMusic.volume = parseFloat(savedVolume);
+                const slider = document.getElementById('volumeSlider');
+                if (slider) {
+                    slider.value = savedVolume;
+                }
+            }
+        });
         
         // Create portals
         function createPortals() {

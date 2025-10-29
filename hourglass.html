@@ -296,6 +296,172 @@
             box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
         }
         
+        .volume-control {
+            position: fixed;
+            bottom: 100px;
+            left: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0,0,0,0.08);
+            border-radius: 12px;
+            padding: 12px;
+            z-index: 99999;
+            display: none;
+        }
+        
+        .volume-control.active {
+            display: block;
+        }
+        
+        .volume-control input[type="range"] {
+            width: 120px;
+            height: 6px;
+            border-radius: 3px;
+            background: #ddd;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        .volume-control input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #333;
+            cursor: pointer;
+        }
+        
+        .volume-control input[type="range"]::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #333;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .volume-toggle {
+            position: fixed;
+            bottom: 20px;
+            left: 10px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .volume-toggle:hover {
+            transform: scale(1.1);
+        }
+        
+        .volume-toggle img {
+            width: 30px;
+            height: 30px;
+        }
+        
+        /* Memory Modal */
+        .memory-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000000;
+        }
+        
+        .memory-modal.active {
+            display: flex;
+        }
+        
+        .memory-modal-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+        
+        .memory-modal-content h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+            font-family: 'Noto Sans KR', 'Cormorant Garamond', serif;
+        }
+        
+        .memory-modal-content textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 15px;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            font-family: 'Noto Sans KR', 'Cormorant Garamond', serif;
+            font-size: 16px;
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        
+        .memory-modal-content textarea:focus {
+            border-color: rgba(207, 232, 255, 0.8);
+        }
+        
+        .memory-modal-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .memory-modal-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Noto Sans KR', 'Cormorant Garamond', serif;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .memory-modal-btn.save {
+            background: rgba(207, 232, 255, 0.8);
+            color: #333;
+        }
+        
+        .memory-modal-btn.save:hover {
+            background: rgba(207, 232, 255, 1);
+            transform: scale(1.05);
+        }
+        
+        .memory-modal-btn.cancel {
+            background: rgba(0, 0, 0, 0.05);
+            color: #333;
+        }
+        
+        .memory-modal-btn.cancel:hover {
+            background: rgba(0, 0, 0, 0.1);
+            transform: scale(1.05);
+        }
+        
         @media (max-width: 768px) {
             .home-button {
                 width: 50px;
@@ -511,12 +677,12 @@
     </div>
     
     <!-- Sand grains floating -->
-    <div class="sand-grain"></div>
-    <div class="sand-grain"></div>
-    <div class="sand-grain"></div>
-    <div class="sand-grain"></div>
-    <div class="sand-grain"></div>
-    <div class="sand-grain"></div>
+    <div class="sand-grain" onclick="openMemoryModal()" style="cursor: pointer;"></div>
+    <div class="sand-grain" onclick="openMemoryModal()" style="cursor: pointer;"></div>
+    <div class="sand-grain" onclick="openMemoryModal()" style="cursor: pointer;"></div>
+    <div class="sand-grain" onclick="openMemoryModal()" style="cursor: pointer;"></div>
+    <div class="sand-grain" onclick="openMemoryModal()" style="cursor: pointer;"></div>
+    <div class="sand-grain" onclick="openMemoryModal()" style="cursor: pointer;"></div>
     
     <!-- Background Music -->
     <audio id="hourglassMusic" loop autoplay>
@@ -526,6 +692,29 @@
     <!-- Music Toggle Button -->
     <div class="hourglass-music-toggle" id="musicToggleHourglass" onclick="toggleHourglassMusic()">
         <img src="./assets/음악아이콘.png" alt="Music" id="hourglassMusicIcon">
+    </div>
+    
+    <!-- Volume Control -->
+    <div class="volume-control" id="volumeControl">
+        <label for="volumeSlider" style="font-size: 12px; color: #333;">볼륨:</label>
+        <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5" oninput="updateVolume(this.value)">
+    </div>
+    
+    <!-- Volume Toggle Button -->
+    <div class="volume-toggle" id="volumeToggle" onclick="toggleVolumeControl()">
+        <img src="./assets/음악아이콘.png" alt="Volume" style="width: 30px; height: 30px;">
+    </div>
+    
+    <!-- Memory Modal -->
+    <div class="memory-modal" id="memoryModal">
+        <div class="memory-modal-content">
+            <h2><span class="lang-kr">당신의 기억을 남겨주세요</span><span class="lang-en">Leave Your Memory</span></h2>
+            <textarea id="memoryText" placeholder="여기에 당신의 생각을 적어주세요..."></textarea>
+            <div class="memory-modal-buttons">
+                <button class="memory-modal-btn save" onclick="saveMemory()"><span class="lang-kr">저장</span><span class="lang-en">Save</span></button>
+                <button class="memory-modal-btn cancel" onclick="closeMemoryModal()"><span class="lang-kr">취소</span><span class="lang-en">Cancel</span></button>
+            </div>
+        </div>
     </div>
     
     <script>
@@ -584,6 +773,107 @@
                 }
             }
         }
+        
+        // Volume control
+        function toggleVolumeControl() {
+            const control = document.getElementById('volumeControl');
+            if (control) {
+                control.classList.toggle('active');
+            }
+        }
+        
+        function updateVolume(value) {
+            if (hourglassMusic) {
+                hourglassMusic.volume = value;
+                localStorage.setItem('luwei_volume', value);
+            }
+        }
+        
+        // Load saved volume
+        window.addEventListener('load', function() {
+            const savedVolume = localStorage.getItem('luwei_volume');
+            if (hourglassMusic && savedVolume !== null) {
+                hourglassMusic.volume = parseFloat(savedVolume);
+                const slider = document.getElementById('volumeSlider');
+                if (slider) {
+                    slider.value = savedVolume;
+                }
+            }
+        });
+        
+        // Memory modal functions
+        function openMemoryModal() {
+            // Check if user is logged in
+            const stored = localStorage.getItem('luwei_auth');
+            if (!stored) {
+                alert('로그인이 필요합니다.');
+                return;
+            }
+            
+            const modal = document.getElementById('memoryModal');
+            if (modal) {
+                modal.classList.add('active');
+            }
+        }
+        
+        function closeMemoryModal() {
+            const modal = document.getElementById('memoryModal');
+            const textarea = document.getElementById('memoryText');
+            if (modal) {
+                modal.classList.remove('active');
+            }
+            if (textarea) {
+                textarea.value = '';
+            }
+        }
+        
+        async function saveMemory() {
+            const textarea = document.getElementById('memoryText');
+            const text = textarea ? textarea.value.trim() : '';
+            
+            if (!text) {
+                alert('내용을 입력해주세요.');
+                return;
+            }
+            
+            try {
+                // Check if user is logged in
+                const stored = localStorage.getItem('luwei_auth');
+                if (!stored) {
+                    alert('로그인이 필요합니다.');
+                    closeMemoryModal();
+                    return;
+                }
+                
+                const session = JSON.parse(stored);
+                const userId = session.user && session.user.id;
+                
+                // Save memory to localStorage
+                const memories = JSON.parse(localStorage.getItem('hourglass_memories') || '[]');
+                memories.push({
+                    id: Date.now(),
+                    text: text,
+                    userId: userId,
+                    timestamp: new Date().toISOString()
+                });
+                localStorage.setItem('hourglass_memories', JSON.stringify(memories));
+                
+                alert('기억이 저장되었습니다.');
+                closeMemoryModal();
+                
+            } catch (err) {
+                console.error('Error saving memory:', err);
+                alert('저장 중 오류가 발생했습니다.');
+            }
+        }
+        
+        // Close modal when clicking outside
+        document.addEventListener('click', function(e) {
+            const modal = document.getElementById('memoryModal');
+            if (modal && e.target === modal) {
+                closeMemoryModal();
+            }
+        });
     </script>
     
     <!-- Footer with Language Switcher -->
