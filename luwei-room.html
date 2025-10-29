@@ -1746,6 +1746,17 @@
                 }
             }
         });
+        // Mobile-friendly volume hook
+        (function(){
+            const slider = document.getElementById('volumeSlider');
+            const audio  = document.getElementById('roomBackgroundMusic');
+            if(!slider || !audio) return;
+            const applyVol = v=>{ const vol=Math.max(0,Math.min(1,parseFloat(v||'0.5'))); audio.volume=vol; try{localStorage.setItem('luwei_volume',String(vol));}catch(_){} };
+            const wake = ()=>{ audio.muted=false; audio.play().catch(()=>{}); };
+            ['touchstart','pointerdown','mousedown'].forEach(evt=> slider.addEventListener(evt, ()=>{ wake(); }, {passive:true}));
+            ['input','change'].forEach(evt=> slider.addEventListener(evt, e=>{ wake(); applyVol(e.target.value); }));
+            window.addEventListener('pageshow', ()=>{ const saved=localStorage.getItem('luwei_volume'); if(saved!=null) applyVol(saved); });
+        })();
         
         // Load and display room memories (requires auth)
         async function loadRoomMemories() {
