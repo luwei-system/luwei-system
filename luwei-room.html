@@ -1318,6 +1318,11 @@
             transform: scale(1.2);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
         }
+        .room-memory-item.pressed {
+            transform: scale(0.95);
+            box-shadow: 0 3px 12px rgba(0,0,0,0.4);
+            transition: transform 0.05s ease, box-shadow 0.05s ease;
+        }
         
         .room-memory-item.expanded {
             width: 180px;
@@ -1841,6 +1846,7 @@
                 const p = getPoint(e); startX=p.x; startY=p.y;
                 origLeft = el.offsetLeft; origTop = el.offsetTop;
                 el.style.left = origLeft + 'px'; el.style.top = origTop + 'px';
+                el.classList.add('pressed');
                 e.preventDefault();
             };
             const move = (e)=>{
@@ -1852,7 +1858,7 @@
                 el.style.left = nx + 'px'; el.style.top = ny + 'px';
                 e.preventDefault();
             };
-            const up = ()=>{ dragging = false; };
+            const up = ()=>{ el.classList.remove('pressed'); dragging = false; };
             el.addEventListener('mousedown', down);
             window.addEventListener('mousemove', move, { passive:false });
             window.addEventListener('mouseup', up);

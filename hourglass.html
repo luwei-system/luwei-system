@@ -539,6 +539,11 @@
             transform: scale(1.2);
             box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
         }
+        .memory-item.pressed {
+            transform: scale(0.95);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+            transition: transform 0.05s ease, box-shadow 0.05s ease;
+        }
         
         .memory-item.expanded {
             width: 200px;
@@ -1234,6 +1239,7 @@
                 origTop = el.offsetTop;
                 el.style.left = origLeft + 'px';
                 el.style.top = origTop + 'px';
+                el.classList.add('pressed');
                 e.preventDefault();
             };
             const pointerMove = (e)=>{
@@ -1282,6 +1288,7 @@
                         }
                     } catch(_) {}
                 }
+                el.classList.remove('pressed');
                 dragging = false;
             };
             el.addEventListener('mousedown', pointerDown);
