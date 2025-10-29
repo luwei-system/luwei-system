@@ -623,46 +623,31 @@
             .map(sel => box.querySelector(sel))
             .filter(Boolean);
           const updateAuthUI = async ()=>{
-            // Try multiple ways to get session
             let sess = null;
             
-            // First check localStorage directly
+            // 1. Check localStorage
             try {
               const stored = localStorage.getItem('luwei_auth');
-              if (stored) {
-                sess = JSON.parse(stored);
-              }
+              if (stored) sess = JSON.parse(stored);
             } catch(e) {}
             
-            // Also try Supabase session directly
-            try {
-              if (window.supabase && !sess) {
-                const client = window.supabase.createClient(window.luweiSupabase?.getConfig?.()?.url, window.luweiSupabase?.getConfig?.()?.anonKey);
-                if (client) {
-                  const { data } = await client.auth.getSession();
-                  if (data?.session) {
-                    sess = data.session;
-                    // Save to localStorage
-                    localStorage.setItem('luwei_auth', JSON.stringify({ user: sess.user, access_token: sess.access_token }));
-                  }
+            // 2. If no session in storage, check if there's a session in Supabase
+            if (!sess && window.luweiAuth && window.luweiAuth.refreshSession) {
+              try {
+                const refreshed = await window.luweiAuth.refreshSession();
+                if (refreshed) {
+                  sess = window.luweiAuth.getSession();
                 }
-              }
-            } catch(e) {}
-            
-            // Fallback to luweiAuth API
-            if (!sess && window.luweiAuth && window.luweiAuth.getSession) {
-              sess = window.luweiAuth.getSession();
-            }
-            
-            if (!sess && window.luweiAuth && window.luweiAuth.hasSession){
-              const ok = await window.luweiAuth.hasSession();
-              if (ok){ await window.luweiAuth.refreshSession(); sess = window.luweiAuth.getSession(); }
+              } catch(e) {}
             }
             
             const isOn = !!sess;
+            
+            // Update UI
             outBtn.style.display = isOn ? 'inline-block' : 'none';
             statusEl.style.display = isOn ? 'inline-block' : 'none';
             loginBtns.forEach(btn => { btn.style.display = isOn ? 'none' : 'inline-block'; });
+            
             if (isOn){
               const email = (sess.user && (sess.user.email || sess.user.phone || sess.user.user_metadata?.email || sess.user.identities?.[0]?.identity_data?.email)) || '로그인됨';
               statusEl.textContent = email ? `로그인됨 · ${email}` : '로그인됨';
@@ -671,21 +656,23 @@
           // Initial UI update
           updateAuthUI();
           
-          // Try to refresh session if available
-          if (window.luweiAuth && window.luweiAuth.refreshSession) {
-            window.luweiAuth.refreshSession().finally(() => {
-              console.log('[auth-ui] session refreshed');
-              updateAuthUI();
-            });
-          }
+          // Wait for scripts to load, then refresh session
+          setTimeout(async () => {
+            if (window.luweiAuth && window.luweiAuth.refreshSession) {
+              const refreshed = await window.luweiAuth.refreshSession();
+              if (refreshed) {
+                updateAuthUI();
+              }
+            }
+          }, 1000);
           
-          // Poll for session changes more aggressively
-          let tries = 0; const maxTries = 50;
+          // Poll for session changes
+          let tries = 0; const maxTries = 60;
           const t = setInterval(async ()=>{
             tries++; 
             await updateAuthUI(); 
             if (tries>=maxTries) clearInterval(t); 
-          }, 300);
+          }, 500);
           
           document.addEventListener('visibilitychange', updateAuthUI);
           
