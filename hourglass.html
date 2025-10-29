@@ -1161,6 +1161,9 @@
                     memoryEl.setAttribute('data-text', text);
                     if (memory.id) memoryEl.dataset.id = memory.id;
                     
+                    // Make draggable (mouse/touch)
+                    makeDraggable(memoryEl);
+
                     // Click to expand
                     memoryEl.onclick = async function(e) {
                         e.stopPropagation();
@@ -1216,6 +1219,54 @@
             } catch (err) {
                 console.error('Error loading memories:', err);
             }
+        }
+        
+        // Draggable helper for bubbles
+        function makeDraggable(el){
+            let dragging = false;
+            let startX = 0, startY = 0;
+            let origLeft = 0, origTop = 0;
+            const container = document.getElementById('memoryContainer');
+            const getPoint = (e)=>{
+                if (e.touches && e.touches[0]) return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+                return { x: e.clientX, y: e.clientY };
+            };
+            const pointerDown = (e)=>{
+                // ignore when expanded or needle mode
+                if (el.classList.contains('expanded') || window.__NEEDLE_ON) return;
+                dragging = true;
+                const p = getPoint(e);
+                startX = p.x; startY = p.y;
+                // normalize to px for stable dragging
+                origLeft = el.offsetLeft;
+                origTop = el.offsetTop;
+                el.style.left = origLeft + 'px';
+                el.style.top = origTop + 'px';
+                e.preventDefault();
+            };
+            const pointerMove = (e)=>{
+                if (!dragging) return;
+                const p = getPoint(e);
+                const dx = p.x - startX;
+                const dy = p.y - startY;
+                let nx = origLeft + dx;
+                let ny = origTop + dy;
+                // keep inside viewport
+                const maxX = (container ? container.clientWidth : window.innerWidth) - el.offsetWidth;
+                const maxY = (container ? container.clientHeight : window.innerHeight) - el.offsetHeight;
+                nx = Math.max(0, Math.min(maxX, nx));
+                ny = Math.max(0, Math.min(maxY, ny));
+                el.style.left = nx + 'px';
+                el.style.top = ny + 'px';
+                e.preventDefault();
+            };
+            const pointerUp = ()=>{ dragging = false; };
+            el.addEventListener('mousedown', pointerDown);
+            window.addEventListener('mousemove', pointerMove, { passive:false });
+            window.addEventListener('mouseup', pointerUp);
+            el.addEventListener('touchstart', pointerDown, { passive:false });
+            window.addEventListener('touchmove', pointerMove, { passive:false });
+            window.addEventListener('touchend', pointerUp, { passive:true });
         }
         
         // Load memories on page load and on visibility change
