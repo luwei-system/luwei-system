@@ -1893,6 +1893,19 @@
             }
         });
         setInterval(loadRoomMemories, 5000);
+
+        // Listen to auth state changes from luwei-auth
+        window.addEventListener('luwei:authChanged', function(){
+            // small delay to allow localStorage write
+            setTimeout(loadRoomMemories, 150);
+        });
+
+        // On first load, retry a few times in case auth arrives late
+        (function retryAuthInit(attempt=0){
+            const hasAuth = !!(function(){ try { return JSON.parse(localStorage.getItem('luwei_auth')||'null'); } catch(_) { return null; } })();
+            if (hasAuth) { loadRoomMemories(); return; }
+            if (attempt < 6) { setTimeout(()=>retryAuthInit(attempt+1), 300); }
+        })();
     </script>
     
     <style>
