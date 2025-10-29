@@ -87,8 +87,16 @@
   }
 
   (async function handleCallback(){
-    // v2 OAuth code flow: code/state in querystring
+    // Clear error parameters first
     const qs = new URLSearchParams(location.search);
+    const hasError = qs.get('error');
+    if (hasError) {
+      console.warn('[luwei-auth] OAuth error detected', hasError, qs.get('error_description'));
+      window.history.replaceState({}, '', location.pathname);
+      return;
+    }
+    
+    // v2 OAuth code flow: code/state in querystring
     const hasCode = qs.get('code') && qs.get('state');
     if (hasCode){
       const client = ensureClient();
