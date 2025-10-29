@@ -624,38 +624,73 @@
             .filter(Boolean);
           const updateAuthUI = async ()=>{
             // Try multiple ways to get session
-            let sess = window.luweiAuth && window.luweiAuth.getSession && window.luweiAuth.getSession();
-            if (!sess) {
-              // Check localStorage directly
-              try {
-                const stored = localStorage.getItem('luwei_auth');
-                if (stored) {
-                  sess = JSON.parse(stored);
+            let sess = null;
+            
+            // First check localStorage directly
+            try {
+              const stored = localStorage.getItem('luwei_auth');
+              if (stored) {
+                sess = JSON.parse(stored);
+              }
+            } catch(e) {}
+            
+            // Also try Supabase session directly
+            try {
+              if (window.supabase && !sess) {
+                const client = window.supabase.createClient(window.luweiSupabase?.getConfig?.()?.url, window.luweiSupabase?.getConfig?.()?.anonKey);
+                if (client) {
+                  const { data } = await client.auth.getSession();
+                  if (data?.session) {
+                    sess = data.session;
+                    // Save to localStorage
+                    localStorage.setItem('luwei_auth', JSON.stringify({ user: sess.user, access_token: sess.access_token }));
+                  }
                 }
-              } catch(e) {}
+              }
+            } catch(e) {}
+            
+            // Fallback to luweiAuth API
+            if (!sess && window.luweiAuth && window.luweiAuth.getSession) {
+              sess = window.luweiAuth.getSession();
             }
+            
             if (!sess && window.luweiAuth && window.luweiAuth.hasSession){
               const ok = await window.luweiAuth.hasSession();
               if (ok){ await window.luweiAuth.refreshSession(); sess = window.luweiAuth.getSession(); }
             }
+            
             const isOn = !!sess;
-            if (isOn) console.log('[auth-ui] logged in', sess.user?.email || sess.user?.phone);
             outBtn.style.display = isOn ? 'inline-block' : 'none';
             statusEl.style.display = isOn ? 'inline-block' : 'none';
             loginBtns.forEach(btn => { btn.style.display = isOn ? 'none' : 'inline-block'; });
             if (isOn){
-              const email = (sess.user && (sess.user.email || sess.user.phone || sess.user.user_metadata?.email)) || '로그인됨';
+              const email = (sess.user && (sess.user.email || sess.user.phone || sess.user.user_metadata?.email || sess.user.identities?.[0]?.identity_data?.email)) || '로그인됨';
               statusEl.textContent = email ? `로그인됨 · ${email}` : '로그인됨';
             }
           };
+          // Initial UI update
+          updateAuthUI();
+          
+          // Try to refresh session if available
           if (window.luweiAuth && window.luweiAuth.refreshSession) {
-            window.luweiAuth.refreshSession().finally(updateAuthUI);
-          } else {
-            updateAuthUI();
+            window.luweiAuth.refreshSession().finally(() => {
+              console.log('[auth-ui] session refreshed');
+              updateAuthUI();
+            });
           }
-          let tries = 0; const maxTries = 30;
-          const t = setInterval(async ()=>{ tries++; await updateAuthUI(); if (tries>=maxTries) clearInterval(t); }, 500);
+          
+          // Poll for session changes more aggressively
+          let tries = 0; const maxTries = 50;
+          const t = setInterval(async ()=>{
+            tries++; 
+            await updateAuthUI(); 
+            if (tries>=maxTries) clearInterval(t); 
+          }, 300);
+          
           document.addEventListener('visibilitychange', updateAuthUI);
+          
+          // Also listen for storage changes (cross-tab sync)
+          window.addEventListener('storage', updateAuthUI);
           const signWith = async (provider)=>{
             try{ await window.luweiAuth.oauthSignIn(provider); }catch(e){ alert(provider+' 로그인 실패'); }
           };
