@@ -859,7 +859,7 @@
             <!-- Room Display Checkbox -->
             <div class="memory-room-checkbox" style="margin-top: 15px;">
                 <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px; color: #666;">
-                    <input type="checkbox" id="roomDisplayCheck" checked style="width: 18px; height: 18px; cursor: pointer;">
+                    <input type="checkbox" id="roomDisplayCheck" style="width: 18px; height: 18px; cursor: pointer;">
                     <span><span class="lang-kr">방안에 넣기</span><span class="lang-en">Put in room</span></span>
                 </label>
             </div>
@@ -1017,7 +1017,7 @@
             // Reset room checkbox
             const roomCheck = document.getElementById('roomDisplayCheck');
             if (roomCheck) {
-                roomCheck.checked = true;
+                roomCheck.checked = false;
             }
         }
         
@@ -1248,8 +1248,8 @@
                 return { x: e.clientX, y: e.clientY };
             };
             const pointerDown = (e)=>{
-                // ignore when expanded or needle mode
-                if (el.classList.contains('expanded') || window.__NEEDLE_ON) return;
+                // ignore when expanded (needle mode에서도 드래그 가능)
+                if (el.classList.contains('expanded')) return;
                 dragging = true;
                 const p = getPoint(e);
                 startX = p.x; startY = p.y;
