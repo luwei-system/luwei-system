@@ -983,6 +983,10 @@
                     window.__LUWEI_SUPABASE_CONFIG.anonKey
                 );
                 
+                // Get room display checkbox value
+                const roomCheck = document.getElementById('roomDisplayCheck');
+                const showInRoom = roomCheck ? roomCheck.checked : false;
+                
                 // Use supabase client with auth
                 // Store color in content_url field temporarily
                 const { data, error } = await supabaseClient
@@ -992,7 +996,7 @@
                         kind: 'text',
                         text_content: text,
                         content_url: selectedColor, // Store selected color
-                        is_public: false,
+                        is_public: showInRoom, // Show in room if checked
                         created_at: new Date().toISOString()
                     });
                 
@@ -1058,8 +1062,9 @@
                     return;
                 }
                 
-                // Display memories
-                data.forEach((memory, index) => {
+                // Display memories (only public ones)
+                const filteredData = data.filter(m => m.is_public === true);
+                filteredData.forEach((memory, index) => {
                     const memoryEl = document.createElement('div');
                     memoryEl.className = 'memory-item';
                     

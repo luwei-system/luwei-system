@@ -915,6 +915,9 @@
         <!-- Droplet 3: Hourglass -->
         <a href="hourglass.html" class="droplet hourglass-droplet"></a>
         
+        <!-- Room Memory Items Container -->
+        <div id="roomMemoryContainer"></div>
+        
         <!-- Music Toggle Button -->
         <div class="music-toggle-room" id="musicToggleRoom" onclick="toggleMusicRoom()" style="position: fixed; width: 80px; height: 80px; border-radius: 50%; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border: 3px solid rgba(255, 255, 255, 0.8); cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 99999 !important; transition: all 0.3s ease; animation: floatAround 60s ease-in-out infinite; box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);">
             <img src="./assets/음악아이콘.png" alt="Music" id="musicIconRoom" style="width: 60px; height: 60px; object-fit: contain; pointer-events: none;">
@@ -1275,6 +1278,43 @@
         .volume-toggle img {
             width: 30px;
             height: 30px;
+        }
+        
+        /* Memory items in room */
+        .room-memory-item {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            animation: float 6s ease-in-out infinite;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0;
+            color: rgba(255, 255, 255, 0.8);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            padding: 0;
+            text-align: center;
+            word-wrap: break-word;
+            overflow: hidden;
+        }
+        
+        .room-memory-item:hover {
+            transform: scale(1.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        }
+        
+        .room-memory-item.expanded {
+            width: 180px;
+            height: 180px;
+            border-radius: 20px;
+            font-size: 11px;
+            padding: 12px;
+            z-index: 1000;
         }
         
         /* Instagram droplet */
@@ -1687,6 +1727,77 @@
                     slider.value = savedVolume;
                 }
             }
+        });
+        
+        // Load and display room memories
+        async function loadRoomMemories() {
+            try {
+                const container = document.getElementById('roomMemoryContainer');
+                if (!container) return;
+                
+                container.innerHTML = '';
+                
+                // Load from Supabase
+                const { createClient } = supabase;
+                const supabaseClient = createClient(
+                    window.__LUWEI_SUPABASE_CONFIG.url,
+                    window.__LUWEI_SUPABASE_CONFIG.anonKey
+                );
+                
+                const { data, error } = await supabaseClient
+                    .from('artifact')
+                    .select('*')
+                    .eq('kind', 'text')
+                    .eq('is_public', true)
+                    .order('created_at', { ascending: false })
+                    .limit(15);
+                
+                if (error) {
+                    console.error('Error loading room memories:', error);
+                    return;
+                }
+                
+                // Display memories
+                data.forEach((memory, index) => {
+                    const memoryEl = document.createElement('div');
+                    memoryEl.className = 'room-memory-item';
+                    
+                    const color = memory.content_url || '#CFE8FF';
+                    const text = memory.text_content || '';
+                    
+                    memoryEl.style.background = color;
+                    memoryEl.style.left = (20 + (index * 18)) % 70 + '%';
+                    memoryEl.style.top = (25 + (index * 14)) % 60 + '%';
+                    memoryEl.style.animationDelay = (index * 0.4) + 's';
+                    memoryEl.textContent = text;
+                    
+                    // Click to expand
+                    memoryEl.onclick = function() {
+                        const isExpanded = this.classList.contains('expanded');
+                        document.querySelectorAll('.room-memory-item.expanded').forEach(item => {
+                            if (item !== this) {
+                                item.classList.remove('expanded');
+                            }
+                        });
+                        
+                        if (isExpanded) {
+                            this.classList.remove('expanded');
+                        } else {
+                            this.classList.add('expanded');
+                        }
+                    };
+                    
+                    container.appendChild(memoryEl);
+                });
+                
+            } catch (err) {
+                console.error('Error loading room memories:', err);
+            }
+        }
+        
+        // Load room memories on page load
+        window.addEventListener('load', function() {
+            loadRoomMemories();
         });
     </script>
     
