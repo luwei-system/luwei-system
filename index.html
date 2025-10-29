@@ -749,6 +749,10 @@
             // 초기 저장값을 게인에 반영
             const initSaved = localStorage.getItem('luwei_volume');
             if (initSaved != null) applyVol(initSaved);
+            // 첫 사용자 제스처에서 오디오 컨텍스트 깨우기
+            const onceWake = ()=>{ wake(); };
+            document.addEventListener('touchend', onceWake, { once:true, passive:true });
+            document.addEventListener('click', onceWake, { once:true });
         })();
     </script>
     

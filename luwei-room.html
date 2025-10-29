@@ -1783,6 +1783,10 @@
             window.addEventListener('pageshow', ()=>{ const saved=localStorage.getItem('luwei_volume'); if(saved!=null) applyVol(saved); });
             const initSaved = localStorage.getItem('luwei_volume');
             if (initSaved != null) applyVol(initSaved);
+            // 첫 사용자 제스처에서 오디오 컨텍스트 깨우기
+            const onceWake = ()=>{ wake(); };
+            document.addEventListener('touchend', onceWake, { once:true, passive:true });
+            document.addEventListener('click', onceWake, { once:true });
         })();
         
         // Load and display room memories (requires auth)
