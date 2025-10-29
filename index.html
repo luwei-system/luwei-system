@@ -640,10 +640,23 @@
             
             const isOn = !!sess;
             
-            // Update UI
-            outBtn.style.display = isOn ? 'inline-block' : 'none';
-            statusEl.style.display = isOn ? 'inline-block' : 'none';
-            loginBtns.forEach(btn => { btn.style.display = isOn ? 'none' : 'inline-block'; });
+          // Update UI
+          outBtn.style.display = isOn ? 'inline-block' : 'none';
+          statusEl.style.display = isOn ? 'inline-block' : 'none';
+          
+          // Show only Apple and Kakao when not logged in
+          const appleBtn = box.querySelector('#auth_apple');
+          const kakaoBtn = box.querySelector('#auth_kakao');
+          
+          if (isOn) {
+            // Hide all login buttons when logged in
+            if (appleBtn) appleBtn.style.display = 'none';
+            if (kakaoBtn) kakaoBtn.style.display = 'none';
+          } else {
+            // Show only Apple and Kakao when not logged in
+            if (appleBtn) appleBtn.style.display = 'inline-block';
+            if (kakaoBtn) kakaoBtn.style.display = 'inline-block';
+          }
             
             if (isOn){
               const email = (sess.user && (sess.user.email || sess.user.phone || sess.user.user_metadata?.email || sess.user.identities?.[0]?.identity_data?.email)) || '로그인됨';
