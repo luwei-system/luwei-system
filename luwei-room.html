@@ -1926,6 +1926,16 @@
             setTimeout(loadRoomMemories, 150);
         });
 
+        // Handle bfcache navigation (back/forward) to re-render bubbles
+        window.addEventListener('pageshow', async function(e){
+            try {
+                if (window.luweiAuth && window.luweiAuth.refreshSession) {
+                    await window.luweiAuth.refreshSession();
+                }
+            } catch(_) {}
+            setTimeout(loadRoomMemories, 120);
+        });
+
         // Realtime sync: listen to BroadcastChannel from hourglass
         try {
             const bc = new BroadcastChannel('luwei-memories');
