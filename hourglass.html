@@ -1205,8 +1205,15 @@
                             this.style.padding = '0';
                         } else {
                             this.classList.add('expanded');
-                            this.style.fontSize = '12px';
-                            this.style.padding = '15px';
+                            // show full text and improve contrast
+                            this.classList.remove('pressed');
+                            const full = this.getAttribute('data-text') || '(내용 없음)';
+                            this.textContent = full;
+                            this.style.fontSize = '14px';
+                            this.style.padding = '16px';
+                            const bg = this.style.background || '#CFE8FF';
+                            this.style.color = isDarkColor(bg) ? '#fff' : '#111';
+                            this.style.opacity = '1';
                         }
                     };
                     
@@ -1297,6 +1304,21 @@
             el.addEventListener('touchstart', pointerDown, { passive:false });
             window.addEventListener('touchmove', pointerMove, { passive:false });
             window.addEventListener('touchend', pointerUp, { passive:true });
+        }
+
+        // Color contrast helper
+        function hexToRgb(hex){
+            if (!hex) return {r:255,g:255,b:255};
+            const m = hex.replace('#','');
+            const v = m.length===3 ? m.split('').map(c=>c+c).join('') : m;
+            const num = parseInt(v,16);
+            return { r:(num>>16)&255, g:(num>>8)&255, b:num&255 };
+        }
+        function isDarkColor(hex){
+            const {r,g,b} = hexToRgb(hex);
+            // perceived luminance
+            const L = 0.299*r + 0.587*g + 0.114*b;
+            return L < 140; // threshold
         }
         
         // Load memories on page load and on visibility change
