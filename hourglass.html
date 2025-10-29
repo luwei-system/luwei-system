@@ -502,29 +502,38 @@
         /* Memory items */
         .memory-item {
             position: absolute;
-            width: 120px;
-            height: 120px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             cursor: pointer;
             animation: float 8s ease-in-out infinite;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
             transition: all 0.3s;
             z-index: 2;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 12px;
+            font-size: 0;
             color: rgba(255, 255, 255, 0.8);
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-            padding: 10px;
+            padding: 0;
             text-align: center;
             word-wrap: break-word;
             overflow: hidden;
         }
         
         .memory-item:hover {
-            transform: scale(1.1);
-            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
+            transform: scale(1.2);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+        }
+        
+        .memory-item.expanded {
+            width: 200px;
+            height: 200px;
+            border-radius: 20px;
+            font-size: 12px;
+            padding: 15px;
+            z-index: 1000;
         }
         
         @media (max-width: 768px) {
@@ -786,6 +795,14 @@
                 <div class="color-preview" id="colorPreview" style="background: #CFE8FF;"></div>
             </div>
             
+            <!-- Room Display Checkbox -->
+            <div class="memory-room-checkbox" style="margin-top: 15px;">
+                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px; color: #666;">
+                    <input type="checkbox" id="roomDisplayCheck" checked style="width: 18px; height: 18px; cursor: pointer;">
+                    <span><span class="lang-kr">방에 둥둥 떠다니게 표시</span><span class="lang-en">Float in room</span></span>
+                </label>
+            </div>
+            
             <div class="memory-modal-buttons">
                 <button class="memory-modal-btn save" onclick="saveMemory()"><span class="lang-kr">저장</span><span class="lang-en">Save</span></button>
                 <button class="memory-modal-btn cancel" onclick="closeMemoryModal()"><span class="lang-kr">취소</span><span class="lang-en">Cancel</span></button>
@@ -918,6 +935,12 @@
                 colorPreview.style.background = '#CFE8FF';
             }
             selectedColor = '#CFE8FF'; // Reset to default
+            
+            // Reset room checkbox
+            const roomCheck = document.getElementById('roomDisplayCheck');
+            if (roomCheck) {
+                roomCheck.checked = true;
+            }
         }
         
         // Color selection
@@ -1047,8 +1070,26 @@
                     memoryEl.style.left = (10 + (index * 15)) % 80 + '%';
                     memoryEl.style.top = (15 + (index * 12)) % 70 + '%';
                     memoryEl.style.animationDelay = (index * 0.5) + 's';
-                    memoryEl.textContent = text.substring(0, 15) + (text.length > 15 ? '...' : '');
-                    memoryEl.title = text;
+                    memoryEl.textContent = text;
+                    memoryEl.setAttribute('data-text', text);
+                    
+                    // Click to expand
+                    memoryEl.onclick = function() {
+                        const isExpanded = this.classList.contains('expanded');
+                        
+                        // Close other expanded items
+                        document.querySelectorAll('.memory-item.expanded').forEach(item => {
+                            if (item !== this) {
+                                item.classList.remove('expanded');
+                            }
+                        });
+                        
+                        if (isExpanded) {
+                            this.classList.remove('expanded');
+                        } else {
+                            this.classList.add('expanded');
+                        }
+                    };
                     
                     container.appendChild(memoryEl);
                 });
