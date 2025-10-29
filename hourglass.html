@@ -1108,12 +1108,22 @@
             }
         });
         
-        // Load and display memories
+        // Load and display memories (requires auth)
         async function loadMemories() {
             try {
                 const container = document.getElementById('memoryContainer');
                 if (!container) return;
                 
+                // Require auth: hide when logged out
+                let authed = false;
+                try { authed = !!JSON.parse(localStorage.getItem('luwei_auth')||'null'); } catch(_) {}
+                if (!authed) {
+                    container.innerHTML = '';
+                    container.style.display = 'none';
+                    return;
+                } else {
+                    container.style.display = 'block';
+                }
                 container.innerHTML = '';
                 
                 // Load from Supabase
@@ -1208,9 +1218,12 @@
             }
         }
         
-        // Load memories on page load
+        // Load memories on page load and on visibility change
         window.addEventListener('load', function() {
             loadMemories();
+        });
+        document.addEventListener('visibilitychange', function(){
+            if (!document.hidden) loadMemories();
         });
     </script>
     

@@ -1741,12 +1741,22 @@
             }
         });
         
-        // Load and display room memories
+        // Load and display room memories (requires auth)
         async function loadRoomMemories() {
             try {
                 const container = document.getElementById('roomMemoryContainer');
                 if (!container) return;
                 
+                // Require auth: hide when logged out
+                let authed = false;
+                try { authed = !!JSON.parse(localStorage.getItem('luwei_auth')||'null'); } catch(_) {}
+                if (!authed) {
+                    container.innerHTML = '';
+                    container.style.display = 'none';
+                    return;
+                } else {
+                    container.style.display = 'block';
+                }
                 container.innerHTML = '';
                 
                 // Load from Supabase
