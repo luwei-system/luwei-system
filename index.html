@@ -665,6 +665,9 @@
           
           // Also listen for storage changes (cross-tab sync)
           window.addEventListener('storage', updateAuthUI);
+          
+          // Listen for auth change events
+          window.addEventListener('luwei:authChanged', updateAuthUI);
           const signWith = async (provider)=>{
             try{ await window.luweiAuth.oauthSignIn(provider); }catch(e){ alert(provider+' 로그인 실패'); }
           };

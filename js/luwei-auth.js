@@ -98,8 +98,11 @@
           console.log('[luwei-auth] exchangeCodeForSession', !!(data && data.session), error);
           if (data && data.session){
             localStorage.setItem('luwei_auth', JSON.stringify({ user: data.session.user, access_token: data.session.access_token }));
+            console.log('[luwei-auth] session saved to localStorage (code flow)');
+            window.history.replaceState({}, '', location.pathname);
+            // Dispatch custom event to notify UI
+            window.dispatchEvent(new CustomEvent('luwei:authChanged'));
           }
-          history.replaceState({}, '', location.origin + location.pathname);
         }catch(e){ console.warn('[luwei-auth] exchange failed', e); }
       }
     }
@@ -127,8 +130,10 @@
                 const sessionData = { user: data.session.user, access_token: data.session.access_token };
                 localStorage.setItem('luwei_auth', JSON.stringify(sessionData));
                 console.log('[luwei-auth] session saved to localStorage');
-                location.hash = '';
-                setTimeout(() => location.reload(), 500);
+                // Clear URL parameters
+                window.history.replaceState({}, '', location.pathname);
+                // Dispatch custom event to notify UI
+                window.dispatchEvent(new CustomEvent('luwei:authChanged'));
               }
             }catch(e){ 
               console.warn('[luwei-auth] getSession failed', e);
