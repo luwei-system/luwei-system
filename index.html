@@ -639,7 +639,7 @@
               if (ok){ await window.luweiAuth.refreshSession(); sess = window.luweiAuth.getSession(); }
             }
             const isOn = !!sess;
-            console.log('[auth-ui] session status', isOn, sess);
+            if (isOn) console.log('[auth-ui] logged in', sess.user?.email || sess.user?.phone);
             outBtn.style.display = isOn ? 'inline-block' : 'none';
             statusEl.style.display = isOn ? 'inline-block' : 'none';
             loginBtns.forEach(btn => { btn.style.display = isOn ? 'none' : 'inline-block'; });

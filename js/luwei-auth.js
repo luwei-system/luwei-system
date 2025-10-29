@@ -119,15 +119,20 @@
         if (!client && tries < maxTries){
           setTimeout(attempt, t);
         } else if (client) {
-          const next = ()=>{
-            client.auth.getSession().then(({ data }) => {
+          const next = async ()=>{
+            try {
+              const { data } = await client.auth.getSession();
               console.log('[luwei-auth] session after OAuth', !!(data && data.session));
               if (data && data.session){
-                localStorage.setItem('luwei_auth', JSON.stringify({ user: data.session.user, access_token: data.session.access_token }));
+                const sessionData = { user: data.session.user, access_token: data.session.access_token };
+                localStorage.setItem('luwei_auth', JSON.stringify(sessionData));
+                console.log('[luwei-auth] session saved to localStorage');
                 location.hash = '';
-                location.reload();
+                setTimeout(() => location.reload(), 500);
               }
-            }).catch(()=>{});
+            }catch(e){ 
+              console.warn('[luwei-auth] getSession failed', e);
+            }
           };
           if (at && rt){
             client.auth.setSession({ access_token: at, refresh_token: rt }).then(() => next()).catch(() => next());
