@@ -925,8 +925,8 @@
                     e.preventDefault();
                 };
                 const up = ()=>{
-                    if (!moved) {
-                        // treat as tap → toggle
+                    if (dragging && !moved) {
+                        // treat as tap on needle only → toggle
                         try { toggleNeedle(); } catch(_) {}
                     }
                     dragging=false; moved=false;
