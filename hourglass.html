@@ -550,6 +550,29 @@
         .memory-item.expanded::before {
             content: '';
         }
+
+        /* Needle tool */
+        .needle-toggle {
+            position: fixed;
+            right: 12px;
+            bottom: 100px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.9);
+            border: 2px solid rgba(0,0,0,.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 20px rgba(0,0,0,.15);
+            z-index: 2147480000;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+        }
+        
+        body.needle-on {
+            cursor: url('./assets/바늘.png') 8 8, pointer;
+        }
         
         @media (max-width: 768px) {
             .home-button {
@@ -796,6 +819,11 @@
     <div class="volume-toggle" id="volumeToggle" onclick="toggleVolumeControl()">
         <img src="./assets/음악아이콘.png" alt="Volume" style="width: 30px; height: 30px;">
     </div>
+
+    <!-- Needle Toggle Button -->
+    <div class="needle-toggle" id="needleToggle" title="바늘" onclick="toggleNeedle()">
+        <img src="./assets/바늘.png" alt="needle" style="width:28px;height:28px;pointer-events:none;">
+    </div>
     
     <!-- Memory Modal -->
     <div class="memory-modal" id="memoryModal">
@@ -1013,7 +1041,8 @@
                         content_url: selectedColor, // Store selected color
                         is_public: showInRoom, // Show in room if checked
                         created_at: new Date().toISOString()
-                    });
+                    })
+                    .select('*');
                 
                 if (error) {
                     throw error;
@@ -1102,10 +1131,35 @@
                     memoryEl.style.animationDelay = (index * 0.5) + 's';
                     memoryEl.textContent = text;
                     memoryEl.setAttribute('data-text', text);
+                    if (memory.id) memoryEl.dataset.id = memory.id;
                     
                     // Click to expand
-                    memoryEl.onclick = function(e) {
+                    memoryEl.onclick = async function(e) {
                         e.stopPropagation();
+                        const id = this.dataset.id;
+                        if (window.__NEEDLE_ON && id) {
+                            try {
+                                const ok = confirm('버블을 터트릴까요? 삭제됩니다.');
+                                if (!ok) return;
+                                const { createClient } = supabase;
+                                const supabaseClient = createClient(
+                                    window.__LUWEI_SUPABASE_CONFIG.url,
+                                    window.__LUWEI_SUPABASE_CONFIG.anonKey
+                                );
+                                const { error: delErr } = await supabaseClient
+                                    .from('artifact')
+                                    .delete()
+                                    .eq('id', id);
+                                if (delErr) throw delErr;
+                                this.remove();
+                                try { localStorage.setItem('luwei_room_ping', String(Date.now())); } catch(_) {}
+                                try { const bc = new BroadcastChannel('luwei-memories'); bc.postMessage({type:'new_memory', public:true}); } catch(_) {}
+                                return;
+                            } catch (err) {
+                                alert('삭제 실패: ' + err.message);
+                                return;
+                            }
+                        }
                         const isExpanded = this.classList.contains('expanded');
                         
                         // Close other expanded items
