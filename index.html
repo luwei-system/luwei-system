@@ -687,7 +687,20 @@
           box.querySelector('#auth_kakao').onclick = ()=> signWith('kakao');
           box.querySelector('#auth_instagram').onclick = ()=> signWith('instagram');
           box.querySelector('#auth_apple').onclick = ()=> signWith('apple');
-          outBtn.onclick = ()=>{ window.luweiAuth.signOut(); updateAuthUI(); alert('로그아웃'); };
+          outBtn.onclick = async ()=>{
+            window.luweiAuth.signOut();
+            // Clear UI immediately
+            outBtn.style.display = 'none';
+            statusEl.style.display = 'none';
+            const kakaoBtn = box.querySelector('#auth_kakao');
+            if (appleBtn) appleBtn.style.display = 'inline-block';
+            if (kakaoBtn) kakaoBtn.style.display = 'none';
+            // Update after a delay to ensure localStorage is cleared
+            setTimeout(() => {
+              updateAuthUI();
+              alert('로그아웃');
+            }, 100);
+          };
         })();
     </script>
     
