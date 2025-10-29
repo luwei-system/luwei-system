@@ -48,8 +48,9 @@
             padding: 60px 20px 30px 20px;
             max-width: 800px;
             margin: 0 auto;
-            z-index: 1000;
+            z-index: 0; /* 버블을 가리지 않도록 낮춤 */
             position: relative;
+            pointer-events: none; /* 클릭 방해 방지 */
         }
         
         .hourglass-title {
