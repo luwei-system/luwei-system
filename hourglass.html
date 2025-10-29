@@ -900,10 +900,10 @@
             (function(){
                 const needle = document.getElementById('needleToggle');
                 if (!needle) return;
-                let dragging=false, sx=0, sy=0, ox=0, oy=0;
+                let dragging=false, moved=false, sx=0, sy=0, ox=0, oy=0;
                 const pt = (e)=> (e.touches && e.touches[0]) ? {x:e.touches[0].clientX,y:e.touches[0].clientY}:{x:e.clientX,y:e.clientY};
                 const down = (e)=>{
-                    const p = pt(e); dragging=true; sx=p.x; sy=p.y;
+                    const p = pt(e); dragging=true; moved=false; sx=p.x; sy=p.y;
                     const r = needle.getBoundingClientRect();
                     ox = r.left; oy = r.top;
                     needle.style.left = ox + 'px';
@@ -915,6 +915,7 @@
                 const move = (e)=>{
                     if(!dragging) return; const p=pt(e);
                     let nx = ox + (p.x - sx); let ny = oy + (p.y - sy);
+                    if (Math.abs(p.x - sx) > 3 || Math.abs(p.y - sy) > 3) moved = true;
                     const maxX = window.innerWidth - needle.offsetWidth;
                     const maxY = window.innerHeight - needle.offsetHeight;
                     nx = Math.max(0, Math.min(maxX, nx));
@@ -923,7 +924,13 @@
                     needle.style.top  = ny + 'px';
                     e.preventDefault();
                 };
-                const up = ()=>{ dragging=false; };
+                const up = ()=>{
+                    if (!moved) {
+                        // treat as tap → toggle
+                        try { toggleNeedle(); } catch(_) {}
+                    }
+                    dragging=false; moved=false;
+                };
                 needle.addEventListener('mousedown', down);
                 window.addEventListener('mousemove', move, {passive:false});
                 window.addEventListener('mouseup', up);
