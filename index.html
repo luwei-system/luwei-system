@@ -623,17 +623,28 @@
             .map(sel => box.querySelector(sel))
             .filter(Boolean);
           const updateAuthUI = async ()=>{
+            // Try multiple ways to get session
             let sess = window.luweiAuth && window.luweiAuth.getSession && window.luweiAuth.getSession();
+            if (!sess) {
+              // Check localStorage directly
+              try {
+                const stored = localStorage.getItem('luwei_auth');
+                if (stored) {
+                  sess = JSON.parse(stored);
+                }
+              } catch(e) {}
+            }
             if (!sess && window.luweiAuth && window.luweiAuth.hasSession){
               const ok = await window.luweiAuth.hasSession();
               if (ok){ await window.luweiAuth.refreshSession(); sess = window.luweiAuth.getSession(); }
             }
             const isOn = !!sess;
+            console.log('[auth-ui] session status', isOn, sess);
             outBtn.style.display = isOn ? 'inline-block' : 'none';
             statusEl.style.display = isOn ? 'inline-block' : 'none';
             loginBtns.forEach(btn => { btn.style.display = isOn ? 'none' : 'inline-block'; });
             if (isOn){
-              const email = (sess.user && (sess.user.email || sess.user.phone)) || '로그인됨';
+              const email = (sess.user && (sess.user.email || sess.user.phone || sess.user.user_metadata?.email)) || '로그인됨';
               statusEl.textContent = email ? `로그인됨 · ${email}` : '로그인됨';
             }
           };
