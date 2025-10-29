@@ -1275,6 +1275,41 @@
                 el.style.left = nx + 'px';
                 el.style.top = ny + 'px';
                 e.preventDefault();
+
+                // Needle mode: if overlapping while moving, delete immediately
+                if (window.__NEEDLE_ON) {
+                    try {
+                        const needle = document.getElementById('needleToggle');
+                        if (needle) {
+                            const nr = needle.getBoundingClientRect();
+                            const br = el.getBoundingClientRect();
+                            const overlap = !(br.right < nr.left || br.left > nr.right || br.bottom < nr.top || br.top > nr.bottom);
+                            if (overlap) {
+                                const id = el.dataset.id;
+                                (async () => {
+                                    try {
+                                        if (id) {
+                                            const { createClient } = supabase;
+                                            const supabaseClient = createClient(
+                                                window.__LUWEI_SUPABASE_CONFIG.url,
+                                                window.__LUWEI_SUPABASE_CONFIG.anonKey
+                                            );
+                                            const { error: delErr } = await supabaseClient
+                                                .from('artifact')
+                                                .delete()
+                                                .eq('id', id);
+                                            if (delErr) throw delErr;
+                                        }
+                                        el.remove();
+                                        try { localStorage.setItem('luwei_room_ping', String(Date.now())); } catch(_) {}
+                                        try { const bc = new BroadcastChannel('luwei-memories'); bc.postMessage({type:'new_memory', public:true}); } catch(_) {}
+                                    } catch (_) {}
+                                })();
+                                dragging = false;
+                            }
+                        }
+                    } catch(_) {}
+                }
             };
             const pointerUp = async ()=>{
                 if (dragging) {
