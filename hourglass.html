@@ -1026,6 +1026,16 @@
                 // Reload memories to show the new one
                 loadMemories();
                 
+                // Notify other pages (room) to refresh
+                try {
+                    localStorage.setItem('luwei_room_ping', String(Date.now()));
+                } catch(_) {}
+                try {
+                    const bc = new BroadcastChannel('luwei-memories');
+                    bc.postMessage({ type: 'new_memory', public: showInRoom });
+                    // No need to close; browser will GC
+                } catch(_) {}
+                
             } catch (err) {
                 console.error('Error saving memory:', err);
                 alert('저장 중 오류가 발생했습니다: ' + err.message);
