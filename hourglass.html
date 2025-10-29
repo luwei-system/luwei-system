@@ -465,7 +465,7 @@
         /* Color Picker */
         .memory-color-picker {
             display: flex;
-            gap: 8px;
+            gap: 10px;
             margin-top: 15px;
             align-items: center;
         }
@@ -476,22 +476,27 @@
             margin-right: 10px;
         }
         
-        .color-option {
-            width: 40px;
+        .color-picker-input {
+            width: 60px;
             height: 40px;
-            border-radius: 50%;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
             cursor: pointer;
-            border: 3px solid transparent;
+            outline: none;
             transition: all 0.3s;
         }
         
-        .color-option:hover {
-            transform: scale(1.2);
+        .color-picker-input:hover {
+            border-color: rgba(207, 232, 255, 0.8);
+            transform: scale(1.1);
         }
         
-        .color-option.selected {
-            border-color: #333;
-            box-shadow: 0 0 0 2px rgba(255,255,255,1);
+        .color-preview {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            background: #CFE8FF;
         }
         
         @media (max-width: 768px) {
@@ -746,12 +751,8 @@
             <!-- Color Picker -->
             <div class="memory-color-picker">
                 <span class="memory-color-label"><span class="lang-kr">색상:</span><span class="lang-en">Color:</span></span>
-                <div class="color-option" data-color="#CFE8FF" style="background: #CFE8FF;" onclick="selectColor('#CFE8FF')"></div>
-                <div class="color-option" data-color="#FFE4E1" style="background: #FFE4E1;" onclick="selectColor('#FFE4E1')"></div>
-                <div class="color-option" data-color="#FFE8D1" style="background: #FFE8D1;" onclick="selectColor('#FFE8D1')"></div>
-                <div class="color-option" data-color="#F0E6FF" style="background: #F0E6FF;" onclick="selectColor('#F0E6FF')"></div>
-                <div class="color-option" data-color="#E6FFE6" style="background: #E6FFE6;" onclick="selectColor('#E6FFE6')"></div>
-                <div class="color-option" data-color="#E0F7FA" style="background: #E0F7FA;" onclick="selectColor('#E0F7FA')"></div>
+                <input type="color" id="colorPicker" class="color-picker-input" value="#CFE8FF" onchange="updateColorPreview(this.value)">
+                <div class="color-preview" id="colorPreview" style="background: #CFE8FF;"></div>
             </div>
             
             <div class="memory-modal-buttons">
@@ -876,25 +877,27 @@
             if (textarea) {
                 textarea.value = '';
             }
-            // Reset color selection
-            const colorOptions = document.querySelectorAll('.color-option');
-            colorOptions.forEach(opt => opt.classList.remove('selected'));
+            // Reset color picker
+            const colorPicker = document.getElementById('colorPicker');
+            const colorPreview = document.getElementById('colorPreview');
+            if (colorPicker) {
+                colorPicker.value = '#CFE8FF';
+            }
+            if (colorPreview) {
+                colorPreview.style.background = '#CFE8FF';
+            }
             selectedColor = '#CFE8FF'; // Reset to default
         }
         
         // Color selection
         let selectedColor = '#CFE8FF'; // Default color
         
-        function selectColor(color) {
+        function updateColorPreview(color) {
             selectedColor = color;
-            const colorOptions = document.querySelectorAll('.color-option');
-            colorOptions.forEach(opt => {
-                if (opt.dataset.color === color) {
-                    opt.classList.add('selected');
-                } else {
-                    opt.classList.remove('selected');
-                }
-            });
+            const colorPreview = document.getElementById('colorPreview');
+            if (colorPreview) {
+                colorPreview.style.background = color;
+            }
         }
         
         async function saveMemory() {
