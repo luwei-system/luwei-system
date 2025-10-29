@@ -462,6 +462,38 @@
             transform: scale(1.05);
         }
         
+        /* Color Picker */
+        .memory-color-picker {
+            display: flex;
+            gap: 8px;
+            margin-top: 15px;
+            align-items: center;
+        }
+        
+        .memory-color-label {
+            font-size: 14px;
+            color: #666;
+            margin-right: 10px;
+        }
+        
+        .color-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .color-option:hover {
+            transform: scale(1.2);
+        }
+        
+        .color-option.selected {
+            border-color: #333;
+            box-shadow: 0 0 0 2px rgba(255,255,255,1);
+        }
+        
         @media (max-width: 768px) {
             .home-button {
                 width: 50px;
@@ -710,6 +742,18 @@
         <div class="memory-modal-content">
             <h2><span class="lang-kr">당신의 기억을 남겨주세요</span><span class="lang-en">Leave Your Memory</span></h2>
             <textarea id="memoryText" placeholder="여기에 당신의 생각을 적어주세요..."></textarea>
+            
+            <!-- Color Picker -->
+            <div class="memory-color-picker">
+                <span class="memory-color-label"><span class="lang-kr">색상:</span><span class="lang-en">Color:</span></span>
+                <div class="color-option" data-color="#CFE8FF" style="background: #CFE8FF;" onclick="selectColor('#CFE8FF')"></div>
+                <div class="color-option" data-color="#FFE4E1" style="background: #FFE4E1;" onclick="selectColor('#FFE4E1')"></div>
+                <div class="color-option" data-color="#FFE8D1" style="background: #FFE8D1;" onclick="selectColor('#FFE8D1')"></div>
+                <div class="color-option" data-color="#F0E6FF" style="background: #F0E6FF;" onclick="selectColor('#F0E6FF')"></div>
+                <div class="color-option" data-color="#E6FFE6" style="background: #E6FFE6;" onclick="selectColor('#E6FFE6')"></div>
+                <div class="color-option" data-color="#E0F7FA" style="background: #E0F7FA;" onclick="selectColor('#E0F7FA')"></div>
+            </div>
+            
             <div class="memory-modal-buttons">
                 <button class="memory-modal-btn save" onclick="saveMemory()"><span class="lang-kr">저장</span><span class="lang-en">Save</span></button>
                 <button class="memory-modal-btn cancel" onclick="closeMemoryModal()"><span class="lang-kr">취소</span><span class="lang-en">Cancel</span></button>
@@ -814,6 +858,13 @@
             if (modal) {
                 modal.classList.add('active');
             }
+            
+            // Set default color
+            selectedColor = '#CFE8FF';
+            const defaultColorOption = document.querySelector('.color-option[data-color="#CFE8FF"]');
+            if (defaultColorOption) {
+                defaultColorOption.classList.add('selected');
+            }
         }
         
         function closeMemoryModal() {
@@ -825,6 +876,25 @@
             if (textarea) {
                 textarea.value = '';
             }
+            // Reset color selection
+            const colorOptions = document.querySelectorAll('.color-option');
+            colorOptions.forEach(opt => opt.classList.remove('selected'));
+            selectedColor = '#CFE8FF'; // Reset to default
+        }
+        
+        // Color selection
+        let selectedColor = '#CFE8FF'; // Default color
+        
+        function selectColor(color) {
+            selectedColor = color;
+            const colorOptions = document.querySelectorAll('.color-option');
+            colorOptions.forEach(opt => {
+                if (opt.dataset.color === color) {
+                    opt.classList.add('selected');
+                } else {
+                    opt.classList.remove('selected');
+                }
+            });
         }
         
         async function saveMemory() {
@@ -847,12 +917,38 @@
                 
                 const session = JSON.parse(stored);
                 const userId = session.user && session.user.id;
+                const accessToken = session.access_token;
                 
-                // Save memory to localStorage
+                // Save to Supabase database
+                const { createClient } = supabase;
+                const supabaseClient = createClient(
+                    window.__LUWEI_SUPABASE_CONFIG.url,
+                    window.__LUWEI_SUPABASE_CONFIG.anonKey
+                );
+                
+                // Use supabase client with auth
+                // Store color in content_url field temporarily
+                const { data, error } = await supabaseClient
+                    .from('artifact')
+                    .insert({
+                        user_id: userId,
+                        kind: 'text',
+                        text_content: text,
+                        content_url: selectedColor, // Store selected color
+                        is_public: false,
+                        created_at: new Date().toISOString()
+                    });
+                
+                if (error) {
+                    throw error;
+                }
+                
+                // Also save to localStorage for backup
                 const memories = JSON.parse(localStorage.getItem('hourglass_memories') || '[]');
                 memories.push({
                     id: Date.now(),
                     text: text,
+                    color: selectedColor,
                     userId: userId,
                     timestamp: new Date().toISOString()
                 });
@@ -863,7 +959,7 @@
                 
             } catch (err) {
                 console.error('Error saving memory:', err);
-                alert('저장 중 오류가 발생했습니다.');
+                alert('저장 중 오류가 발생했습니다: ' + err.message);
             }
         }
         
@@ -887,12 +983,17 @@
     <!-- LUWEI Phase 0 Scripts (Player not used) -->
     <script src="./js/hourglass.js"></script>
     <script src="./js/luwei-supabase.js"></script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+    <script src="./js/luwei-auth.js?v=3"></script>
     <script>
-        window.luweiSupabase && window.luweiSupabase.setConfig({
+        window.__LUWEI_SUPABASE_CONFIG = {
             url: 'https://ngyjzclndgffwzhoukuj.supabase.co',
             anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5neWp6Y2xuZGdmZnd6aG91a3VqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE2Mzc3MDksImV4cCI6MjA3NzIxMzcwOX0.z2HvEUaVjiJ2HhfC8Qxf1Ka0Acpc3DtW4IM8dLYV_o0',
             functionsUrl: 'https://ngyjzclndgffwzhoukuj.supabase.co/functions/v1'
-        });
+        };
+        if (window.luweiSupabase) {
+            window.luweiSupabase.setConfig(window.__LUWEI_SUPABASE_CONFIG);
+        }
     </script>
 </body>
 </html>
