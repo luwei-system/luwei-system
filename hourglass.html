@@ -1096,8 +1096,8 @@
                     const text = memory.text_content || '';
                     
                     memoryEl.style.background = color;
-                    memoryEl.style.left = (10 + (index * 15)) % 80 + '%';
-                    memoryEl.style.top = (15 + (index * 12)) % 70 + '%';
+                    memoryEl.style.left = (5 + Math.random()*90) + '%';
+                    memoryEl.style.top = (10 + Math.random()*70) + '%';
                     memoryEl.style.animationDelay = (index * 0.5) + 's';
                     memoryEl.textContent = text;
                     memoryEl.setAttribute('data-text', text);
@@ -1111,6 +1111,8 @@
                         document.querySelectorAll('.memory-item.expanded').forEach(item => {
                             if (item !== this) {
                                 item.classList.remove('expanded');
+                                item.style.fontSize = '0';
+                                item.style.padding = '0';
                             }
                         });
                         
