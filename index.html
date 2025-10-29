@@ -631,7 +631,9 @@
               if (stored) {
                 sess = JSON.parse(stored);
               }
-            } catch(e) {}
+            } catch(e) {
+              console.warn('[auth-ui] localStorage parse error', e);
+            }
             
             // 2. If luweiAuth API available, use it
             if (!sess && window.luweiAuth && window.luweiAuth.getSession) {
@@ -639,6 +641,7 @@
             }
             
             const isOn = !!sess;
+            console.log('[auth-ui] session check', { isOn, hasSession: !!sess, userId: sess?.user?.id });
             
           // Update UI
           outBtn.style.display = isOn ? 'inline-block' : 'none';
