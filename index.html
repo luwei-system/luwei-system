@@ -625,32 +625,17 @@
           const updateAuthUI = async ()=>{
             let sess = null;
             
-            // 1. Check localStorage
+            // 1. Check localStorage first (fastest)
             try {
               const stored = localStorage.getItem('luwei_auth');
               if (stored) {
                 sess = JSON.parse(stored);
               }
-            } catch(e) {
-              console.warn('[auth-ui] localStorage parse error', e);
-            }
+            } catch(e) {}
             
-            // 2. Check Supabase session directly
-            try {
-              if (window.supabase && window.luweiSupabase) {
-                const config = window.luweiSupabase.getConfig();
-                if (config && config.url && config.anonKey) {
-                  const client = window.supabase.createClient(config.url, config.anonKey);
-                  const { data } = await client.auth.getSession();
-                  if (data?.session) {
-                    sess = data.session;
-                    // Save to localStorage
-                    localStorage.setItem('luwei_auth', JSON.stringify({ user: sess.user, access_token: sess.access_token }));
-                  }
-                }
-              }
-            } catch(e) {
-              console.warn('[auth-ui] Supabase check error', e);
+            // 2. If luweiAuth API available, use it
+            if (!sess && window.luweiAuth && window.luweiAuth.getSession) {
+              sess = window.luweiAuth.getSession();
             }
             
             const isOn = !!sess;
