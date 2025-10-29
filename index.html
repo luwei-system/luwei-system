@@ -653,23 +653,13 @@
           // Initial UI update
           updateAuthUI();
           
-          // Wait for scripts to load, then refresh session
+          // Refresh session once after page load
           setTimeout(async () => {
             if (window.luweiAuth && window.luweiAuth.refreshSession) {
-              const refreshed = await window.luweiAuth.refreshSession();
-              if (refreshed) {
-                updateAuthUI();
-              }
+              await window.luweiAuth.refreshSession();
+              updateAuthUI();
             }
-          }, 1000);
-          
-          // Poll for session changes
-          let tries = 0; const maxTries = 60;
-          const t = setInterval(async ()=>{
-            tries++; 
-            await updateAuthUI(); 
-            if (tries>=maxTries) clearInterval(t); 
-          }, 500);
+          }, 1500);
           
           document.addEventListener('visibilitychange', updateAuthUI);
           
