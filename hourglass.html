@@ -1180,33 +1180,9 @@
                     // Make draggable (mouse/touch)
                     makeDraggable(memoryEl);
 
-                    // Click to expand
-                    memoryEl.onclick = async function(e) {
+                    // Click to expand (needle 모드 여부와 무관하게 항상 열기/닫기)
+                    memoryEl.onclick = function(e) {
                         e.stopPropagation();
-                        const id = this.dataset.id;
-                        if (window.__NEEDLE_ON && id) {
-                            try {
-                                const ok = confirm('버블을 터트릴까요? 삭제됩니다.');
-                                if (!ok) return;
-                                const { createClient } = supabase;
-                                const supabaseClient = createClient(
-                                    window.__LUWEI_SUPABASE_CONFIG.url,
-                                    window.__LUWEI_SUPABASE_CONFIG.anonKey
-                                );
-                                const { error: delErr } = await supabaseClient
-                                    .from('artifact')
-                                    .delete()
-                                    .eq('id', id);
-                                if (delErr) throw delErr;
-                                this.remove();
-                                try { localStorage.setItem('luwei_room_ping', String(Date.now())); } catch(_) {}
-                                try { const bc = new BroadcastChannel('luwei-memories'); bc.postMessage({type:'new_memory', public:true}); } catch(_) {}
-                                return;
-                            } catch (err) {
-                                alert('삭제 실패: ' + err.message);
-                                return;
-                            }
-                        }
                         const isExpanded = this.classList.contains('expanded');
                         
                         // Close other expanded items
