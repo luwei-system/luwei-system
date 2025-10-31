@@ -1,9 +1,9 @@
 // LUWEI SYSTEM - Service Worker
 // 오프라인 지원 및 캐시 전략 구현
 
-const CACHE_NAME = 'luwei-system-v4-mobile';
-const STATIC_CACHE_NAME = 'luwei-static-v4-mobile';
-const DYNAMIC_CACHE_NAME = 'luwei-dynamic-v4-mobile';
+const CACHE_NAME = 'luwei-system-v5-mobile';
+const STATIC_CACHE_NAME = 'luwei-static-v5-mobile';
+const DYNAMIC_CACHE_NAME = 'luwei-dynamic-v5-mobile';
 
 // 캐시할 정적 리소스
 const STATIC_ASSETS = [
